@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121208225733) do
+ActiveRecord::Schema.define(:version => 20121208233351) do
 
   create_table "artists", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20121208225733) do
     t.string   "password"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.text     "desc"
+    t.text     "rules"
   end
 
   create_table "bounties", :force => true do |t|
@@ -29,6 +31,8 @@ ActiveRecord::Schema.define(:version => 20121208225733) do
     t.integer  "vote"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.integer  "status_id"
   end
 
   create_table "completions", :force => true do |t|
