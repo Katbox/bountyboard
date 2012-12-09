@@ -5,14 +5,17 @@ gem 'rails', '3.2.9'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+
 # Gems used in the production environment.
 group :production do
 	gem 'pg', '0.14.1'
 end
 
+
 # Gems used in the development environment.
 group :development do
 	gem 'sqlite3'
+	gem 'rspec-rails'
 end
 
 
@@ -26,6 +29,12 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+end
+
+
+# Gems used when running tests.
+group :test do
+	gem 'capybara'
 end
 
 gem 'jquery-rails'
