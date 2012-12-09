@@ -1,0 +1,2 @@
+class CompletionsController < ApplicationController
+end
