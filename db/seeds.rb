@@ -18,8 +18,10 @@ Taxonomy.create(:name => 'may_complete')
 
 Bounty.create(:name => 'Job 1', :desc => 'A simple job.', :price => 10.00, :rating => "Simple and Clean", :vote => 0, :user_id => 1)
 Bounty.create(:name => 'Job 2', :desc => 'A strange job.', :price => 16.01, :rating => "Strange and Creepy", :vote => 5, :user_id => 2)
-Bounty.create(:name => 'Job 3', :desc => 'A crazy hard job.', :price => 999.99, :rating => "Super Hard", :vote => 100, :user_id => 3)
+Bounty.create(:name => 'Job 3', :desc => 'A crazy hard job.', :price => 999.99, :rating => "Super Hard", :vote => 100, :url => 'www.google.com', :user_id => 3)
 Bounty.create(:name => 'Job 4', :desc => 'A crappy job.', :price => 999.99, :rating => "Crappy", :vote => -5, :user_id => 3)
+
+Ip.create(:name => 'Las Lindas', :desc => 'A cowgirl and her farm.', :rules => 'Almost anything goes.', :artist_id => 1)
 
 Completion.create(:artist_id => 1, :bounty_id => 1, :taxonomy_id => 4)
 Completion.create(:artist_id => 2, :bounty_id => 1, :taxonomy_id => 4)
@@ -42,3 +44,4 @@ Completion.create(:artist_id => 2, :bounty_id => 2, :taxonomy_id => 1)
 Completion.create(:artist_id => 3, :bounty_id => 3, :taxonomy_id => 1)
 Completion.create(:artist_id => 3, :bounty_id => 3, :taxonomy_id => 3)
 Completion.create(:artist_id => 3, :bounty_id => 4, :taxonomy_id => 2)
+
