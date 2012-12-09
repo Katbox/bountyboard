@@ -13,7 +13,9 @@ class Bounty < ActiveRecord::Base
   has_many :completions
   has_many :artists, :through => :completions
 
-
-
-
+  validates :name, presence: true
+  validates :desc, presence: true
+  validates :price, presence: true
+  validates :rating, presence: true
+  validates :vote, presence: true
 end

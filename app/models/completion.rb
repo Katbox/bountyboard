@@ -7,4 +7,8 @@ class Completion < ActiveRecord::Base
 
   #One to many relationship with taxonomy to describe meaning of artist to bounty many to many.
   belongs_to :taxonomy
+
+   validates :artist_id, presence: true
+   validates :bounty_id, presence: true
+   validates :taxonomy_id, presence: true
 end

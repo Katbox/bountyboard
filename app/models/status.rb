@@ -3,4 +3,6 @@ class Status < ActiveRecord::Base
 
   #One to many relationship with bounty.
   has_many :bounties
+
+  validates :status, presence: true
 end
