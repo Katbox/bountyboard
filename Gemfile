@@ -16,6 +16,8 @@ end
 group :development do
 	gem 'sqlite3'
 	gem 'rspec-rails'
+	gem 'guard'
+	gem 'ruby-growl'
 end
 
 
