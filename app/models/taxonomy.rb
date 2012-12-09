@@ -1,8 +1,8 @@
 class Taxonomy < ActiveRecord::Base
-  attr_accessible :type
+  attr_accessible :name
 
   #One to many relationship with bounty.
   has_many :bounties
 
-  validates :type, presence: true
+  validates :name, presence: true
 end

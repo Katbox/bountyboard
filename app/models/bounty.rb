@@ -1,5 +1,5 @@
 class Bounty < ActiveRecord::Base
-  attr_accessible :name, :desc, :price, :rating, :vote
+  attr_accessible :name, :desc, :price, :rating, :vote, :user_id
   #One to many relationship with user.
   belongs_to :user
 
