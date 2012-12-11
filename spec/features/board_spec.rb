@@ -36,7 +36,7 @@ describe 'Board' do
 		it 'the footer should be rendered in the correct place' do
 			visit '/board/index'
 			page.should have_selector('body > .container-fluid:last-child footer.row-fluid',
-			  :text => '&copy; Lionheart Studio and Brent Houghton')
+			  :text => '© Lionheart Studio and Brent Houghton')
 		end
 	end
 end
