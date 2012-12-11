@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class Artist < ActiveRecord::Base
   attr_accessible :name, :email, :password, :desc, :rules
   #has_secure_password

@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class Ip < ActiveRecord::Base
   attr_accessible :name, :desc, :rules, :artist_id
 

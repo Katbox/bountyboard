@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class Bounty < ActiveRecord::Base
   attr_accessible :name, :desc, :price, :rating, :vote, :url, :user_id
   #One to many relationship with user.

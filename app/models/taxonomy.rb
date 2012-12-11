@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class Taxonomy < ActiveRecord::Base
   attr_accessible :name
 

@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class Status < ActiveRecord::Base
   attr_accessible :status
 
