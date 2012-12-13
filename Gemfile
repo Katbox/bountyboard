@@ -41,9 +41,13 @@ group :test do
 	gem 'capybara'
 end
 
+
+# Universal gems that should be used in all environments.
 gem 'jquery-rails'
 gem 'normalize-rails'
 gem 'bootstrap-sass'
+gem 'omniauth-browserid'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
