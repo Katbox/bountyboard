@@ -1,0 +1,9 @@
+<%
+# This partial provides a form for authenticating with Persona. Render the
+# persona-lib partial in the page's head to use this functionality.
+%>
+<form id='browser_id_form' action='/auth/browser_id/callback'>
+	<input type='hidden' name='assertion'>
+	<button type='submit' class="btn pull-right">Artist Sign-In with Persona</button>
+</form>
+

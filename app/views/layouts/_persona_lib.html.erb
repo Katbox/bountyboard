@@ -1,0 +1,26 @@
+<%
+# This partial provides JS libraries for implementing authentication with
+# Persona. Include this partial in the page's head section, then insert the
+# persona_form partial into the body HTML where you want the login form to be.
+%>
+<script src="https://browserid.org/include.js" type="text/javascript"></script>
+<script type='text/javascript'>
+	function loginViaEmail() {
+		navigator.id.get(function(assertion) {
+			if (assertion) {
+				$('input[name=assertion]').val(assertion);
+				$('#browser_id_form').submit();
+			} else {
+				window.location = "#{failure_path}"
+			}
+		});  
+	}
+
+	$(function() {
+			$('#browser_id_form button').click(function() {
+			loginViaEmail();
+			return false;
+		});
+	});
+</script>
+
