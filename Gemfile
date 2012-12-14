@@ -47,6 +47,7 @@ gem 'jquery-rails'
 gem 'normalize-rails'
 gem 'bootstrap-sass'
 gem 'omniauth-browserid'
+gem 'omniauth-deviantart'
 
 
 # To use ActiveModel has_secure_password
