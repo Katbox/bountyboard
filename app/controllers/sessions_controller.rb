@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
 
 	def create
 		
-		render :text => request.env['rack.auth'].inspect
+		render :text => "user info:<br>#{request.env['rack.auth'].inspect}<br><br>authorization hash:<br>#{auth_hash}"
 
 		#@user = User.find_or_create_from_auth_hash(auth_hash)
 		#self.current_user = @user
