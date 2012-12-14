@@ -1,12 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
-require 'omniauth-browserid'
-
-
-# send log messages from our authentication system to the Rails log
-OmniAuth.config.logger = Rails.logger
-
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
