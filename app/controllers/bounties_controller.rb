@@ -1,2 +1,0 @@
-class BountiesController < ApplicationController
-end
