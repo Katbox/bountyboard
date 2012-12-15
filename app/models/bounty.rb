@@ -1,23 +1,45 @@
-# encoding: UTF-8
+# == Schema Information
+#
+# Table name: bounties
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)      not null
+#  desc        :text             not null
+#  price       :decimal(8, 2)    not null
+#  rating      :boolean          default(FALSE), not null
+#  vote        :integer          default(0), not null
+#  private     :boolean          default(FALSE), not null
+#  url         :string(255)
+#  user_id     :integer          not null
+#  accept_id   :integer
+#  reject_id   :integer
+#  complete_id :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
 
 class Bounty < ActiveRecord::Base
-  attr_accessible :name, :desc, :price, :rating, :vote, :url, :user_id
-  #One to many relationship with user.
-  belongs_to :user
+  attr_accessible :name, :desc, :price, :rating, :vote, :url, :private, :user_id, :accept_id, :reject_id, :complete_id
 
-  #One to many relationship with status.
-  belongs_to :status
+  #OWNERSHIP OF A BOUNTY
+  belongs_to :owner, :foreign_key => "user_id", :class_name => "User"
 
-  #One to many relationship with taxonomy.
-  belongs_to :taxonomy
+  #ACCEPTANCE OF A BOUNTY
+  belongs_to :acceptor, :foreign_key => "accept_id", :class_name => "User"
 
-  #Many to many relationship with artist through completion.
-  has_many :completions
-  has_many :artists, :through => :completions
+  #REJECTION OF A BOUNTY
+  belongs_to :rejector, :foreign_key => "reject_id", :class_name => "User"
+
+  #COMPLETION OF A BOUNTY
+  belongs_to :completor, :foreign_key => "complete_id", :class_name => "User"
+
+  #CANDIDACY TO ACCEPT A BOUNTY
+  has_many :candidacies
+  has_many :users, :through => :candidacies
 
   validates :name, presence: true
   validates :desc, presence: true
   validates :price, presence: true
-  validates :rating, presence: true
   validates :vote, presence: true
+  validates :user_id, presence: true
 end

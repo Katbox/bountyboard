@@ -1,47 +1,54 @@
-User.create(:name => 'Alice', :email => 'Alice@gmail.com')
-User.create(:name => 'Bob', :email => 'Bob@gmail.com')
-User.create(:name => 'Carol', :email => 'Carol@gmail.com')
+User.create(:id => 1, :name => 'Devin', :email => 'devin@test.com', :permission_id => 1)
+User.create(:id => 2, :name => 'Brent', :email => 'brent@test.com', :permission_id => 3)
+User.create(:id => 3, :name => 'Artist1', :email => 'artist1@test.com', :permission_id => 2)
+User.create(:id => 4, :name => 'Artist2', :email => 'artist2@test.com', :permission_id => 2)
+User.create(:id => 5, :name => 'Artist3', :email => 'artist3@test.com', :permission_id => 2)
+User.create(:id => 6, :name => 'Artist4', :email => 'artist4@test.com', :permission_id => 2)
 
-Artist.create(:name => 'Douglas', :email => 'Douglas@gmail.com', :password => 'abc123', :desc => 'My name starts with a D.', :rules => 'Im very specific as to what I will do.')
-Artist.create(:name => 'Earl', :email => 'Earl@gmail.com', :password => 'abc123', :desc => 'My name starts with an E.', :rules => 'Im ok with some things.')
-Artist.create(:name => 'Frank', :email => 'Frank@gmail.com', :password => 'abc123', :desc => 'My name starts with an F.', :rules => 'Anything goes.')
+Ip.create(:id => 3, :user_id => 3, :name => 'Artist1\'s IP', :desc => 'Practical stuff.', :rules => 'Anything goes.')
+Ip.create(:id => 4, :user_id => 4, :name => 'Artist2\'s IP', :desc => 'Hippie stuff.', :rules => 'Amost anything goes.')
+Ip.create(:id => 5, :user_id => 5, :name => 'Artist3\'s IP', :desc => 'Cool stuff.', :rules => 'I\'m a little picky.')
+Ip.create(:id => 6, :user_id => 6, :name => 'Artist4\'s IP', :desc => 'Trendy stuff.', :rules => 'I\'m very picky.')
 
-Status.create(:status => 'Unclaimed')
-Status.create(:status => 'Accepted')
-Status.create(:status => 'Completed')
-Status.create(:status => 'Rejected')
+Permission.create(:id => 1, :name => 'basic_user')
+Permission.create(:id => 2, :name => 'artist')
+Permission.create(:id => 3, :name => 'administrator')
 
-Taxonomy.create(:name => 'has_accepted')
-Taxonomy.create(:name => 'has_rejected')
-Taxonomy.create(:name => 'has_completed')
-Taxonomy.create(:name => 'may_complete')
+#Bounty 1, Created by Devin, Accepted by Artist1.
+Bounty.create(:id => 1, :user_id => 1, :accept_id => 3, :name => 'Bounty1', :desc => 'This is bounty 1.', :price => 10.00, :vote => 0)
 
-Bounty.create(:name => 'Job 1', :desc => 'A simple job.', :price => 10.00, :rating => "Simple and Clean", :vote => 0, :user_id => 1)
-Bounty.create(:name => 'Job 2', :desc => 'A strange job.', :price => 16.01, :rating => "Strange and Creepy", :vote => 5, :user_id => 2)
-Bounty.create(:name => 'Job 3', :desc => 'A crazy hard job.', :price => 999.99, :rating => "Super Hard", :vote => 100, :url => 'www.google.com', :user_id => 3)
-Bounty.create(:name => 'Job 4', :desc => 'A crappy job.', :price => 999.99, :rating => "Crappy", :vote => -5, :user_id => 3)
+#Bounty 2, Created by Devin, Accepted by Artist1.
+Bounty.create(:id => 2, :user_id => 1, :accept_id => 3, :name => 'Bounty2', :desc => 'This is bounty 2.', :price => 15.00, :vote => 0)
 
-Ip.create(:name => 'Las Lindas', :desc => 'A cowgirl and her farm.', :rules => 'Almost anything goes.', :artist_id => 1)
+#Bounty 3, Created by Devin, Rejected by Artist1.
+Bounty.create(:id => 3, :user_id => 1, :reject_id => 3, :name => 'Bounty3', :desc => 'This is bounty 3.', :price => 20.00, :vote => 0)
 
-Completion.create(:artist_id => 1, :bounty_id => 1, :taxonomy_id => 4)
-Completion.create(:artist_id => 2, :bounty_id => 1, :taxonomy_id => 4)
-Completion.create(:artist_id => 3, :bounty_id => 1, :taxonomy_id => 4)
+#Bounty 4, Created by Devin, Accepted by Artist2. Completed by Artist2.
+Bounty.create(:id => 4, :user_id => 1, :accept_id => 4, :complete_id => 4, :name => 'Bounty4', :desc => 'This is bounty 4.', :price => 25.00, :vote => 0)
 
-Completion.create(:artist_id => 1, :bounty_id => 2, :taxonomy_id => 4)
-Completion.create(:artist_id => 2, :bounty_id => 2, :taxonomy_id => 4)
-Completion.create(:artist_id => 3, :bounty_id => 2, :taxonomy_id => 4)
+#Bounty 5, Created by Brent, Accepted by Artist3. Completed by Artist3.
+Bounty.create(:id => 5, :user_id => 2, :accept_id => 5, :complete_id => 5, :name => 'Bounty5', :desc => 'This is bounty 5.', :price => 30.00, :vote => 0)
 
-Completion.create(:artist_id => 1, :bounty_id => 3, :taxonomy_id => 4)
-Completion.create(:artist_id => 2, :bounty_id => 3, :taxonomy_id => 4)
-Completion.create(:artist_id => 3, :bounty_id => 3, :taxonomy_id => 4)
+#Bounty 1 may be completed by Artists 1-4
+Candidacy.create(:id => 1, :user_id => 3, :bounty_id => 1)
+Candidacy.create(:id => 2, :user_id => 4, :bounty_id => 1)
+Candidacy.create(:id => 3, :user_id => 5, :bounty_id => 1)
+Candidacy.create(:id => 4, :user_id => 6, :bounty_id => 1)
 
-Completion.create(:artist_id => 1, :bounty_id => 4, :taxonomy_id => 4)
-Completion.create(:artist_id => 2, :bounty_id => 4, :taxonomy_id => 4)
-Completion.create(:artist_id => 3, :bounty_id => 4, :taxonomy_id => 4)
+#Bounty 2 may be completed by Artists 1-2
+Candidacy.create(:id => 5, :user_id => 3, :bounty_id => 2)
+Candidacy.create(:id => 6, :user_id => 4, :bounty_id => 2)
 
-Completion.create(:artist_id => 1, :bounty_id => 1, :taxonomy_id => 1)
-Completion.create(:artist_id => 2, :bounty_id => 2, :taxonomy_id => 1)
-Completion.create(:artist_id => 3, :bounty_id => 3, :taxonomy_id => 1)
-Completion.create(:artist_id => 3, :bounty_id => 3, :taxonomy_id => 3)
-Completion.create(:artist_id => 3, :bounty_id => 4, :taxonomy_id => 2)
+#Bounty 3 may be completed by Artists 1 and 3.
+Candidacy.create(:id => 7, :user_id => 3, :bounty_id => 3)
+Candidacy.create(:id => 8, :user_id => 5, :bounty_id => 3)
+
+#Bounty 4 may be completed by Artists 2 and 4.
+Candidacy.create(:id => 9, :user_id => 4, :bounty_id => 4)
+Candidacy.create(:id => 10, :user_id => 6, :bounty_id => 4)
+
+#Bounty 5 may be completed by Artist 3.
+Candidacy.create(:id => 11, :user_id => 5, :bounty_id => 4)
+
+
 

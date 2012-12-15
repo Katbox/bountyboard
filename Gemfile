@@ -18,6 +18,7 @@ group :development do
 	gem 'rspec-rails'
 	gem 'guard'
 	gem 'ruby-growl'
+	gem 'annotate'
 end
 
 

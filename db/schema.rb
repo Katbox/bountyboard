@@ -11,65 +11,52 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121209205442) do
-
-  create_table "artists", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.text     "desc"
-    t.text     "rules"
-  end
+ActiveRecord::Schema.define(:version => 20121213153053) do
 
   create_table "bounties", :force => true do |t|
-    t.string   "name"
-    t.string   "desc"
-    t.decimal  "price",      :precision => 8, :scale => 2
-    t.string   "rating"
-    t.integer  "vote"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
-    t.integer  "user_id"
-    t.integer  "status_id"
+    t.string   "name",                                                         :null => false
+    t.text     "desc",                                                         :null => false
+    t.decimal  "price",       :precision => 8, :scale => 2,                    :null => false
+    t.boolean  "rating",                                    :default => false, :null => false
+    t.integer  "vote",                                      :default => 0,     :null => false
+    t.boolean  "private",                                   :default => false, :null => false
     t.string   "url"
+    t.integer  "user_id",                                                      :null => false
+    t.integer  "accept_id"
+    t.integer  "reject_id"
+    t.integer  "complete_id"
+    t.datetime "created_at",                                                   :null => false
+    t.datetime "updated_at",                                                   :null => false
   end
 
-  create_table "completions", :force => true do |t|
-    t.integer  "bounty_id"
-    t.integer  "artist_id"
-    t.integer  "taxonomy_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+  create_table "candidacies", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.integer  "bounty_id",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "ips", :force => true do |t|
-    t.string   "name"
-    t.string   "desc"
-    t.string   "rules"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "artist_id"
-  end
-
-  create_table "statuses", :force => true do |t|
-    t.string   "status"
+    t.string   "name",       :null => false
+    t.text     "desc",       :null => false
+    t.text     "rules",      :null => false
+    t.integer  "user_id",    :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "taxonomies", :force => true do |t|
+  create_table "permissions", :force => true do |t|
+    t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "name"
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "name",          :null => false
+    t.string   "email",         :null => false
+    t.integer  "permission_id", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
 end
