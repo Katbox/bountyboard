@@ -3,10 +3,10 @@ class SessionsController < ApplicationController
 	def create
 		
 		auth_info = request.env['omniauth.auth']
-		if not auth_info
+		if not auth_info.uid
 			auth_failure
 		else
-			render :text => "You've successfully signed in as \"#{auth_info['uid']}\" using the \"#{auth_info['provider']}\" authentication provider.<br><br>Full user info from the provider:<br>#{auth_info}"
+			render :text => "You've successfully signed in as \"#{auth_info.uid}\" using the \"#{auth_info.provider}\" authentication provider.<br><br>Full user info from the provider:<br>#{auth_info}"
 		end
 
 		#@user = User.find_or_create_from_auth_hash(auth_hash)
