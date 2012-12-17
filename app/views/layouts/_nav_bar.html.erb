@@ -6,9 +6,13 @@
 			<nav class="nav-collapse collapse">
 				<ul class="nav">
 					<li><%= link_to 'About', '#' %></li>
-					<li class="dropdown"><%= render 'layouts/persona_form' %></li>
 				</ul>
 			</nav>
+			<% 
+				# TODO: print a 'logged in as <email>' message in place of the
+				# login button if the user is already logged in
+			%>
+			<%= render 'layouts/persona_form' %>
 		</div>
 	</div>
 </header>
