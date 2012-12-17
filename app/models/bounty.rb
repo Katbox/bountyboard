@@ -39,8 +39,6 @@ class Bounty < ActiveRecord::Base
   has_many :candidacies
   has_many :users, :through => :candidacies
 
-  validates :name, presence: true
-  validates :desc, presence: true
-  validates :price, presence: true
-  validates :user_id, presence: true
+  validates :name, :desc, :price, :user_id, :presence => true
+  validates :complete_id, :inclusion => { :in => proc { |p| [p.accept_id] } }, :allow_nil => true # The completor may only be the acceptor if present.
 end
