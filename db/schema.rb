@@ -11,14 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121213153053) do
+ActiveRecord::Schema.define(:version => 20121217025934) do
 
   create_table "bounties", :force => true do |t|
     t.string   "name",                                                         :null => false
     t.text     "desc",                                                         :null => false
     t.decimal  "price",       :precision => 8, :scale => 2,                    :null => false
     t.boolean  "rating",                                    :default => false, :null => false
-    t.integer  "vote",                                      :default => 0,     :null => false
     t.boolean  "private",                                   :default => false, :null => false
     t.string   "url"
     t.integer  "user_id",                                                      :null => false
@@ -57,6 +56,13 @@ ActiveRecord::Schema.define(:version => 20121213153053) do
     t.integer  "permission_id", :null => false
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "votes", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.integer  "bounty_id",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

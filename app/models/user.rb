@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
   #USER PERMISSIONS
   belongs_to :permission
 
+  #OWNERSHIP OF A VOTE
+  has_many :votes
+
   #OWNERSHIP OF AN INTELLECTUAL PROPERTY
   has_many :ips
 

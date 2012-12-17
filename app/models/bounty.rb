@@ -7,7 +7,6 @@
 #  desc        :text             not null
 #  price       :decimal(8, 2)    not null
 #  rating      :boolean          default(FALSE), not null
-#  vote        :integer          default(0), not null
 #  private     :boolean          default(FALSE), not null
 #  url         :string(255)
 #  user_id     :integer          not null
@@ -19,7 +18,10 @@
 #
 
 class Bounty < ActiveRecord::Base
-  attr_accessible :name, :desc, :price, :rating, :vote, :url, :private, :user_id, :accept_id, :reject_id, :complete_id
+  attr_accessible :name, :desc, :price, :rating, :url, :private, :user_id, :accept_id, :reject_id, :complete_id
+
+  #OWNERSHIP OF A VOTE
+  has_many :votes
 
   #OWNERSHIP OF A BOUNTY
   belongs_to :owner, :foreign_key => "user_id", :class_name => "User"
@@ -40,6 +42,5 @@ class Bounty < ActiveRecord::Base
   validates :name, presence: true
   validates :desc, presence: true
   validates :price, presence: true
-  validates :vote, presence: true
   validates :user_id, presence: true
 end

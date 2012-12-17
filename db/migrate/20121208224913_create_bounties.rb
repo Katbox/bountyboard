@@ -5,7 +5,6 @@ class CreateBounties < ActiveRecord::Migration
     	t.text :desc, :null => false
     	t.decimal :price, :precision => 8, :scale => 2, :null => false
     	t.boolean :rating, :null => false, :default => false
-    	t.integer :vote, :null => false, :default => 0
       t.boolean :private, :null => false, :default => false
       t.string  :url
       t.integer :user_id, :null => false      #OWNERSHIP
