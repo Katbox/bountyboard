@@ -35,9 +35,9 @@ body {
 	padding-top: 60px;
 }
 
-/* make the .hero-unit container center its content by default */
-.hero-unit {
-	text-align: center;
+/* the sign-in control mysteriously has a default height much larger than its contents, causing the whole nav bar to expand */
+.navbar-inner .login-form-container {
+	height: 0px;
 }
 
 
