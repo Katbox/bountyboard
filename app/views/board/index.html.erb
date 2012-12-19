@@ -11,15 +11,7 @@
 				A project that connects artists to fans and fans to the artwork they
 				love.
 			</h4>
-
-			<%=
-				# if signed_in
-				if false
-					link_to 'Post a Bounty', '#', class: 'btn btn-large btn-primary'
-				else
-					render 'layouts/login_form'
-				end
-			%>
+			<%= render 'layouts/post_bounty_button' %>
 		</div>
 		<div class="row-fluid">
 			<div class="span4">

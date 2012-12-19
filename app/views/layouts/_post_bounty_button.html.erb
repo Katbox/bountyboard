@@ -1,0 +1,17 @@
+<%
+# This partial provides a button for posting a bounty, but falls back to
+# rendering a login button if the user isn't logged in (and therefore shouldn't
+# be able to post a bounty). Note that logging in requires the persona-lib
+# partial be rendered in the page's head and the login-form partial be rendered
+# anywhere in the body.
+%>
+<%=
+	# TODO: implement detection of whether the user is logged in
+	# if signed_in
+	if false
+		link_to 'Post a Bounty', '#', class: 'btn btn-large btn-primary'
+	else
+		render 'layouts/login_button'
+	end
+%>
+
