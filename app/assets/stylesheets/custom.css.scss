@@ -35,11 +35,6 @@ body {
 	padding-top: 60px;
 }
 
-/* the sign-in control mysteriously has a default height much larger than its contents, causing the whole nav bar to expand */
-.navbar-inner .login-form-container {
-	height: 0px;
-}
-
 /* the login buttons are used for user interactivity while the form itself is hidden */
 #browser-id-form {
 	display: none;
