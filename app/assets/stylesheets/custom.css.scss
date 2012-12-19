@@ -1,4 +1,3 @@
-@import "bootstrap";
 @import "persona-buttons";
 
 
@@ -41,9 +40,4 @@ body {
 	text-align: center;
 }
 
-/* give the subheader a different color from the other text to make it stand out */
-/* TODO: move this to a stylesheet specific to the board view */
-.hero-unit > h2 {
-	color: #999;
-}
 

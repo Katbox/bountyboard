@@ -1,3 +1,14 @@
 // Place all the styles related to the board controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.hero-unit {
+	padding: 15px; /* reduce Bootstrap's default hero-unit padding from 60px to 30 */
+}
+
+/* give the subheader a different color from the other text to make it stand out */
+.hero-unit > .board-subheader {
+	color: #999;
+	margin-bottom: 15px;
+}
+
