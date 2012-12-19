@@ -7,9 +7,9 @@
 
 	<%= stylesheet_link_tag    "application", :media => "all" %>
 	<%= javascript_include_tag "application" %>
+	<script src="https://browserid.org/include.js" type="text/javascript"></script>
+	<%= javascript_include_tag 'persona-login-scripts' %>
 	<%= csrf_meta_tags %>
-
-	<%= render 'layouts/login_lib' %>
 
 	<!-- provide HTML5 compatibility for IE 8 and older -->
 	<!--[if lt IE 9]>
@@ -26,6 +26,12 @@
 
 	<hr>
 	<%= render 'layouts/footer' %>
+
+	<!-- hidden login form; the login buttons link to and submit this form -->
+	<form id="browser_id_form" action="/auth/browser_id/callback">
+		<input type="hidden" name="assertion">
+		<button type="submit"></button>
+	</form>
 
 </body>
 </html>

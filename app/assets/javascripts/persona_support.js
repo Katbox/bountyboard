@@ -14,6 +14,9 @@
   };
 
   $(document).ready(function() {
+    $('.persona-login-button').click(function() {
+      return $('#browser_id_form :submit').click();
+	});
     return $('#browser_id_form button').click(function() {
       initiate_persona_login();
       return false;
