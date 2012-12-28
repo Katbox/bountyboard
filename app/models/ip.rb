@@ -9,7 +9,7 @@
 #  user_id    :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#
+
 
 class Ip < ActiveRecord::Base
   attr_accessible :name, :desc, :rules, :user_id
