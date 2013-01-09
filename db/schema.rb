@@ -44,18 +44,11 @@ ActiveRecord::Schema.define(:version => 20121217025934) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "permissions", :force => true do |t|
-    t.string   "name",       :null => false
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "email",      :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "users", :force => true do |t|
-    t.string   "name",          :null => false
-    t.string   "email",         :null => false
-    t.integer  "permission_id", :null => false
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
   end
 
   create_table "votes", :force => true do |t|

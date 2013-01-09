@@ -11,10 +11,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :permission_id
-
-  #USER PERMISSIONS
-  belongs_to :permission
+  attr_accessible :name, :email
 
   #OWNERSHIP OF A VOTE
   has_many :votes
@@ -38,8 +35,6 @@ class User < ActiveRecord::Base
   has_many :candidacies
   has_many :bounties, :through => :candidacies
 
-  validates :name, presence: true
   validates :email, presence: true
-  validates :permission_id, presence: true
 
 end
