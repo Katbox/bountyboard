@@ -20,6 +20,19 @@
 <body>
 	<%= render 'layouts/nav_bar' %>
 
+	<%
+		# boilerplate for integrating Rails flash messages with Bootstrap taken
+		# from https://gist.github.com/1600856
+	%>
+	<% [:notice, :error, :alert].each do |level| %>
+		<% unless flash[level].blank? %>
+			<div class="alert <%= flash_class(level) %>">
+				<a class="close" href="#">×</a>
+				<%= content_tag :p, flash[level] %>
+			</div>
+		<% end %>
+	<% end %>
+
 	<div class="container-fluid">
 		<%= yield %>
 	</div>
