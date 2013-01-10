@@ -21,15 +21,16 @@ class SessionsController < ApplicationController
 		end
 
 		auth_success(auth_info)
+		render :template => 'board/index'
 	end
 
 	private
 
 		def auth_failure(auth_info, message)
-			render :text => "Sign-in failed: #{message}"
+			flash.now[:error] = "Sign-in failed: #{message}"
 		end
 
 		def auth_success(auth_info)
-				render :text => "You've successfully signed in as \"#{auth_info.uid}\" using the \"#{auth_info.provider}\" authentication provider.<br><br>Full user info from the provider:<br>#{auth_info}"
+			flash.now[:notice] = "You've successfully signed in as \"#{auth_info.uid.to_s}\" using the \"#{auth_info.provider.to_s}\" authentication provider.<br><br>Full user info from the provider:<br>#{auth_info}"
 		end
 end
