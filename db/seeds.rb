@@ -1,5 +1,5 @@
-User.create(:id => 1, :name => 'Devin', :email => 'devin@test.com')
-User.create(:id => 2, :name => 'Brent', :email => 'brent@test.com')
+User.create(:id => 1, :email => 'devin@test.com')
+User.create(:id => 2, :email => 'brent@test.com')
 User.create(:id => 3, :name => 'Artist1', :email => 'artist1@test.com')
 User.create(:id => 4, :name => 'Artist2', :email => 'artist2@test.com')
 User.create(:id => 5, :name => 'Artist3', :email => 'artist3@test.com')
