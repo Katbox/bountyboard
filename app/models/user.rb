@@ -36,9 +36,11 @@ class User < ActiveRecord::Base
   has_many :bounties, :through => :candidacies
 
   validates :email, presence: true
+  validates_uniqueness_of :email, :case_sensitive => false
 
     def getIdentifier
       return self[:name] ? self[:name] : self[:email]
     end
 
 end
+
