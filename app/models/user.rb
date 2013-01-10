@@ -37,4 +37,8 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true
 
+    def getIdentifier
+      return self[:name] ? self[:name] : self[:email]
+    end
+
 end
