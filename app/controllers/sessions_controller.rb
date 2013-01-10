@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 			return
 		end
 
-		user = User.find_by_email(auth_info.uid)
+		user = User.find(:conditions => ["lower(email)=?", auth_info.uid.downcase])
 		if not user
 			# if this user has never visited before, create a
 			# user entry for them
