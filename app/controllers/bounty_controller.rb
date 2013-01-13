@@ -3,5 +3,11 @@ class BountyController < ApplicationController
 		@bounties = Bounty.all
 	end
 
+	def new
+		@bounty = Bounty.new
+	end
 
+	def showAll
+		@bounties = Bounty.all
+	end
 end
