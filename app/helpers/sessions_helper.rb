@@ -1,11 +1,12 @@
 module SessionsHelper
 
 	def signIn(user)
+		user.save
 		cookies.permanent[:rememberToken] = user.rememberToken
 		self.currentUser = user
 	end
 
-	def signed_in?
+	def signedIn?
 		!currentUser.nil?
 	end
 
