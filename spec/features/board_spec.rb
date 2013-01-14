@@ -9,13 +9,12 @@ describe 'Board' do
 	describe "Home page" do
 		before { visit root_path }
 
-		it { should have_selector('.hero-unit h2',
+		it { should have_selector('.hero-unit .board-subheader',
 			  :text => 'A project that connects artists to fans and fans to the artwork they love.') }
-		it { should have_selector('body > header.navbar.navbar-fixed-top.navbar-inverse:first-child') }
-		it { should have_selector('body > .container-fluid .row-fluid .nav-header',
+		it { should have_selector('body .navbar') }
+		it { should have_selector('body .nav-header',
 			  :text => 'Sidebar') }
-		it { should have_selector('body > .container-fluid:last-child footer.row-fluid') }
-		it { should have_selector('body > .container-fluid:last-child footer.row-fluid',
+		it { should have_selector('footer.row-fluid',
 			  :text => '© Lionheart Studio and Brent Houghton') }
 	end
 end
