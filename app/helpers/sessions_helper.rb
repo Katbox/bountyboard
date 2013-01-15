@@ -15,8 +15,8 @@ module SessionsHelper
 	end
 
 	def currentUser
-		if cookies[:remember_token]
-			@current_user ||= User.find_by_rememberToken(cookies[:remember_token])
+		if cookies[:rememberToken]
+			@current_user ||= User.find_by_rememberToken(cookies[:rememberToken])
 		else
 			@current_user = nil
 		end
