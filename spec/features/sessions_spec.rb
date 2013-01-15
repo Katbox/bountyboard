@@ -39,7 +39,7 @@ describe 'Sessions' do
 		end
 
 		describe 'should not display any login buttons' do
-			it { should_not have_selector('persona-login-button') }
+			it { should_not have_selector('.persona-login-button') }
 		
 		end
 
