@@ -3,11 +3,11 @@
 # Table name: users
 #
 #  id            :integer          not null, primary key
-#  name          :string(255)      not null
+#  name          :string(255)
 #  email         :string(255)      not null
-#  permission_id :integer          not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  rememberToken :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -38,9 +38,17 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   validates_uniqueness_of :email, :case_sensitive => false
 
-    def getIdentifier
-      return self[:name] ? self[:name] : self[:email]
-    end
+  before_save :createRememberToken
+
+  def getIdentifier
+    return self[:name] ? self[:name] : self[:email]
+  end
+
+  private
+
+    def createRememberToken
+		self.rememberToken = SecureRandom.urlsafe_base64
+	end
 
 end
 
