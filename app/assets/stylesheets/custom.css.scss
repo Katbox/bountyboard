@@ -40,3 +40,9 @@ body {
 	display: none;
 }
 
+/* make the "logged in as <user>" display visible against the black background and vertically centered */
+.login-notify-area {
+	color: snow;
+	vertical-align: middle;
+}
+

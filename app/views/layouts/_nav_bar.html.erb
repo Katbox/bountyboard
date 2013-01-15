@@ -7,12 +7,14 @@
 				<ul class="nav">
 					<li><%= link_to 'About', '#' %></li>
 				</ul>
-				<% 
-					# TODO: print a 'logged in as <email>' message in place of the
-					# login button if the user is already logged in
-				%>
 			</nav>
-			<button class="persona-login-button btn pull-right" type="button">Sign In with Persona</button>
+			<span class="pull-right">
+			<% if signedIn? %>
+				<span class="login-notify-area">Logged in as <%= currentUser.getIdentifier() %></span>
+			<%	else %>
+				<button class="persona-login-button btn" type="button">Sign In with Persona</button>
+			<%	end %>
+			</span>
 		</div>
 	</div>
 </header>
