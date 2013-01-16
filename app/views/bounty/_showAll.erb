@@ -1,13 +1,15 @@
-<% @bounties.each do |bounty| %>
-	<% unless bounty.private %>
-		<div class="span4">
-			<h3><%= bounty.name %></h3>
-			<h4>for: TO BE COMPLETED</h4>
-			<h4>$<%= bounty.price %></h4>
-			<p>
-				<%= bounty.desc %>
-			</p>
-			<p><%= link_to raw('View Completed Art &raquo;'), 'bounty.url', class: 'btn disabled' %></p>
-		</div>
+<% if @bounties %>
+	<% @bounties.each do |bounty| %>
+		<% unless bounty.private %>
+			<div class="span4">
+				<h3><%= bounty.name %></h3>
+				<h4>for: TO BE COMPLETED</h4>
+				<h4>$<%= bounty.price %></h4>
+				<p>
+					<%= bounty.desc %>
+				</p>
+				<p><%= link_to raw('View Completed Art &raquo;'), 'bounty.url', class: 'btn disabled' %></p>
+			</div>
+		<% end %>
 	<% end %>
 <% end %>
