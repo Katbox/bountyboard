@@ -20,10 +20,9 @@ describe 'Sessions' do
 
 		describe 'should display an error message on the home page' do
 
+			it { current_path.should == root_path }
 			it { should have_selector('.alert.alert-error',
 				  :text => 'Sign-in failed: invalid credentials') }
-			it { should have_selector('.hero-unit .board-subheader',
-				  :text => 'A project that connects artists to fans and fans to the artwork they love.') }
 		end
 	end
 
@@ -39,8 +38,7 @@ describe 'Sessions' do
 
 		describe 'should display the home page' do
 
-			it { should have_selector('.hero-unit .board-header',
-				  :text => 'Welcome to the Bounty Board') }
+			it { current_path.should == root_path }
 		end
 
 		describe 'should not display any login buttons' do
