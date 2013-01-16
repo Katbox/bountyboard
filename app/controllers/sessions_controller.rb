@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
 		end
 
 		signIn(user)
-		render :template => 'board/index'
+		redirect_to root_path, :status => 303
 	end
 
 	# Omniauth calls this method when a user's sign-in process fails while Omniauth is handling the user
@@ -42,7 +42,7 @@ class SessionsController < ApplicationController
 		# this method handles failed sign-in by displaying to the user why their sign-in process failed
 		def handleAuthFailure(message)
 			flash.now[:error] = "Sign-in failed: #{message}"
-			render :template => 'board/index'
+			redirect_to root_path, :status => 303
 		end
 
 end
