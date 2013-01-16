@@ -41,7 +41,7 @@ class SessionsController < ApplicationController
 
 		# this method handles failed sign-in by displaying to the user why their sign-in process failed
 		def handleAuthFailure(message)
-			flash.now[:error] = "Sign-in failed: #{message}"
+			flash[:error] = "Sign-in failed: #{message}"
 			redirect_to root_path, :status => 303
 		end
 
