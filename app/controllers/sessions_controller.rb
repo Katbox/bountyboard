@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 		auth_info = request.env['omniauth.auth']
 
 		if not auth_info.uid
-			handleAuthFailure(auth_info, "invalid credentials")
+			handleAuthFailure("invalid credentials")
 			return
 		end
 
