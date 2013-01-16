@@ -6,18 +6,18 @@
     return window.navigator.id.get(function(assertion) {
       if (assertion) {
         $('input[name=assertion]').val(assertion);
-        return $('#browser_id_form').submit();
+        return $('#browser-id-form').submit();
       } else {
-        return window.location = "/sessions_controller#auth_failure";
+        return alert("Your browser is too old to use the login form.\n" + "Please update your browser to the latest version if you want to sign in.");
       }
     });
   };
 
   $(document).ready(function() {
     $('.persona-login-button').click(function() {
-      return $('#browser_id_form :submit').click();
-	});
-    return $('#browser_id_form button').click(function() {
+      return $('#browser-id-form :submit').click();
+    });
+    return $('#browser-id-form button').click(function() {
       initiate_persona_login();
       return false;
     });
