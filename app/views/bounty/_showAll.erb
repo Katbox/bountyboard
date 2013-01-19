@@ -16,7 +16,11 @@
 				<p>
 					<%= b.desc %>
 				</p>
-				<p><%= link_to raw('View Completed Art &raquo;'), 'b.url', class: 'btn disabled' %></p>
+				<% if b.url %>
+					<a><%= link_to raw('View Completed Art &raquo;'), b.url, class: 'btn' %></p>
+				<% else %>
+					<a><%= link_to raw('View Completed Art &raquo;'), b.url, class: 'btn disabled' %></p>
+				<% end %>
 			</div>
 		<% end %>
 	<% end %>
