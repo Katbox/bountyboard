@@ -20,13 +20,13 @@ Bounty.create(:id => 2, :user_id => 1, :accept_id => 3, :name => 'Bounty2', :des
 Bounty.create(:id => 3, :user_id => 1, :reject_id => 3, :name => 'Bounty3', :desc => 'This is bounty 3.', :price => 20.00)
 
 #Bounty 4, Created by Devin, Accepted by Artist2. Completed by Artist2.
-Bounty.create(:id => 4, :user_id => 1, :accept_id => 4, :complete_id => 4, :name => 'Bounty4', :desc => 'This is bounty 4.', :url => 'http://www.1.com', :price => 25.00)
+Bounty.create(:id => 4, :user_id => 1, :accept_id => 4, :complete_id => 4, :name => 'Bounty4', :desc => 'This is bounty 4.', :url => 'http://www.4.com', :price => 25.00)
 
 #Bounty 5, Created by Brent, Accepted by Artist3. Completed by Artist3.
-Bounty.create(:id => 5, :user_id => 2, :accept_id => 5, :complete_id => 5, :name => 'Bounty5', :desc => 'This is bounty 5.', :url => 'http://www.2.com', :price => 30.00)
+Bounty.create(:id => 5, :user_id => 2, :accept_id => 5, :complete_id => 5, :name => 'Bounty5', :desc => 'This is bounty 5.', :url => 'http://www.5.com', :price => 30.00)
 
 #Bounty 6, Created by Brent, Accepted by Artist3. Completed by Artist3. Private.
-Bounty.create(:id => 5, :user_id => 2, :accept_id => 5, :complete_id => 5, :name => 'Bounty6', :desc => 'This is bounty 6.', :url => 'http://www.3.com', :price => 100.00, :private => true)
+Bounty.create(:id => 5, :user_id => 2, :accept_id => 5, :complete_id => 5, :name => 'Bounty6', :desc => 'This is bounty 6.', :url => 'http://www.6.com', :price => 100.00, :private => true)
 
 #Bounty 1 may be completed by Artists 1-4
 Candidacy.create(:id => 1, :user_id => 3, :bounty_id => 1)

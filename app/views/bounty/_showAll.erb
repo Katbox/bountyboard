@@ -17,9 +17,7 @@
 					<%= b.desc %>
 				</p>
 				<% if b.url %>
-					<a><%= link_to raw('View Completed Art &raquo;'), b.url, class: 'btn' %></p>
-				<% else %>
-					<a><%= link_to raw('View Completed Art &raquo;'), b.url, class: 'btn disabled' %></p>
+					<p><%= link_to raw('View Completed Art &raquo;'), b.url, class: 'btn' %></p>
 				<% end %>
 			</div>
 		<% end %>
