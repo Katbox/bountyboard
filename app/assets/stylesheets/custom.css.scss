@@ -67,6 +67,23 @@ a:active {color: $orange;}
 	border: 1px inset $lightOrange;
 	@include roundCorners;
 	font-family: 'HELLDORA';
+	text-align: center;
+}
+
+.bountyName {
+
+}
+
+.candidates {
+
+}
+
+.price {
+
+}
+
+.desc {
+
 }
 
 /* the login buttons are used for user interactivity while the form itself is hidden */
