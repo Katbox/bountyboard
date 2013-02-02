@@ -2,9 +2,12 @@
 @import "colors";
 @import "mixins";
 
-
-/* typography */
-/* borrowed from the Rails tutorial at railstutorial.org */
+@font-face {
+  font-family: 'HELLDORA';
+  src:url('HELLDORA.TTF');
+  font-weight: normal;
+  font-style: normal;
+}
 
 p {
 	font-size: 1.1em;
@@ -13,22 +16,57 @@ p {
 
 body {
 	padding-top: 60px;
-	background: $grey;
+	background: $darkBrown;
+	color: $lightYellow;
+	@include gradient($black, $brown);
+}
+
+
+a:link {color: $orange;}
+a:visited {color: $orange;}
+a:hover {color: $lightOrange;}
+a:active {color: $orange;}
+
+.board-header {
 	color: $black;
+	font-weight: bold;
+	font-size: 200%;
+}
+
+.board-subheader {
+	color: $black !important;
+	font-size: 130%;
 }
 
 .hero-unit {
 	width: 80%;
 	margin-left: auto;
 	margin-right: auto;
+	background: $yellow;
+	border: 1px inset $lightOrange;
+	@include linkColor($white);
+}
 
+.sidebar-nav {
+	background: $yellow;
+	border: 1px inset $lightOrange;
+	@include linkColor($black);
+}
+
+.nav-header {
+	font-size: 150%;
+	color: $black;
 }
 
 .bountyCell {
 	margin: 0px 10px 10px !important;
 	height: 200px;
 	width: 285px !important;
-	background: $brown;
+	color: $black;
+	background: $yellow;
+	border: 1px inset $lightOrange;
+	@include roundCorners;
+	font-family: 'HELLDORA';
 }
 
 /* the login buttons are used for user interactivity while the form itself is hidden */
@@ -42,3 +80,13 @@ body {
 	vertical-align: middle;
 }
 
+.active {
+	a:link {color: $white;}
+	a:visited {color: $white;}
+	a:hover {color: $white;}
+	a:active {color: $white;}
+}
+
+footer {
+	text-align: center;
+}
