@@ -2,19 +2,16 @@
 	<% @bounties.each do |b| %>
 		<% unless b.private %>
 			<div class="span3 bountyCell">
-				<div id="bountyName"><%= b.name %></div>
-				<div id="candidates"	
+				<div class="bountyName"><%= b.name %></div>
+				<div class="price">$<%= b.price %></div>
+				<div class="candidates">	
 					<% if @candidacies %>
 						<% @candidacies.each do |c| %>
 							<% if c.bounty.id == b.id %>
-								<span class=<%= c.user.name %>><%= c.user.name %></span>
+								<%= c.user.name %>
 							<% end %>
 						<% end %>
 					<% end %>
-				</div>
-				<div class="price">$<%= b.price %></div>
-				<div class="desc">
-					<%= b.desc %>
 				</div>
 			</div>
 		<% end %>

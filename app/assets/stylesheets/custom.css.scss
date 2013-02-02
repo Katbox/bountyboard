@@ -9,6 +9,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'NASHVILL';
+  src:url('NASHVILL.TTF');
+  font-weight: normal;
+  font-style: normal;
+}
+
 p {
 	font-size: 1.1em;
 	line-height: 1.7em;
@@ -30,7 +37,8 @@ a:active {color: $orange;}
 .board-header {
 	color: $black;
 	font-weight: bold;
-	font-size: 200%;
+	font-size: 400%;
+	font-family: 'NASHVILL';
 }
 
 .board-subheader {
@@ -56,11 +64,12 @@ a:active {color: $orange;}
 .nav-header {
 	font-size: 150%;
 	color: $black;
+	font-family: 'NASHVILL';
 }
 
 .bountyCell {
 	margin: 0px 10px 10px !important;
-	height: 200px;
+	height: 210px;
 	width: 285px !important;
 	color: $black;
 	background: $yellow;
@@ -68,19 +77,31 @@ a:active {color: $orange;}
 	@include roundCorners;
 	font-family: 'HELLDORA';
 	text-align: center;
+	position: relative;
+	padding: 9px;
 }
 
 .bountyName {
-
-}
-
-.candidates {
-
+	width: 100%;
+	font-size: 300%;
+	line-height: 35px;
 }
 
 .price {
-
+	font-size: 400%;
+	line-height: 100px;
+	margin-bottom: 10px;
 }
+
+.candidates {
+	text-align: right;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	font-size: 150%;
+}
+
+
 
 .desc {
 
