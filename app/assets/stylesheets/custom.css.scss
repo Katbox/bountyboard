@@ -1,5 +1,6 @@
 @import "persona-buttons";
 @import "colors";
+@import "mixins";
 
 
 /* typography */
@@ -24,7 +25,10 @@ body {
 }
 
 .bountyCell {
-
+	margin: 0px 10px 10px !important;
+	height: 200px;
+	width: 285px !important;
+	background: $brown;
 }
 
 /* the login buttons are used for user interactivity while the form itself is hidden */
