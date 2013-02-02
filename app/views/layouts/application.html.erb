@@ -17,12 +17,10 @@
 </head>
 
 <body>
+<!-- 	Header navigation bar on the top of the page with sign-in controls. -->
+	
 	<%= render 'layouts/nav_bar' %>
 
-	<%
-		# boilerplate for integrating Rails flash messages with Bootstrap taken
-		# from https://gist.github.com/1600856
-	%>
 	<% [:notice, :error, :alert].each do |level| %>
 		<% unless flash[level].blank? %>
 			<div class="alert <%= flash_class(level) %>">
@@ -32,10 +30,22 @@
 		<% end %>
 	<% end %>
 
+<!-- 	Greeting to be later styled and image enhanced to resemble a RL bounty. -->	
+	<div class="hero-unit">
+			<h3 class="board-header">Welcome to the Bounty Board</h3>
+			<h4 class="board-subheader">
+				A project that connects artists to fans and fans to the artwork they
+				love.
+			</h4>
+			<%= render 'layouts/post_bounty_button' %>
+	</div>
+
+<!-- 	Primary Board Index Content -->	
 	<div class="container-fluid">
 		<%= yield %>
 	</div>
 
+<!-- 	Footer with copyright and liscence info. -->	
 	<hr>
 	<%= render 'layouts/footer' %>
 
