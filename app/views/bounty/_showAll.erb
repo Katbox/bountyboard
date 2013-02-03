@@ -4,8 +4,10 @@
 			<div class="span3 bountyCell">
 				<div class="bountyName"><%= b.name %></div>
 				<div class="price">$<%= b.price %></div>
+
 				<div class="candidates">	
 					<% if @candidacies %>
+						for<br>
 						<% @candidacies.each do |c| %>
 							<% if c.bounty.id == b.id %>
 								<%= c.user.name %>
