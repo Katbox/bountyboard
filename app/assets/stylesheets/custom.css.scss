@@ -2,27 +2,6 @@
 @import "colors";
 @import "mixins";
 
-@font-face {
-  font-family: 'HELLDORA';
-  src:url('HELLDORA.TTF');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'NASHVILL';
-  src:url('NASHVILL.TTF');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'FREAKSHOW';
-  src:url('FREAKSHOW.TTF');
-  font-weight: normal;
-  font-style: normal;
-}
-
 p {
 	font-size: 1.1em;
 	line-height: 1.7em;
@@ -46,7 +25,7 @@ a:active {color: $orange;}
 	color: $black;
 	font-weight: bold;
 	font-size: 400%;
-	font-family: 'HELLDORA';
+	font-family: 'Tahoma';
 	margin-bottom: 20px;
 }
 
@@ -75,7 +54,7 @@ a:active {color: $orange;}
 .nav-header {
 	font-size: 150%;
 	color: $black;
-	font-family: 'FREAKSHOW';
+	font-family: 'Tahoma';
 }
 
 .bountyCell {
@@ -94,9 +73,9 @@ a:active {color: $orange;}
 
 .bountyName {
 	width: 100%;
-	font-size: 250%;
+	font-size: 220%;
 	line-height: 35px;
-	font-family: 'HELLDORA';
+	font-family: 'Tahoma';
 	margin-bottom: 10px;
 }
 
@@ -104,20 +83,14 @@ a:active {color: $orange;}
 	font-size: 500%;
 	line-height: 75px;
 	margin-bottom: 5px;
-	font-family: 'HELLDORA';
+	font-family: 'Tahoma';
 }
 
 .candidates {
-	font-family: 'FREAKSHOW';
+	font-family: 'Tahoma';
 	text-align: center;
 	font-weight: bold;
-	font-size: 180%;
-}
-
-
-
-.desc {
-
+	font-size: 130%;
 }
 
 /* the login buttons are used for user interactivity while the form itself is hidden */
