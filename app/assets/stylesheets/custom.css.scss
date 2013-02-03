@@ -16,6 +16,21 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'FREAKSHOW';
+  src:url('FREAKSHOW.TTF');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ROSEWOOD';
+  src:url('ROSEWOOD.TTF');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 p {
 	font-size: 1.1em;
 	line-height: 1.7em;
@@ -26,6 +41,7 @@ body {
 	background: $darkBrown;
 	color: $lightYellow;
 	@include gradient($black, $brown);
+	background-image:url('WoodTexture.jpg');
 }
 
 
@@ -39,6 +55,7 @@ a:active {color: $orange;}
 	font-weight: bold;
 	font-size: 400%;
 	font-family: 'NASHVILL';
+	margin-bottom: 20px;
 }
 
 .board-subheader {
@@ -51,31 +68,32 @@ a:active {color: $orange;}
 	margin-left: auto;
 	margin-right: auto;
 	background: $yellow;
-	border: 1px inset $lightOrange;
+	border: 1px inset $black;
 	@include linkColor($white);
+	background-image:url('PaperTexture.jpg');
 }
 
 .sidebar-nav {
 	background: $yellow;
-	border: 1px inset $lightOrange;
+	border: 1px inset $black;
 	@include linkColor($black);
+	background-image:url('PaperTexture.jpg');
 }
 
 .nav-header {
 	font-size: 150%;
 	color: $black;
-	font-family: 'NASHVILL';
+	font-family: 'FREAKSHOW';
 }
 
 .bountyCell {
 	margin: 0px 10px 10px !important;
-	height: 210px;
 	width: 285px !important;
 	color: $black;
 	background: $yellow;
-	border: 1px inset $lightOrange;
+	border: 1px inset $black;
 	@include roundCorners;
-	font-family: 'HELLDORA';
+	background-image:url('PaperTexture.jpg');
 	text-align: center;
 	position: relative;
 	padding: 9px;
@@ -85,19 +103,22 @@ a:active {color: $orange;}
 	width: 100%;
 	font-size: 300%;
 	line-height: 35px;
+	font-family: 'HELLDORA';
 }
 
 .price {
-	font-size: 400%;
+	font-size: 500%;
 	line-height: 100px;
 	margin-bottom: 10px;
+	font-family: 'HELLDORA';
 }
 
 .candidates {
+	font-family: 'FREAKSHOW';
 	text-align: right;
 	position: absolute;
-	bottom: 0px;
-	right: 0px;
+	bottom: 4px;
+	right: 4px;
 	font-size: 150%;
 }
 
