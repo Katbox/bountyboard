@@ -1,24 +1,20 @@
 <% if @bounties %>
 	<% @bounties.each do |b| %>
 		<% unless b.private %>
-			<div class="span4">
-				<h3><%= b.name %></h3>
-				<h4>
+			<div class="span3 bountyCell">
+				<div class="bountyName"><%= b.name %></div>
+				<div class="price">$<%= b.price %></div>
+
+				<div class="candidates">	
 					<% if @candidacies %>
+						for<br>
 						<% @candidacies.each do |c| %>
 							<% if c.bounty.id == b.id %>
 								<%= c.user.name %>
 							<% end %>
 						<% end %>
 					<% end %>
-				</h4>
-				<h4>$<%= b.price %></h4>
-				<p>
-					<%= b.desc %>
-				</p>
-				<% if b.url %>
-					<p><%= link_to raw('View Completed Art &raquo;'), b.url, class: 'btn' %></p>
-				<% end %>
+				</div>
 			</div>
 		<% end %>
 	<% end %>

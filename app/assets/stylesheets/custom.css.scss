@@ -1,35 +1,96 @@
 @import "persona-buttons";
-
-
-/* typography */
-/* borrowed from the Rails tutorial at railstutorial.org */
-h1, h2, h3, h4, h5, h6 {
-	line-height: 1;
-}
-
-h1 {
-	font-size: 3em;
-	letter-spacing: -2px;
-	margin-bottom: 30px;
-	text-align: center;
-}
-
-h2 {
-	font-size: 1.7em;
-	letter-spacing: -1px;
-	margin-bottom: 30px;
-	text-align: center;
-	font-weight: normal;
-}
+@import "colors";
+@import "mixins";
 
 p {
 	font-size: 1.1em;
 	line-height: 1.7em;
 }
 
-/* make room for the header nav bar */
 body {
 	padding-top: 60px;
+	background: $darkBrown;
+	color: $lightYellow;
+	@include gradient($black, $brown);
+	background-image:url('WoodTexture.jpg');
+}
+
+
+a:link {color: $orange;}
+a:visited {color: $orange;}
+a:hover {color: $lightOrange;}
+a:active {color: $orange;}
+
+.board-header {
+	color: $black;
+	font-weight: bold;
+	font-size: 400%;
+	font-family: 'Tahoma';
+	margin-bottom: 20px;
+}
+
+.board-subheader {
+	color: $black !important;
+	font-size: 130%;
+}
+
+.hero-unit {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	background: $yellow;
+	border: 1px inset $black;
+	@include linkColor($white);
+	background-image:url('PaperTexture.jpg');
+}
+
+.sidebar-nav {
+	background: $yellow;
+	border: 1px inset $black;
+	@include linkColor($black);
+	background-image:url('PaperTexture.jpg');
+}
+
+.nav-header {
+	font-size: 150%;
+	color: $black;
+	font-family: 'Tahoma';
+}
+
+.bountyCell {
+	margin: 0px 10px 10px !important;
+	height: 210px;
+	width: 285px !important;
+	color: $black;
+	background: $yellow;
+	border: 1px inset $black;
+	@include roundCorners;
+	background-image:url('PaperTexture.jpg');
+	text-align: center;
+	position: relative;
+	padding: 9px;
+}
+
+.bountyName {
+	width: 100%;
+	font-size: 220%;
+	line-height: 35px;
+	font-family: 'Tahoma';
+	margin-bottom: 10px;
+}
+
+.price {
+	font-size: 500%;
+	line-height: 75px;
+	margin-bottom: 5px;
+	font-family: 'Tahoma';
+}
+
+.candidates {
+	font-family: 'Tahoma';
+	text-align: center;
+	font-weight: bold;
+	font-size: 130%;
 }
 
 /* the login buttons are used for user interactivity while the form itself is hidden */
@@ -43,3 +104,13 @@ body {
 	vertical-align: middle;
 }
 
+.active {
+	a:link {color: $white;}
+	a:visited {color: $white;}
+	a:hover {color: $white;}
+	a:active {color: $white;}
+}
+
+footer {
+	text-align: center;
+}
