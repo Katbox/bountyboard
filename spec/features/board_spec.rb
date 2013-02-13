@@ -12,8 +12,7 @@ describe 'Board' do
 		it { should have_selector('.hero-unit .board-subheader',
 			  :text => 'A project that connects artists to fans and fans to the artwork they love.') }
 		it { should have_selector('body .navbar') }
-		it { should have_selector('body .nav-header',
-			  :text => 'Sidebar') }
+		it { should have_selector('body .navbar-inner') }
 		it { should have_selector('footer.row-fluid',
 			  :text => '© Lionheart Studio and Brent Houghton') }
 	end
