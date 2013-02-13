@@ -4,6 +4,11 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile ~/.gitignore_global
 
+# ignore common OS-specific metadata files
+.DS_Store
+desktop.ini
+Thumbs.db
+
 # Don't commit the secret token
 /config/initializers/secret_token.rb
 
