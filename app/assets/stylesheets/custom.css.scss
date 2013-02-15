@@ -2,6 +2,12 @@
 @import "colors";
 @import "mixins";
 
+@font-face {
+  font-family: 'Carnevalee Freakshow';
+  src: url('carnevaleeFreakshow.ttf');
+}
+
+
 p {
 	font-size: 1.1em;
 	line-height: 1.7em;
@@ -13,6 +19,7 @@ body {
 	color: $lightYellow;
 	@include gradient($black, $brown);
 	background-image:url('WoodTexture.jpg');
+
 }
 
 
@@ -25,7 +32,7 @@ a:active {color: $orange;}
 	color: $black;
 	font-weight: bold;
 	font-size: 400%;
-	font-family: 'Tahoma';
+	font-family: 'Carnevalee Freakshow';
 	margin-bottom: 20px;
 }
 
@@ -54,16 +61,14 @@ a:active {color: $orange;}
 .nav-header {
 	font-size: 150%;
 	color: $black;
-	font-family: 'Tahoma';
+	font-family: 'Carnevalee Freakshow';
 }
-
-
 
 .bountyName {
 	width: 100%;
 	font-size: 220%;
 	line-height: 35px;
-	font-family: 'Tahoma';
+	font-family: 'Carnevalee Freakshow';
 	margin-bottom: 10px;
 }
 
@@ -93,9 +98,11 @@ a:active {color: $orange;}
 }
 
 .ribbon {
-  font: bold 15px Sans-Serif;
+  font-family: 'Carnevalee Freakshow';
   color: $white;
   text-align: center;
+  font-size: 150%;
+  text-shadow: 0.2em 0.2em #333;
   -webkit-transform: rotate(45deg);
   -moz-transform:    rotate(45deg);
   -ms-transform:     rotate(45deg);
