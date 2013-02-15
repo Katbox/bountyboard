@@ -2,10 +2,10 @@
 	<% @bounties.each do |b| %>
 		<% unless b.private %>
 			<div class="span3 bountyCell">
-				<div class="bountyName"><%= b.name %></div>
-				<div class="price">$<%= b.price %></div>
+			<div class="ribbonWrapper"><div class="ribbon"><%= b.price %></div></div>
 
-				<div class="candidates">	
+				<div class="bountyName"><%= b.name %></div>
+				<div class="candidates">
 					<% if @candidacies %>
 						for<br>
 						<% @candidacies.each do |c| %>

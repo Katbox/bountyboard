@@ -57,6 +57,18 @@ a:active {color: $orange;}
 	font-family: 'Tahoma';
 }
 
+
+
+.bountyName {
+	width: 100%;
+	font-size: 220%;
+	line-height: 35px;
+	font-family: 'Tahoma';
+	margin-bottom: 10px;
+}
+
+// Price Ribbon
+
 .bountyCell {
 	margin: 0px 10px 10px !important;
 	height: 210px;
@@ -71,19 +83,57 @@ a:active {color: $orange;}
 	padding: 9px;
 }
 
-.bountyName {
-	width: 100%;
-	font-size: 220%;
-	line-height: 35px;
-	font-family: 'Tahoma';
-	margin-bottom: 10px;
+.ribbonWrapper {
+  width: 85px;
+  height: 88px;
+  overflow: hidden;
+  position: absolute;
+  top: -3px;
+  right: -3px;
 }
 
-.price {
-	font-size: 500%;
-	line-height: 75px;
-	margin-bottom: 5px;
-	font-family: 'Tahoma';
+.ribbon {
+  font: bold 15px Sans-Serif;
+  color: $white;
+  text-align: center;
+  -webkit-transform: rotate(45deg);
+  -moz-transform:    rotate(45deg);
+  -ms-transform:     rotate(45deg);
+  -o-transform:      rotate(45deg);
+  position: relative;
+  padding: 7px 0;
+  left: -5px;
+  top: 15px;
+  width: 120px;
+  background-color: $darkBrown;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#BFDC7A), to(#8EBF45));
+  background-image: -webkit-linear-gradient(top, $orange,
+$brown);
+  background-image:    -moz-linear-gradient(top, $orange,
+$brown);
+  background-image:     -ms-linear-gradient(top, $orange,
+$brown);
+  background-image:      -o-linear-gradient(top, $orange,
+$brown);
+  -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+  -moz-box-shadow:    0px 0px 3px rgba(0,0,0,0.3);
+  box-shadow:         0px 0px 3px rgba(0,0,0,0.3);
+}
+
+.ribbon:before, .ribbon:after {
+  content: "";
+  border-top:   3px solid #6e8900;
+  border-left:  3px solid transparent;
+  border-right: 3px solid transparent;
+  position:absolute;
+  bottom: -3px;
+}
+
+.ribbon:before {
+  left: 0;
+}
+.ribbon:after {
+  right: 0;
 }
 
 .candidates {
