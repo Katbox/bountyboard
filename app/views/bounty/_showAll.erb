@@ -5,12 +5,11 @@
 			<div class="ribbonWrapper"><div class="ribbon"><%= b.price %></div></div>
 
 				<div class="bountyName"><%= b.name %></div>
-				<div class="candidates">
+				<div class="candidateWrapper">
 					<% if @candidacies %>
-						for<br>
 						<% @candidacies.each do |c| %>
 							<% if c.bounty.id == b.id %>
-								<%= c.user.name %>
+								<div id="<%= c.user.name %>" class="candidate"></div>
 							<% end %>
 						<% end %>
 					<% end %>

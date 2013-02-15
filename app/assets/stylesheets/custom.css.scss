@@ -64,28 +64,43 @@ a:active {color: $orange;}
 	font-family: 'Carnevalee Freakshow';
 }
 
-.bountyName {
-	width: 100%;
-	font-size: 220%;
-	line-height: 35px;
-	font-family: 'Carnevalee Freakshow';
-	margin-bottom: 10px;
+.bountyCell {
+  margin: 0px 10px 10px !important;
+  min-height: 210px;
+  width: 285px !important;
+  color: $black;
+  background: $yellow;
+  border: 1px inset $black;
+  @include roundCorners;
+  background-image:url('PaperTexture.jpg');
+  text-align: center;
+  position: relative;
+  padding: 9px;
 }
 
-// Price Ribbon
+.bountyName {
+	width: 100px;
+	font-size: 240%;
+	line-height: 35px;
+	font-family: 'Carnevalee Freakshow';
+	margin-top: 10px;
+  margin-bottom: 20px;
+  -webkit-transform: rotate(-15deg);
+  -moz-transform:    rotate(-15deg);
+  -ms-transform:     rotate(-15deg);
+  -o-transform:      rotate(-15deg);
+}
 
-.bountyCell {
-	margin: 0px 10px 10px !important;
-	height: 210px;
-	width: 285px !important;
-	color: $black;
-	background: $yellow;
-	border: 1px inset $black;
-	@include roundCorners;
-	background-image:url('PaperTexture.jpg');
-	text-align: center;
-	position: relative;
-	padding: 9px;
+.candidateWrapper {
+  text-align: center;
+  width: 285px;
+}
+
+.candidate {
+  height: 50px;
+  width: 50px;
+  background-color: $black;
+  display: inline-block;
 }
 
 .ribbonWrapper {
@@ -141,13 +156,6 @@ $brown);
 }
 .ribbon:after {
   right: 0;
-}
-
-.candidates {
-	font-family: 'Tahoma';
-	text-align: center;
-	font-weight: bold;
-	font-size: 130%;
 }
 
 /* the login buttons are used for user interactivity while the form itself is hidden */
