@@ -66,7 +66,7 @@ a:active {color: $orange;}
 
 .bountyCell {
   margin: 0px 10px 10px !important;
-  min-height: 210px;
+  height: 230px;
   width: 285px !important;
   color: $black;
   background: $yellow;
@@ -79,12 +79,11 @@ a:active {color: $orange;}
 }
 
 .bountyName {
-	width: 100px;
+	width: 150px;
 	font-size: 240%;
 	line-height: 35px;
 	font-family: 'Carnevalee Freakshow';
-	margin-top: 10px;
-  margin-bottom: 20px;
+	margin: 15px 0px 20px 5px;
   -webkit-transform: rotate(-15deg);
   -moz-transform:    rotate(-15deg);
   -ms-transform:     rotate(-15deg);
