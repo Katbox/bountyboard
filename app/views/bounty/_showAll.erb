@@ -2,7 +2,7 @@
 	<% @bounties.each do |b| %>
 		<% unless b.private %>
 			<div class="span3 bountyCell">
-			<div class="ribbonWrapper"><div class="ribbon"><%= b.price %></div></div>
+			<div class="ribbonWrapper"><div class="ribbon">$ <%= b.price %></div></div>
 
 				<div class="bountyName"><%= b.name %></div>
 				<div class="candidateWrapper">
@@ -13,6 +13,9 @@
 							<% end %>
 						<% end %>
 					<% end %>
+				</div>
+				<div class="shortDesc">
+					A description would go here if this bounty had one. It does not yet, and we will get to that when we have time. A description would go here if this bounty had one. It does not yet, and we will get to that when we have time.
 				</div>
 			</div>
 		<% end %>

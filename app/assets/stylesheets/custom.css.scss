@@ -7,6 +7,11 @@
   src: url('carnevaleeFreakshow.ttf');
 }
 
+@font-face {
+  font-family: 'Nashvill';
+  src: url('nashvill.ttf');
+}
+
 
 p {
 	font-size: 1.1em;
@@ -32,7 +37,7 @@ a:active {color: $orange;}
 	color: $black;
 	font-weight: bold;
 	font-size: 400%;
-	font-family: 'Carnevalee Freakshow';
+	font-family: 'Nashvill';
 	margin-bottom: 20px;
 }
 
@@ -61,19 +66,18 @@ a:active {color: $orange;}
 .nav-header {
 	font-size: 150%;
 	color: $black;
-	font-family: 'Carnevalee Freakshow';
+	font-family: 'Nashvill';
 }
 
 .bountyCell {
   margin: 0px 10px 10px !important;
-  height: 230px;
+  height: 240px;
   width: 285px !important;
   color: $black;
   background: $yellow;
   border: 1px inset $black;
   @include roundCorners;
   background-image:url('PaperTexture.jpg');
-  text-align: center;
   position: relative;
   padding: 9px;
 }
@@ -83,7 +87,7 @@ a:active {color: $orange;}
 	font-size: 240%;
 	line-height: 35px;
 	font-family: 'Carnevalee Freakshow';
-	margin: 15px 0px 20px 5px;
+	margin: 10px 0px 40px 0px;
   -webkit-transform: rotate(-15deg);
   -moz-transform:    rotate(-15deg);
   -ms-transform:     rotate(-15deg);
@@ -91,15 +95,24 @@ a:active {color: $orange;}
 }
 
 .candidateWrapper {
-  text-align: center;
-  width: 285px;
+  max-width: 20%;
+  overflow: hidden;
+  display: inline-block;
 }
 
 .candidate {
   height: 50px;
   width: 50px;
+  margin: 2.5px 0px;
   background-color: $black;
+}
+
+.shortDesc {
   display: inline-block;
+  max-width: 70%;
+  vertical-align: top;
+  margin-left: 10px;
+  overflow:hidden;
 }
 
 .ribbonWrapper {
@@ -115,14 +128,14 @@ a:active {color: $orange;}
   font-family: 'Carnevalee Freakshow';
   color: $white;
   text-align: center;
-  font-size: 150%;
-  text-shadow: 0.2em 0.2em #333;
+  font-size: 230%;
+  text-shadow: 2px 2px $black;
   -webkit-transform: rotate(45deg);
   -moz-transform:    rotate(45deg);
   -ms-transform:     rotate(45deg);
   -o-transform:      rotate(45deg);
   position: relative;
-  padding: 7px 0;
+  padding: 3px 0 7px 0;
   left: -5px;
   top: 15px;
   width: 120px;
