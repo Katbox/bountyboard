@@ -2,23 +2,31 @@
 #
 # Table name: bounties
 #
-#  id          :integer          not null, primary key
-#  name        :string(255)      not null
-#  desc        :text             not null
-#  price       :decimal(8, 2)    not null
-#  rating      :boolean          default(FALSE), not null
-#  private     :boolean          default(FALSE), not null
-#  url         :string(255)
-#  user_id     :integer          not null
-#  accept_id   :integer
-#  reject_id   :integer
-#  complete_id :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id                :integer          not null, primary key
+#  name              :string(255)      not null
+#  desc              :text             not null
+#  price             :decimal(8, 2)    not null
+#  rating            :boolean          default(FALSE), not null
+#  private           :boolean          default(FALSE), not null
+#  url               :string(255)
+#  primary_mood_id   :integer          not null
+#  secondary_mood_id :integer
+#  user_id           :integer          not null
+#  accept_id         :integer
+#  reject_id         :integer
+#  complete_id       :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
 #
 
 class Bounty < ActiveRecord::Base
-  attr_accessible :name, :desc, :price, :rating, :url, :private, :user_id, :accept_id, :reject_id, :complete_id
+  attr_accessible :name, :desc, :price, :rating, :url, :private, :user_id, :accept_id, :reject_id, :complete_id, :primary_mood_id, :secondary_mood_id
+
+  #PRIMARY MOOD
+  belongs_to :primary_mood, :foreign_key => "primary_mood_id", :class_name => "Mood"
+
+  #SECONDARY MOOD
+  belongs_to :secondary_mood, :foreign_key => "secondary_mood_id", :class_name => "Mood"
 
   #OWNERSHIP OF A VOTE
   has_many :votes
@@ -39,6 +47,6 @@ class Bounty < ActiveRecord::Base
   has_many :candidacies
   has_many :users, :through => :candidacies
 
-  validates :name, :desc, :price, :user_id, :presence => true
+  validates :name, :desc, :price, :user_id, :primary_mood, :presence => true
   validates :complete_id, :inclusion => { :in => proc { |p| [p.accept_id] } }, :allow_nil => true # The completor may only be the acceptor if present.
 end

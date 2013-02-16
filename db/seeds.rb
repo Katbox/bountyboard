@@ -11,22 +11,22 @@ Ip.create(:id => 5, :user_id => 5, :name => 'Artist3\'s IP', :desc => 'Cool stuf
 Ip.create(:id => 6, :user_id => 6, :name => 'Artist4\'s IP', :desc => 'Trendy stuff.', :rules => 'I\'m very picky.')
 
 #Bounty 1, Created by Devin, Accepted by Artist1.
-Bounty.create(:id => 1, :user_id => 1, :accept_id => 3, :name => 'Comic Page', :desc => 'I want a comic page of my characters doing cool things!', :price => 10.00)
+Bounty.create(:id => 1, :user_id => 1, :accept_id => 3, :primary_mood_id => 3, :name => 'Comic Page', :desc => 'I want a comic page of my characters doing cool things!', :price => 10.00)
 
 #Bounty 2, Created by Devin, Accepted by Artist1.
-Bounty.create(:id => 2, :user_id => 1, :accept_id => 3, :name => 'Original Character', :desc => 'I want a commission of my own cool character.', :price => 15.00)
+Bounty.create(:id => 2, :user_id => 1, :accept_id => 3, :primary_mood_id => 1, :secondary_mood_id => 4, :name => 'Original Character', :desc => 'I want a commission of my own cool character.', :price => 15.00)
 
 #Bounty 3, Created by Devin, Rejected by Artist1.
-Bounty.create(:id => 3, :user_id => 1, :reject_id => 3, :name => 'Web Design', :desc => 'Please design my new webpage. I want it to be cool!', :price => 20.00)
+Bounty.create(:id => 3, :user_id => 1, :reject_id => 3, :primary_mood_id => 4, :name => 'Web Design', :desc => 'Please design my new webpage. I want it to be cool!', :price => 20.00)
 
 #Bounty 4, Created by Devin, Accepted by Artist2. Completed by Artist2.
-Bounty.create(:id => 4, :user_id => 1, :accept_id => 4, :complete_id => 4, :name => 'Fan Character', :desc => 'Could you draw your character with mine?', :url => 'http://www.4.com', :price => 25.00)
+Bounty.create(:id => 4, :user_id => 1, :accept_id => 4, :complete_id => 4, :primary_mood_id => 1, :secondary_mood_id => 2, :name => 'Fan Character', :desc => 'Could you draw your character with mine?', :url => 'http://www.4.com', :price => 25.00)
 
 #Bounty 5, Created by Brent, Accepted by Artist3. Completed by Artist3.
-Bounty.create(:id => 5, :user_id => 2, :accept_id => 5, :complete_id => 5, :name => 'Van Art', :desc => 'Dude... Could you paint a cougar on my van? That\'d be like, awesometacular!', :url => 'http://www.5.com', :price => 30.00)
+Bounty.create(:id => 5, :user_id => 2, :accept_id => 5, :complete_id => 5, :primary_mood_id => 3, :name => 'Van Art', :desc => 'Dude... Could you paint a cougar on my van? That\'d be like, awesometacular!', :url => 'http://www.5.com', :price => 30.00)
 
 #Bounty 6, Created by Brent, Accepted by Artist3. Completed by Artist3. Private.
-Bounty.create(:id => 5, :user_id => 2, :accept_id => 5, :complete_id => 5, :name => 'Private Adult Commission', :desc => 'I\'m too shy to make this bounty public.', :url => 'http://www.6.com', :price => 100.00, :private => true)
+Bounty.create(:id => 5, :user_id => 2, :accept_id => 5, :complete_id => 5, :primary_mood_id => 1, :name => 'Private Adult Commission', :desc => 'I\'m too shy to make this bounty public.', :url => 'http://www.6.com', :price => 100.00, :private => true)
 
 #Bounty 1 may be completed by Artists 1-4
 Candidacy.create(:id => 1, :user_id => 3, :bounty_id => 1)
@@ -54,6 +54,12 @@ Candidacy.create(:id => 12, :user_id => 5, :bounty_id => 6)
 
 Vote.create(:user_id => 1, :bounty_id => 5)
 Vote.create(:user_id => 2, :bounty_id => 1)
+
+Mood.create(:id => 1, :name => "Sexy")
+Mood.create(:id => 2, :name => "Comedy")
+Mood.create(:id => 3, :name => "Action")
+Mood.create(:id => 4, :name => "Artsy")
+
 
 
 
