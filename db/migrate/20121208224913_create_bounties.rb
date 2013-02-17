@@ -7,8 +7,6 @@ class CreateBounties < ActiveRecord::Migration
     	t.boolean :rating, :null => false, :default => false
       t.boolean :private, :null => false, :default => false
       t.string  :url
-      t.integer :primary_mood_id, :null => false
-      t.integer :secondary_mood_id
       t.integer :user_id, :null => false      #OWNERSHIP
       t.integer :accept_id                    #ACCEPTANCE
       t.integer :reject_id                    #REJECTION
