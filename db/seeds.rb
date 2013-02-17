@@ -10,6 +10,24 @@ Ip.create(:id => 4, :user_id => 4, :name => 'Artist2\'s IP', :desc => 'Hippie st
 Ip.create(:id => 5, :user_id => 5, :name => 'Artist3\'s IP', :desc => 'Cool stuff.', :rules => 'I\'m a little picky.')
 Ip.create(:id => 6, :user_id => 6, :name => 'Artist4\'s IP', :desc => 'Trendy stuff.', :rules => 'I\'m very picky.')
 
+Vote.create(:user_id => 1, :bounty_id => 5)
+Vote.create(:user_id => 2, :bounty_id => 1)
+
+Mood.create(:id => 1, :name => "Sexy")
+Mood.create(:id => 2, :name => "Comedy")
+Mood.create(:id => 3, :name => "Action")
+Mood.create(:id => 4, :name => "Artsy")
+Mood.create(:id => 5, :name => "Cute")
+
+Personality.create(:id =>1, :mood_id => 1, :bounty_id => 2)
+Personality.create(:id =>1, :mood_id => 1, :bounty_id => 6)
+Personality.create(:id =>1, :mood_id => 2, :bounty_id => 1)
+Personality.create(:id =>1, :mood_id => 4, :bounty_id => 3)
+Personality.create(:id =>1, :mood_id => 5, :bounty_id => 3)
+Personality.create(:id =>1, :mood_id => 4, :bounty_id => 4)
+Personality.create(:id =>1, :mood_id => 1, :bounty_id => 4)
+Personality.create(:id =>1, :mood_id => 2, :bounty_id => 5)
+
 #Bounty 1, Created by Devin, Accepted by Artist1.
 Bounty.create(:id => 1, :user_id => 1, :accept_id => 3, :name => 'Comic Page', :desc => 'I want a comic page of my characters doing cool things!', :price => 10.00)
 
@@ -51,24 +69,3 @@ Candidacy.create(:id => 11, :user_id => 5, :bounty_id => 5)
 
 #Bounty 6 may be completed by Artist 3.
 Candidacy.create(:id => 12, :user_id => 5, :bounty_id => 6)
-
-Vote.create(:user_id => 1, :bounty_id => 5)
-Vote.create(:user_id => 2, :bounty_id => 1)
-
-Mood.create(:id => 1, :name => "Sexy")
-Mood.create(:id => 2, :name => "Comedy")
-Mood.create(:id => 3, :name => "Action")
-Mood.create(:id => 4, :name => "Artsy")
-Mood.create(:id => 5, :name => "Cute")
-
-Personality.create(:id =>1, :mood_id => 3, :bounty_id => 2)
-Personality.create(:id =>1, :mood_id => 1, :bounty_id => 6)
-Personality.create(:id =>1, :mood_id => 2, :bounty_id => 1)
-Personality.create(:id =>1, :mood_id => 4, :bounty_id => 3)
-Personality.create(:id =>1, :mood_id => 5, :bounty_id => 3)
-Personality.create(:id =>1, :mood_id => 4, :bounty_id => 4)
-Personality.create(:id =>1, :mood_id => 1, :bounty_id => 4)
-Personality.create(:id =>1, :mood_id => 2, :bounty_id => 5)
-
-
-

@@ -45,4 +45,5 @@ class Bounty < ActiveRecord::Base
 
   validates :name, :desc, :price, :user_id, :presence => true
   validates :complete_id, :inclusion => { :in => proc { |p| [p.accept_id] } }, :allow_nil => true # The completor may only be the acceptor if present.
+  # validates :moods, :length => { :minimum => 1 }
 end
