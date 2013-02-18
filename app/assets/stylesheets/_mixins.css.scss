@@ -5,9 +5,9 @@
 }
 
 @mixin gradient($one, $two) {
-	background-color: $two; 
+	background-color: $two;
 	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($one), to($two));
-	background-image: -webkit-linear-gradient(top, $one, $two); 
+	background-image: -webkit-linear-gradient(top, $one, $two);
 	background-image:    -moz-linear-gradient(top, $one, $two);
 	background-image:     -ms-linear-gradient(top, $one, $two);
 	background-image:      -o-linear-gradient(top, $one, $two);
@@ -18,4 +18,9 @@
 	a:visited {color: $color;}
 	a:hover {color: $color;}
 	a:active {color: $color;}
+}
+
+@mixin marginCenter() {
+	margin-left: auto;
+	margin-right: auto;
 }
