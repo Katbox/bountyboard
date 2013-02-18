@@ -18,6 +18,7 @@ class Personality < ActiveRecord::Base
 
   validates :mood_id, presence: true
   validates :bounty_id, presence: true
+  validates_uniqueness_of :mood_id, :scope => :bounty_id
   validate :validate_max_moods
 
   def self.MAXIMUM_MOODS

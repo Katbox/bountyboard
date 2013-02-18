@@ -39,4 +39,14 @@ describe Personality do
 	invalid_personality.should_not be_valid
   end
 
+  it 'should not allow the same mood to be associated with a bounty multiple times' do
+    personality1 = Personality.new( :bounty_id => @bounty.id, :mood_id => 1 )
+	personality1.should be_valid
+	personality1.save
+
+    personality2 = Personality.new( :bounty_id => @bounty.id, :mood_id => 1 )
+	personality2.should_not be_valid
+	
+  end
+
 end
