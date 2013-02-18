@@ -170,6 +170,23 @@ $brown);
   right: 0;
 }
 
+#bountyPostArea {
+  color: $black;
+  background: $yellow;
+  border: 1px inset $black;
+  @include roundCorners;
+  background-image:url('PaperTexture.jpg');
+  margin-bottom: 20px;
+  form {
+
+  }
+}
+
+#postBounty {
+  color:white;
+  margin: 10px auto;
+}
+
 /* the login buttons are used for user interactivity while the form itself is hidden */
 #browser-id-form {
 	display: none;

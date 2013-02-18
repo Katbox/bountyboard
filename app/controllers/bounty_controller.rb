@@ -9,7 +9,7 @@ class BountyController < ApplicationController
 	end
 
 	def new
-		# TODO: display a page with a form for making a new bounty
+		@bounty = Bounty.new
 	end
 
 	def create
