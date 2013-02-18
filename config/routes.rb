@@ -2,7 +2,7 @@ Bountyboard::Application.routes.draw do
 
   root :to => 'Board#index'
 
-  resources :bounty
+  resources :bounties
 
 
   # authentication routes

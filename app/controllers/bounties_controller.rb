@@ -1,4 +1,4 @@
-class BountyController < ApplicationController
+class BountiesController < ApplicationController
 	def index
 		@bounties = Bounty.all
 	end
