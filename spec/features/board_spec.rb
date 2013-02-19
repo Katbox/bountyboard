@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'Board' do
+describe 'Bounty' do
 
 	subject { page }
 
@@ -10,7 +10,7 @@ describe 'Board' do
 		before { visit root_path }
 
 		it { should have_selector('.hero-unit .board-subheader',
-			  :text => 'A project that connects artists to fans and fans to the artwork they love.') }
+			  :text => 'Artists for hire. Will draw for food.') }
 		it { should have_selector('body .navbar') }
 		it { should have_selector('body .navbar-inner') }
 		it { should have_selector('footer.row-fluid',

@@ -1,6 +1,6 @@
 Bountyboard::Application.routes.draw do
 
-  root :to => 'Board#index'
+  root :to => 'Bounties#index'
 
   resources :bounties
 

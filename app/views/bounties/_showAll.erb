@@ -1,5 +1,5 @@
-<% if @bounties %>
-	<% @bounties.each do |b| %>
+<% if @bounty %>
+	<% @bounty.each do |b| %>
 		<% unless b.private %>
 			<div class="span3 bountyCell">
 			<div class="ribbonWrapper"><div class="ribbon">$ <%= b.price %></div></div>

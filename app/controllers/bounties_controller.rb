@@ -1,6 +1,6 @@
 class BountiesController < ApplicationController
 	def index
-		@bounties = Bounty.all
+		@bounty = Bounty.all
 	end
 
 	def show

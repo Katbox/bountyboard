@@ -1,22 +1,10 @@
-<h1>ALL the bounties! All of them!</h1>
+# encoding: UTF-8
 
-<table>
-	<tr>
-		<th>Name</th>
-		<th>Desc</th>
-		<th>Price</th>
-		<th>Rating</th>
-		<th>URL</th>
-		<th>Private?</th>
-	</tr>
-<% @bounties.each do |bounty| %>
-	<tr>
-		<td><%= bounty.name %></td>
-		<td><%= bounty.desc %></td>
-		<td><%= bounty.price %></td>
-		<td><%= bounty.rating %></td>
-		<td><%= bounty.url %></td>
-		<td><%= bounty.private %></td>
-	</tr>
-<% end %>
-</table>
+<div class="row-fluid">
+	<div class="span3">
+		<%= render 'layouts/sidebar' %>
+	</div>
+	<div class="span9">
+			<%= render 'bounties/showAll' %>
+	</div>
+</div>
