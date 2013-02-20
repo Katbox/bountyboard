@@ -2,6 +2,7 @@
 @import "colors";
 @import "mixins";
 
+// Global ======================================================================
 @font-face {
   font-family: 'Carnevalee Freakshow';
   src: url('carnevaleeFreakshow.ttf');
@@ -12,68 +13,82 @@
   src: url('nashvill.ttf');
 }
 
-
 p {
-	font-size: 1.1em;
-	line-height: 1.7em;
+  font-size: 1.1em;
+  line-height: 1.7em;
 }
 
 body {
-	padding-top: 60px;
-	background: $darkBrown;
-	color: $lightYellow;
-	@include gradient($black, $brown);
-	background-image:url('WoodTexture.jpg');
-
-}
-
-
-a:link {color: $orange;}
-a:visited {color: $orange;}
-a:hover {color: $lightOrange;}
-a:active {color: $orange;}
-
-.board-header {
-	color: $black;
-	font-weight: bold;
-	font-size: 400%;
-	font-family: 'Nashvill';
-	margin-bottom: 20px;
-}
-
-.board-subheader {
-	color: $black !important;
-	font-size: 130%;
-}
-
-.hero-unit {
-	width: 80%;
-	margin-left: auto;
-	margin-right: auto;
-	background: $yellow;
-	border: 1px inset $black;
-	@include linkColor($white);
-	background-image:url('PaperTexture.jpg');
-}
-
-.sidebar-nav {
-	background: $yellow;
-	border: 1px inset $black;
-	@include linkColor($black);
-	background-image:url('PaperTexture.jpg');
-}
-
-.nav-header {
-	font-size: 150%;
-	color: $black;
-	font-family: 'Nashvill';
-}
-
-.bountyCell {
-  margin: 0px 10px 10px !important;
-  height: 240px;
-  width: 285px !important;
+  padding-top: 60px;
+  background: $darkBrown;
+  font-family: 'Courier';
   color: $black;
+  @include gradient($black, $brown);
+  background-image:url('WoodTexture.jpg');
+}
+
+@include linkColor($orange);
+
+// Header & Footer *************************************************************
+#browser-id-form {
+  display: none;
+}
+
+header .login-notify-area {
+  vertical-align: middle;
+  color: $white;
+}
+
+footer {
+  color: $white;
+  text-align: center;
+}
+
+// Bounty Index ****************************************************************
+// Bounty Board Header =========================================================
+.hero-unit {
+  color: $black;
+  font-weight: bold;
+  width: 75%;
+  height: 180px;
+  border: 1px inset $black;
+  @include linkColor($white);
+  @include marginCenter();
+  text-align: center;
+  background: $yellow;
+  background-image:url('PaperTexture.jpg');
+}
+
+.hero-unit h1 {
+  font-size: 500%;
+  margin-bottom: 20px;
+  font-family: 'Nashvill';
+}
+
+.hero-unit h2 {
+  font-size: 175%;
+  font-family: 'Nashvill';
+}
+
+// Sidebar Navigation ==========================================================
+.sidebar-nav {
+  background: $yellow;
+  border: 1px inset $black;
+  @include linkColor($black);
+  background-image:url('PaperTexture.jpg');
+}
+
+.sidebar-nav .nav-header {
+  color: $black;
+  font-family: 'Nashvill';
+  font-size: 150%;
+}
+
+// Bounties ====================================================================
+.bounty {
+  height: 240px;
+  width: 280px !important;
+  margin: 0px 10px 10px !important;
   background: $yellow;
   border: 1px inset $black;
   @include roundCorners;
@@ -82,94 +97,41 @@ a:active {color: $orange;}
   padding: 9px;
 }
 
-.bountyName {
-	width: 150px;
-	font-size: 240%;
-	line-height: 35px;
-	font-family: 'Carnevalee Freakshow';
-	margin: 10px 0px 40px 0px;
-  -webkit-transform: rotate(-15deg);
-  -moz-transform:    rotate(-15deg);
-  -ms-transform:     rotate(-15deg);
-  -o-transform:      rotate(-15deg);
+.bounty .name {
+  width: 150px;
+  font-size: 240%;
+  line-height: 30px;
+  font-family: 'Carnevalee Freakshow';
+  margin: 0px 0px 20px 0px;
+  padding: 5px;
+  text-align: center;
+  @include rotate(-10deg);
+  overflow: hidden;
 }
 
-.candidateWrapper {
+.bounty .shortDesc {
+  display: inline-block;
+  max-width: 70%;
+  vertical-align: top;
+  margin-left: 10px;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+.bounty .candidates {
   max-width: 20%;
   overflow: hidden;
   display: inline-block;
 }
 
-.candidate {
+.candidates > * {
   height: 50px;
   width: 50px;
   margin: 2.5px 0px;
   background-color: $black;
 }
 
-.shortDesc {
-  display: inline-block;
-  max-width: 70%;
-  vertical-align: top;
-  margin-left: 10px;
-  overflow:hidden;
-}
-
-.ribbonWrapper {
-  width: 85px;
-  height: 88px;
-  overflow: hidden;
-  position: absolute;
-  top: -3px;
-  right: -3px;
-}
-
-.ribbon {
-  font-family: 'Carnevalee Freakshow';
-  color: $white;
-  text-align: center;
-  font-size: 230%;
-  text-shadow: 2px 2px $black;
-  -webkit-transform: rotate(45deg);
-  -moz-transform:    rotate(45deg);
-  -ms-transform:     rotate(45deg);
-  -o-transform:      rotate(45deg);
-  position: relative;
-  padding: 3px 0 7px 0;
-  left: -5px;
-  top: 15px;
-  width: 120px;
-  background-color: $darkBrown;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#BFDC7A), to(#8EBF45));
-  background-image: -webkit-linear-gradient(top, $orange,
-$brown);
-  background-image:    -moz-linear-gradient(top, $orange,
-$brown);
-  background-image:     -ms-linear-gradient(top, $orange,
-$brown);
-  background-image:      -o-linear-gradient(top, $orange,
-$brown);
-  -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
-  -moz-box-shadow:    0px 0px 3px rgba(0,0,0,0.3);
-  box-shadow:         0px 0px 3px rgba(0,0,0,0.3);
-}
-
-.ribbon:before, .ribbon:after {
-  content: "";
-  border-top:   3px solid #6e8900;
-  border-left:  3px solid transparent;
-  border-right: 3px solid transparent;
-  position:absolute;
-  bottom: -3px;
-}
-
-.ribbon:before {
-  left: 0;
-}
-.ribbon:after {
-  right: 0;
-}
-
+// Bounty New ******************************************************************
 #bountyPostArea {
   color: $black;
   background: $yellow;
@@ -177,34 +139,4 @@ $brown);
   @include roundCorners;
   background-image:url('PaperTexture.jpg');
   margin-bottom: 20px;
-  form {
-
-  }
-}
-
-#postBounty {
-  color:white;
-  margin: 10px auto;
-}
-
-/* the login buttons are used for user interactivity while the form itself is hidden */
-#browser-id-form {
-	display: none;
-}
-
-/* make the "logged in as <user>" display visible against the black background and vertically centered */
-.login-notify-area {
-	color: snow;
-	vertical-align: middle;
-}
-
-.active {
-	a:link {color: $white;}
-	a:visited {color: $white;}
-	a:hover {color: $white;}
-	a:active {color: $white;}
-}
-
-footer {
-	text-align: center;
 }

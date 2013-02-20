@@ -1,19 +1,15 @@
 <% if @bounty %>
 	<% @bounty.each do |b| %>
 		<% unless b.private %>
-			<div class="span3 bountyCell">
+			<div class="span3 bounty">
 			<div class="ribbonWrapper"><div class="ribbon">$ <%= b.price %></div></div>
 
-				<div class="bountyName"><%= b.name %></div>
-				<div class="candidateWrapper">
-					<% if @candidacies %>
-						<% @candidacies.each do |c| %>
-							<% if c.bounty.id == b.id %>
-								<div id="<%= c.user.name %>" class="candidate"></div>
-							<% end %>
-						<% end %>
+				<div class="name"><%= b.name %></div>
+				<div class="candidates">
+					<% b.candidacies.each do |c| %>
+						<div id="<%= c.user.name %>"></div>
 					<% end %>
-				</div>
+ 				</div>
 				<div class="shortDesc">
 					A description would go here if this bounty had one. It does not yet, and we will get to that when we have time. A description would go here if this bounty had one. It does not yet, and we will get to that when we have time.
 				</div>
