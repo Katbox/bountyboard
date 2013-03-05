@@ -49,8 +49,8 @@ footer {
 .hero-unit {
   color: $black;
   font-weight: bold;
-  width: 75%;
-  height: 180px;
+  width: 1010px;
+  height: 125px;
   border: 1px inset $black;
   @include linkColor($white);
   @include marginCenter();
@@ -61,6 +61,7 @@ footer {
 
 .hero-unit h1 {
   font-size: 500%;
+  line-height: .5;
   margin-bottom: 20px;
   font-family: 'Nashvill';
 }
