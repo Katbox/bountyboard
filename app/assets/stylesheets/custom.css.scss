@@ -96,6 +96,8 @@ footer {
   background-image:url('PaperTexture.jpg');
   position: relative;
   padding: 9px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .bounty .name {
@@ -113,10 +115,27 @@ footer {
 .bounty .shortDesc {
   display: inline-block;
   max-width: 70%;
+  max-height: 50px;
   vertical-align: top;
   margin-left: 10px;
-  word-wrap: break-word;
-  overflow: hidden;
+}
+
+.bounty .shortDesc .readMore {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  text-align: center;
+  margin: 0; padding: 30px 0;
+  @include gradient(transparent, $black)
+}
+
+.bounty .shortDesc .readMore {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  @include gradient(transparent, $black)
 }
 
 .bounty .candidates {
