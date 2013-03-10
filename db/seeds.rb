@@ -29,13 +29,13 @@ Personality.create(:id =>1, :mood_id => 1, :bounty_id => 4)
 Personality.create(:id =>1, :mood_id => 2, :bounty_id => 5)
 
 #Bounty 1, Created by Devin, Accepted by Artist1.
-Bounty.create(:id => 1, :user_id => 1, :accept_id => 3, :name => 'Comic Page', :desc => 'I want a comic page of my characters doing cool things!', :price => 10.00)
+Bounty.create(:id => 1, :user_id => 1, :accept_id => 3, :name => 'Comic Page', :desc => 'I want a comic page of my characters doing cool things!', :price => 100.00)
 
 #Bounty 2, Created by Devin, Accepted by Artist1.
-Bounty.create(:id => 2, :user_id => 1, :accept_id => 3, :name => 'Original Character', :desc => 'I want a commission of my own cool character.', :price => 15.00)
+Bounty.create(:id => 2, :user_id => 1, :accept_id => 3, :name => 'Original Character', :desc => 'I want a commission of my own cool character.', :price => 15.50)
 
 #Bounty 3, Created by Devin, Rejected by Artist1.
-Bounty.create(:id => 3, :user_id => 1, :reject_id => 3, :name => 'Web Design', :desc => 'Please design my new webpage. I want it to be cool!', :price => 20.00)
+Bounty.create(:id => 3, :user_id => 1, :reject_id => 3, :name => 'Web Design', :desc => 'Please design my new webpage. I want it to be cool!', :price => 2000.00)
 
 #Bounty 4, Created by Devin, Accepted by Artist2. Completed by Artist2.
 Bounty.create(:id => 4, :user_id => 1, :accept_id => 4, :complete_id => 4,  :name => 'Fan Character', :desc => 'Could you draw your character with mine?', :url => 'http://www.4.com', :price => 25.00)
