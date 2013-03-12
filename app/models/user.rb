@@ -12,6 +12,7 @@
 
 class User < ActiveRecord::Base
   attr_accessible :name, :email
+  attr_protected :id
 
   #OWNERSHIP OF A VOTE
   has_many :votes

@@ -10,7 +10,7 @@
 #
 
 class Personality < ActiveRecord::Base
-  attr_accessible :mood_id, :bounty_id
+  attr_protected :id, :mood_id, :bounty_id
 
   #Many to many join table between user and bounty.
   belongs_to :mood

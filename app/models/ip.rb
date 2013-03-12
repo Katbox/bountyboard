@@ -12,7 +12,8 @@
 
 
 class Ip < ActiveRecord::Base
-  attr_accessible :name, :desc, :rules, :user_id
+  attr_accessible :name, :desc, :rules
+  attr_protected :id, :user_id
 
   #One to many relationship with user.
   belongs_to :user

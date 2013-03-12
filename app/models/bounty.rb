@@ -2,23 +2,27 @@
 #
 # Table name: bounties
 #
-#  id          :integer          not null, primary key
-#  name        :string(255)      not null
-#  desc        :text             not null
-#  price       :decimal(8, 2)    not null
-#  rating      :boolean          default(FALSE), not null
-#  private     :boolean          default(FALSE), not null
-#  url         :string(255)
-#  user_id     :integer          not null
-#  accept_id   :integer
-#  reject_id   :integer
-#  complete_id :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id             :integer          not null, primary key
+#  name           :string(255)      not null
+#  desc           :text             not null
+#  price_cents    :integer          default(0), not null
+#  price_currency :string(255)      default("USD"), not null
+#  rating         :boolean          default(FALSE), not null
+#  private        :boolean          default(FALSE), not null
+#  url            :string(255)
+#  user_id        :integer          not null
+#  accept_id      :integer
+#  reject_id      :integer
+#  complete_id    :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
 
 class Bounty < ActiveRecord::Base
-  attr_accessible :name, :desc, :price, :rating, :url, :private, :user_id, :accept_id, :reject_id, :complete_id
+  attr_accessible :name, :desc, :price_cents, :rating, :url, :private
+  attr_protected :user_id, :accept_id, :reject_id, :complete_id
+
+  monetize :price_cents
 
   #OWNERSHIP OF A VOTE
   has_many :votes
@@ -45,5 +49,4 @@ class Bounty < ActiveRecord::Base
 
   validates :name, :desc, :price, :user_id, :presence => true
   validates :complete_id, :inclusion => { :in => proc { |p| [p.accept_id] } }, :allow_nil => true # The completor may only be the acceptor if present.
-  # validates :moods, :length => { :minimum => 1 }
 end
