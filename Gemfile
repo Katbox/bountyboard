@@ -9,7 +9,7 @@ gem 'rails', '3.2'
 # Gems used in the production environment.
 group :production do
 	gem 'pg', '0.14.1'
-	gem 'thin'
+	gem 'unicorn'
 end
 
 
