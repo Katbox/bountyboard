@@ -10,6 +10,8 @@ gem 'rails', '3.2'
 group :production do
 	gem 'pg', '0.14.1'
 	gem 'unicorn'
+	gem 'execjs'
+	gem 'therubyracer', :platforms => :ruby
 end
 
 
