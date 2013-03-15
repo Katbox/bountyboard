@@ -3,7 +3,7 @@ class CreateBounties < ActiveRecord::Migration
     create_table :bounties do |t|
     	t.string :name, :null => false
     	t.text :desc, :null => false
-    	t.decimal :price, :precision => 8, :scale => 2, :null => false
+    	t.money :price, :null => false
     	t.boolean :rating, :null => false, :default => false
       t.boolean :private, :null => false, :default => false
       t.string  :url

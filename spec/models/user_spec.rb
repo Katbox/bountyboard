@@ -1,4 +1,16 @@
 # encoding: UTF-8
+# == Schema Information
+#
+# Table name: users
+#
+#  id            :integer          not null, primary key
+#  name          :string(255)
+#  email         :string(255)      not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  rememberToken :string(255)
+#
+
 
 require 'spec_helper'
 

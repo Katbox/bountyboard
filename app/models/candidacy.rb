@@ -10,7 +10,7 @@
 #
 
 class Candidacy < ActiveRecord::Base
-  attr_accessible :user_id, :bounty_id
+  attr_protected :id, :user_id, :bounty_id
 
   #Many to many join table between user and bounty.
   belongs_to :user
