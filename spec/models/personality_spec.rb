@@ -18,35 +18,53 @@ describe Personality do
   it { should respond_to(:bounty) }
 
   before {
-    # set up a user, a bounty, and a number of moods
-    @user = User.create( :email => 'anonymous@example.com' )
-	(1..Personality.MAXIMUM_MOODS + 1).each do |i|
-	  Mood.create( :name => i, :id => i )
-	end
-    @bounty = Bounty.create( :user_id => @user.id, :name => 'name', :desc => 'desc', :price => 10.00 )
+    # SETUP
+
+    #1 USER
+    @user = User.new( :email => 'anonymous@example.com' )
+    @user.id = 1
+    @user.save
+
+    #3 MOODS
+    (1..Personality.MAXIMUM_MOODS + 1).each do |i|
+      @mood = Mood.new( :name => i)
+      @mood.id = i
+      @mood.save
+    end
+
+    #1 BOUNTY
+    @bounty = Bounty.new( :name => 'name', :desc => 'desc', :price => 10.00 )
+    @bounty.user_id = @user.id
+    @bounty.save
   }
 
-  it 'should not be able to associate more moods to a bounty than allowed' do
-    # associate the maximum number of moods with the bounty
-	(1..Personality.MAXIMUM_MOODS).each do |i|
-	  new_personality = Personality.new( :bounty_id => @bounty.id, :mood_id => i )
-	  new_personality.should be_valid
-	  new_personality.save
-	end
+  it 'should not be able to let a bounty have more moods than the MAXIMUM_MOODS!' do
+    # Associate the maximum number of moods with the bounty.
+  	(1..Personality.MAXIMUM_MOODS).each do |i|
+  	  new_personality = Personality.new()
+      new_personality.bounty_id = @bounty.id
+      new_personality.mood_id = i
+      new_personality.save
+  	  new_personality.should be_valid
+    end
 
-	# then add one more mood to the bounty and make sure it fails
-    invalid_personality = Personality.new( :bounty_id => @bounty.id, :mood_id => (Personality.MAXIMUM_MOODS + 1) )
-	invalid_personality.should_not be_valid
+      invalid_personality = Personality.new()
+      invalid_personality.bounty_id = @bounty.id
+      invalid_personality.mood_id = 3
+      invalid_personality.save
+      invalid_personality.should be_invalid
   end
 
-  it 'should not allow the same mood to be associated with a bounty multiple times' do
-    personality1 = Personality.new( :bounty_id => @bounty.id, :mood_id => 1 )
-	personality1.should be_valid
-	personality1.save
+  it 'should not allow the same mood to be associated with a bounty multiple times!' do
+    personality1 = Personality.new()
+    personality1.bounty_id = @bounty.id
+    personality1.mood_id = 1
+  	personality1.should be_valid
+  	personality1.save
 
-    personality2 = Personality.new( :bounty_id => @bounty.id, :mood_id => 1 )
-	personality2.should_not be_valid
-	
+    personality2 = Personality.new()
+    personality2.bounty_id = @bounty.id
+    personality2.mood_id = 1
+  	personality2.should be_invalid
   end
-
 end
