@@ -22,26 +22,6 @@ user = User.new(:name => 'Customer2', :email => 'customer2@test.com')
 user.id = 6
 user.save
 
-ip = Ip.new(:name => 'Artist 1\'s IP', :desc => 'Practical. Conservative.', :rules => 'I do pretty much normal every day junk.' )
-ip.id = 1
-ip.user_id = 1
-ip.save
-
-ip = Ip.new(:name => 'Artist 2\'s IP', :desc => 'Wild. Colorful.', :rules => 'I push my limits and try new things.' )
-ip.id = 2
-ip.user_id = 2
-ip.save
-
-ip = Ip.new(:name => 'Artist 3\'s IP', :desc => 'Cartoony. Stylized.', :rules => 'I\'m a kid at heart.' )
-ip.id = 3
-ip.user_id = 3
-ip.save
-
-ip = Ip.new(:name => 'Artist 4\'s IP', :desc => 'Adult. NSFW.', :rules => 'Psst. Hey. Over here... Whatever you want. I got it.' )
-ip.id = 4
-ip.user_id = 4
-ip.save
-
 mood = Mood.new(:name => "Practical")
 mood.id = 1
 mood.save
