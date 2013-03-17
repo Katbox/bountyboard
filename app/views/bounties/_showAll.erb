@@ -2,6 +2,7 @@
 	<% @bounty.each do |b| %>
 		<% unless b.private %>
 			<div class="span3 bounty">
+			<div class="nail"></div>
 			<div class="ribbonWrapper"><div class="ribbon"><%= humanized_money_with_symbol b.price %></div></div>
 
 				<div class="name"><%= b.name %></div>

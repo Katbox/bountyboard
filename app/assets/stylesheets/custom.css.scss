@@ -29,6 +29,19 @@ body {
 
 @include linkColor($orange);
 
+.btn-primary {
+  background: $darkRed;
+  @include gradient($lightRed, $darkRed);
+}
+
+.btn-primary:hover {
+  background: $lightRed;
+}
+
+.btn-primary:active {
+  background: $darkRed;
+}
+
 // Header & Footer *************************************************************
 #browser-id-form {
   display: none;
@@ -73,17 +86,25 @@ footer {
   background: $yellow;
   border: 1px inset $black;
   @include linkColor($black);
-  background-image:url('PaperTexture.jpg');
+  background-image:url('BleachedWoodTexture.jpg');
+  font-size: 110%;
+  font-weight: bold;
 }
 
 .sidebar-nav .nav-header {
   color: $black;
   font-family: 'Nashvill';
-  font-size: 150%;
+  font-size: 200%;
+  margin-bottom: 10px;
 }
 
 .sidebar-nav li {
   margin-left: 10px;
+}
+
+.sidebar-nav li a {
+  background: url(rivet.png) 5px no-repeat;
+  padding-left: 25px;
 }
 
 // Bounties ====================================================================
@@ -139,6 +160,15 @@ footer {
   padding-left: 60px;
   text-align: center;
   @include gradient(transparent, $black)
+}
+
+.bounty .nail {
+  position: absolute;
+  width: 100%;
+  height: 22px;
+  background-image:url('nail.png');
+  background-repeat:no-repeat;
+  background-position:center;
 }
 
 .bounty .candidates {
