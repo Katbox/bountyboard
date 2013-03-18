@@ -15,10 +15,15 @@ class BountiesController < ApplicationController
 	end
 
 	def create
+		#TODO Implement candidacy.
 		@bounty = Bounty.new(params[:bounty])
 		@bounty.user_id = 1
+		@candidacy = Candidacy.new()
+		@candidacy.bounty_id = @bounty.id
+		@candidacy.user_id = 1
+		@candidacy.save
 		if @bounty.save
-			render index
+			redirect_to root_path
 		else
 			render 'new'
 		end

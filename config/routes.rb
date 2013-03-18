@@ -4,7 +4,6 @@ Bountyboard::Application.routes.draw do
 
   resources :bounties
 
-
   # authentication routes
   match '/auth/:provider/callback', to: 'Sessions#create'
   match '/sign_out', to: 'Sessions#destroy', via: :delete
