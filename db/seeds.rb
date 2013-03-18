@@ -87,7 +87,7 @@ bounty.complete_id = 3
 bounty.save
 
 # A bounty created by customer 1, completed by artist 1.
-bounty = Bounty.new(:name => "My Little Pony Fan Art", :desc => "Cute art of my favorite show ever!", :price => 1.00)
+bounty = Bounty.new(:name => "My Little Pony Fan Art", :desc => "Cute art of my favorite show ever!", :price => 9999.99)
 bounty.id = 6
 bounty.user_id = 5
 bounty.accept_id = 3
@@ -102,14 +102,14 @@ bounty.complete_id = 4
 bounty.save
 
 # A bounty created by customer 2, accepted by artist 4.
-bounty = Bounty.new(:name => "Porn", :desc => "Porn.", :price => 666.00, :rating => true)
+bounty = Bounty.new(:name => "Seedy Adult Commission", :desc => "I'm totally not ashamed to make an adult commission public!", :price => 666.00, :rating => true)
 bounty.id = 8
 bounty.user_id = 6
 bounty.accept_id = 4
 bounty.save
 
 # A bounty created by customer 1, rejected by artist 4.
-bounty = Bounty.new(:name => "My Little Pony \"Fan Art\"", :desc => "Clop. Clop.", :price => 100.00, :rating => true, :private => true)
+bounty = Bounty.new(:name => "My Little Pony \"Fan Art\"", :desc => "Clop. Clop. Keep this private. Clop. Clop.", :price => 100.00, :rating => true, :private => true)
 bounty.id = 9
 bounty.user_id = 5
 bounty.reject_id = 4

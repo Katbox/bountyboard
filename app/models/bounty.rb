@@ -51,7 +51,7 @@ class Bounty < ActiveRecord::Base
   validates :name, :desc, :price, :user_id, :presence => true
   validates :complete_id, :inclusion => { :in => proc { |p| [p.accept_id] } }, :allow_nil => true # The completor may only be the acceptor if present.
 
-  validates :name, :length => {:minimum => 1, :maximum => 20, message: "must be between 1 and 20 characters long"}
+  validates :name, :length => {:minimum => 1, :maximum => 30, message: "must be between 1 and 30 characters long"}
   validates :desc, :length => {:minimum => 1, :maximum => 5000, message: "must be between 1 and 5000 characters long"}
   validates :price,
     :numericality => {
