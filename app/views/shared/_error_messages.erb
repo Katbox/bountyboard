@@ -1,0 +1,11 @@
+<% if @bounty.errors.any? %>
+    <div id="errors">
+        <p><%= pluralize(@bounty.errors.count, "error") %> were found when saving your bounty!</p>
+        <p>There were problems with the following fields:</p>
+        <ul>
+            <% @bounty.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>

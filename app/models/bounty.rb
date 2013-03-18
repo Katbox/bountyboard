@@ -22,7 +22,11 @@ class Bounty < ActiveRecord::Base
   attr_accessible :name, :desc, :price_cents, :rating, :url, :private
   attr_protected :user_id, :accept_id, :reject_id, :complete_id
 
-  monetize :price_cents
+  monetize :price_cents,
+    :numericality => {
+      :greater_than_or_equal_to => 5.00,
+      message: "must be $5.00 or more"
+    }
 
   #OWNERSHIP OF A VOTE
   has_many :votes
@@ -47,6 +51,10 @@ class Bounty < ActiveRecord::Base
   has_many :personalities
   has_many :moods, :through => :personalities
 
+  #VALIDATIONS
   validates :name, :desc, :price, :user_id, :presence => true
   validates :complete_id, :inclusion => { :in => proc { |p| [p.accept_id] } }, :allow_nil => true # The completor may only be the acceptor if present.
+
+  validates :name, :length => {:minimum => 1, :maximum => 20, message: "must be between 1 and 20 characters long"}
+  validates :desc, :length => {:minimum => 1, :maximum => 5000, message: "must be between 1 and 5000 characters long"}
 end

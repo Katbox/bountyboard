@@ -115,6 +115,73 @@ bounty.user_id = 5
 bounty.reject_id = 4
 bounty.save
 
+#Bounty 1's moods
+personality = Personality.new()
+personality.id = 1
+personality.bounty_id = 1
+personality.mood_id = 2
+personality.save
+personality = Personality.new()
+personality.id = 2
+personality.bounty_id = 1
+personality.mood_id = 4
+personality.save
+
+#Bounty 2's moods
+personality = Personality.new()
+personality.id = 3
+personality.bounty_id = 2
+personality.mood_id = 3
+personality.save
+personality = Personality.new()
+personality.id = 4
+personality.bounty_id = 2
+personality.mood_id = 4
+personality.save
+
+#Bounty 3's moods
+personality = Personality.new()
+personality.id = 5
+personality.bounty_id = 3
+personality.mood_id = 5
+personality.save
+personality = Personality.new()
+personality.id = 6
+personality.bounty_id = 3
+personality.mood_id = 6
+personality.save
+
+#Bounty 4's moods
+personality = Personality.new()
+personality.id = 7
+personality.bounty_id = 4
+personality.mood_id = 3
+personality.save
+
+#Bounty 5's moods
+personality = Personality.new()
+personality.id = 9
+personality.bounty_id = 5
+personality.mood_id = 1
+personality.save
+personality = Personality.new()
+personality.id = 10
+personality.bounty_id = 5
+personality.mood_id = 5
+personality.save
+
+#Bounty 6's moods
+personality = Personality.new()
+personality.id = 11
+personality.bounty_id = 6
+personality.mood_id = 4
+personality.save
+personality = Personality.new()
+personality.id = 12
+personality.bounty_id = 6
+personality.mood_id = 5
+personality.save
+
 #Bounty 1 may be completed by Artist 1
 candidacy = Candidacy.new()
 candidacy.id = 1

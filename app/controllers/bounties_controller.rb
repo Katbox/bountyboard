@@ -11,11 +11,17 @@ class BountiesController < ApplicationController
 
 	def new
 		@bounty = Bounty.new
+		@moods = Mood.all
 	end
 
 	def create
-		# TODO: create a new bounty from the passed parameters
-		# make sure only logged in users can use this method
+		@bounty = Bounty.new(params[:bounty])
+		@bounty.user_id = 1
+		if @bounty.save
+			render index
+		else
+			render 'new'
+		end
 	end
 
 	def edit
