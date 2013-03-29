@@ -1,17 +1,21 @@
 user = User.new(:name => 'Artist1', :email => 'artist1@test.com')
 user.id = 1
+user.isArtist = true
 user.save
 
 user = User.new(:name => 'Artist2', :email => 'artist2@test.com')
 user.id = 2
+user.isArtist = true
 user.save
 
 user = User.new(:name => 'Artist3', :email => 'artist3@test.com')
 user.id = 3
+user.isArtist = true
 user.save
 
 user = User.new(:name => 'Artist4', :email => 'artist4@test.com')
 user.id = 4
+user.isArtist = true
 user.save
 
 user = User.new(:name => 'Customer1', :email => 'customer1@test.com')

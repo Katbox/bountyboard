@@ -9,6 +9,7 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  rememberToken :string(255)
+#  isArtist      :boolean
 #
 
 

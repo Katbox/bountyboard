@@ -8,11 +8,12 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  rememberToken :string(255)
+#  isArtist      :boolean
 #
 
 class User < ActiveRecord::Base
   attr_accessible :name, :email
-  attr_protected :id
+  attr_protected :id, :isArtist
 
   #OWNERSHIP OF A VOTE
   has_many :votes
