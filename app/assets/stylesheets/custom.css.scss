@@ -1,43 +1,190 @@
 @import "persona-buttons";
+@import "colors";
+@import "mixins";
 
-
-/* typography */
-/* borrowed from the Rails tutorial at railstutorial.org */
-h1, h2, h3, h4, h5, h6 {
-	line-height: 1;
+// Global ======================================================================
+@font-face {
+  font-family: 'Carnevalee Freakshow';
+  src: url('carnevaleeFreakshow.ttf');
 }
 
-h1 {
-	font-size: 3em;
-	letter-spacing: -2px;
-	margin-bottom: 30px;
-	text-align: center;
-}
-
-h2 {
-	font-size: 1.7em;
-	letter-spacing: -1px;
-	margin-bottom: 30px;
-	text-align: center;
-	font-weight: normal;
+@font-face {
+  font-family: 'Nashvill';
+  src: url('nashvill.ttf');
 }
 
 p {
-	font-size: 1.1em;
-	line-height: 1.7em;
+  font-size: 1.1em;
+  line-height: 1.7em;
 }
 
-
-
-
-/* make room for the header nav bar */
 body {
-	padding-top: 60px;
+  padding-top: 60px;
+  background: $darkBrown;
+  font-family: 'Courier';
+  color: $black;
+  @include gradient($black, $brown);
+  background-image:url('WoodTexture.jpg');
 }
 
-/* make the "logged in as <user>" display visible against the black background and vertically centered */
-.login-notify-area {
-	color: snow;
-	vertical-align: middle;
+@include linkColor($orange);
+
+.btn-primary {
+  background: $darkRed;
+  @include gradient($lightRed, $darkRed);
 }
 
+.btn-primary:hover {
+  background: $lightRed;
+}
+
+.btn-primary:active {
+  background: $darkRed;
+}
+
+header .login-notify-area {
+  vertical-align: middle;
+  color: $white;
+}
+
+footer {
+  color: $white;
+  text-align: center;
+}
+
+// Bounty Index ****************************************************************
+// Bounty Board Header =========================================================
+.hero-unit {
+  color: $black;
+  font-weight: bold;
+  width: 950px;
+  height: 225px;
+  padding: 0px;
+  border: 1px inset $black;
+  @include linkColor($white);
+  @include marginCenter();
+  text-align: center;
+  background: $yellow;
+  background-image:url('bountyHeader.jpg');
+}
+
+.hero-unit button {
+  margin-top: 140px;
+}
+
+#postBounty {
+  margin-top: 140px;
+}
+
+// Sidebar Navigation ==========================================================
+.sidebar-nav {
+  background: $yellow;
+  border: 1px inset $black;
+  @include linkColor($black);
+  background-image:url('BleachedWoodTexture.jpg');
+  font-size: 110%;
+  font-weight: bold;
+}
+
+.sidebar-nav .nav-header {
+  color: $black;
+  font-family: 'Nashvill';
+  font-size: 200%;
+  margin-bottom: 10px;
+}
+
+.sidebar-nav li {
+  margin-left: 10px;
+}
+
+.sidebar-nav li a {
+  background: url(rivet.png) 5px no-repeat;
+  padding-left: 25px;
+}
+
+// Bounties ====================================================================
+.bounty {
+  height: 240px;
+  width: 280px !important;
+  margin: 0px 10px 10px !important;
+  background: $yellow;
+  border: 1px inset $black;
+  @include roundCorners;
+  background-image:url('PaperTexture.jpg');
+  position: relative;
+  padding: 9px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bounty .name {
+  width: 150px;
+  font-size: 240%;
+  line-height: 30px;
+  font-family: 'Carnevalee Freakshow';
+  margin: 0px 0px 20px 0px;
+  padding: 5px;
+  text-align: center;
+  @include rotate(-10deg);
+  overflow: hidden;
+}
+
+.bounty .shortDesc {
+  display: inline-block;
+  max-width: 70%;
+  max-height: 50px;
+  vertical-align: top;
+  margin-left: 10px;
+}
+
+.bounty .shortDesc .readMore {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  text-align: center;
+  margin: 0; padding: 30px 0;
+  @include gradient(transparent, $black)
+}
+
+.bounty .shortDesc .readMore {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  padding-left: 60px;
+  text-align: center;
+  @include gradient(transparent, $black)
+}
+
+.bounty .nail {
+  position: absolute;
+  width: 100%;
+  height: 22px;
+  background-image:url('nail.png');
+  background-repeat:no-repeat;
+  background-position:center;
+}
+
+.bounty .candidates {
+  max-width: 20%;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.candidates > * {
+  height: 50px;
+  width: 50px;
+  margin: 2.5px 0px;
+  background-color: $black;
+}
+
+// Bounty New ******************************************************************
+#bountyPostArea {
+  color: $black;
+  background: $yellow;
+  border: 1px inset $black;
+  @include roundCorners;
+  background-image:url('PaperTexture.jpg');
+  margin-bottom: 20px;
+}

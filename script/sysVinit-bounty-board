@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+# chkconfig:   345 99 10
+# description: Starts and stops the unicorn daemon serving the Bounty Board Rails application.
+# pidfile:     /var/run/unicorn-rails/bounty-board.pid
+
+
+bounty_board_dir="/srv/rails/bounty-board"
+pidfile="/var/run/unicorn-rails/bounty-board.pid"
+
+case "$1" in
+
+	start)
+		echo "Staring the Unicorn application server for the Bounty Board..."
+		su -c "${bounty_board_dir}/script/startup-unicorn.sh" - rails
+		;;
+
+	stop)
+		if [ -e "$pidfile" ]
+		then
+			echo "Stopping the Unicorn application server for the Bounty Board..."
+			kill -s QUIT $(cat $pidfile)
+		else
+			echo "The Bounty Board is not running."
+		fi
+		;;
+	
+	*)
+	echo $"Usage: $0 {start|stop}"
+	exit 2
+esac
+

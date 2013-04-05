@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -9,6 +9,9 @@ gem 'rails', '3.2.11'
 # Gems used in the production environment.
 group :production do
 	gem 'pg', '0.14.1'
+	gem 'unicorn'
+	gem 'execjs'
+	gem 'therubyracer', :platforms => :ruby
 end
 
 
@@ -49,6 +52,7 @@ gem 'normalize-rails'
 gem 'bootstrap-sass'
 gem 'omniauth-browserid'
 gem 'omniauth-deviantart'
+gem 'money-rails'
 
 
 # To use ActiveModel has_secure_password

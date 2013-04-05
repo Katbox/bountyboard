@@ -1,6 +1,9 @@
 Bountyboard::Application.routes.draw do
 
-  root :to => 'Board#index'
+  root :to => 'Bounties#index'
+
+  resources :bounties
+
 
   # authentication routes
   match '/auth/:provider/callback', to: 'Sessions#create'

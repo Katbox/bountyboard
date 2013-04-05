@@ -10,7 +10,7 @@
 #
 
 class Vote < ActiveRecord::Base
-  attr_accessible :user_id, :bounty_id
+  attr_protected :id, :user_id, :bounty_id
 
   #OWNERSHIP OF A VOTE
   belongs_to :user

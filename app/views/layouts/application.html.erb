@@ -2,42 +2,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>The Bounty Board</title>
+    <meta charset="utf-8">
+    <title>Bounty Board</title>
 
-	<%= stylesheet_link_tag    "application", :media => "all" %>
-	<%= javascript_include_tag "application" %>
-	<script src="https://browserid.org/include.js" type="text/javascript"></script>
-	<%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <script src="https://browserid.org/include.js" type="text/javascript"></script>
+    <%= csrf_meta_tags %>
 
-	<!-- provide HTML5 compatibility for IE 8 and older -->
-	<!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+    <!-- provide HTML5 compatibility for IE 8 and older -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
 
 <body>
-	<%= render 'layouts/nav_bar' %>
+<!--    Header navigation bar on the top of the page with sign-in controls. -->
 
-	<%
-		# boilerplate for integrating Rails flash messages with Bootstrap taken
-		# from https://gist.github.com/1600856
-	%>
-	<% [:notice, :error, :alert].each do |level| %>
-		<% unless flash[level].blank? %>
-			<div class="alert <%= flash_class(level) %>">
-				<a class="close" href="#">×</a>
-				<%= content_tag :p, flash[level] %>
-			</div>
-		<% end %>
-	<% end %>
+    <%= render 'layouts/nav_bar' %>
 
-	<div class="container-fluid">
-		<%= yield %>
-	</div>
+    <% [:notice, :error, :alert].each do |level| %>
+        <% unless flash[level].blank? %>
+            <div class="alert <%= flash_class(level) %>">
+                <a class="close" href="#">×</a>
+                <%= content_tag :p, flash[level] %>
+            </div>
+        <% end %>
+    <% end %>
 
-	<hr>
-	<%= render 'layouts/footer' %>
+<!--    Greeting to be later styled and image enhanced to resemble a RL bounty. -->
+    <div class="hero-unit">
+            <%= render 'layouts/post_bounty_button' %>
+    </div>
+
+<!--    Primary Board Index Content -->
+    <div class="container-fluid">
+        <%= yield %>
+    </div>
+
+<!--    Footer with copyright and liscence info. -->
+    <%= render 'layouts/footer' %>
 
 </body>
 </html>

@@ -1,53 +1,186 @@
-User.create(:id => 1, :email => 'devin@test.com')
-User.create(:id => 2, :email => 'brent@test.com')
-User.create(:id => 3, :name => 'Artist1', :email => 'artist1@test.com')
-User.create(:id => 4, :name => 'Artist2', :email => 'artist2@test.com')
-User.create(:id => 5, :name => 'Artist3', :email => 'artist3@test.com')
-User.create(:id => 6, :name => 'Artist4', :email => 'artist4@test.com')
+user = User.new(:name => 'Artist1', :email => 'artist1@test.com')
+user.id = 1
+user.save
 
-Ip.create(:id => 3, :user_id => 3, :name => 'Artist1\'s IP', :desc => 'Practical stuff.', :rules => 'Anything goes.')
-Ip.create(:id => 4, :user_id => 4, :name => 'Artist2\'s IP', :desc => 'Hippie stuff.', :rules => 'Amost anything goes.')
-Ip.create(:id => 5, :user_id => 5, :name => 'Artist3\'s IP', :desc => 'Cool stuff.', :rules => 'I\'m a little picky.')
-Ip.create(:id => 6, :user_id => 6, :name => 'Artist4\'s IP', :desc => 'Trendy stuff.', :rules => 'I\'m very picky.')
+user = User.new(:name => 'Artist2', :email => 'artist2@test.com')
+user.id = 2
+user.save
 
-#Bounty 1, Created by Devin, Accepted by Artist1.
-Bounty.create(:id => 1, :user_id => 1, :accept_id => 3, :name => 'Bounty1', :desc => 'This is bounty 1.', :price => 10.00)
+user = User.new(:name => 'Artist3', :email => 'artist3@test.com')
+user.id = 3
+user.save
 
-#Bounty 2, Created by Devin, Accepted by Artist1.
-Bounty.create(:id => 2, :user_id => 1, :accept_id => 3, :name => 'Bounty2', :desc => 'This is bounty 2.', :price => 15.00)
+user = User.new(:name => 'Artist4', :email => 'artist4@test.com')
+user.id = 4
+user.save
 
-#Bounty 3, Created by Devin, Rejected by Artist1.
-Bounty.create(:id => 3, :user_id => 1, :reject_id => 3, :name => 'Bounty3', :desc => 'This is bounty 3.', :price => 20.00)
+user = User.new(:name => 'Customer1', :email => 'customer1@test.com')
+user.id = 5
+user.save
 
-#Bounty 4, Created by Devin, Accepted by Artist2. Completed by Artist2.
-Bounty.create(:id => 4, :user_id => 1, :accept_id => 4, :complete_id => 4, :name => 'Bounty4', :desc => 'This is bounty 4.', :price => 25.00)
+user = User.new(:name => 'Customer2', :email => 'customer2@test.com')
+user.id = 6
+user.save
 
-#Bounty 5, Created by Brent, Accepted by Artist3. Completed by Artist3.
-Bounty.create(:id => 5, :user_id => 2, :accept_id => 5, :complete_id => 5, :name => 'Bounty5', :desc => 'This is bounty 5.', :price => 30.00)
+mood = Mood.new(:name => "Practical")
+mood.id = 1
+mood.save
 
-#Bounty 1 may be completed by Artists 1-4
-Candidacy.create(:id => 1, :user_id => 3, :bounty_id => 1)
-Candidacy.create(:id => 2, :user_id => 4, :bounty_id => 1)
-Candidacy.create(:id => 3, :user_id => 5, :bounty_id => 1)
-Candidacy.create(:id => 4, :user_id => 6, :bounty_id => 1)
+mood = Mood.new(:name => "Conservative")
+mood.id = 2
+mood.save
 
-#Bounty 2 may be completed by Artists 1-2
-Candidacy.create(:id => 5, :user_id => 3, :bounty_id => 2)
-Candidacy.create(:id => 6, :user_id => 4, :bounty_id => 2)
+mood = Mood.new(:name => "Wild")
+mood.id = 3
+mood.save
 
-#Bounty 3 may be completed by Artists 1 and 3.
-Candidacy.create(:id => 7, :user_id => 3, :bounty_id => 3)
-Candidacy.create(:id => 8, :user_id => 5, :bounty_id => 3)
+mood = Mood.new(:name => "Colorful")
+mood.id = 4
+mood.save
 
-#Bounty 4 may be completed by Artists 2 and 4.
-Candidacy.create(:id => 9, :user_id => 4, :bounty_id => 4)
-Candidacy.create(:id => 10, :user_id => 6, :bounty_id => 4)
+mood = Mood.new(:name => "Cartoony")
+mood.id = 5
+mood.save
 
-#Bounty 5 may be completed by Artist 3.
-Candidacy.create(:id => 11, :user_id => 5, :bounty_id => 4)
+mood = Mood.new(:name => "Stylized")
+mood.id = 6
+mood.save
 
-Vote.create(:user_id => 1, :bounty_id => 5)
-Vote.create(:user_id => 2, :bounty_id => 1)
+mood = Mood.new(:name => "Sexy")
+mood.id = 7
+mood.save
 
+# A bounty created by customer 1, completed by artist 1.
+bounty = Bounty.new(:name => "Landscape Painting", :desc => "I want a painting of a serene landscape, letting me enjoy the neauty and grandeur of nature in my living room. I want it to have a lake and be at sunset.", :price => 1000.00)
+bounty.id = 1
+bounty.user_id = 5
+bounty.accept_id = 1
+bounty.complete_id = 1
+bounty.save
 
+# A bounty created by customer 1, accepted by artist 1.
+bounty = Bounty.new(:name => "Tapestry Design", :desc => "An intricate pattern for a rug design.", :price => 2000.00)
+bounty.id = 2
+bounty.user_id = 5
+bounty.accept_id = 1
+bounty.save
 
+# A bounty created by customer 2, accepted by no one.
+bounty = Bounty.new(:name => "Comic Character", :desc => "I want a picture of my character doing cool stuff! Lots of explosions!", :price => 60.00)
+bounty.id = 3
+bounty.user_id = 2
+bounty.save
+
+# A bounty created by customer 2, accepted by artist 2.
+bounty = Bounty.new(:name => "Tattoo Design", :desc => "I need someone to make a design that I will hand over to a tattoo artist for inking on my arm.", :price => 35.50)
+bounty.id = 4
+bounty.user_id = 6
+bounty.accept_id = 2
+bounty.save
+
+# A bounty created by customer 1, completed by artist 1.
+bounty = Bounty.new(:name => "Cartoon Sketches", :desc => "Storyboarding sketches for my animated short.", :price => 45.00)
+bounty.id = 5
+bounty.user_id = 6
+bounty.accept_id = 3
+bounty.complete_id = 3
+bounty.save
+
+# A bounty created by customer 1, completed by artist 1.
+bounty = Bounty.new(:name => "My Little Pony Fan Art", :desc => "Cute art of my favorite show ever!", :price => 1.00)
+bounty.id = 6
+bounty.user_id = 5
+bounty.accept_id = 3
+bounty.save
+
+# A bounty created by customer 2, completed by artist 4.
+bounty = Bounty.new(:name => "Swimsuit Design", :desc => "A cute, yet sexy melon pattern.", :price => 999.99)
+bounty.id = 7
+bounty.user_id = 6
+bounty.accept_id = 4
+bounty.complete_id = 4
+bounty.save
+
+# A bounty created by customer 2, accepted by artist 4.
+bounty = Bounty.new(:name => "Porn", :desc => "Porn.", :price => 666.00, :rating => true)
+bounty.id = 8
+bounty.user_id = 6
+bounty.accept_id = 4
+bounty.save
+
+# A bounty created by customer 1, rejected by artist 4.
+bounty = Bounty.new(:name => "My Little Pony \"Fan Art\"", :desc => "Clop. Clop.", :price => 100.00, :rating => true, :private => true)
+bounty.id = 9
+bounty.user_id = 5
+bounty.reject_id = 4
+bounty.save
+
+#Bounty 1 may be completed by Artist 1
+candidacy = Candidacy.new()
+candidacy.id = 1
+candidacy.user_id = 1
+candidacy.bounty_id = 1
+candidacy.save
+
+#Bounty 1 may be completed by Artist 2
+candidacy = Candidacy.new()
+candidacy.id = 2
+candidacy.user_id = 2
+candidacy.bounty_id = 1
+candidacy.save
+
+#Bounty 1 may be completed by Artist 3
+candidacy = Candidacy.new()
+candidacy.id = 3
+candidacy.user_id = 3
+candidacy.bounty_id = 1
+candidacy.save
+
+#Bounty 1 may be completed by Artist 4
+candidacy = Candidacy.new()
+candidacy.id = 4
+candidacy.user_id = 4
+candidacy.bounty_id = 1
+candidacy.save
+
+#Bounty 2 may be completed by Artist 1
+candidacy = Candidacy.new()
+candidacy.id = 5
+candidacy.user_id = 1
+candidacy.bounty_id = 2
+candidacy.save
+
+#Bounty 2 may be completed by Artist 2
+candidacy = Candidacy.new()
+candidacy.id = 6
+candidacy.user_id = 2
+candidacy.bounty_id = 2
+candidacy.save
+
+#Bounty 2 may be completed by Artist 3
+candidacy = Candidacy.new()
+candidacy.id = 7
+candidacy.user_id = 3
+candidacy.bounty_id = 2
+candidacy.save
+
+#Bounty 3 may be completed by Artist 1
+candidacy = Candidacy.new()
+candidacy.id = 8
+candidacy.user_id = 1
+candidacy.bounty_id = 3
+candidacy.save
+
+#Bounty 3 may be completed by Artist 2
+candidacy = Candidacy.new()
+candidacy.id = 9
+candidacy.user_id = 2
+candidacy.bounty_id = 3
+candidacy.save
+
+#Bounty 4 may be completed by Artist 1
+candidacy = Candidacy.new()
+candidacy.id = 10
+candidacy.user_id = 1
+candidacy.bounty_id = 4
+candidacy.save
