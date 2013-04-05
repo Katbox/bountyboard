@@ -35,11 +35,6 @@ body {
 	padding-top: 60px;
 }
 
-/* the login buttons are used for user interactivity while the form itself is hidden */
-#browser-id-form {
-	display: none;
-}
-
 /* make the "logged in as <user>" display visible against the black background and vertically centered */
 .login-notify-area {
 	color: snow;
