@@ -47,6 +47,9 @@ class Bounty < ActiveRecord::Base
   has_many :personalities
   has_many :moods, :through => :personalities
 
+  #CANDIDACIES MAY BE SAVED WHEN A BOUNTY IS SAVED
+  accepts_nested_attributes_for :candidacies
+
   #VALIDATIONS
   validates :name, :desc, :price, :user_id, :presence => true
   validates :complete_id, :inclusion => { :in => proc { |p| [p.accept_id] } }, :allow_nil => true # The completor may only be the acceptor if present.

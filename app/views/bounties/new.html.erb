@@ -1,20 +1,30 @@
 <div id="bountyPostArea" class="span11 offset2">
 	<%= render 'shared/error_messages' %>
-    <%= form_for @bounty do |f| %>
+    <%= form_for @bounty do |bounty_form| %>
         <div class="field">
-    		<%= f.label :name %>
-    		<%= f.text_field :name %>
+    		<%= bounty_form.label :name %>
+    		<%= bounty_form.text_field :name %>
         </div>
         <div class="field">
-            <%= f.label :desc %>
-            <%= f.text_area :desc %>
+            <%= bounty_form.label :desc %>
+            <%= bounty_form.text_area :desc %>
         </div>
         <div class="field">
-            <%= f.label :price %>
-            <%= f.text_field :price %>
+            <%= bounty_form.label :price %>
+            <%= bounty_form.text_field :price %>
+        </div>
+        <div class="artists">
+            <% @artists.each do |a| %>
+                <%= a.name %>
+            <% end %>
+        </div>
+        <div class="moods">
+            <% @moods.each do |m| %>
+                <%= m.name %>
+            <% end %>
         </div>
         <div class="action">
-            <%= f.submit "Post Your Bounty!" %>
+            <%= bounty_form.submit "Post Your Bounty!" %>
         </div>
     <% end %>
 </div>
