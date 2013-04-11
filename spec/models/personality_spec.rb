@@ -44,14 +44,13 @@ describe Personality do
   	  new_personality = Personality.new()
       new_personality.bounty_id = @bounty.id
       new_personality.mood_id = i
-      new_personality.save
   	  new_personality.should be_valid
+      new_personality.save
     end
 
       invalid_personality = Personality.new()
       invalid_personality.bounty_id = @bounty.id
       invalid_personality.mood_id = 3
-      invalid_personality.save
       invalid_personality.should be_invalid
   end
 
