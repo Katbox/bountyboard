@@ -12,8 +12,8 @@ class BountiesController < ApplicationController
 
 	def new
 		@bounty = Bounty.new
+		@artists = ArtistDetail.all
 		@moods = Mood.all
-		@artists = User.where(:isArtist => true)
 	end
 
 	def create
