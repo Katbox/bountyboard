@@ -3,13 +3,13 @@
 #
 # Table name: users
 #
-#  id            :integer          not null, primary key
-#  name          :string(255)
-#  email         :string(255)      not null
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  rememberToken :string(255)
-#  isArtist      :boolean
+#  id               :integer          not null, primary key
+#  name             :string(255)
+#  email            :string(255)      not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  rememberToken    :string(255)
+#  artist_detail_id :integer
 #
 
 
@@ -18,6 +18,7 @@ require 'spec_helper'
 describe User do
 
 	it { should respond_to(:id) }
+	it { should respond_to(:artist_detail_id) }
 	it { should respond_to(:name) }
 	it { should respond_to(:email) }
 	it { should respond_to(:created_at) }

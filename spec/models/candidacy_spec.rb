@@ -2,15 +2,19 @@
 #
 # Table name: candidacies
 #
-#  id         :integer          not null, primary key
-#  user_id    :integer          not null
-#  bounty_id  :integer          not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id               :integer          not null, primary key
+#  bounty_id        :integer          not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  artist_detail_id :integer
 #
 
 require 'spec_helper'
 
 describe Candidacy do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  it { should respond_to(:id) }
+  it { should respond_to(:artist_detail_id) }
+  it { should respond_to(:bounty_id) }
+
 end
