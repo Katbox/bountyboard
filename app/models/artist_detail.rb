@@ -12,7 +12,7 @@ class ArtistDetail < ActiveRecord::Base
   attr_protected :id
   attr_accessible :bio, :bountyRules, :approved
 
-  belongs_to :user
+  has_one :user
 
   #ACCEPTANCE OF A BOUNTY
   has_many :acceptions, :foreign_key => "accept_id", :class_name => "Bounty"

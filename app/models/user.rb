@@ -25,6 +25,8 @@ class User < ActiveRecord::Base
   has_many :candidacies
   has_many :bounties, :through => :candidacies
 
+  belongs_to :artist_detail
+
   validates :email, presence: true
   validates_uniqueness_of :email, :case_sensitive => false
 
