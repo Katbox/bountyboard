@@ -10,12 +10,12 @@
 #
 
 class Candidacy < ActiveRecord::Base
-  attr_protected :id, :artist_id, :bounty_id
+  attr_protected :id, :artist_detail_id, :bounty_id
 
   #Many to many join table between artist details and bounty.
-  belongs_to :artistDetails
+  belongs_to :artistDetail
   belongs_to :bounty
 
-  validates :artist_id, presence: true
+  validates :artist_detail_id, presence: true
   validates :bounty_id, presence: true
 end

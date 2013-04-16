@@ -41,7 +41,7 @@ class Bounty < ActiveRecord::Base
 
   #CANDIDACY TO ACCEPT A BOUNTY
   has_many :candidacies
-  has_many :users, :through => :candidacies
+  has_many :artist_details, :through => :candidacies
 
   #PERSONALITY OF A BOUNTY
   has_many :personalities
