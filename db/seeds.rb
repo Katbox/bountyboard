@@ -80,8 +80,7 @@ bounty1 = Bounty.new(
   :price => 1000.00
 )
 bounty1.user_id = customer1.id
-bounty1.accept_id = artist1.id
-bounty1.complete_id = artist1.id
+bounty1.url = "completed URL"
 bounty1.save
 
 # A bounty created by customer 1, accepted by artist 1.
@@ -91,7 +90,6 @@ bounty2 = Bounty.new(
   :price => 2000.00
 )
 bounty2.user_id = customer1.id
-bounty2.accept_id = artist1.id
 bounty2.save
 
 # A bounty created by customer 2, accepted by no one.
@@ -110,42 +108,38 @@ bounty4 = Bounty.new(
   :price => 35.50
 )
 bounty4.user_id = customer2.id
-bounty4.accept_id = artist2.id
 bounty4.save
 
-# A bounty created by customer 1, completed by artist 1.
+# A bounty created by customer 1, completed by artist 3.
 bounty5 = Bounty.new(
   :name => "Cartoon Sketches",
   :desc => "Storyboarding sketches for my animated short.",
   :price => 45.00
 )
 bounty5.user_id = customer2.id
-bounty5.accept_id = artist3.id
-bounty5.complete_id = artist3.id
+bounty5.url = "completed URL"
 bounty5.save
 
-# A bounty created by customer 1, completed by artist 1.
+# A bounty created by customer 1, accepted by artist 4.
 bounty6 = Bounty.new(
   :name => "My Little Pony Fan Art",
   :desc => "Cute art of my favorite show ever!",
   :price => 9999.99
 )
 bounty6.user_id = customer1.id
-bounty6.accept_id = artist3.id
 bounty6.save
 
-# A bounty created by customer 2, completed by artist 4.
+# A bounty created by customer 2, completed by artist 3.
 bounty7 = Bounty.new(
   :name => "Swimsuit Design",
   :desc => "A cute, yet sexy melon pattern.",
   :price => 999.99
 )
 bounty7.user_id = customer2.id
-bounty7.accept_id = artist4.id
-bounty7.complete_id = artist4.id
+bounty7.url = "completed URL"
 bounty7.save
 
-# A bounty created by customer 2, accepted by artist 4.
+# A bounty created by customer 2, accepted by artist 2.
 bounty8 = Bounty.new(
   :name => "Seedy Adult Commission",
   :desc => "I'm totally not ashamed to make an adult commission public!",
@@ -153,7 +147,6 @@ bounty8 = Bounty.new(
   :rating => true
 )
 bounty8.user_id = customer2.id
-bounty8.accept_id = artist4.id
 bounty8.save
 
 # A bounty created by customer 1, rejected by artist 4.
@@ -224,43 +217,45 @@ personality.bounty_id = bounty6.id
 personality.mood_id = cartoonyMood.id
 personality.save
 
-#Bounty 1 may be completed by Artist 1
+#Bounty 1 was completed by Artist 1
 candidacy = Candidacy.new()
 candidacy.artist_detail_id = artist1.id
 candidacy.bounty_id = bounty1.id
+candidacy.is_acceptor = true
 candidacy.save
 
-#Bounty 1 may be completed by Artist 2
+#Bounty 1 could have been completed by Artist 2
 candidacy = Candidacy.new()
 candidacy.artist_detail_id = artist2.id
 candidacy.bounty_id = bounty1.id
 candidacy.save
 
-#Bounty 1 may be completed by Artist 3
+#Bounty 1 could have been completed by Artist 3
 candidacy = Candidacy.new()
 candidacy.artist_detail_id = artist3.id
 candidacy.bounty_id = bounty1.id
 candidacy.save
 
-#Bounty 1 may be completed by Artist 4
+#Bounty 1 could have been completed by Artist 4
 candidacy = Candidacy.new()
 candidacy.artist_detail_id = artist4.id
 candidacy.bounty_id = bounty1.id
 candidacy.save
 
-#Bounty 2 may be completed by Artist 1
+#Bounty 2 is being completed by Artist 1
 candidacy = Candidacy.new()
 candidacy.artist_detail_id = artist1.id
 candidacy.bounty_id = bounty2.id
+candidacy.is_acceptor = true
 candidacy.save
 
-#Bounty 2 may be completed by Artist 2
+#Bounty 2 could have been completed by Artist 2
 candidacy = Candidacy.new()
 candidacy.artist_detail_id = artist2.id
 candidacy.bounty_id = bounty2.id
 candidacy.save
 
-#Bounty 2 may be completed by Artist 3
+#Bounty 2 could have been completed by Artist 3
 candidacy = Candidacy.new()
 candidacy.artist_detail_id = artist3.id
 candidacy.bounty_id = bounty2.id
@@ -278,37 +273,42 @@ candidacy.artist_detail_id = artist2.id
 candidacy.bounty_id = bounty3.id
 candidacy.save
 
-#Bounty 4 may be completed by Artist 1
+#Bounty 4 is being completed by Artist 2
 candidacy = Candidacy.new()
-candidacy.artist_detail_id = artist1.id
+candidacy.artist_detail_id = artist2.id
 candidacy.bounty_id = bounty4.id
+candidacy.is_acceptor = true
 candidacy.save
 
-#Bounty 5 may be completed by Artist 1
+#Bounty 5 is being completed by Artist 3
 candidacy = Candidacy.new()
-candidacy.artist_detail_id = artist1.id
+candidacy.artist_detail_id = artist3.id
 candidacy.bounty_id = bounty5.id
+candidacy.is_acceptor = true
 candidacy.save
 
 #Bounty 6 may be completed by Artist 4
 candidacy = Candidacy.new()
 candidacy.artist_detail_id = artist4.id
 candidacy.bounty_id = bounty6.id
+candidacy.is_acceptor = true
 candidacy.save
 
 #Bounty 7 may be completed by Artist 3
 candidacy = Candidacy.new()
 candidacy.artist_detail_id = artist3.id
 candidacy.bounty_id = bounty7.id
+candidacy.is_acceptor = true
 candidacy.save
 
 #Bounty 8 may be completed by Artist 2
 candidacy = Candidacy.new()
 candidacy.artist_detail_id = artist2.id
 candidacy.bounty_id = bounty8.id
+candidacy.is_acceptor = true
 candidacy.save
 
-#Bounty 9 may be completed by Artist 1
+#Bounty 9 could have been completed by Artist 1
 candidacy = Candidacy.new()
 candidacy.artist_detail_id = artist1.id
 candidacy.bounty_id = bounty9.id
