@@ -40,11 +40,11 @@ describe Personality do
 
   it 'should not be able to let a bounty have more moods than the MAXIMUM_MOODS!' do
     # Associate the maximum number of moods with the bounty.
-  	(1..Personality.MAXIMUM_MOODS).each do |i|
-  	  new_personality = Personality.new()
+    (1..Personality.MAXIMUM_MOODS).each do |i|
+      new_personality = Personality.new()
       new_personality.bounty_id = @bounty.id
       new_personality.mood_id = i
-  	  new_personality.should be_valid
+      new_personality.should be_valid
       new_personality.save
     end
 
@@ -58,12 +58,12 @@ describe Personality do
     personality1 = Personality.new()
     personality1.bounty_id = @bounty.id
     personality1.mood_id = 1
-  	personality1.should be_valid
-  	personality1.save
+    personality1.should be_valid
+    personality1.save
 
     personality2 = Personality.new()
     personality2.bounty_id = @bounty.id
     personality2.mood_id = 1
-  	personality2.should be_invalid
+    personality2.should be_invalid
   end
 end

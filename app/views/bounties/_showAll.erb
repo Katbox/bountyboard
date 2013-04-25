@@ -1,21 +1,21 @@
 <% if @bounty %>
-	<% @bounty.each do |b| %>
-		<% unless b.private %>
-			<div class="span3 bounty">
-			<div class="nail"></div>
-			<div class="ribbonWrapper"><div class="ribbon"><%= humanized_money_with_symbol b.price %></div></div>
+  <% @bounty.each do |b| %>
+    <% unless b.private %>
+      <div class="span3 bounty">
+      <div class="nail"></div>
+      <div class="ribbonWrapper"><div class="ribbon"><%= humanized_money_with_symbol b.price %></div></div>
 
-				<div class="name"><%= b.name %></div>
-				<div class="candidates">
-					<% b.candidacies.each do |c| %>
-						<div id="<%= c.user.name %>"></div>
-					<% end %>
- 				</div>
-				<div class="shortDesc">
-					<%= b.desc %>
-					<div class="readMore"><div class="btn btn-primary">Read More</div></div>
-				</div>
-			</div>
-		<% end %>
-	<% end %>
+        <div class="name"><%= b.name %></div>
+        <div class="candidates">
+          <% b.candidacies.each do |c| %>
+            <div id="<%= c.user.name %>"></div>
+          <% end %>
+        </div>
+        <div class="shortDesc">
+          <%= b.desc %>
+          <div class="readMore"><div class="btn btn-primary">Read More</div></div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 <% end %>

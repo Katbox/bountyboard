@@ -1,21 +1,21 @@
 # encoding: UTF-8
 <header class="navbar navbar-fixed-top navbar-inverse">
-	<div class="navbar-inner">
-		<div class="container-fluid">
-			<%= link_to 'The Bounty Board', root_path, class: 'brand' %>
-			<nav class="nav-collapse collapse">
-				<ul class="nav">
-					<li><%= link_to 'About', '#' %></li>
-				</ul>
-			</nav>
-			<span class="pull-right">
-			<% if signedIn? %>
-				<span class="login-notify-area">Logged in as <%= currentUser.getIdentifier() %></span>
-			<%	else %>
-				<button class="persona-login-button btn" type="button">Sign In with Persona</button>
-			<%	end %>
-			</span>
-		</div>
-	</div>
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <%= link_to 'The Bounty Board', root_path, class: 'brand' %>
+      <nav class="nav-collapse collapse">
+        <ul class="nav">
+          <li><%= link_to 'About', '#' %></li>
+        </ul>
+      </nav>
+      <span class="pull-right">
+      <% if signedIn? %>
+        <span class="login-notify-area">Logged in as <%= currentUser.getIdentifier() %></span>
+      <%  else %>
+        <button class="persona-login-button btn" type="button">Sign In with Persona</button>
+      <%  end %>
+      </span>
+    </div>
+  </div>
 </header>
 

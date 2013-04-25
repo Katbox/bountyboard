@@ -22,11 +22,11 @@ class Personality < ActiveRecord::Base
   validate :validate_max_moods
 
   def self.MAXIMUM_MOODS
-	  2
+    2
   end
 
   def validate_max_moods
     currentMoods = Personality.where(:bounty_id=>bounty_id).size
-	errors.add(:moods, "for this bounty exceeds #{Personality.MAXIMUM_MOODS}") if currentMoods > Personality.MAXIMUM_MOODS
+  errors.add(:moods, "for this bounty exceeds #{Personality.MAXIMUM_MOODS}") if currentMoods > Personality.MAXIMUM_MOODS
   end
 end
