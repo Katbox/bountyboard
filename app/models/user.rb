@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   has_many :candidacies
   has_many :bounties, :through => :candidacies
 
+  #USERS CAN BE ARTISTS
   belongs_to :artist_detail
 
   validates :email, presence: true
