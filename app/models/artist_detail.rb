@@ -29,6 +29,6 @@ class ArtistDetail < ActiveRecord::Base
 
   validates :bio, presence: true
   validates :bountyRules, presence: true
-  validates :approved, presence: true
+  validates :approved, :inclusion => {:in => [true, false]}
 end
 
