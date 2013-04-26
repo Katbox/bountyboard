@@ -21,6 +21,7 @@ class Candidacy < ActiveRecord::Base
   validates :artist_detail_id, presence: true
   validates :bounty_id, presence: true
   validates :bounty_id, :uniqueness => { :scope => :artist_detail_id }
+  validates :is_acceptor, :inclusion => {:in => [true, false]}
   validate :validate_one_acceptor
 
   # ensures that each bounty has only one acceptor at most
