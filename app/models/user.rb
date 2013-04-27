@@ -21,9 +21,8 @@ class User < ActiveRecord::Base
   #OWNERSHIP OF A BOUNTY
   has_many :ownerships, :foreign_key => "user_id", :class_name => "Bounty"
 
-  #CANDIDACY TO ACCEPT A BOUNTY
-  has_many :candidacies
-  has_many :bounties, :through => :candidacies
+  #REJECTION OF A BOUNTY
+  has_many :rejections, :foreign_key => "reject_id", :class_name => "Bounty"
 
   #USERS CAN BE ARTISTS
   belongs_to :artist_detail

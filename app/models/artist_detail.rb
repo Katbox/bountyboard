@@ -14,15 +14,6 @@ class ArtistDetail < ActiveRecord::Base
 
   has_one :user
 
-  #ACCEPTANCE OF A BOUNTY
-  has_many :acceptions, :foreign_key => "accept_id", :class_name => "Bounty"
-
-  #REJECTION OF A BOUNTY
-  has_many :rejections, :foreign_key => "reject_id", :class_name => "Bounty"
-
-  #COMPLETION OF A BOUNTY
-  has_many :completions, :foreign_key => "complete_id", :class_name => "Bounty"
-
   #CANDIDACY TO ACCEPT A BOUNTY
   has_many :candidacies
   has_many :bounties, :through => :candidacies
