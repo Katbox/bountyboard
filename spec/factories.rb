@@ -12,6 +12,10 @@ FactoryGirl.define do
   factory :mood do
     sequence(:name) { |n| "mood#{n}" }
   end
+
+  factory :mood_with_bounty, :parent => :mood do
+    bounties {[FactoryGirl.create(:bounty)]}
+  end
   
   factory :bounty do
     sequence(:name) { |n| "bounty#{n}" }
@@ -19,13 +23,22 @@ FactoryGirl.define do
 	price_cents 500
     user_id {[FactoryGirl.create(:user)]}
   end
-  
-  factory :personality, :parent => :bounty do
+
+  factory :bounty_with_mood, :parent => :bounty do
     moods {[FactoryGirl.create(:mood)]}
   end
   
-  factory :candidacy, :parent => :artist_detail do
-    bounties {[FactoryGirl.create(:bounty)]}
+  factory :personality do
+  end
+  
+  factory :candidacy do
+    bounty_id {[FactoryGirl.create(:bounty)]}
+	artist_detail_id {[FactoryGirl.create(:artist_detail)]}
+	acceptor false
+  end
+
+  factory :acceptor_candidacy, :parent => :candidacy do
+    acceptor true
   end
 end
 
