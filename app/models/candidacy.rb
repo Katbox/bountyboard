@@ -11,7 +11,7 @@
 #
 
 class Candidacy < ActiveRecord::Base
-  attr_accessible :is_acceptor
+  attr_accessible :acceptor
   attr_protected :id, :artist_detail_id, :bounty_id
 
   #Many to many join table between artist details and bounty.
@@ -21,15 +21,15 @@ class Candidacy < ActiveRecord::Base
   validates :artist_detail_id, presence: true
   validates :bounty_id, presence: true
   validates :bounty_id, :uniqueness => { :scope => :artist_detail_id }
-  validates :is_acceptor, :inclusion => {:in => [true, false]}
+  validates :acceptor, :inclusion => {:in => [true, false]}
   validate :validate_one_acceptor
 
   # ensures that each bounty has only one acceptor at most
   def validate_one_acceptor
 	numberOfAcceptors = Candidacy.where(
 	  :bounty_id => bounty_id,
-      :is_acceptor => true,
+      :acceptor => true,
 	).size
-	errors.add(:is_acceptor, " already exists for this bounty") if numberOfAcceptors > 1
+	errors.add(:acceptor, " already exists for this bounty") if numberOfAcceptors > 1
   end
 end

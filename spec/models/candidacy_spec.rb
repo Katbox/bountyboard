@@ -17,6 +17,6 @@ describe Candidacy do
   it { should respond_to(:id) }
   it { should respond_to(:artist_detail_id) }
   it { should respond_to(:bounty_id) }
-  it { should respond_to(:is_acceptor) }
+  it { should respond_to(:acceptor) }
 
 end

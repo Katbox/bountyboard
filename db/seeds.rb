@@ -221,7 +221,7 @@ personality.save!
 candidacy = Candidacy.new()
 candidacy.artist_detail_id = artist1.id
 candidacy.bounty_id = bounty1.id
-candidacy.is_acceptor = true
+candidacy.acceptor = true
 candidacy.save!
 
 #Bounty 1 could have been completed by Artist 2
@@ -246,7 +246,7 @@ candidacy.save!
 candidacy = Candidacy.new()
 candidacy.artist_detail_id = artist1.id
 candidacy.bounty_id = bounty2.id
-candidacy.is_acceptor = true
+candidacy.acceptor = true
 candidacy.save!
 
 #Bounty 2 could have been completed by Artist 2
@@ -277,35 +277,35 @@ candidacy.save!
 candidacy = Candidacy.new()
 candidacy.artist_detail_id = artist2.id
 candidacy.bounty_id = bounty4.id
-candidacy.is_acceptor = true
+candidacy.acceptor = true
 candidacy.save!
 
 #Bounty 5 is being completed by Artist 3
 candidacy = Candidacy.new()
 candidacy.artist_detail_id = artist3.id
 candidacy.bounty_id = bounty5.id
-candidacy.is_acceptor = true
+candidacy.acceptor = true
 candidacy.save!
 
 #Bounty 6 may be completed by Artist 4
 candidacy = Candidacy.new()
 candidacy.artist_detail_id = artist4.id
 candidacy.bounty_id = bounty6.id
-candidacy.is_acceptor = true
+candidacy.acceptor = true
 candidacy.save!
 
 #Bounty 7 may be completed by Artist 3
 candidacy = Candidacy.new()
 candidacy.artist_detail_id = artist3.id
 candidacy.bounty_id = bounty7.id
-candidacy.is_acceptor = true
+candidacy.acceptor = true
 candidacy.save!
 
 #Bounty 8 may be completed by Artist 2
 candidacy = Candidacy.new()
 candidacy.artist_detail_id = artist2.id
 candidacy.bounty_id = bounty8.id
-candidacy.is_acceptor = true
+candidacy.acceptor = true
 candidacy.save!
 
 #Bounty 9 could have been completed by Artist 1
