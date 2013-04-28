@@ -45,9 +45,25 @@ class Bounty < ActiveRecord::Base
   #VALIDATIONS
   validates :name, :desc, :price, :user_id, :presence => true
 
-  validates :name, :length => {:minimum => 1, :maximum => 30, message: "must be between 1 and 30 characters long"}
-  validates :desc, :length => {:minimum => 1, :maximum => 5000, message: "must be between 1 and 5000 characters long"}
+  def self.MAXIMUM_NAME_LENGTH
+    30
+  end
+  validates :name, :length => {
+    :minimum => 1,
+	:maximum => Bounty.MAXIMUM_NAME_LENGTH,
+	:message => "must be between 1 and 30 characters long"
+  }
+
+  def self.MAXIMUM_DESC_LENGTH
+    5000
+  end
+  validates :desc, :length => {
+    :minimum => 1,
+	:maximum => Bounty.MAXIMUM_DESC_LENGTH,
+	:message => "must be between 1 and 5000 characters long"
+  }
   validates :private, :inclusion => {:in => [true, false]}
+  validates :rating, :inclusion => {:in => [true, false]}
   validates :price,
     :numericality => {
       :greater_than_or_equal_to => 5.00,

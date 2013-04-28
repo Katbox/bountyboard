@@ -42,7 +42,7 @@ describe Bounty do
   end
 
   it 'should not allow name to be too long' do
-	bounty = FactoryGirl.build(:bounty, :name => '$' * 31)
+	bounty = FactoryGirl.build(:bounty, :name => '$' * (Bounty.MAXIMUM_NAME_LENGTH + 1))
 	bounty.should_not be_valid
 	bounty.should have(1).error_on(:name)
   end
@@ -60,7 +60,7 @@ describe Bounty do
   end
 
   it 'should not allow desc to be too long' do
-	bounty = FactoryGirl.build(:bounty, :desc => '$' * 5001)
+	bounty = FactoryGirl.build(:bounty, :desc => '$' * (Bounty.MAXIMUM_DESC_LENGTH + 1))
 	bounty.should_not be_valid
 	bounty.should have(1).error_on(:desc)
   end
