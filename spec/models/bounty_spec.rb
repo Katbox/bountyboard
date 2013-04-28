@@ -20,14 +20,87 @@ require 'spec_helper'
 
 describe Bounty do
 
-	it { should respond_to(:name) }
-	it { should respond_to(:desc) }
-	it { should respond_to(:price_cents) }
-	it { should respond_to(:rating) }
-	it { should respond_to(:url) }
-	it { should respond_to(:private) }
-	it { should respond_to(:user_id) }
-	it { should respond_to(:reject_id) }
+  it { should respond_to(:name) }
+  it { should respond_to(:desc) }
+  it { should respond_to(:price_cents) }
+  it { should respond_to(:rating) }
+  it { should respond_to(:url) }
+  it { should respond_to(:private) }
+  it { should respond_to(:user_id) }
+  it { should respond_to(:reject_id) }
+
+  it 'should not allow null values for its name property' do
+	bounty = FactoryGirl.build(:bounty, :name => nil)
+	bounty.should_not be_valid
+	bounty.should have(2).error_on(:name)
+  end
+
+  it 'should not allow name to be empty' do
+	bounty = FactoryGirl.build(:bounty, :name => '')
+	bounty.should_not be_valid
+	bounty.should have(2).error_on(:name)
+  end
+
+  it 'should not allow name to be too long' do
+	bounty = FactoryGirl.build(:bounty, :name => '$' * 31)
+	bounty.should_not be_valid
+	bounty.should have(1).error_on(:name)
+  end
+
+  it 'should not allow null values for its desc property' do
+	bounty = FactoryGirl.build(:bounty, :desc => nil)
+	bounty.should_not be_valid
+	bounty.should have(2).error_on(:desc)
+  end
+
+  it 'should not allow desc to be empty' do
+	bounty = FactoryGirl.build(:bounty, :desc => '')
+	bounty.should_not be_valid
+	bounty.should have(2).error_on(:desc)
+  end
+
+  it 'should not allow desc to be too long' do
+	bounty = FactoryGirl.build(:bounty, :desc => '$' * 5001)
+	bounty.should_not be_valid
+	bounty.should have(1).error_on(:desc)
+  end
+
+  it 'should not allow null values for its price_cents property' do
+	bounty = FactoryGirl.build(:bounty, :price_cents => nil)
+	bounty.should_not be_valid
+	bounty.should have(1).error_on(:price_cents)
+  end
+
+  it 'should not allow null values for its rating property' do
+	bounty = FactoryGirl.build(:bounty, :rating => nil)
+	bounty.should_not be_valid
+	bounty.should have(1).error_on(:rating)
+  end
+
+  it 'should only allow boolean values for its rating property' do
+    bounty = FactoryGirl.build(:bounty, :rating => true)
+	bounty.should be_valid
+	bounty = FactoryGirl.build(:bounty, :rating => false)
+	bounty.should be_valid
+	bounty = FactoryGirl.build(:bounty, :rating => "cheese")
+	bounty.rating.should == false
+  end
+
+  it 'should not allow null values for its private property' do
+	bounty = FactoryGirl.build(:bounty, :private => nil)
+	bounty.should_not be_valid
+	bounty.should have(1).error_on(:private)
+  end
+
+  it 'should only allow boolean values for its private property' do
+    bounty = FactoryGirl.build(:bounty, :private => true)
+	bounty.should be_valid
+	bounty = FactoryGirl.build(:bounty, :private => false)
+	bounty.should be_valid
+	bounty = FactoryGirl.build(:bounty, :private => "cheese")
+	bounty.private.should == false
+  end
+
 end
 
 
