@@ -27,7 +27,7 @@ describe Personality do
     end
   }
 
-  it 'should not be able to let a bounty have more moods than the MAXIMUM_MOODS' do
+  it 'should not allow a bounty to have more moods than MAXIMUM_MOODS' do
     new_mood = FactoryGirl.create(:mood)
 	invalid_personality = FactoryGirl.build(:personality, :bounty_id => @bounty.id, :mood_id => new_mood.id)
 	invalid_personality.should be_invalid
