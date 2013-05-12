@@ -29,6 +29,10 @@ describe Bounty do
   it { should respond_to(:user_id) }
   it { should respond_to(:reject_id) }
 
+  before {
+    @bounty = FactoryGirl.build(:bounty)
+  }
+
   it 'should not allow null values for its name property' do
   bounty = FactoryGirl.build(:bounty, :name => nil)
   bounty.should_not be_valid
@@ -99,8 +103,6 @@ describe Bounty do
   bounty.should be_valid
   bounty = FactoryGirl.build(:bounty, :is_private => "cheese")
   bounty.private.should == false
-  end
-
 end
 
 
