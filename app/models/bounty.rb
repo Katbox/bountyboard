@@ -8,7 +8,7 @@
 #  price_cents    :integer          default(0), not null
 #  price_currency :string(255)      default("USD"), not null
 #  rating         :boolean          default(FALSE), not null
-#  private        :boolean          default(FALSE), not null
+#  is_private     :boolean          default(FALSE), not null
 #  url            :string(255)
 #  user_id        :integer          not null
 #  reject_id      :integer
@@ -50,8 +50,8 @@ class Bounty < ActiveRecord::Base
   end
   validates :name, :length => {
     :minimum => 1,
-	:maximum => Bounty.MAXIMUM_NAME_LENGTH,
-	:message => "must be between 1 and 30 characters long"
+  :maximum => Bounty.MAXIMUM_NAME_LENGTH,
+  :message => "must be between 1 and 30 characters long"
   }
 
   def self.MAXIMUM_DESC_LENGTH
@@ -59,10 +59,10 @@ class Bounty < ActiveRecord::Base
   end
   validates :desc, :length => {
     :minimum => 1,
-	:maximum => Bounty.MAXIMUM_DESC_LENGTH,
-	:message => "must be between 1 and 5000 characters long"
+  :maximum => Bounty.MAXIMUM_DESC_LENGTH,
+  :message => "must be between 1 and 5000 characters long"
   }
-  validates :private, :inclusion => {:in => [true, false]}
+  validates :is_private, :inclusion => {:in => [true, false]}
   validates :rating, :inclusion => {:in => [true, false]}
   validates :price,
     :numericality => {
