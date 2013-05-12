@@ -19,7 +19,7 @@ describe Candidacy do
   it { should respond_to(:acceptor) }
 
   before {
-    @bounty = FactoryGirl.create(:bounty_with_mood)
+    @bounty = FactoryGirl.create(:bounty)
 	@artist = FactoryGirl.create(:user_with_artist_detail)
   }
 

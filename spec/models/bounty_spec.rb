@@ -30,7 +30,7 @@ describe Bounty do
   it { should respond_to(:reject_id) }
 
   before {
-    @bounty = FactoryGirl.build(:bounty_with_mood)
+    @bounty = FactoryGirl.build(:bounty)
   }
 
   it 'should not allow null values for its name property' do

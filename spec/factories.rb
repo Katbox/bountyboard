@@ -22,9 +22,6 @@ FactoryGirl.define do
     desc "Bounty description."
 	price_cents 500
     user_id {FactoryGirl.create(:user)}
-  end
-
-  factory :bounty_with_mood, :parent => :bounty do
     after(:build) do |bounty|
 	  bounty.moods {[FactoryGirl.create(:mood)]}
 	end
@@ -39,6 +36,7 @@ FactoryGirl.define do
   
   factory :candidacy do
 	acceptor false
+    artist_detail_id { FactoryGirl.create(:artist_detail) }
   end
 
   factory :acceptor_candidacy, :parent => :candidacy do
