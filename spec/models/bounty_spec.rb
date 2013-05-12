@@ -102,7 +102,7 @@ describe Bounty do
     bounty = FactoryGirl.build(:bounty, :is_private => false)
     bounty.should be_valid
     bounty = FactoryGirl.build(:bounty, :is_private => "cheese")
-    bounty.private.should == false
+    bounty.is_private.should == false
   end
 end
 
