@@ -17,7 +17,7 @@
 #
 
 class Bounty < ActiveRecord::Base
-  attr_accessible :name, :desc, :price_cents, :rating, :url, :private
+  attr_accessible :name, :desc, :price_cents, :rating, :url, :private, :artist_detail_ids, :mood_ids
   attr_protected :user_id, :reject_id
 
   monetize :price_cents

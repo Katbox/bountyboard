@@ -11,8 +11,7 @@
 #
 
 class Candidacy < ActiveRecord::Base
-  attr_accessible :acceptor
-  attr_protected :id, :artist_detail_id, :bounty_id
+  attr_accessible :acceptor, :artist_detail_id, :bounty_id
 
   #Many to many join table between artist details and bounty.
   belongs_to :artist_detail

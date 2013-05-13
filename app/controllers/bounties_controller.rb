@@ -15,8 +15,6 @@ class BountiesController < ApplicationController
 
   def new
     @bounty = Bounty.new
-    @artists = ArtistDetail.all
-    @moods = Mood.all
   end
 
   def create

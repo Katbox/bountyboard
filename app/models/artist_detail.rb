@@ -9,7 +9,6 @@
 #
 
 class ArtistDetail < ActiveRecord::Base
-  attr_protected :id
   attr_accessible :bio, :bountyRules, :approved
 
   has_one :user
@@ -17,6 +16,10 @@ class ArtistDetail < ActiveRecord::Base
   #CANDIDACY TO ACCEPT A BOUNTY
   has_many :candidacies
   has_many :bounties, :through => :candidacies
+
+  def name
+      user.name
+  end
 
   validates :bio, presence: true
   validates :bountyRules, presence: true
