@@ -61,6 +61,8 @@ GEM
       multipart-post (~> 1.1)
     ffi (1.8.1)
     formatador (0.2.4)
+    formtastic (2.2.1)
+      actionpack (>= 3.0)
     guard (1.8.0)
       formatador (>= 0.2.4)
       listen (>= 1.0.0)
@@ -216,6 +218,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   execjs
   factory_girl_rails
+  formtastic
   guard
   jquery-rails
   money-rails
