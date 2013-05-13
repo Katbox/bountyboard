@@ -1,4 +1,7 @@
 class BountiesController < ApplicationController
+
+  include SessionsHelper
+
   def index
     @bounty = Bounty.all
     @bounty.sort_by{|e| e[:created_at]}
@@ -19,11 +22,8 @@ class BountiesController < ApplicationController
   def create
     #TODO Implement candidacy.
     @bounty = Bounty.new(params[:bounty])
-    @bounty.user_id = 1
-    @candidacy = Candidacy.new()
-    @candidacy.bounty_id = @bounty.id
-    @candidacy.user_id = 1
-    @candidacy.save
+    @bounty.owner = currentUser
+
     if @bounty.save
       redirect_to root_path
     else
