@@ -1,21 +1,9 @@
 <div id="bountyPostArea" class="span11 offset2">
-  New Bounty Form
-  <%= form_for @bounty do |bounty_form| %>
+  <%= semantic_form_for @bounty do |bounty_form| %>
     <%= render 'shared/error_messages', :object => bounty_form.object %>
-    <div class="field">
-      <%= bounty_form.label :name %>
-      <%= bounty_form.text_field :name %>
-    </div>
-    <div class="field">
-      <%= bounty_form.label :desc %>
-      <%= bounty_form.text_area :desc %>
-    </div>
-    <div class="field">
-      <%= bounty_form.label :price %>
-      <%= bounty_form.number_field :price, :min => 1, :step => 0.01 %>
-    </div>
-    <div class="action">
-      <%= bounty_form.submit "Post Your Bounty!" %>
-    </div>
+    <%= bounty_form.input :name %>
+    <%= bounty_form.input :desc, :as => :string %>
+    <%= bounty_form.input :price %>
+    <%= bounty_form.submit %>
   <% end %>
 </div>
