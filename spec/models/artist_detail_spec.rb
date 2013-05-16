@@ -17,15 +17,6 @@ describe ArtistDetail do
   it { should respond_to(:bountyRules) }
   it { should respond_to(:approved) }
 
-  it 'should only allow boolean values for its approved property' do
-    artist = FactoryGirl.build(:artist_detail, :approved => true)
-	artist.should be_valid
-	artist = FactoryGirl.build(:artist_detail, :approved => false)
-	artist.should be_valid
-	artist = FactoryGirl.build(:artist_detail, :approved => "cheese")
-	artist.approved.should == false
-  end
-
   it 'should not allow null values for its approved property' do
 	artist = FactoryGirl.build(:artist_detail, :approved => nil)
 	artist.should_not be_valid

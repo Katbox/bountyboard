@@ -77,28 +77,11 @@ describe Bounty do
     bounty.should have(1).error_on(:rating)
   end
 
-  it 'should only allow boolean values for its rating property' do
-    bounty = FactoryGirl.build(:bounty, :rating => true)
-    bounty.should be_valid
-    bounty = FactoryGirl.build(:bounty, :rating => false)
-    bounty.should be_valid
-    bounty = FactoryGirl.build(:bounty, :rating => "cheese")
-    bounty.rating.should == false
-  end
-
   it 'should not allow null values for its is_private property' do
     bounty = FactoryGirl.build(:bounty, :is_private => nil)
     bounty.should_not be_valid
     bounty.should have(1).error_on(:is_private)
   end
 
-  it 'should only allow boolean values for its is_private property' do
-    bounty = FactoryGirl.build(:bounty, :is_private => true)
-    bounty.should be_valid
-    bounty = FactoryGirl.build(:bounty, :is_private => false)
-    bounty.should be_valid
-    bounty = FactoryGirl.build(:bounty, :is_private => "cheese")
-    bounty.is_private.should == false
-  end
 end
 

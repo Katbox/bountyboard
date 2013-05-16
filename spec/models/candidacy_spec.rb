@@ -33,23 +33,4 @@ describe Candidacy do
     candidacy.should have(1).error_on(:acceptor)
   end
 
-  it 'should only allow boolean values for its acceptor property' do
-    candidacy = FactoryGirl.build(:acceptor_candidacy,
-    :bounty_id => @bounty.id,
-    :artist_detail_id => @artist.artist_detail_id
-    )
-    candidacy.should be_valid
-    candidacy = FactoryGirl.build(:candidacy,
-      :bounty_id => @bounty.id,
-      :artist_detail_id => @artist.artist_detail_id
-    )
-    candidacy.should be_valid
-    candidacy = FactoryGirl.build(:candidacy,
-      :acceptor => "cheese",
-      :bounty_id => @bounty.id,
-      :artist_detail_id => @artist.artist_detail_id
-    )
-    candidacy.acceptor.should == false
-  end
-
 end
