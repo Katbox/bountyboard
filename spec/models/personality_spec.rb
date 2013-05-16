@@ -22,8 +22,8 @@ describe Personality do
 
     # Associate the maximum number of moods with the bounty.
     (1..Personality.MAXIMUM_MOODS).each do |i|
-    mood = FactoryGirl.create(:mood)
-    FactoryGirl.create(:personality, :bounty_id => @bounty.id, :mood_id => mood.id)
+      mood = FactoryGirl.create(:mood)
+      FactoryGirl.create(:personality, :bounty_id => @bounty.id, :mood_id => mood.id)
     end
   }
 
