@@ -15,13 +15,22 @@ require 'spec_helper'
 describe Candidacy do
 
   it { should respond_to(:id) }
-  it { should respond_to(:bounty_id) }
+  it { should respond_to(:bounty) }
   it { should respond_to(:acceptor) }
 
   before {
     @bounty = FactoryGirl.create(:bounty)
 	@artist = FactoryGirl.create(:user_with_artist_detail)
   }
+
+  it 'should not allow null values for its bounty property' do
+    candidacy = FactoryGirl.build(:candidacy,
+      :bounty => nil,
+      :artist_detail => @artist.artist_detail
+    )
+    candidacy.should_not be_valid
+    candidacy.should have(1).error_on(:bounty_id)
+  end
 
   it 'should not allow null values for its acceptor property' do
     candidacy = FactoryGirl.build(:candidacy,

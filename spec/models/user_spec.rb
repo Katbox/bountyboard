@@ -17,31 +17,33 @@ require 'spec_helper'
 
 describe User do
 
-	it { should respond_to(:id) }
-	it { should respond_to(:artist_detail_id) }
-	it { should respond_to(:name) }
-	it { should respond_to(:email) }
-	it { should respond_to(:created_at) }
-	it { should respond_to(:updated_at) }
-	it { should respond_to(:rememberToken) }
+  it { should respond_to(:id) }
+  it { should respond_to(:artist_detail) }
+  it { should respond_to(:name) }
+  it { should respond_to(:email) }
+  it { should respond_to(:created_at) }
+  it { should respond_to(:updated_at) }
+  it { should respond_to(:rememberToken) }
 
 
-	before {
-		@named_user = User.new(name: 'Named User', email: 'nameduser@example.com')
-		@anonymous_user = User.new(email: 'anonymous@example.com')
-	}
+  it 'should not allow null values for its email property' do
+    user = FactoryGirl.build(:user, :email => nil)
+    user.should_not be_valid
+    user.should have(1).error_on(:email)
+  end
 
-	describe 'remember token' do
-		before { @named_user.save }
-		it { @named_user.rememberToken.should_not be_blank }
-	end
+  it 'should generate a rememberToken on save' do
+    user = FactoryGirl.build(:user)
+	user.rememberToken.should be_blank
+    user.save!
+    user.rememberToken.should_not be_blank
+  end
 
-	describe 'correct identifier for named user' do
-		it { @named_user.getIdentifier().should == @named_user.name }
-	end
-
-	describe 'correct identifier for anonymous user' do
-		it { @anonymous_user.getIdentifier().should == @anonymous_user.email }
-	end
+  it 'should fetch the correct identifier for named and anonymous users' do
+    anonymous_user = FactoryGirl.build(:user)
+    named_user = FactoryGirl.build(:user, :name => 'Named User')
+    anonymous_user.getIdentifier().should == anonymous_user.email
+    named_user.getIdentifier().should == 'Named User'
+  end
 end
 
