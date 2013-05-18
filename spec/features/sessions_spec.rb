@@ -4,60 +4,60 @@ require 'spec_helper'
 
 describe 'Sessions' do
 
-	subject { page }
+  subject { page }
 
-	describe 'hidden Persona form should not be visible' do
+  describe 'hidden Persona form should not be visible' do
 
-		it { should_not have_selector('#browser-id-form') }
-	end
+    it { should_not have_selector('#browser-id-form') }
+  end
 
-	describe 'on failed login' do
+  describe 'on failed login' do
 
-		before {
-			OmniAuth.config.mock_auth[:browser_id] = :invalid_credentials
-			visit '/auth/browser_id'
-		}
+    before {
+      OmniAuth.config.mock_auth[:browser_id] = :invalid_credentials
+      visit '/auth/browser_id'
+    }
 
-		describe 'should display an error message on the home page' do
+    describe 'should display an error message on the home page' do
 
-			it { current_path.should == root_path }
-			it { should have_selector('.alert.alert-error',
-				  :text => 'Sign-in failed: invalid credentials') }
-		end
-	end
+      it { current_path.should == root_path }
+      it { should have_selector('.alert.alert-error',
+          :text => 'Sign-in failed: invalid credentials') }
+    end
+  end
 
-	describe 'on successful login' do
+  describe 'on successful login' do
 
-		before {
-			OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
-				:provider => 'browserid',
-				:uid => 'test-user@example.com'
-			})
-			visit '/auth/browser_id'
-		}
+    before {
+      OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
+        :provider => 'browserid',
+        :uid => 'test-user@example.com'
+      })
+      visit '/auth/browser_id'
+    }
 
-		describe 'should display the home page' do
+    describe 'should display the home page' do
 
-			it { current_path.should == root_path }
-		end
+      it { current_path.should == root_path }
+    end
 
-		describe 'should not display any login buttons' do
+    describe 'should not display any login buttons' do
 
-			it { should_not have_selector('.persona-login-button') }
-		
-		end
+      it { should_not have_selector('.persona-login-button') }
 
-		describe 'should display the user\'s name or email' do
+    end
 
-			it { should have_selector('.navbar-inner .login-notify-area',
-				:text => 'Logged in as test-user@example.com') }
-		end
+    describe 'should display the user\'s name or email' do
 
-		describe 'should show the Post Bounty button on the home page' do
+      it { should have_selector('.navbar-inner .login-notify-area',
+        :text => 'Logged in as test-user@example.com') }
+    end
 
-			it { should have_selector('.btn.btn-primary',
-				  :text => 'Post a Bounty') }
-		end
-	end
+    describe 'should show the Post Bounty button on the home page' do
+
+      it { should have_selector('.btn.btn-primary',
+          :text => 'Post a Bounty') }
+    end
+  end
 end
 

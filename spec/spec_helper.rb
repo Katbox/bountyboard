@@ -44,7 +44,7 @@ RSpec.configure do |config|
   Rspec.configure do |config|
     config.before(:each) do
       full_example_description = "Starting #{self.class.description} #{@method_name}"
-      Rails::logger.info("\n\n#{full_example_description}\n#{'-' * (full_example_description.length)}")      
+      Rails::logger.info("\n\n#{full_example_description}\n#{'-' * (full_example_description.length)}")
     end
   end
 
