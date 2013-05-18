@@ -17,7 +17,7 @@ $(document).ready ->
           location.reload()
         error: (xhr, status_string, error_message) ->
           # DEBUG
-          alert "Failure function called after login POST.\n#{status_string}: #{error_message}"
+          console.log "Failure function called after login POST.\n#{status_string}: #{error_message}"
       )
     onlogout: ->
       $.ajax(
@@ -27,7 +27,7 @@ $(document).ready ->
           location.reload()
         error: (xhr, status_string, error_message) ->
           # DEBUG
-          alert "Failure function called after logout POST.\n#{status_string}: #{error_message}"
+          console.log "Failure function called after logout POST.\n#{status_string}: #{error_message}"
       )
   )
 

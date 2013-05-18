@@ -17,7 +17,7 @@
             return location.reload();
           },
           error: function(xhr, status_string, error_message) {
-            return alert("Failure function called after login POST.\n" + status_string + ": " + error_message);
+            return console.log("Failure function called after login POST.\n" + status_string + ": " + error_message);
           }
         });
       },
@@ -29,7 +29,7 @@
             return location.reload();
           },
           error: function(xhr, status_string, error_message) {
-            return alert("Failure function called after logout POST.\n" + status_string + ": " + error_message);
+            return console.log("Failure function called after logout POST.\n" + status_string + ": " + error_message);
           }
         });
       }
