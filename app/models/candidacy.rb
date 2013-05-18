@@ -25,10 +25,12 @@ class Candidacy < ActiveRecord::Base
 
   # ensures that each bounty has only one acceptor at most
   def validate_one_acceptor
-    numberOfAcceptors = Candidacy.where(
-      :bounty_id => bounty_id,
+    if acceptor
+      numberOfAcceptors = Candidacy.where(
+        :bounty_id => bounty_id,
         :acceptor => true,
-    ).size
-    errors.add(:acceptor, " already exists for this bounty") if numberOfAcceptors > 1
+      ).size
+      errors.add(:acceptor, " already exists for this bounty") if numberOfAcceptors > 0
+    end
   end
 end

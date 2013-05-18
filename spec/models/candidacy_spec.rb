@@ -20,7 +20,7 @@ describe Candidacy do
 
   before {
     @bounty = FactoryGirl.create(:bounty)
-	@artist = FactoryGirl.create(:artist)
+    @artist = FactoryGirl.create(:artist)
   }
 
   it 'should not allow null values for its bounty property' do
@@ -40,6 +40,25 @@ describe Candidacy do
     )
     candidacy.should_not be_valid
     candidacy.should have(1).error_on(:acceptor)
+  end
+
+  it 'should not allow more than one acceptor per bounty' do
+    candidacy1 = FactoryGirl.build(:candidacy,
+      :acceptor => true,
+      :bounty => @bounty,
+      :artist => @artist
+    )
+	candidacy1.should be_valid
+    candidacy1.save!
+
+    artist2 = FactoryGirl.create(:artist)
+    candidacy2 = FactoryGirl.build(:candidacy,
+      :acceptor => true,
+      :bounty => @bounty,
+      :artist => artist2
+    )
+    candidacy2.should_not be_valid
+    candidacy2.should have(1).error_on(:acceptor)
   end
 
 end
