@@ -18,27 +18,33 @@ require 'spec_helper'
 
 describe Artist do
 
+  # Verify that Artist responds to all of User's properties.
   it { should respond_to(:id) }
+  it { should respond_to(:name) }
+  it { should respond_to(:email) }
+  it { should respond_to(:type) }
+
+  # It should respond to it's own properties as well.
   it { should respond_to(:bio) }
   it { should respond_to(:bounty_rules) }
   it { should respond_to(:approved) }
 
   it 'should not allow null values for its approved property' do
-	artist = FactoryGirl.build(:artist, :approved => nil)
-	artist.should_not be_valid
-	artist.should have(1).error_on(:approved)
+    artist = FactoryGirl.build(:artist, :approved => nil)
+    artist.should_not be_valid
+    artist.should have(1).error_on(:approved)
   end
 
   it 'should not allow null values for its bio property' do
     artist = FactoryGirl.build(:artist, :bio => nil)
-	artist.should_not be_valid
-	artist.should have(1).error_on(:bio)
+    artist.should_not be_valid
+    artist.should have(1).error_on(:bio)
   end
 
   it 'should not allow null values for its bounty_rules property' do
     artist = FactoryGirl.build(:artist, :bounty_rules => nil)
-	artist.should_not be_valid
-	artist.should have(1).error_on(:bounty_rules)
+    artist.should_not be_valid
+    artist.should have(1).error_on(:bounty_rules)
   end
 
 end
