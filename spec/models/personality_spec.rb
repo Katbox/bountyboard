@@ -21,14 +21,36 @@ describe Personality do
     @bounty = FactoryGirl.create(:bounty)
 
     # Associate the maximum number of moods with the bounty.
-	@moods = []
+    @moods = []
     (1..Personality.MAXIMUM_MOODS).each do |i|
       mood = FactoryGirl.create(:mood)
       FactoryGirl.create(:personality, :bounty_id => @bounty.id, :mood_id => mood.id)
-	  @moods.push(mood)
+    @moods.push(mood)
     end
   }
 
+    # Verify that a mood cannot have more than the defined maximum number of moods.
+    it 'should not allow a bounty to have more moods than MAXIMUM_MOODS' do
+    new_mood = FactoryGirl.create(:mood)
+    invalid_personality = FactoryGirl.build(
+      :personality,
+      :bounty => @bounty,
+      :mood => new_mood
+    )
+    invalid_personality.should be_invalid
+  end
+
+  # Verify that a mood cannot be associated with a bounty multiple times.
+  it 'should not allow the same mood to be associated with a bounty multiple times' do
+    invalid_personality = FactoryGirl.build(
+      :personality,
+      :bounty => @bounty,
+      :mood => @moods[0]
+    )
+    invalid_personality.should be_invalid
+  end
+
+  # Verify that not null properties do not accept null.
   it 'should not allow null values for its mood property' do
     personality = FactoryGirl.build(:personality,
       :mood => nil,
@@ -45,24 +67,5 @@ describe Personality do
     )
     personality.should_not be_valid
     personality.should have(1).error_on(:bounty_id)
-  end
-
-  it 'should not allow a bounty to have more moods than MAXIMUM_MOODS' do
-    new_mood = FactoryGirl.create(:mood)
-    invalid_personality = FactoryGirl.build(
-      :personality,
-      :bounty => @bounty,
-      :mood => new_mood
-    )
-    invalid_personality.should be_invalid
-  end
-
-  it 'should not allow the same mood to be associated with a bounty multiple times' do
-    invalid_personality = FactoryGirl.build(
-      :personality,
-      :bounty => @bounty,
-      :mood => @moods[0]
-    )
-    invalid_personality.should be_invalid
   end
 end
