@@ -8,7 +8,7 @@
         <div class="name"><%= b.name %></div>
         <div class="candidates">
           <% b.candidacies.each do |c| %>
-            <div id="<%= c.artist.name %>"></div>
+            <div id="<%= c.artist.get_identifier %>"></div>
           <% end %>
         </div>
         <div class="shortDesc">
