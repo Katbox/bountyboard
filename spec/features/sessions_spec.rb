@@ -7,7 +7,6 @@ describe 'Sessions' do
   subject { page }
 
   describe 'hidden Persona form should not be visible' do
-
     it { should_not have_selector('#browser-id-form') }
   end
 
@@ -37,24 +36,19 @@ describe 'Sessions' do
     }
 
     describe 'should display the home page' do
-
       it { current_path.should == root_path }
     end
 
     describe 'should not display any login buttons' do
-
       it { should_not have_selector('.persona-login-button') }
-
     end
 
     describe 'should display the user\'s name or email' do
-
       it { should have_selector('.navbar-inner .login-notify-area',
         :text => 'Logged in as test-user@example.com') }
     end
 
     describe 'should show the Post Bounty button on the home page' do
-
       it { should have_selector('.btn.btn-primary',
           :text => 'Post a Bounty') }
     end
