@@ -26,5 +26,4 @@ describe Mood do
     mood.should_not be_valid
     mood.should have(1).error_on(:name)
   end
-
 end

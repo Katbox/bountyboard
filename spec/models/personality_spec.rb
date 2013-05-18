@@ -30,8 +30,8 @@ describe Personality do
     end
   }
 
-    # Verify that a mood cannot have more than the defined maximum number of moods.
-    it 'should not allow a bounty to have more moods than MAXIMUM_MOODS' do
+  # Verify that a mood cannot have more than the defined maximum number of moods.
+  it 'should not allow a bounty to have more moods than MAXIMUM_MOODS' do
     new_mood = FactoryGirl.create(:mood)
     invalid_personality = FactoryGirl.build(
       :personality,

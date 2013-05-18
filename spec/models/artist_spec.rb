@@ -53,6 +53,5 @@ describe Artist do
     artist.should_not be_valid
     artist.should have(1).error_on(:bounty_rules)
   end
-
 end
 
