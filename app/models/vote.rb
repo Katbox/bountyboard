@@ -18,4 +18,8 @@ class Vote < ActiveRecord::Base
   #OWNERSHIP OF A VOTE
   belongs_to :bounty
 
+  #Validations
+  validates :user_id, presence: true
+  validates :bounty_id, presence: true
+  validates_uniqueness_of :user_id, :scope => :bounty_id
 end
