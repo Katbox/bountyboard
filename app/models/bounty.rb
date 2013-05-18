@@ -63,6 +63,7 @@ class Bounty < ActiveRecord::Base
   :message => "must be between 1 and 5000 characters long"
   }
   validates :is_private, :inclusion => {:in => [true, false]}
+
   validates :rating, :inclusion => {:in => [true, false]}
 
   def self.MINIMUM_PRICE
