@@ -43,14 +43,14 @@ describe Bounty do
     bounty.should have(1).error_on(:desc)
   end
 
-  #Verify that bounties do not accept prices under minumum price.
+  # Verify that bounties do not accept prices under minumum price.
   it 'should not allow price to be too low' do
     bounty = FactoryGirl.build(:bounty, :price => (Bounty.MINIMUM_PRICE - 0.01))
     bounty.should_not be_valid
     bounty.should have(1).error_on(:price)
   end
 
-  #Verify that ratings accept only expected values.
+  # Verify that ratings accept only expected values.
   it 'should not allow rating to be anything other than true or false' do
     bounty = FactoryGirl.build(:bounty, :rating => 'cheese')
     bounty.should be_valid
@@ -99,6 +99,5 @@ describe Bounty do
     bounty.should_not be_valid
     bounty.should have(1).error_on(:is_private)
   end
-
 end
 
