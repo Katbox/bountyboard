@@ -18,7 +18,6 @@ class BountiesController < ApplicationController
   end
 
   def create
-    #TODO Implement candidacy.
     @bounty = Bounty.new(params[:bounty])
     @bounty.owner = currentUser
 
