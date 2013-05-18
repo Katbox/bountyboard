@@ -16,4 +16,7 @@ class Mood < ActiveRecord::Base
     has_many :personalities
     has_many :bounties, :through => :personalities
 
+    #VALIDATIONS
+    validates :name, :presence => true
+
 end
