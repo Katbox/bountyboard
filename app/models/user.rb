@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
 
   before_save :createRememberToken
 
-  def getIdentifier
+  def get_identifier
     return self[:name] ? self[:name] : self[:email]
   end
 

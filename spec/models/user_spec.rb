@@ -25,6 +25,7 @@ describe User do
   it { should respond_to(:email) }
   it { should respond_to(:created_at) }
   it { should respond_to(:updated_at) }
+  it { should respond_to(:get_identifier) }
   it { should respond_to(:rememberToken) }
 
 
@@ -44,8 +45,8 @@ describe User do
   it 'should fetch the correct identifier for named and anonymous users' do
     anonymous_user = FactoryGirl.build(:user)
     named_user = FactoryGirl.build(:user, :name => 'Named User')
-    anonymous_user.getIdentifier().should == anonymous_user.email
-    named_user.getIdentifier().should == 'Named User'
+    anonymous_user.get_identifier().should == anonymous_user.email
+    named_user.get_identifier().should == 'Named User'
   end
 end
 

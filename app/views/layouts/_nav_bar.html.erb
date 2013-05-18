@@ -10,7 +10,7 @@
 			</nav>
 			<span class="pull-right">
 			<% if signedIn? %>
-				<span class="login-notify-area">Logged in as <%= currentUser.getIdentifier() %></span>
+				<span class="login-notify-area">Logged in as <%= currentUser.get_identifier() %></span>
 			<%	else %>
 				<button class="persona-login-button btn" type="button">Sign In with Persona</button>
 			<%	end %>
