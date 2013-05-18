@@ -13,6 +13,7 @@ require 'spec_helper'
 
 describe Personality do
 
+  # Verify that Personality responds to its properties.
   it { should respond_to(:id) }
   it { should respond_to(:mood) }
   it { should respond_to(:bounty) }
