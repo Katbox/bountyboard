@@ -11,13 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130428214504) do
-
-  create_table "artist_details", :force => true do |t|
-    t.text    "bio",                            :null => false
-    t.text    "bountyRules",                    :null => false
-    t.boolean "approved",    :default => false, :null => false
-  end
+ActiveRecord::Schema.define(:version => 20130517043329) do
 
   create_table "bounties", :force => true do |t|
     t.string   "name",                              :null => false
@@ -34,11 +28,11 @@ ActiveRecord::Schema.define(:version => 20130428214504) do
   end
 
   create_table "candidacies", :force => true do |t|
-    t.integer  "bounty_id",                           :null => false
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
-    t.integer  "artist_detail_id",                    :null => false
-    t.boolean  "acceptor",         :default => false, :null => false
+    t.integer  "bounty_id",                     :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.integer  "artist_id",                     :null => false
+    t.boolean  "acceptor",   :default => false, :null => false
   end
 
   create_table "filter_templates", :force => true do |t|
@@ -65,11 +59,14 @@ ActiveRecord::Schema.define(:version => 20130428214504) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
-    t.string   "email",            :null => false
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.string   "email",                            :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.string   "rememberToken"
-    t.integer  "artist_detail_id"
+    t.string   "type"
+    t.text     "bio",           :default => "",    :null => false
+    t.text     "bounty_rules",  :default => "",    :null => false
+    t.boolean  "approved",      :default => false, :null => false
   end
 
   add_index "users", ["rememberToken"], :name => "index_users_on_rememberToken"

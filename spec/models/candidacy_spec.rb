@@ -2,12 +2,12 @@
 #
 # Table name: candidacies
 #
-#  id               :integer          not null, primary key
-#  bounty_id        :integer          not null
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  candidacy_detail_id :integer          not null
-#  is_acceptor      :boolean          default(FALSE), not null
+#  id         :integer          not null, primary key
+#  bounty_id  :integer          not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  artist_id  :integer          not null
+#  acceptor   :boolean          default(FALSE), not null
 #
 
 require 'spec_helper'
@@ -20,13 +20,13 @@ describe Candidacy do
 
   before {
     @bounty = FactoryGirl.create(:bounty)
-	@artist = FactoryGirl.create(:user_with_artist_detail)
+	@artist = FactoryGirl.create(:artist)
   }
 
   it 'should not allow null values for its bounty property' do
     candidacy = FactoryGirl.build(:candidacy,
       :bounty => nil,
-      :artist_detail => @artist.artist_detail
+      :artist => @artist
     )
     candidacy.should_not be_valid
     candidacy.should have(1).error_on(:bounty_id)
@@ -35,8 +35,8 @@ describe Candidacy do
   it 'should not allow null values for its acceptor property' do
     candidacy = FactoryGirl.build(:candidacy,
       :acceptor => nil,
-      :bounty_id => @bounty.id,
-      :artist_detail_id => @artist.artist_detail_id
+      :bounty => @bounty,
+      :artist => @artist
     )
     candidacy.should_not be_valid
     candidacy.should have(1).error_on(:acceptor)

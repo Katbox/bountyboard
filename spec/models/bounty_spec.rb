@@ -8,7 +8,7 @@
 #  price_cents    :integer          default(0), not null
 #  price_currency :string(255)      default("USD"), not null
 #  rating         :boolean          default(FALSE), not null
-#  is_private        :boolean          default(FALSE), not null
+#  is_private     :boolean          default(FALSE), not null
 #  url            :string(255)
 #  user_id        :integer          not null
 #  reject_id      :integer

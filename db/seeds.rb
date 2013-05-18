@@ -1,13 +1,37 @@
-artist1 = User.new(:name => 'Artist1', :email => 'artist1@test.com')
+artist1 = Artist.new(
+  :name => 'Artist1',
+  :email => 'artist1@test.com',
+  :bio => 'Artist 1 is a nice person who likes the Art Deco style.',
+  :bounty_rules => 'Bounties over $20 only, please.',
+  :approved => true
+)
 artist1.save!
 
-artist2 = User.new(:name => 'Artist2', :email => 'artist2@test.com')
+artist2 = Artist.new(
+  :name => 'Artist2',
+  :email => 'artist2@test.com',
+  :bio => 'Artist 2 is a withdrawn person who emerges periodically to draw mostly surrealist art.',
+  :bounty_rules => 'Surrealist art only!',
+  :approved => true
+)
 artist2.save!
 
-artist3 = User.new(:name => 'Artist3', :email => 'artist3@test.com')
+artist3 = Artist.new(
+  :name => 'Artist3',
+  :email => 'artist3@test.com',
+  :bio => 'Artist 3 is inquisitive and energetic, exploring new artistic styles all the time.',
+  :bounty_rules => 'I only accept major art projects, costing $50 or more.',
+  :approved => true
+)
 artist3.save!
 
-artist4 = User.new(:name => 'Artist4', :email => 'artist4@test.com')
+artist4 = Artist.new(
+  :name => 'Artist4',
+  :email => 'artist4@test.com',
+  :bio => 'Artist 4 is a complete tool who only draws still lifes.',
+  :bounty_rules => 'I\'m a troll *rargle blargle*.',
+  :approved => false
+)
 artist4.save!
 
 customer1 = User.new(:name => 'Customer1', :email => 'customer1@test.com')
@@ -15,42 +39,6 @@ customer1.save!
 
 customer2 = User.new(:name => 'Customer2', :email => 'customer2@test.com')
 customer2.save!
-
-artist1Details = ArtistDetail.new(
-  :bio => 'Artist 1 is a nice person who likes the Art Deco style.',
-  :bountyRules => 'Bounties over $20 only, please.',
-  :approved => true
-)
-artist1Details.save!
-artist1.artist_detail_id = artist1Details.id
-artist1.save!
-
-artist2Details = ArtistDetail.new(
-  :bio => 'Artist 2 is a withdrawn person who emerges periodically to draw mostly surrealist art.',
-  :bountyRules => 'Surrealist art only!',
-  :approved => true
-)
-artist2Details.save!
-artist2.artist_detail_id = artist2Details.id
-artist2.save!
-
-artist3Details = ArtistDetail.new(
-  :bio => 'Artist 3 is inquisitive and energetic, exploring new artistic styles all the time.',
-  :bountyRules => 'I only accept major art projects, costing $50 or more.',
-  :approved => true
-)
-artist3Details.save!
-artist3.artist_detail_id = artist3Details.id
-artist3.save!
-
-artist4Details = ArtistDetail.new(
-  :bio => 'Artist 4 is a complete tool who only draws still lifes.',
-  :bountyRules => 'I\'m a troll *rargle blargle*.',
-  :approved => false
-)
-artist4Details.save!
-artist4.artist_detail_id = artist4Details.id
-artist4.save!
 
 practicalMood = Mood.new(:name => "Practical")
 practicalMood.save!
@@ -219,97 +207,97 @@ personality.save!
 
 #Bounty 1 was completed by Artist 1
 candidacy = Candidacy.new()
-candidacy.artist_detail_id = artist1Details.id
+candidacy.artist = artist1
 candidacy.bounty_id = bounty1.id
 candidacy.acceptor = true
 candidacy.save!
 
 #Bounty 1 could have been completed by Artist 2
 candidacy = Candidacy.new()
-candidacy.artist_detail_id = artist2Details.id
+candidacy.artist = artist2
 candidacy.bounty_id = bounty1.id
 candidacy.save!
 
 #Bounty 1 could have been completed by Artist 3
 candidacy = Candidacy.new()
-candidacy.artist_detail_id = artist3Details.id
+candidacy.artist = artist3
 candidacy.bounty_id = bounty1.id
 candidacy.save!
 
 #Bounty 1 could have been completed by Artist 4
 candidacy = Candidacy.new()
-candidacy.artist_detail_id = artist4Details.id
+candidacy.artist = artist4
 candidacy.bounty_id = bounty1.id
 candidacy.save!
 
 #Bounty 2 is being completed by Artist 1
 candidacy = Candidacy.new()
-candidacy.artist_detail_id = artist1Details.id
+candidacy.artist = artist1
 candidacy.bounty_id = bounty2.id
 candidacy.acceptor = true
 candidacy.save!
 
 #Bounty 2 could have been completed by Artist 2
 candidacy = Candidacy.new()
-candidacy.artist_detail_id = artist2Details.id
+candidacy.artist = artist2
 candidacy.bounty_id = bounty2.id
 candidacy.save!
 
 #Bounty 2 could have been completed by Artist 3
 candidacy = Candidacy.new()
-candidacy.artist_detail_id = artist3Details.id
+candidacy.artist = artist3
 candidacy.bounty_id = bounty2.id
 candidacy.save!
 
 #Bounty 3 may be completed by Artist 1
 candidacy = Candidacy.new()
-candidacy.artist_detail_id = artist1Details.id
+candidacy.artist = artist1
 candidacy.bounty_id = bounty3.id
 candidacy.save!
 
 #Bounty 3 may be completed by Artist 2
 candidacy = Candidacy.new()
-candidacy.artist_detail_id = artist2Details.id
+candidacy.artist = artist2
 candidacy.bounty_id = bounty3.id
 candidacy.save!
 
 #Bounty 4 is being completed by Artist 2
 candidacy = Candidacy.new()
-candidacy.artist_detail_id = artist2Details.id
+candidacy.artist = artist2
 candidacy.bounty_id = bounty4.id
 candidacy.acceptor = true
 candidacy.save!
 
 #Bounty 5 is being completed by Artist 3
 candidacy = Candidacy.new()
-candidacy.artist_detail_id = artist3Details.id
+candidacy.artist = artist3
 candidacy.bounty_id = bounty5.id
 candidacy.acceptor = true
 candidacy.save!
 
 #Bounty 6 may be completed by Artist 4
 candidacy = Candidacy.new()
-candidacy.artist_detail_id = artist4Details.id
+candidacy.artist = artist4
 candidacy.bounty_id = bounty6.id
 candidacy.acceptor = true
 candidacy.save!
 
 #Bounty 7 may be completed by Artist 3
 candidacy = Candidacy.new()
-candidacy.artist_detail_id = artist3Details.id
+candidacy.artist = artist3
 candidacy.bounty_id = bounty7.id
 candidacy.acceptor = true
 candidacy.save!
 
 #Bounty 8 may be completed by Artist 2
 candidacy = Candidacy.new()
-candidacy.artist_detail_id = artist2Details.id
+candidacy.artist = artist2
 candidacy.bounty_id = bounty8.id
 candidacy.acceptor = true
 candidacy.save!
 
 #Bounty 9 could have been completed by Artist 1
 candidacy = Candidacy.new()
-candidacy.artist_detail_id = artist1Details.id
+candidacy.artist = artist1
 candidacy.bounty_id = bounty9.id
 candidacy.save!

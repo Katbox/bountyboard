@@ -17,7 +17,7 @@
 #
 
 class Bounty < ActiveRecord::Base
-  attr_accessible :name, :desc, :price_cents, :rating, :url, :private, :artist_detail_ids, :mood_ids
+  attr_accessible :name, :desc, :price_cents, :rating, :url, :private, :artist_id, :mood_ids
   attr_protected :user_id, :reject_id
 
   monetize :price_cents
@@ -33,7 +33,7 @@ class Bounty < ActiveRecord::Base
 
   #CANDIDACY TO ACCEPT A BOUNTY
   has_many :candidacies
-  has_many :artist_details, :through => :candidacies
+  has_many :artists, :through => :candidacies
 
   #PERSONALITY OF A BOUNTY
   has_many :personalities

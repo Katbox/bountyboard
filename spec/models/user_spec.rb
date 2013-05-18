@@ -3,13 +3,16 @@
 #
 # Table name: users
 #
-#  id               :integer          not null, primary key
-#  name             :string(255)
-#  email            :string(255)      not null
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  rememberToken    :string(255)
-#  artist_detail_id :integer
+#  id            :integer          not null, primary key
+#  name          :string(255)
+#  email         :string(255)      not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  rememberToken :string(255)
+#  type          :string(255)
+#  bio           :text             default(""), not null
+#  bounty_rules  :text             default(""), not null
+#  approved      :boolean          default(FALSE), not null
 #
 
 
@@ -18,7 +21,6 @@ require 'spec_helper'
 describe User do
 
   it { should respond_to(:id) }
-  it { should respond_to(:artist_detail) }
   it { should respond_to(:name) }
   it { should respond_to(:email) }
   it { should respond_to(:created_at) }
