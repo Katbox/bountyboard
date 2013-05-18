@@ -8,6 +8,16 @@ describe 'Bounty' do
 
   describe "Home Page" do
     before {
+      @user = FactoryGirl.create(:user)
+      @artist = FactoryGirl.create(:artist)
+      @bounty = FactoryGirl.create(:bounty,
+        :name => "My First Bounty",
+        :desc => "My very first bounty ever.",
+        :price => 9.99,
+        :rating => false,
+        :is_private => false,
+        :user_id => @user.id
+        )
       visit root_path
     }
 
@@ -28,6 +38,11 @@ describe 'Bounty' do
 
     # Bounty Display Area
     it { should have_selector('.bounty-display-area') }
+    it { should have_selector('.bounty-square') }
+    it { should have_selector('.bounty-square .ribbon', :text => "$9.99") }
+    it { should have_selector('.bounty-square .name', :text => "My First Bounty") }
+    it { should have_selector('.bounty-square .short-desc', :text => "My very first bounty ever.") }
+    it { should have_selector('.bounty-square .read-more', :text => "Read More") }
 
     # Footer
     it { should have_selector('footer.row-fluid', :text => '© Lionheart Studio and Brent Houghton') }

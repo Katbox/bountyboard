@@ -103,7 +103,7 @@ footer {
 }
 
 // Bounties ====================================================================
-.bountySquare {
+.bounty-square {
   height: 240px;
   width: 280px !important;
   margin: 0px 10px 10px !important;
@@ -117,7 +117,7 @@ footer {
   text-overflow: ellipsis;
 }
 
-.bountySquare .name {
+.bounty-square .name {
   width: 150px;
   font-size: 240%;
   line-height: 30px;
@@ -129,7 +129,7 @@ footer {
   overflow: hidden;
 }
 
-.bountySquare .shortDesc {
+.bounty-square .short-desc {
   display: inline-block;
   max-width: 70%;
   max-height: 50px;
@@ -137,7 +137,7 @@ footer {
   margin-left: 10px;
 }
 
-.bountySquare .shortDesc .readMore {
+.bounty-square .short-desc .read-more {
   position: absolute;
   bottom: 0; left: 0;
   width: 100%;
@@ -146,7 +146,7 @@ footer {
   @include gradient(transparent, $black)
 }
 
-.bountySquare .shortDesc .readMore {
+.bounty-square .short-desc .read-more {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -157,7 +157,7 @@ footer {
   @include gradient(transparent, $black)
 }
 
-.bountySquare .nail {
+.bounty-square .nail {
   position: absolute;
   width: 100%;
   height: 22px;
@@ -166,7 +166,7 @@ footer {
   background-position:center;
 }
 
-.bountySquare .candidates {
+.bounty-square .candidates {
   max-width: 20%;
   overflow: hidden;
   display: inline-block;
