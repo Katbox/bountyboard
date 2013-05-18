@@ -29,6 +29,7 @@ describe Artist do
   it { should respond_to(:bounty_rules) }
   it { should respond_to(:approved) }
 
+  # Verify that not null properties do not accept null.
   it 'should not allow null values for its approved property' do
     artist = FactoryGirl.build(:artist, :approved => nil)
     artist.should_not be_valid

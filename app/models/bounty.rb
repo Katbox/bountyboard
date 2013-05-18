@@ -64,10 +64,14 @@ class Bounty < ActiveRecord::Base
   }
   validates :is_private, :inclusion => {:in => [true, false]}
   validates :rating, :inclusion => {:in => [true, false]}
+
+  def self.MINIMUM_PRICE
+    5.00
+  end
   validates :price,
     :numericality => {
-      :greater_than_or_equal_to => 5.00,
-      message: "must be $5.00 or more"
+      :greater_than_or_equal_to => self.MINIMUM_PRICE,
+      message: "must be #{self.MINIMUM_PRICE} or more"
     }
 
 end

@@ -20,6 +20,7 @@ require 'spec_helper'
 
 describe Bounty do
 
+  # Verify that Bounty responds to its properties.
   it { should respond_to(:name) }
   it { should respond_to(:desc) }
   it { should respond_to(:price_cents) }
@@ -29,6 +30,27 @@ describe Bounty do
   it { should respond_to(:user_id) }
   it { should respond_to(:reject_id) }
 
+  # Verify that properties with a maximum length do not accept values over that length.
+  it 'should not allow name to be too long' do
+    bounty = FactoryGirl.build(:bounty, :name => '$' * (Bounty.MAXIMUM_NAME_LENGTH + 1))
+    bounty.should_not be_valid
+    bounty.should have(1).error_on(:name)
+  end
+
+  it 'should not allow desc to be too long' do
+    bounty = FactoryGirl.build(:bounty, :desc => '$' * (Bounty.MAXIMUM_DESC_LENGTH + 1))
+    bounty.should_not be_valid
+    bounty.should have(1).error_on(:desc)
+  end
+
+  #Verify that bounties do not accept prices under minumum price.
+  it 'should not allow desc to be too long' do
+    bounty = FactoryGirl.build(:bounty, :price => (Bounty.MINIMUM_PRICE - 1))
+    bounty.should_not be_valid
+    bounty.should have(1).error_on(:price)
+  end
+
+  # Verify that not null properties do not accept null.
   it 'should not allow null values for its name property' do
     bounty = FactoryGirl.build(:bounty, :name => nil)
     bounty.should_not be_valid
@@ -41,12 +63,6 @@ describe Bounty do
     bounty.should have(2).error_on(:name)
   end
 
-  it 'should not allow name to be too long' do
-    bounty = FactoryGirl.build(:bounty, :name => '$' * (Bounty.MAXIMUM_NAME_LENGTH + 1))
-    bounty.should_not be_valid
-    bounty.should have(1).error_on(:name)
-  end
-
   it 'should not allow null values for its desc property' do
     bounty = FactoryGirl.build(:bounty, :desc => nil)
     bounty.should_not be_valid
@@ -57,12 +73,6 @@ describe Bounty do
     bounty = FactoryGirl.build(:bounty, :desc => '')
     bounty.should_not be_valid
     bounty.should have(2).error_on(:desc)
-  end
-
-  it 'should not allow desc to be too long' do
-    bounty = FactoryGirl.build(:bounty, :desc => '$' * (Bounty.MAXIMUM_DESC_LENGTH + 1))
-    bounty.should_not be_valid
-    bounty.should have(1).error_on(:desc)
   end
 
   it 'should not allow null values for its price_cents property' do
