@@ -66,15 +66,6 @@ describe 'Bounty' do
       visit new_bounty_path
     }
 
-    describe 'should display the nav bar' do
-      it { should have_selector('.navbar') }
-      it { should have_selector('.brand') }
-    end
-
-    describe 'should display the page header' do
-      it { should have_selector('.hero-unit') }
-    end
-
     describe 'should display a form to create a bounty' do
       it { should have_selector('#bounty-post-area')}
       it { should have_selector('#bounty_artists_input') }
@@ -85,11 +76,6 @@ describe 'Bounty' do
       it { should have_selector('#bounty_moods_input') }
       it { should have_selector('label[for=bounty_mood_ids_1]', :text => "Mood1") }
       it { should have_selector('label[for=bounty_mood_ids_2]', :text => "Mood2") }
-    end
-  
-    describe 'should display the page footer' do
-      it { should have_selector('footer.row-fluid', :text => '© Lionheart Studio and Brent Houghton') }
-      it { should have_selector('footer.row-fluid', :text => 'The Bounty Board is free software available under the open source AGPL license.') }
     end
   end
 end
