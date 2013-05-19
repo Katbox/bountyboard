@@ -18,7 +18,6 @@ require 'spec_helper'
 
 describe Artist do
 
-  # Verify that Artist responds to all of User's properties.
   it { should respond_to(:id) }
   it { should respond_to(:name) }
   it { should respond_to(:email) }
@@ -26,13 +25,10 @@ describe Artist do
   it { should respond_to(:updated_at) }
   it { should respond_to(:get_identifier) }
   it { should respond_to(:rememberToken) }
-
-  # It should respond to its own properties as well.
   it { should respond_to(:bio) }
   it { should respond_to(:bounty_rules) }
   it { should respond_to(:approved) }
 
-  # Verify that not null properties do not accept null.
   it 'should not allow null values for its name property' do
     artist = FactoryGirl.build(:artist, :name => nil)
     artist.should_not be_valid

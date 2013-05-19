@@ -14,7 +14,6 @@ require 'spec_helper'
 
 describe Candidacy do
 
-  # Verify that Candidacy responds to its properties.
   it { should respond_to(:id) }
   it { should respond_to(:bounty) }
   it { should respond_to(:acceptor) }
@@ -24,7 +23,6 @@ describe Candidacy do
     @artist = FactoryGirl.create(:artist)
   }
 
-  # Verify that bounties only have one 'acceptor' through candidacies.
   it 'should not allow more than one acceptor per bounty' do
     candidacy1 = FactoryGirl.build(:candidacy,
       :acceptor => true,
@@ -44,7 +42,6 @@ describe Candidacy do
     candidacy2.should have(1).error_on(:acceptor)
   end
 
-  # Verify that bounty -> candidacy relationships are unique.
   it 'should not allow more than one acceptor per bounty' do
     candidacy1 = FactoryGirl.build(:candidacy,
       :acceptor => true,
@@ -63,7 +60,6 @@ describe Candidacy do
     candidacy2.should have(1).error_on(:bounty_id)
   end
 
-  #Verify that acceptors accept only expected values.
   it 'should not allow rating to be anything other than true or false' do
     candidacy2 = FactoryGirl.build(:candidacy,
       :acceptor => 'cheese',
@@ -74,7 +70,6 @@ describe Candidacy do
     candidacy2.acceptor.should == false
   end
 
-  # Verify that not null properties do not accept null.
   it 'should not allow null values for its bounty property' do
     candidacy = FactoryGirl.build(:candidacy,
       :bounty => nil,

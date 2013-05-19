@@ -13,7 +13,6 @@ require 'spec_helper'
 
 describe Vote do
 
-  # Verify that Vote responds to all of User's properties.
   it { should respond_to(:id) }
   it { should respond_to(:user_id) }
   it { should respond_to(:bounty_id) }
@@ -23,7 +22,6 @@ describe Vote do
     @bounty = FactoryGirl.create(:bounty)
   }
 
-  # Verify that a vote cannot be associated with a bounty multiple times.
   it 'should not allow the same user to vote on a bounty multiple times' do
     vote = FactoryGirl.build(:vote,
       :user_id => @user.id,

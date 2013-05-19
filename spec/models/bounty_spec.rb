@@ -20,7 +20,6 @@ require 'spec_helper'
 
 describe Bounty do
 
-  # Verify that Bounty responds to its properties.
   it { should respond_to(:name) }
   it { should respond_to(:desc) }
   it { should respond_to(:price_cents) }
@@ -30,7 +29,6 @@ describe Bounty do
   it { should respond_to(:user_id) }
   it { should respond_to(:reject_id) }
 
-  # Verify that properties with a maximum length do not accept values over that length.
   it 'should not allow name to be too long' do
     bounty = FactoryGirl.build(:bounty, :name => '$' * (Bounty.MAXIMUM_NAME_LENGTH + 1))
     bounty.should_not be_valid
@@ -43,21 +41,18 @@ describe Bounty do
     bounty.should have(1).error_on(:desc)
   end
 
-  # Verify that bounties do not accept prices under minumum price.
   it 'should not allow price to be too low' do
     bounty = FactoryGirl.build(:bounty, :price => (Bounty.MINIMUM_PRICE - 0.01))
     bounty.should_not be_valid
     bounty.should have(1).error_on(:price)
   end
 
-  # Verify that ratings accept only expected values.
   it 'should not allow rating to be anything other than true or false' do
     bounty = FactoryGirl.build(:bounty, :rating => 'cheese')
     bounty.should be_valid
     bounty.rating.should == false
   end
 
-  # Verify that not null properties do not accept null.
   it 'should not allow null values for its name property' do
     bounty = FactoryGirl.build(:bounty, :name => nil)
     bounty.should_not be_valid
