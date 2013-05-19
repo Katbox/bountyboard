@@ -38,7 +38,7 @@ describe 'Bounty' do
       # it { should have_selector('li.nav-header'), :text => "Bounty Filters" }
       # it { should have_selector('li.nav-header'), :text => "Sort Bounties" }
     end
-  
+
     describe 'should display existing bounties' do
       it { should have_selector('.bounty-display-area') }
       it { should have_selector('.bounty-square') }
@@ -47,9 +47,9 @@ describe 'Bounty' do
       it { should have_selector('.bounty-square .short-desc', :text => "My very first bounty ever.") }
       it { should have_selector('.bounty-square .read-more', :text => "Read More") }
     end
-  
+
     describe 'should display the footer' do
-      it { should have_selector('footer.row-fluid', :text => '© Lionheart Studio and Brent Houghton') }
+      it { should have_selector('footer.row-fluid', :text => '© Lionheart Studio, Nixie Bishop, and Brent Houghton') }
       it { should have_selector('footer.row-fluid', :text => 'The Bounty Board is free software available under the open source AGPL license.') }
     end
   end

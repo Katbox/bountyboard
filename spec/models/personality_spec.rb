@@ -13,7 +13,6 @@ require 'spec_helper'
 
 describe Personality do
 
-  # Verify that Personality responds to its properties.
   it { should respond_to(:id) }
   it { should respond_to(:mood) }
   it { should respond_to(:bounty) }
@@ -30,7 +29,6 @@ describe Personality do
     end
   }
 
-  # Verify that a mood cannot have more than the defined maximum number of moods.
   it 'should not allow a bounty to have more moods than MAXIMUM_MOODS' do
     new_mood = FactoryGirl.create(:mood)
     invalid_personality = FactoryGirl.build(
@@ -41,7 +39,6 @@ describe Personality do
     invalid_personality.should be_invalid
   end
 
-  # Verify that a mood cannot be associated with a bounty multiple times.
   it 'should not allow the same mood to be associated with a bounty multiple times' do
     invalid_personality = FactoryGirl.build(
       :personality,
@@ -51,7 +48,6 @@ describe Personality do
     invalid_personality.should be_invalid
   end
 
-  # Verify that not null properties do not accept null.
   it 'should not allow null values for its mood property' do
     personality = FactoryGirl.build(:personality,
       :mood => nil,

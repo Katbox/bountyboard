@@ -3,9 +3,9 @@ $(document).ready ->
   navigator.id.watch(
     onlogin: (assertion) ->
 
-	  # if the user is already logged in, don't re-login
-	  # note that this detection logic assumes there is at least one login
-	  # button on the page when a user isn't logged in
+    # if the user is already logged in, don't re-login
+    # note that this detection logic assumes there is at least one login
+    # button on the page when a user isn't logged in
       if($('.persona-login-button').length == 0)
         return
 

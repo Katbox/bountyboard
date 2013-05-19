@@ -35,15 +35,6 @@ ActiveRecord::Schema.define(:version => 20130517043329) do
     t.boolean  "acceptor",   :default => false, :null => false
   end
 
-  create_table "filter_templates", :force => true do |t|
-    t.string   "name"
-    t.string   "sql"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "filter_templates", ["name"], :name => "index_filter_templates_on_name"
-
   create_table "moods", :force => true do |t|
     t.string   "name",       :null => false
     t.datetime "created_at", :null => false
