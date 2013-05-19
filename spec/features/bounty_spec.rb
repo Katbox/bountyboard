@@ -14,7 +14,7 @@ describe 'Bounty' do
     it { should have_selector('body .navbar') }
     it { should have_selector('body .navbar-inner') }
     it { should have_selector('footer.row-fluid',
-        :text => '© Lionheart Studio and Brent Houghton') }
+        :text => '© Lionheart Studio, Nixie Bishop, and Brent Houghton, 2013') }
   end
 end
 
