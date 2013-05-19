@@ -20,9 +20,11 @@ class Artist < User
   #CANDIDACY TO ACCEPT A BOUNTY
   has_many :candidacies
   has_many :bounties, :through => :candidacies
-
   validates :bio, presence: true
   validates :bounty_rules, presence: true
   validates :approved, :inclusion => {:in => [true, false]}
+
+  # the "name" property is optional for users but required for artists
+  validates :name, presence: true
 end
 

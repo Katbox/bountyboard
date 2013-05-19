@@ -5,6 +5,7 @@ FactoryGirl.define do
   end
 
   factory :artist, :class => :artist, :parent => :user do
+    sequence(:name) { |n| "artist#{n}@example.com" }
     bio "This is my artist's biography."
     bounty_rules "These are the rules for my bounties."
   end

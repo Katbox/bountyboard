@@ -33,6 +33,12 @@ describe Artist do
   it { should respond_to(:approved) }
 
   # Verify that not null properties do not accept null.
+  it 'should not allow null values for its name property' do
+    artist = FactoryGirl.build(:artist, :name => nil)
+    artist.should_not be_valid
+    artist.should have(1).error_on(:name)
+  end
+
   it 'should not allow null values for its approved property' do
     artist = FactoryGirl.build(:artist, :approved => nil)
     artist.should_not be_valid
