@@ -1,4 +1,4 @@
-<% if @bounty.errors.any? %>
+<% if @bounty and @bounty.errors.any? %>
     <div id="errors">
         <p><%= pluralize(@bounty.errors.count, "error") %> were found when saving your bounty!</p>
         <p>There were problems with the following fields:</p>
