@@ -22,18 +22,15 @@ describe Artist do
   it { should respond_to(:id) }
   it { should respond_to(:name) }
   it { should respond_to(:email) }
-  it { should respond_to(:type) }
+  it { should respond_to(:created_at) }
+  it { should respond_to(:updated_at) }
+  it { should respond_to(:get_identifier) }
+  it { should respond_to(:rememberToken) }
 
-  # It should respond to it's own properties as well.
+  # It should respond to its own properties as well.
   it { should respond_to(:bio) }
   it { should respond_to(:bounty_rules) }
   it { should respond_to(:approved) }
-
-  # Verify that an Artist properly has the right type after saving with no type declared.
-  it 'should build an Artist type on build' do
-    artist = FactoryGirl.build(:artist)
-    artist.type.should == 'Artist'
-  end
 
   # Verify that not null properties do not accept null.
   it 'should not allow null values for its approved property' do

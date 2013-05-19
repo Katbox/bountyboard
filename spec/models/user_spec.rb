@@ -23,7 +23,6 @@ describe User do
   it { should respond_to(:id) }
   it { should respond_to(:name) }
   it { should respond_to(:email) }
-  it { should respond_to(:type) }
   it { should respond_to(:created_at) }
   it { should respond_to(:updated_at) }
   it { should respond_to(:get_identifier) }
@@ -35,14 +34,6 @@ describe User do
     user.rememberToken.should be_blank
     user.save!
     user.rememberToken.should_not be_blank
-  end
-
-  # Verify that a User properly has the right type after saving with no type declared.
-  it 'should not generate a User type on save' do
-    user = FactoryGirl.build(:user)
-    user.type.should == nil
-    user.save!
-    user.type.should == nil
   end
 
   # Verify get_identifier function returns correct identifier if Name is present.
