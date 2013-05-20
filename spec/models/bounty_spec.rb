@@ -130,7 +130,7 @@ describe Bounty do
       Candidacy.all.should be_empty
       Personality.all.should be_empty
       Vote.all.should be_empty
-	  @bounty.should be_nil
+      @bounty.should be_nil
     end
   
     it 'should not delete dependencies when user is not owner' do
