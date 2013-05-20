@@ -41,10 +41,11 @@ class BountiesController < ApplicationController
   end
 
   def destroy
-    # destroy the specified bounty
-    # TODO: make sure only the user that created the bounty can use this
-    # method
-    Bounty.destroy(params[:id])
+    @bounty = Bounty.find(params[:id])
+    if @bounty.owner == currentUser
+      Bounty.destroy(params[:id])
+    end
+    redirect_to root_path
   end
 end
 

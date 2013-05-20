@@ -23,7 +23,7 @@ class Bounty < ActiveRecord::Base
   monetize :price_cents
 
   #OWNERSHIP OF A VOTE
-  has_many :votes
+  has_many :votes, :dependent => :destroy
 
   #OWNERSHIP OF A BOUNTY
   belongs_to :owner, :foreign_key => "user_id", :class_name => "User"
@@ -33,11 +33,11 @@ class Bounty < ActiveRecord::Base
 
   #CANDIDACY TO ACCEPT A BOUNTY
   has_many :candidacies
-  has_many :artists, :through => :candidacies
+  has_many :artists, :through => :candidacies, :dependent => :destroy
 
   #PERSONALITY OF A BOUNTY
   has_many :personalities
-  has_many :moods, :through => :personalities
+  has_many :moods, :through => :personalities, :dependent => :destroy
 
   #CANDIDACIES MAY BE SAVED WHEN A BOUNTY IS SAVED
   accepts_nested_attributes_for :candidacies
