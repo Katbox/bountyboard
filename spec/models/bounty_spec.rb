@@ -16,8 +16,6 @@
 #  updated_at     :datetime         not null
 #
 
-include SessionsHelper
-
 require 'spec_helper'
 
 describe Bounty do
