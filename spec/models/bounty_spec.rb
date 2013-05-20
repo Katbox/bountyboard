@@ -16,6 +16,8 @@
 #  updated_at     :datetime         not null
 #
 
+include SessionsHelper
+
 require 'spec_helper'
 
 describe Bounty do
@@ -94,5 +96,53 @@ describe Bounty do
     bounty.should_not be_valid
     bounty.should have(1).error_on(:is_private)
   end
+
+  before {
+    @currentlyLoggedInUser = FactoryGirl.create(:user, :name => 'User1')
+    @notLoggedInUser = FactoryGirl.create(:user, :name => 'User1')
+    @artist = FactoryGirl.create(:artist, :name => 'Artist1')
+    @bounty = FactoryGirl.create(:bounty, :name => 'Bounty1')
+    @bounty.owner = @currentlyLoggedInUser
+    @mood = FactoryGirl.create(:mood, :name => "Mood1")
+    @vote = FactoryGirl.create(:vote,
+      :user_id => @currentlyLoggedInUser.id,
+      :bounty_id => @bounty.id
+      )
+    @candidacy = FactoryGirl.create(:candidacy,
+      :acceptor => false,
+      :bounty => @bounty,
+      :artist => @artist
+    )
+    @personality = FactoryGirl.create(:personality,
+      :mood => @mood,
+      :bounty => @bounty
+    )
+  }
+
+  it 'should delete dependencies when destroyed' do
+    currentUser = @currentlyLoggedInUser
+    @bounty.should_not be_nil
+    @bounty.candidacies.first.should_not be_nil
+    @bounty.personalities.first.should_not be_nil
+    @bounty.votes.first.should_not be_nil
+    @bounty.destroy
+    Bounty.all.should be_empty
+    Candidacy.all.should be_empty
+    Personality.all.should be_empty
+    Vote.all.should be_empty
+  end
+
+  # it 'should not delete dependencies when when user is not owner' do
+  #   currentUser = @notLoggedInUser
+  #   @bounty.should_not be_nil
+  #   @bounty.candidacies.first.should_not be_nil
+  #   @bounty.personalities.first.should_not be_nil
+  #   @bounty.votes.first.should_not be_nil
+  #   @bounty.destroy
+  #   Bounty.all.should_not be_empty
+  #   Candidacy.all.should_not be_empty
+  #   Personality.all.should_not be_empty
+  #   Vote.all.should_not be_empty
+  # end
 end
 
