@@ -145,6 +145,15 @@ describe Bounty do
       Personality.all.should_not be_empty
       Vote.all.should_not be_empty
     end
+
+    it 'should not remove bounties that have been accepted' do
+      before {
+        @candidacy.acceptor = true
+        # now log in as the correct user
+      }
+      @bounty.destroy
+      Bounty.all.should_not be_empty
+    end
   end
 end
 
