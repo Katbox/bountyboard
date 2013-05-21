@@ -4,17 +4,79 @@ require 'spec_helper'
 
 describe 'Bounty' do
 
-	subject { page }
+  subject { page }
 
-	describe "Home page" do
-		before { visit root_path }
+  describe "show all" do
+    before {
+      @user = FactoryGirl.create(:user)
+      @artist = FactoryGirl.create(:artist)
+      @bounty = FactoryGirl.create(:bounty,
+        :name => "My First Bounty",
+        :desc => "My very first bounty ever.",
+        :price => 9.99,
+        :rating => false,
+        :is_private => false,
+        :user_id => @user.id
+        )
+      visit root_path
+    }
 
-		it { should have_selector('.hero-unit') }
-		it { should have_selector('.btn.btn-large.btn-primary')}
-		it { should have_selector('body .navbar') }
-		it { should have_selector('body .navbar-inner') }
-		it { should have_selector('footer.row-fluid',
-			  :text => '© Lionheart Studio and Brent Houghton') }
-	end
+    describe 'should display the nav bar' do
+      it { should have_selector('.navbar') }
+      it { should have_selector('.brand') }
+      it { should have_selector('.persona-login-button', :text => "Sign In with Persona") }
+      it { should_not have_selector('.login-notify-area') }
+    end
+
+    describe 'should display the page header and sign-in button' do
+      it { should have_selector('.hero-unit') }
+      it { should have_selector('.btn.btn-large.btn-primary', :text => "Sign In to Post Your Bounty") }
+    end
+
+    describe 'should display the sidebar' do
+      it { should have_selector('article.sidebar-nav') }
+      # it { should have_selector('li.nav-header'), :text => "Bounty Filters" }
+      # it { should have_selector('li.nav-header'), :text => "Sort Bounties" }
+    end
+
+    describe 'should display existing bounties' do
+      it { should have_selector('.bounty-display-area') }
+      it { should have_selector('.bounty-square') }
+      it { should have_selector('.bounty-square .ribbon', :text => "$9.99") }
+      it { should have_selector('.bounty-square .name', :text => "My First Bounty") }
+      it { should have_selector('.bounty-square .short-desc', :text => "My very first bounty ever.") }
+      it { should have_selector('.bounty-square .read-more', :text => "Read More") }
+    end
+
+    describe 'should display the footer' do
+      it { should have_selector('footer.row-fluid', :text => '© Lionheart Studio, Nixie Bishop, and Brent Houghton') }
+      it { should have_selector('footer.row-fluid', :text => 'The Bounty Board is free software available under the open source AGPL license.') }
+    end
+  end
+
+  describe "create page" do
+    before {
+      @artist1 = FactoryGirl.create(:artist, :name => "Artist1")
+      @artist2 = FactoryGirl.create(:artist, :name => "Artist2")
+      @artist3 = FactoryGirl.create(:artist, :name => "Artist3")
+      @artist3 = FactoryGirl.create(:artist, :name => "Artist4")
+      @mood1 = FactoryGirl.create(:mood, :name => "Mood1")
+      @mood2 = FactoryGirl.create(:mood, :name => "Mood2")
+
+      visit new_bounty_path
+    }
+
+    describe 'should display a form to create a bounty' do
+      it { should have_selector('#bounty-post-area')}
+      it { should have_selector('#bounty_artists_input') }
+      it { should have_selector('label[for=bounty_artist_ids_1]', :text => "Artist1") }
+      it { should have_selector('label[for=bounty_artist_ids_2]', :text => "Artist2") }
+      it { should have_selector('label[for=bounty_artist_ids_3]', :text => "Artist3") }
+      it { should have_selector('label[for=bounty_artist_ids_4]', :text => "Artist4") }
+      it { should have_selector('#bounty_moods_input') }
+      it { should have_selector('label[for=bounty_mood_ids_1]', :text => "Mood1") }
+      it { should have_selector('label[for=bounty_mood_ids_2]', :text => "Mood2") }
+    end
+  end
 end
 

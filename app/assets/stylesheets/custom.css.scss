@@ -4,91 +4,86 @@
 
 // Global ======================================================================
 @font-face {
-  font-family: 'Carnevalee Freakshow';
-  src: url('carnevaleeFreakshow.ttf');
+    font-family: 'Carnevalee Freakshow';
+    src: url('carnevaleeFreakshow.ttf');
 }
 
 @font-face {
-  font-family: 'Nashvill';
-  src: url('nashvill.ttf');
+    font-family: 'Nashvill';
+    src: url('nashvill.ttf');
 }
 
 p {
-  font-size: 1.1em;
-  line-height: 1.7em;
+    font-size: 1.1em;
+    line-height: 1.7em;
 }
 
 body {
-  padding-top: 60px;
-  background: $darkBrown;
-  font-family: 'Courier';
-  color: $black;
-  @include gradient($black, $brown);
-  background-image:url('WoodTexture.jpg');
+    padding-top: 60px;
+    background: $darkBrown;
+    font-family: 'Courier';
+    color: $black;
+    @include gradient($black, $brown);
+    background-image:url('WoodTexture.jpg');
 }
 
 @include linkColor($orange);
 
 .btn-primary {
-  background: $darkRed;
-  @include gradient($lightRed, $darkRed);
+    background: $darkRed;
+    @include gradient($lightRed, $darkRed);
 }
 
 .btn-primary:hover {
-  background: $lightRed;
+    background: $lightRed;
 }
 
 .btn-primary:active {
-  background: $darkRed;
-}
-
-// Header & Footer *************************************************************
-#browser-id-form {
-  display: none;
+    background: $darkRed;
 }
 
 header .login-notify-area {
-  vertical-align: middle;
-  color: $white;
+    vertical-align: middle;
+    color: $white;
 }
 
 footer {
-  color: $white;
-  text-align: center;
+    color: $white;
+    text-align: center;
 }
 
 // Bounty Index ****************************************************************
 // Bounty Board Header =========================================================
 .hero-unit {
-  color: $black;
-  font-weight: bold;
-  width: 950px;
-  height: 225px;
-  padding: 0px;
-  border: 1px inset $black;
-  @include linkColor($white);
-  @include marginCenter();
-  text-align: center;
-  background: $yellow;
-  background-image:url('bountyHeader.jpg');
+    color: $black;
+    font-weight: bold;
+    width: 950px;
+    height: 225px;
+    padding: 0px;
+    border: 1px inset $black;
+    @include linkColor($white);
+    @include marginCenter();
+    text-align: center;
+    background: $yellow;
+    background-image:url('bountyHeader.jpg');
 }
 
 .hero-unit button {
-  margin-top: 140px;
+    margin-top: 140px;
 }
 
 #postBounty {
-  margin-top: 140px;
+    margin-top: 140px;
 }
 
 // Sidebar Navigation ==========================================================
 .sidebar-nav {
-  background: $yellow;
-  border: 1px inset $black;
-  @include linkColor($black);
-  background-image:url('BleachedWoodTexture.jpg');
-  font-size: 110%;
-  font-weight: bold;
+    background: $yellow;
+    border: 1px inset $black;
+    @include linkColor($black);
+    background-image:url('BleachedWoodTexture.jpg');
+    font-size: 110%;
+    font-weight: bold;
 }
 
 .sidebar-nav .nav-header {
@@ -108,7 +103,7 @@ footer {
 }
 
 // Bounties ====================================================================
-.bounty {
+.bounty-square {
   height: 240px;
   width: 280px !important;
   margin: 0px 10px 10px !important;
@@ -122,7 +117,7 @@ footer {
   text-overflow: ellipsis;
 }
 
-.bounty .name {
+.bounty-square .name {
   width: 150px;
   font-size: 240%;
   line-height: 30px;
@@ -134,7 +129,7 @@ footer {
   overflow: hidden;
 }
 
-.bounty .shortDesc {
+.bounty-square .short-desc {
   display: inline-block;
   max-width: 70%;
   max-height: 50px;
@@ -142,7 +137,7 @@ footer {
   margin-left: 10px;
 }
 
-.bounty .shortDesc .readMore {
+.bounty-square .short-desc .read-more {
   position: absolute;
   bottom: 0; left: 0;
   width: 100%;
@@ -151,7 +146,7 @@ footer {
   @include gradient(transparent, $black)
 }
 
-.bounty .shortDesc .readMore {
+.bounty-square .short-desc .read-more {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -162,7 +157,7 @@ footer {
   @include gradient(transparent, $black)
 }
 
-.bounty .nail {
+.bounty-square .nail {
   position: absolute;
   width: 100%;
   height: 22px;
@@ -171,7 +166,7 @@ footer {
   background-position:center;
 }
 
-.bounty .candidates {
+.bounty-square .candidates {
   max-width: 20%;
   overflow: hidden;
   display: inline-block;
@@ -185,7 +180,7 @@ footer {
 }
 
 // Bounty New ******************************************************************
-#bountyPostArea {
+#bounty-post-area {
   color: $black;
   background: $yellow;
   border: 1px inset $black;

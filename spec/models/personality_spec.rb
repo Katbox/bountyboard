@@ -18,52 +18,51 @@ describe Personality do
   it { should respond_to(:bounty) }
 
   before {
-    # SETUP
+    @bounty = FactoryGirl.create(:bounty)
 
-    #1 USER
-    @user = User.new( :email => 'anonymous@example.com' )
-    @user.id = 1
-    @user.save
-
-    #3 MOODS
-    (1..Personality.MAXIMUM_MOODS + 1).each do |i|
-      @mood = Mood.new( :name => i)
-      @mood.id = i
-      @mood.save
+    # Associate the maximum number of moods with the bounty.
+    @moods = []
+    (1..Personality.MAXIMUM_MOODS).each do |i|
+      mood = FactoryGirl.create(:mood)
+      FactoryGirl.create(:personality, :bounty_id => @bounty.id, :mood_id => mood.id)
+    @moods.push(mood)
     end
-
-    #1 BOUNTY
-    @bounty = Bounty.new( :name => 'name', :desc => 'desc', :price => 10.00 )
-    @bounty.user_id = @user.id
-    @bounty.save
   }
 
-  it 'should not be able to let a bounty have more moods than the MAXIMUM_MOODS!' do
-    # Associate the maximum number of moods with the bounty.
-  	(1..Personality.MAXIMUM_MOODS).each do |i|
-  	  new_personality = Personality.new()
-      new_personality.bounty_id = @bounty.id
-      new_personality.mood_id = i
-  	  new_personality.should be_valid
-      new_personality.save
-    end
-
-      invalid_personality = Personality.new()
-      invalid_personality.bounty_id = @bounty.id
-      invalid_personality.mood_id = 3
-      invalid_personality.should be_invalid
+  it 'should not allow a bounty to have more moods than MAXIMUM_MOODS' do
+    new_mood = FactoryGirl.create(:mood)
+    invalid_personality = FactoryGirl.build(
+      :personality,
+      :bounty => @bounty,
+      :mood => new_mood
+    )
+    invalid_personality.should be_invalid
   end
 
-  it 'should not allow the same mood to be associated with a bounty multiple times!' do
-    personality1 = Personality.new()
-    personality1.bounty_id = @bounty.id
-    personality1.mood_id = 1
-  	personality1.should be_valid
-  	personality1.save
+  it 'should not allow the same mood to be associated with a bounty multiple times' do
+    invalid_personality = FactoryGirl.build(
+      :personality,
+      :bounty => @bounty,
+      :mood => @moods[0]
+    )
+    invalid_personality.should be_invalid
+  end
 
-    personality2 = Personality.new()
-    personality2.bounty_id = @bounty.id
-    personality2.mood_id = 1
-  	personality2.should be_invalid
+  it 'should not allow null values for its mood property' do
+    personality = FactoryGirl.build(:personality,
+      :mood => nil,
+      :bounty => @bounty
+    )
+    personality.should_not be_valid
+    personality.should have(1).error_on(:mood_id)
+  end
+
+  it 'should not allow null values for its bounty property' do
+    personality = FactoryGirl.build(:personality,
+      :mood => @moods[0],
+      :bounty => nil
+    )
+    personality.should_not be_valid
+    personality.should have(1).error_on(:bounty_id)
   end
 end

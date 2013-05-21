@@ -8,20 +8,20 @@ gem 'rails', '3.2'
 
 # Gems used in the production environment.
 group :production do
-	gem 'pg', '0.14.1'
-	gem 'unicorn'
-	gem 'execjs'
-	gem 'therubyracer', :platforms => :ruby
+  gem 'pg', '0.14.1'
+  gem 'unicorn'
+  gem 'execjs'
+  gem 'therubyracer', :platforms => :ruby
 end
 
 
 # Gems used in the development environment.
 group :development do
-	gem 'sqlite3'
-	gem 'rspec-rails'
-	gem 'guard'
-	gem 'ruby-growl'
-	gem 'annotate'
+  gem 'sqlite3'
+  gem 'rspec-rails'
+  gem 'guard'
+  gem 'ruby-growl'
+  gem 'annotate'
 end
 
 
@@ -40,9 +40,10 @@ end
 
 # Gems used when running tests.
 group :test do
-	gem 'sqlite3'
-	gem 'rspec-rails'
-	gem 'capybara'
+  gem 'sqlite3'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'factory_girl_rails'
 end
 
 
@@ -53,6 +54,7 @@ gem 'bootstrap-sass'
 gem 'omniauth-browserid'
 gem 'omniauth-deviantart'
 gem 'money-rails'
+gem 'formtastic'
 
 
 # To use ActiveModel has_secure_password

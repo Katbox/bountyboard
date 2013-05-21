@@ -8,6 +8,10 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  rememberToken :string(255)
+#  type          :string(255)
+#  bio           :text             default(""), not null
+#  bounty_rules  :text             default(""), not null
+#  approved      :boolean          default(FALSE), not null
 #
 
 class User < ActiveRecord::Base
@@ -20,33 +24,23 @@ class User < ActiveRecord::Base
   #OWNERSHIP OF A BOUNTY
   has_many :ownerships, :foreign_key => "user_id", :class_name => "Bounty"
 
-  #ACCEPTANCE OF A BOUNTY
-  has_many :acceptions, :foreign_key => "accept_id", :class_name => "Bounty"
-
   #REJECTION OF A BOUNTY
   has_many :rejections, :foreign_key => "reject_id", :class_name => "Bounty"
-
-  #COMPLETION OF A BOUNTY
-  has_many :completions, :foreign_key => "complete_id", :class_name => "Bounty"
-
-  #CANDIDACY TO ACCEPT A BOUNTY
-  has_many :candidacies
-  has_many :bounties, :through => :candidacies
 
   validates :email, presence: true
   validates_uniqueness_of :email, :case_sensitive => false
 
   before_save :createRememberToken
 
-  def getIdentifier
+  def get_identifier
     return self[:name] ? self[:name] : self[:email]
   end
 
   private
 
-    def createRememberToken
-		self.rememberToken = SecureRandom.urlsafe_base64
-	end
+  def createRememberToken
+    self.rememberToken = SecureRandom.urlsafe_base64
+  end
 
 end
 
