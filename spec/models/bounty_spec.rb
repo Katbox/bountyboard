@@ -95,17 +95,16 @@ describe Bounty do
     bounty.should have(1).error_on(:is_private)
   end
 
-  describe 'destroy()' do
+  describe 'status' do
 
     before {
-      @currentlyLoggedInUser = FactoryGirl.create(:user, :name => 'User1')
-      @notLoggedInUser = FactoryGirl.create(:user, :name => 'User1')
+      @user = FactoryGirl.create(:user, :name => 'User1')
       @artist = FactoryGirl.create(:artist, :name => 'Artist1')
       @bounty = FactoryGirl.create(:bounty, :name => 'Bounty1')
-      @bounty.owner = @currentlyLoggedInUser
+      @bounty.owner = @user
       @mood = FactoryGirl.create(:mood, :name => "Mood1")
       @vote = FactoryGirl.create(:vote,
-        :user_id => @currentlyLoggedInUser.id,
+        :user_id => @user.id,
         :bounty_id => @bounty.id
         )
       @candidacy = FactoryGirl.create(:candidacy,
@@ -118,42 +117,38 @@ describe Bounty do
         :bounty => @bounty
       )
     }
-  
-    it 'should delete dependencies' do
-      currentUser = @currentlyLoggedInUser
-      @bounty.should_not be_nil
-      @bounty.candidacies.first.should_not be_nil
-      @bounty.personalities.first.should_not be_nil
-      @bounty.votes.first.should_not be_nil
-      @bounty.destroy
-      Bounty.all.should be_empty
-      Candidacy.all.should be_empty
-      Personality.all.should be_empty
-      Vote.all.should be_empty
-      @bounty.should be_nil
-    end
-  
-    it 'should not delete dependencies when user is not owner' do
-      currentUser = @notLoggedInUser
-      @bounty.should_not be_nil
-      @bounty.candidacies.first.should_not be_nil
-      @bounty.personalities.first.should_not be_nil
-      @bounty.votes.first.should_not be_nil
-      @bounty.destroy
-      Bounty.all.should_not be_empty
-      Candidacy.all.should_not be_empty
-      Personality.all.should_not be_empty
-      Vote.all.should_not be_empty
+
+    it 'should be Unclaimed' do
+      @bounty.status.should == 'Unclaimed'
     end
 
-    it 'should not remove bounties that have been accepted' do
-      before {
-        @candidacy.acceptor = true
-        # now log in as the correct user
-      }
-      @bounty.destroy
-      Bounty.all.should_not be_empty
+    it 'should be Accepted' do
+      @candidacy.acceptor = true
+      @candidacy.save!
+      @bounty.reload.status.should == 'Accepted'
     end
+
+    it 'should be Accepted' do
+      @bounty.reject_id = @artist.id
+      @bounty.save!
+      @bounty.reload.status.should == 'Rejected'
+    end
+
+    it 'should be Invalid if accepted and rejected' do
+      @candidacy.acceptor = true
+      @bounty.reject_id = @artist.id
+      @candidacy.save!
+      @bounty.save!
+      @bounty.reload.status.should == 'Invalid'
+    end
+
+    it 'should be Invalid if completed and rejected' do
+      @bounty.url = "http://uhoh.com"
+      @bounty.reject_id = @artist.id
+      @bounty.save!
+      @bounty.reload.status.should == 'Invalid'
+    end
+
   end
 end
 
