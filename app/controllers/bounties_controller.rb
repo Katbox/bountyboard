@@ -42,7 +42,8 @@ class BountiesController < ApplicationController
 
   def destroy
     @bounty = Bounty.find(params[:id])
-    if @bounty.owner == currentUser
+    reasonsToDelete = ['Unclaimed', 'Rejected']
+    if @bounty.owner == currentUser && reasonsToDelete.include?(@bounty.status)
       Bounty.destroy(params[:id])
     end
     redirect_to root_path
