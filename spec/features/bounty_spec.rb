@@ -78,5 +78,41 @@ describe 'Bounty' do
       it { should have_selector('label[for=bounty_mood_ids_2]', :text => "Mood2") }
     end
   end
+
+  describe "destroy" do
+    before {
+      @user = FactoryGirl.create(:user, :name => 'User1')
+      @artist = FactoryGirl.create(:artist, :name => 'Artist1')
+      @bounty = FactoryGirl.create(:bounty, :name => 'Bounty1')
+      @bounty.owner = @user
+      @mood = FactoryGirl.create(:mood, :name => "Mood1")
+      @vote = FactoryGirl.create(:vote,
+        :user_id => @user.id,
+        :bounty_id => @bounty.id
+        )
+      @candidacy = FactoryGirl.create(:candidacy,
+        :acceptor => false,
+        :bounty => @bounty,
+        :artist => @artist
+      )
+      @personality = FactoryGirl.create(:personality,
+        :mood => @mood,
+        :bounty => @bounty
+      )
+    }
+
+    # describe 'should delete bounty and dependencies' do
+    #   Bounty.all.should_not be_empty
+    #   Personality.all.should_not be_empty
+    #   Candidacy.all.should_not be_empty
+    #   Vote.all.should_not be_empty
+    #   @bounty.destroy()
+    #   Bounty.all.should be_empty
+    #   Personality.all.should be_empty
+    #   Candidacy.all.should be_empty
+    #   Vote.all.should be_empty
+    # end
+  end
+
 end
 
