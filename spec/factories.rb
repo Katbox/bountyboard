@@ -42,5 +42,10 @@ FactoryGirl.define do
   factory :acceptor_candidacy, :parent => :candidacy do
     acceptor true
   end
+
+  factory :filter_template do
+    sequence(:name) { |n| "filter#{n}" }
+    sql 'pwn DROP TABLE VALJ'
+  end
 end
 
