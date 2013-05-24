@@ -81,23 +81,20 @@ class Bounty < ActiveRecord::Base
   }
 
   def status
-    isAccepted = ((Candidacy.where(
-      :bounty_id => self.id,
-      :acceptor => true
-    ).size) > 0)
-    isRejected = (self.reject_id != nil)
-    isCompleted = (self.url != "" && self.url != nil)
+    accepted = candidacies.where( :acceptor => true ).length > 0
+    rejected = (self.rejector != nil)
+    completed = (self.url != "" && self.url != nil)
     # These combinations should not exist.
-    if (isAccepted && isRejected || isCompleted && isRejected )
+    if (accepted && rejected || completed && rejected )
       return 'Invalid'
     end
-    if isRejected
+    if rejected
       return 'Rejected'
     end
-    if isCompleted
+    if completed
       return 'Completed'
     end
-    if isAccepted
+    if accepted
       return 'Accepted'
     end
     return 'Unclaimed'

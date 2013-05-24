@@ -27,7 +27,7 @@ FactoryGirl.define do
   end
 
   factory :bounty_with_candidacy, :parent => :bounty do
-    artist {[FactoryGirl.create(:artist)]}
+    artists {[FactoryGirl.create(:artist)]}
   end
 
   factory :personality do

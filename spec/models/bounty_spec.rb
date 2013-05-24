@@ -98,24 +98,7 @@ describe Bounty do
   describe 'status' do
 
     before {
-      @user = FactoryGirl.create(:user, :name => 'User1')
-      @artist = FactoryGirl.create(:artist, :name => 'Artist1')
-      @bounty = FactoryGirl.create(:bounty, :name => 'Bounty1')
-      @bounty.owner = @user
-      @mood = FactoryGirl.create(:mood, :name => "Mood1")
-      @vote = FactoryGirl.create(:vote,
-        :user_id => @user.id,
-        :bounty_id => @bounty.id
-        )
-      @candidacy = FactoryGirl.create(:candidacy,
-        :acceptor => false,
-        :bounty => @bounty,
-        :artist => @artist
-      )
-      @personality = FactoryGirl.create(:personality,
-        :mood => @mood,
-        :bounty => @bounty
-      )
+      @bounty = FactoryGirl.create(:bounty_with_candidacy)
     }
 
     it 'should be Unclaimed' do
@@ -123,36 +106,28 @@ describe Bounty do
     end
 
     it 'should be Accepted' do
-      @candidacy.acceptor = true
-      @candidacy.save!
-      @bounty.reload.status.should == 'Accepted'
+      @bounty.candidacies[0].acceptor = true
+	  @bounty.candidacies.each { |candidacy| candidacy.save! }
+      @bounty.status.should == 'Accepted'
     end
 
-    it 'should be Accepted' do
-      @bounty.reject_id = @artist.id
-      @bounty.save!
-      @bounty.reload.status.should == 'Rejected'
-    end
-
-    it 'should be Invalid if accepted and rejected' do
-      @candidacy.acceptor = true
-      @bounty.reject_id = @artist.id
-      @candidacy.save!
-      @bounty.save!
-      @bounty.reload.status.should == 'Invalid'
+    it 'should be Rejected' do
+      @bounty.rejector = FactoryGirl.create(:artist)
+	  @bounty.rejector.save!
+      @bounty.status.should == 'Rejected'
     end
 
     it 'should be Invalid if accepted and rejected' do
-      @candidacy.acceptor = true
-      @bounty.reject_id = @artist.id
-      @candidacy.save!
-      @bounty.save!
-      @bounty.reload.status.should == 'Invalid'
+      @bounty.candidacies[0].acceptor = true
+	  @bounty.candidacies.each { |candidacy| candidacy.save! }
+      @bounty.rejector = FactoryGirl.create(:artist)
+      @bounty.status.should == 'Invalid'
     end
 
-    it 'should prevent saving if invalid' do
-      @bounty.url = "http://uhoh.com"
-      @bounty.reject_id = @artist.id
+    it 'should prevent saving if Invalid' do
+      @bounty.url = 'http://uhoh.com'
+      @bounty.rejector = FactoryGirl.create(:artist)
+      @bounty.status.should == 'Invalid'
 	  @bounty.should be_invalid
       @bounty.should have(1).error_on(:status)
     end
