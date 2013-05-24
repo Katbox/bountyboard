@@ -142,11 +142,19 @@ describe Bounty do
       @bounty.reload.status.should == 'Invalid'
     end
 
-    it 'should be Invalid if completed and rejected' do
-      @bounty.url = "http://uhoh.com"
+    it 'should be Invalid if accepted and rejected' do
+      @candidacy.acceptor = true
       @bounty.reject_id = @artist.id
+      @candidacy.save!
       @bounty.save!
       @bounty.reload.status.should == 'Invalid'
+    end
+
+    it 'should prevent saving if invalid' do
+      @bounty.url = "http://uhoh.com"
+      @bounty.reject_id = @artist.id
+	  @bounty.should be_invalid
+      @bounty.should have(1).error_on(:status)
     end
 
   end

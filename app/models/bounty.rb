@@ -75,8 +75,16 @@ class Bounty < ActiveRecord::Base
       message: "must be #{self.MINIMUM_PRICE} or more"
     }
 
+  validates :status, :exclusion => {
+    :in => 'Invalid',
+    :message => 'Cannot save a bounty with status invalid.'
+  }
+
   def status
-    isAccepted = ((Candidacy.where(:bounty_id => self.id, :acceptor => true).size) > 0)
+    isAccepted = ((Candidacy.where(
+      :bounty_id => self.id,
+      :acceptor => true
+    ).size) > 0)
     isRejected = (self.reject_id != nil)
     isCompleted = (self.url != "" && self.url != nil)
     # These combinations should not exist.
