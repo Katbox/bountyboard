@@ -12,8 +12,9 @@ class Filter
   def initialize(session, templateID, values)
 
     @template = FilterTemplate.find(templateID)
-    if not @template?
+    if not @template.nil?
       raise "No FilterTemplate with ID \"#{templateID}\" could be found."
+    end
       
     @session = session
     @session[:filters]
