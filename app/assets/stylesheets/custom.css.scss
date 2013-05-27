@@ -27,10 +27,10 @@ body {
     background-image:url('WoodTexture.jpg');
 }
 
-@include linkColor($orange);
-
 .btn-primary {
     background: $darkRed;
+    color: $white;
+    @include linkColor($white);
     @include gradient($lightRed, $darkRed);
 }
 
@@ -49,6 +49,7 @@ header .login-notify-area {
 
 footer {
     color: $white;
+    @include linkColor($orange);
     text-align: center;
 }
 
