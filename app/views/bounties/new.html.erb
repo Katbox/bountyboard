@@ -1,6 +1,6 @@
 <div class="row-fluid">
-<div id="bounty-post-area" class="span8 offset2">
-  <%= semantic_form_for @bounty do |bounty_form| %>
+  <div id="bounty-post-area" class="span8 offset2">
+    <%= semantic_form_for @bounty do |bounty_form| %>
     <%= render 'shared/error_messages' %>
     <%= bounty_form.input :name %>
     <%= bounty_form.input :desc, :as => :string %>
@@ -8,6 +8,6 @@
     <%= bounty_form.input :artists, :as => :check_boxes%>
     <%= bounty_form.input :moods, :as => :check_boxes%>
     <%= bounty_form.submit %>
-  <% end %>
-</div>
+    <% end %>
+  </div>
 </div>
