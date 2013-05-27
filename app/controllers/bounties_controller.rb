@@ -9,7 +9,6 @@ class BountiesController < ApplicationController
   end
 
   def show
-    # TODO: display the bounty
     @bounty = Bounty.find(params[:id])
   end
 

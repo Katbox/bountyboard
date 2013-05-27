@@ -45,6 +45,14 @@ class Bounty < ActiveRecord::Base
   #VALIDATIONS
   validates :name, :desc, :price, :user_id, :presence => true
 
+  def get_url
+    return self[:url] ? self[:url] : "This bounty is not yet completed!"
+  end
+
+  def get_private
+    return self[:is_private] ? "private" : "public"
+  end
+
   def self.MAXIMUM_NAME_LENGTH
     30
   end

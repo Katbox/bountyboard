@@ -1,0 +1,14 @@
+<div class="row-fluid">
+  <div id="bounty-page-area" class="span8 offset2">
+    This bounty's details.
+    <ul>
+      <li><%= @bounty.name %></li>
+      <li><%= @bounty.desc %></li>
+      <li>$<%= @bounty.price %></li>
+      <li><%= @bounty.rating %></li>
+      <li><%= @bounty.get_url %></li>
+      <li><%= @bounty.get_private %></li>
+      <li><%= @bounty.created_at.to_s(:created_on) %></li>
+    </ul>
+  </div>
+</div>
