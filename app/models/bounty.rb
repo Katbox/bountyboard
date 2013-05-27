@@ -80,6 +80,13 @@ class Bounty < ActiveRecord::Base
     :message => 'Cannot save a bounty with status invalid.'
   }
 
+  validate :validate_num_of_moods
+
+  def validate_num_of_moods
+    errors.add(:moods, "for this bounty exceeds #{Personality.MAXIMUM_MOODS}") if moods.length > Personality.MAXIMUM_MOODS
+    errors.add(:moods, "for this bounty must be at least #{Personality.MINIMUM_MOODS}") if moods.length < Personality.MINIMUM_MOODS
+  end
+
   def status
     accepted = candidacies.where( :acceptor => true ).length > 0
     rejected = (self.rejector != nil)

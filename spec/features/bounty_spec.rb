@@ -60,8 +60,6 @@ describe 'Bounty' do
       @artist2 = FactoryGirl.create(:artist, :name => "Artist2")
       @artist3 = FactoryGirl.create(:artist, :name => "Artist3")
       @artist3 = FactoryGirl.create(:artist, :name => "Artist4")
-      @mood1 = FactoryGirl.create(:mood, :name => "Mood1")
-      @mood2 = FactoryGirl.create(:mood, :name => "Mood2")
 
       visit new_bounty_path
     }
@@ -74,8 +72,8 @@ describe 'Bounty' do
       it { should have_selector('label[for=bounty_artist_ids_3]', :text => "Artist3") }
       it { should have_selector('label[for=bounty_artist_ids_4]', :text => "Artist4") }
       it { should have_selector('#bounty_moods_input') }
-      it { should have_selector('label[for=bounty_mood_ids_1]', :text => "Mood1") }
-      it { should have_selector('label[for=bounty_mood_ids_2]', :text => "Mood2") }
+      it { should have_selector('label[for=bounty_mood_ids_1]', :text => "mood1") }
+
     end
   end
 

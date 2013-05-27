@@ -22,7 +22,9 @@ FactoryGirl.define do
     price_cents 500
     user_id {FactoryGirl.create(:user)}
     after(:build) do |bounty|
-      bounty.moods {[FactoryGirl.create(:mood)]}
+      (1..Personality.MINIMUM_MOODS).each do
+        bounty.moods.append(FactoryGirl.create(:mood))
+      end
     end
   end
 
