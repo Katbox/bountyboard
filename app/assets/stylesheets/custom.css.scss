@@ -48,6 +48,7 @@ header .login-notify-area {
 }
 
 footer {
+    padding-top: 30px;
     color: $white;
     @include linkColor($orange);
     text-align: center;
