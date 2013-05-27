@@ -69,7 +69,7 @@ bounty1 = Bounty.new(
 )
 bounty1.user_id = customer1.id
 bounty1.url = "completed URL"
-bounty1.save!
+bounty1.save!(:validate => false)
 
 # A bounty created by customer 1, accepted by artist 1.
 bounty2 = Bounty.new(
@@ -78,7 +78,7 @@ bounty2 = Bounty.new(
   :price => 2000.00
 )
 bounty2.user_id = customer1.id
-bounty2.save!
+bounty2.save!(:validate => false)
 
 # A bounty created by customer 2, accepted by no one.
 bounty3 = Bounty.new(
@@ -87,7 +87,7 @@ bounty3 = Bounty.new(
   :price => 60.00
 )
 bounty3.user_id = customer2.id
-bounty3.save!
+bounty3.save!(:validate => false)
 
 # A bounty created by customer 2, accepted by artist 2.
 bounty4 = Bounty.new(
@@ -96,7 +96,7 @@ bounty4 = Bounty.new(
   :price => 35.50
 )
 bounty4.user_id = customer2.id
-bounty4.save!
+bounty4.save!(:validate => false)
 
 # A bounty created by customer 1, completed by artist 3.
 bounty5 = Bounty.new(
@@ -106,7 +106,7 @@ bounty5 = Bounty.new(
 )
 bounty5.user_id = customer2.id
 bounty5.url = "completed URL"
-bounty5.save!
+bounty5.save!(:validate => false)
 
 # A bounty created by customer 1, accepted by artist 4.
 bounty6 = Bounty.new(
@@ -115,7 +115,7 @@ bounty6 = Bounty.new(
   :price => 9999.99
 )
 bounty6.user_id = customer1.id
-bounty6.save!
+bounty6.save!(:validate => false)
 
 # A bounty created by customer 2, completed by artist 3.
 bounty7 = Bounty.new(
@@ -125,7 +125,7 @@ bounty7 = Bounty.new(
 )
 bounty7.user_id = customer2.id
 bounty7.url = "completed URL"
-bounty7.save!
+bounty7.save!(:validate => false)
 
 # A bounty created by customer 2, accepted by artist 2.
 bounty8 = Bounty.new(
@@ -135,7 +135,7 @@ bounty8 = Bounty.new(
   :rating => true
 )
 bounty8.user_id = customer2.id
-bounty8.save!
+bounty8.save!(:validate => false)
 
 # A bounty created by customer 1, rejected by artist 4.
 bounty9 = Bounty.new(
@@ -147,7 +147,7 @@ bounty9 = Bounty.new(
 )
 bounty9.user_id = customer1.id
 bounty9.reject_id = artist4.id
-bounty9.save!
+bounty9.save!(:validate => false)
 
 #Bounty 1's moods
 personality = Personality.new()
@@ -203,6 +203,28 @@ personality.save!
 personality = Personality.new()
 personality.bounty_id = bounty6.id
 personality.mood_id = cartoonyMood.id
+personality.save!
+
+#Bounty 7's moods
+personality = Personality.new()
+personality.bounty_id = bounty7.id
+personality.mood_id = sexyMood.id
+personality.save!
+personality = Personality.new()
+personality.bounty_id = bounty7.id
+personality.mood_id = colorfulMood.id
+personality.save!
+
+#Bounty 8's moods
+personality = Personality.new()
+personality.bounty_id = bounty8.id
+personality.mood_id = sexyMood.id
+personality.save!
+
+#Bounty 9's moods
+personality = Personality.new()
+personality.bounty_id = bounty9.id
+personality.mood_id = sexyMood.id
 personality.save!
 
 #Bounty 1 was completed by Artist 1
@@ -301,3 +323,14 @@ candidacy = Candidacy.new()
 candidacy.artist = artist1
 candidacy.bounty_id = bounty9.id
 candidacy.save!
+
+#Resave to ensure validation.
+bounty1.save!
+bounty2.save!
+bounty3.save!
+bounty4.save!
+bounty5.save!
+bounty6.save!
+bounty7.save!
+bounty8.save!
+bounty9.save!
