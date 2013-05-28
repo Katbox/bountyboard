@@ -1,4 +1,5 @@
 class BountiesController < ApplicationController
+  helper_method :accept, :reject, :complete
 
   include SessionsHelper
 
@@ -51,6 +52,30 @@ class BountiesController < ApplicationController
     reasonsToDelete = ['Unclaimed', 'Rejected']
     if @bounty.owner == currentUser && reasonsToDelete.include?(@bounty.status)
       Bounty.destroy(params[:id])
+    end
+    redirect_to root_path
+  end
+
+  def accept(bounty_id)
+    @bounty = Bounty.find(params[:id])
+    unless @bounty.owner == currentUser
+      redirect_to root_path
+    end
+    redirect_to root_path
+  end
+
+  def reject(bounty_id)
+    @bounty = Bounty.find(params[:id])
+    unless @bounty.owner == currentUser
+      redirect_to root_path
+    end
+    redirect_to root_path
+  end
+
+  def accept(bounty_id)
+    @bounty = Bounty.find(params[:id])
+    unless @bounty.owner == currentUser
+      redirect_to root_path
     end
     redirect_to root_path
   end
