@@ -29,10 +29,16 @@ class BountiesController < ApplicationController
 
   def edit
     @bounty = Bounty.find(params[:id])
+    unless (@bounty.owner == currentUser)
+      redirect_to root_path
+    end
   end
 
   def update
     @bounty = Bounty.find(params[:id])
+    unless @bounty.owner == currentUser
+      redirect_to root_path
+    end
     if @bounty.update_attributes(params[:bounty])
       redirect_to root_path
     else
