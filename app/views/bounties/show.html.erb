@@ -38,6 +38,14 @@
     Update<br>
     <%=   link_to 'Edit this Bounty', edit_bounty_path(@bounty.id), class: 'btn btn-primary' %><br>
     Return to Root Path.<br>
-    <%=   link_to 'Back', root_path, class: 'btn btn-primary' %>
+    <%=   link_to 'Back', root_path, class: 'btn btn-primary' %><br>
+
+    Artist Controls.<br>
+    <% if @bounty.status == 'Unclaimed' %>
+      <%=   link_to 'Accept Bounty', root_path, class: 'btn btn-primary' %><br>
+      <%=   link_to 'Reject Bounty', root_path, class: 'btn btn-primary' %><br>
+    <% elsif @bounty.status == 'Accepted' %>
+      <%=   link_to 'Complete Bounty', root_path, class: 'btn btn-primary' %><br>
+    <% end %>
   </div>
 </div>
