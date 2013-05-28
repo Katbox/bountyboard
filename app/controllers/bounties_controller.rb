@@ -28,15 +28,16 @@ class BountiesController < ApplicationController
   end
 
   def edit
-    # TODO: display a page with a form for updating a bounty
-    # make sure only the user that created the bounty can use this method
-    bounty_to_update = Bounty.find(params[:id])
+    @bounty = Bounty.find(params[:id])
   end
 
   def update
-    # TODO: replace an existing bounty with a new one
-    # make sure only the user that created the bounty can use this method
-    bounty_to_replace = Bounty.find(params[:id])
+    @bounty = Bounty.find(params[:id])
+    if @bounty.update_attributes(params[:bounty])
+      redirect_to root_path
+    else
+      redirect_to edit_bounty_path(@bounty.id)
+    end
   end
 
   def destroy

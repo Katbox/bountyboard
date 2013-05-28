@@ -35,7 +35,8 @@
     <% if @bounty.owner == currentUser %>
     <%=   link_to 'Delete', @bounty, :confirm => "Are you sure you want to delete #{@bounty.name}?", :method => :delete, class: 'btn btn-primary' %><br>
     <% end %>
-    Update (Not yet implemented.)
+    Update<br>
+    <%=   link_to 'Edit this Bounty', edit_bounty_path(@bounty.id), class: 'btn btn-primary' %><br>
     Return to Root Path.<br>
     <%=   link_to 'Back', root_path, class: 'btn btn-primary' %>
   </div>
