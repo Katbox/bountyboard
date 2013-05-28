@@ -23,7 +23,7 @@ class Bounty < ActiveRecord::Base
   monetize :price_cents
 
   #OWNERSHIP OF A VOTE
-  has_many :votes
+  has_many :votes, :dependent => :destroy
 
   #OWNERSHIP OF A BOUNTY
   belongs_to :owner, :foreign_key => "user_id", :class_name => "User"
@@ -33,17 +33,25 @@ class Bounty < ActiveRecord::Base
 
   #CANDIDACY TO ACCEPT A BOUNTY
   has_many :candidacies
-  has_many :artists, :through => :candidacies
+  has_many :artists, :through => :candidacies, :dependent => :destroy
 
   #PERSONALITY OF A BOUNTY
   has_many :personalities
-  has_many :moods, :through => :personalities
+  has_many :moods, :through => :personalities, :dependent => :destroy
 
   #CANDIDACIES MAY BE SAVED WHEN A BOUNTY IS SAVED
   accepts_nested_attributes_for :candidacies
 
   #VALIDATIONS
   validates :name, :desc, :price, :user_id, :presence => true
+
+  def get_url
+    return self[:url] ? self[:url] : "This bounty is not yet completed!"
+  end
+
+  def get_private
+    return self[:is_private] ? "private" : "public"
+  end
 
   def self.MAXIMUM_NAME_LENGTH
     30
@@ -74,5 +82,37 @@ class Bounty < ActiveRecord::Base
       :greater_than_or_equal_to => self.MINIMUM_PRICE,
       message: "must be #{self.MINIMUM_PRICE} or more"
     }
+
+  validates :status, :exclusion => {
+    :in => 'Invalid',
+    :message => 'Cannot save a bounty with status invalid.'
+  }
+
+  validate :validate_num_of_moods
+
+  def validate_num_of_moods
+    errors.add(:moods, "for this bounty exceeds #{Personality.MAXIMUM_MOODS}") if moods.length > Personality.MAXIMUM_MOODS
+    errors.add(:moods, "for this bounty must be at least #{Personality.MINIMUM_MOODS}") if moods.length < Personality.MINIMUM_MOODS
+  end
+
+  def status
+    accepted = candidacies.where( :acceptor => true ).length > 0
+    rejected = (self.rejector != nil)
+    completed = (self.url != "" && self.url != nil)
+    # These combinations should not exist.
+    if (accepted && rejected || completed && rejected )
+      return 'Invalid'
+    end
+    if rejected
+      return 'Rejected'
+    end
+    if completed
+      return 'Completed'
+    end
+    if accepted
+      return 'Accepted'
+    end
+    return 'Unclaimed'
+  end
 
 end

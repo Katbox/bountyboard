@@ -94,5 +94,44 @@ describe Bounty do
     bounty.should_not be_valid
     bounty.should have(1).error_on(:is_private)
   end
+
+  describe 'status' do
+
+    before {
+      @bounty = FactoryGirl.create(:bounty_with_candidacy)
+    }
+
+    it 'should be Unclaimed' do
+      @bounty.status.should == 'Unclaimed'
+    end
+
+    it 'should be Accepted' do
+      @bounty.candidacies[0].acceptor = true
+	  @bounty.candidacies.each { |candidacy| candidacy.save! }
+      @bounty.status.should == 'Accepted'
+    end
+
+    it 'should be Rejected' do
+      @bounty.rejector = FactoryGirl.create(:artist)
+	  @bounty.rejector.save!
+      @bounty.status.should == 'Rejected'
+    end
+
+    it 'should be Invalid if accepted and rejected' do
+      @bounty.candidacies[0].acceptor = true
+	  @bounty.candidacies.each { |candidacy| candidacy.save! }
+      @bounty.rejector = FactoryGirl.create(:artist)
+      @bounty.status.should == 'Invalid'
+    end
+
+    it 'should prevent saving if Invalid' do
+      @bounty.url = 'http://uhoh.com'
+      @bounty.rejector = FactoryGirl.create(:artist)
+      @bounty.status.should == 'Invalid'
+	  @bounty.should be_invalid
+      @bounty.should have(1).error_on(:status)
+    end
+
+  end
 end
 

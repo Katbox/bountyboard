@@ -18,32 +18,31 @@ describe Personality do
   it { should respond_to(:bounty) }
 
   before {
-    @bounty = FactoryGirl.create(:bounty)
-
-    # Associate the maximum number of moods with the bounty.
-    @moods = []
-    (1..Personality.MAXIMUM_MOODS).each do |i|
+    @bountyWithMinMoods = FactoryGirl.create(:bounty)
+    @bountyWithMaxMoods = FactoryGirl.create(:bounty)
+    (@bountyWithMaxMoods.moods.length..(Personality.MAXIMUM_MOODS-1)).each do |i|
       mood = FactoryGirl.create(:mood)
-      FactoryGirl.create(:personality, :bounty_id => @bounty.id, :mood_id => mood.id)
-    @moods.push(mood)
+      @bountyWithMaxMoods.moods.append(mood)
     end
   }
 
+  it 'should not allow a bounty to have more less than MINIMUM_MOODS' do
+    @bountyWithMinMoods.should be_valid
+    @bountyWithMinMoods.moods.first.destroy
+    @bountyWithMinMoods.reload.should be_invalid
+  end
+
   it 'should not allow a bounty to have more moods than MAXIMUM_MOODS' do
-    new_mood = FactoryGirl.create(:mood)
-    invalid_personality = FactoryGirl.build(
-      :personality,
-      :bounty => @bounty,
-      :mood => new_mood
-    )
-    invalid_personality.should be_invalid
+    @bountyWithMaxMoods.should be_valid
+    @bountyWithMaxMoods.moods.append(FactoryGirl.create(:mood))
+    @bountyWithMaxMoods.should be_invalid
   end
 
   it 'should not allow the same mood to be associated with a bounty multiple times' do
-    invalid_personality = FactoryGirl.build(
-      :personality,
-      :bounty => @bounty,
-      :mood => @moods[0]
+    mood = @bountyWithMinMoods.moods.first
+    invalid_personality = FactoryGirl.build(:personality,
+      :mood => mood,
+      :bounty => @bountyWithMinMoods
     )
     invalid_personality.should be_invalid
   end
@@ -58,8 +57,9 @@ describe Personality do
   end
 
   it 'should not allow null values for its bounty property' do
+    mood = FactoryGirl.create(:mood)
     personality = FactoryGirl.build(:personality,
-      :mood => @moods[0],
+      :mood => mood,
       :bounty => nil
     )
     personality.should_not be_valid

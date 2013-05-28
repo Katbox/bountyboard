@@ -12,7 +12,11 @@
         </div>
         <div class="short-desc">
           <%= b.desc %>
-          <div class="read-more"><div class="btn btn-primary">Read More</div></div>
+          <div class="read-more"><%=   link_to 'Read More', bounty_path(b.id), class: 'btn btn-primary' %>
+            <% if b.owner == currentUser %>
+              <%=   link_to 'Delete', b, :confirm => "Are you sure you want to delete #{b.name}?", :method => :delete, class: 'btn btn-primary' %>
+            <% end %>
+          </div>
         </div>
       </div>
     <% end %>

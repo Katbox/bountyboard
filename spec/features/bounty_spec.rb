@@ -59,15 +59,13 @@ describe 'Bounty' do
       @artist1 = FactoryGirl.create(:artist, :name => "Artist1")
       @artist2 = FactoryGirl.create(:artist, :name => "Artist2")
       @artist3 = FactoryGirl.create(:artist, :name => "Artist3")
-      @artist3 = FactoryGirl.create(:artist, :name => "Artist4")
-      @mood1 = FactoryGirl.create(:mood, :name => "Mood1")
-      @mood2 = FactoryGirl.create(:mood, :name => "Mood2")
-
+      @artist4 = FactoryGirl.create(:artist, :name => "Artist4")
+      @mood = FactoryGirl.create(:mood, :name => "Mood1")
       visit new_bounty_path
     }
 
     describe 'should display a form to create a bounty' do
-      it { should have_selector('#bounty-post-area')}
+      it { should have_selector('#bounty-page-area')}
       it { should have_selector('#bounty_artists_input') }
       it { should have_selector('label[for=bounty_artist_ids_1]', :text => "Artist1") }
       it { should have_selector('label[for=bounty_artist_ids_2]', :text => "Artist2") }
@@ -75,8 +73,63 @@ describe 'Bounty' do
       it { should have_selector('label[for=bounty_artist_ids_4]', :text => "Artist4") }
       it { should have_selector('#bounty_moods_input') }
       it { should have_selector('label[for=bounty_mood_ids_1]', :text => "Mood1") }
-      it { should have_selector('label[for=bounty_mood_ids_2]', :text => "Mood2") }
     end
   end
+
+  describe "show bounty" do
+    before {
+      @user = FactoryGirl.create(:user)
+      @artist = FactoryGirl.create(:artist)
+      @bounty = FactoryGirl.create(:bounty,
+        :name => "My First Bounty",
+        :desc => "My very first bounty ever.",
+        :price => 9.99,
+        :rating => false,
+        :is_private => false,
+        :user_id => @user.id
+        )
+      visit bounty_path(@bounty.id)
+    }
+    describe 'should display a form to create a bounty' do
+      it { should have_selector('#bounty-page-area')}
+      #TODO Create tests for selectors and content when inerface is redone.
+    end
+  end
+
+  describe "destroy" do
+    before {
+      @user = FactoryGirl.create(:user, :name => 'User1')
+      @artist = FactoryGirl.create(:artist, :name => 'Artist1')
+      @bounty = FactoryGirl.create(:bounty, :name => 'Bounty1')
+      @bounty.owner = @user
+      @mood = FactoryGirl.create(:mood, :name => "Mood1")
+      @vote = FactoryGirl.create(:vote,
+        :user_id => @user.id,
+        :bounty_id => @bounty.id
+        )
+      @candidacy = FactoryGirl.create(:candidacy,
+        :acceptor => false,
+        :bounty => @bounty,
+        :artist => @artist
+      )
+      @personality = FactoryGirl.create(:personality,
+        :mood => @mood,
+        :bounty => @bounty
+      )
+    }
+
+    # describe 'should delete bounty and dependencies' do
+    #   Bounty.all.should_not be_empty
+    #   Personality.all.should_not be_empty
+    #   Candidacy.all.should_not be_empty
+    #   Vote.all.should_not be_empty
+    #   @bounty.destroy()
+    #   Bounty.all.should be_empty
+    #   Personality.all.should be_empty
+    #   Candidacy.all.should be_empty
+    #   Vote.all.should be_empty
+    # end
+  end
+
 end
 

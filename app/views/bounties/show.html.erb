@@ -1,0 +1,51 @@
+<div class="row-fluid">
+  <div id="bounty-page-area" class="span8 offset2">
+    This bounty's details.
+    <ul>
+      <li><%= @bounty.name %></li>
+      <li><%= @bounty.desc %></li>
+      <li>$<%= @bounty.price %></li>
+      <li><%= @bounty.rating %></li>
+      <li><%= @bounty.get_url %></li>
+      <li><%= @bounty.get_private %></li>
+      <li><%= @bounty.created_at.to_s(:created_on) %></li>
+    </ul>
+    The bounty's candidacies.
+    <ul>
+      <% unless @bounty.candidacies.empty? %>
+        <% @bounty.candidacies.each do |c| %>
+          <li><%= c.artist.get_identifier %></li>
+        <% end %>
+      <% else %>
+        All artists may complete this bounty.
+      <% end %>
+    </ul>
+    The bounty's moods.
+    <ul>
+    <% @bounty.moods.each do |m| %>
+      <li><%= m.name %></li>
+    <% end %>
+    </ul>
+
+    The bounty's status.<br>
+    <%= @bounty.status %><br><br>
+
+    Common Controls.<br>
+    Delete (Only will show if you are the owner.) <br>
+    <% if @bounty.owner == currentUser %>
+    <%=   link_to 'Delete', @bounty, :confirm => "Are you sure you want to delete #{@bounty.name}?", :method => :delete, class: 'btn btn-primary' %><br>
+    <% end %>
+    Update<br>
+    <%=   link_to 'Edit this Bounty', edit_bounty_path(@bounty.id), class: 'btn btn-primary' %><br>
+    Return to Root Path.<br>
+    <%=   link_to 'Back', root_path, class: 'btn btn-primary' %><br>
+
+    Artist Controls.<br>
+    <% if @bounty.status == 'Unclaimed' %>
+      <%=   link_to 'Accept Bounty', accept(@bounty.id), class: 'btn btn-primary' %><br>
+      <%=   link_to 'Reject Bounty', root_path, class: 'btn btn-primary' %><br>
+    <% elsif @bounty.status == 'Accepted' %>
+      <%=   link_to 'Complete Bounty', root_path, class: 'btn btn-primary' %><br>
+    <% end %>
+  </div>
+</div>
