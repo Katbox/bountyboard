@@ -78,32 +78,6 @@ footer {
     margin-top: 140px;
 }
 
-// Sidebar Navigation ==========================================================
-.sidebar-nav {
-    background: $yellow;
-    border: 1px inset $black;
-    @include linkColor($black);
-    background-image:url('BleachedWoodTexture.jpg');
-    font-size: 110%;
-    font-weight: bold;
-}
-
-.sidebar-nav .nav-header {
-  color: $black;
-  font-family: 'Nashvill';
-  font-size: 200%;
-  margin-bottom: 10px;
-}
-
-.sidebar-nav li {
-  margin-left: 10px;
-}
-
-.sidebar-nav li a {
-  background: url(rivet.png) 5px no-repeat;
-  padding-left: 25px;
-}
-
 // Bounties ====================================================================
 .bounty-square {
   height: 240px;
