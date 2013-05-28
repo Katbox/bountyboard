@@ -33,12 +33,6 @@ describe 'Bounty' do
       it { should have_selector('.btn.btn-large.btn-primary', :text => "Sign In to Post Your Bounty") }
     end
 
-    describe 'should display the sidebar' do
-      it { should have_selector('article.sidebar-nav') }
-      # it { should have_selector('li.nav-header'), :text => "Bounty Filters" }
-      # it { should have_selector('li.nav-header'), :text => "Sort Bounties" }
-    end
-
     describe 'should display existing bounties' do
       it { should have_selector('.bounty-display-area') }
       it { should have_selector('.bounty-square') }
