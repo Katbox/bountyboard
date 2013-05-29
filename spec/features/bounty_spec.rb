@@ -34,7 +34,6 @@ describe 'Bounty' do
     end
 
     describe 'should display existing bounties' do
-      it { should have_selector('.bounty-display-area') }
       it { should have_selector('.bounty-square') }
       it { should have_selector('.bounty-square .ribbon', :text => "$9.99") }
       it { should have_selector('.bounty-square .name', :text => "My First Bounty") }
