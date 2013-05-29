@@ -23,6 +23,16 @@ class BountiesController < ApplicationController
       return
     end
 
+    #If no specific artists were selected. Then create a candidacy to all artists.
+    if params[:bounty][:artist_ids]==[""]
+      id_array = []
+      @artist = Artist.all
+      @artist.each do |a|
+        id_array.append(a.id.to_s)
+      end
+      params[:bounty][:artist_ids] = id_array
+    end
+
     @bounty = Bounty.new(params[:bounty])
     @bounty.owner = currentUser
 
@@ -92,7 +102,7 @@ message
         redirect_to root_path, :error => "You are not authorized to accept this bounty."
       end
     end
-  
+
     def reject(bounty_id)
       @bounty = Bounty.find(params[:id])
       if @bounty.owner == currentUser
@@ -101,7 +111,7 @@ message
         redirect_to root_path, :error => "You are not authorized to reject this bounty."
       end
     end
-  
+
     def accept(bounty_id)
       @bounty = Bounty.find(params[:id])
       if @bounty.owner == currentUser
