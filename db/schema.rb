@@ -13,6 +13,13 @@
 
 ActiveRecord::Schema.define(:version => 20130517043329) do
 
+  create_table "filter_templates", :force => true do |t|
+    t.string   "name",                             :null => false
+    t.string   "sql",                              :null => false
+  end
+
+  add_index "filter_templates", ["name"], :name => "index_filter_templates_on_name"
+
   create_table "bounties", :force => true do |t|
     t.string   "name",                              :null => false
     t.text     "desc",                              :null => false
