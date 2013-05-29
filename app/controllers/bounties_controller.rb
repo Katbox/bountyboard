@@ -1,7 +1,7 @@
 class BountiesController < ApplicationController
-  helper_method :accept, :reject, :complete
 
   include SessionsHelper
+  include BountyHelper
 
   def index
     @bounty = Bounty.all
@@ -21,6 +21,16 @@ class BountiesController < ApplicationController
     if not signedIn?
       redirect_to root_path, :error => "You must sign in to create a bounty."
       return
+    end
+
+    #If no specific artists were selected. Then create a candidacy to all artists.
+    if params[:bounty][:artist_ids]==[""]
+      id_array = []
+      @artist = Artist.all
+      @artist.each do |a|
+        id_array.append(a.id.to_s)
+      end
+      params[:bounty][:artist_ids] = id_array
     end
 
     @bounty = Bounty.new(params[:bounty])
@@ -81,34 +91,5 @@ message
     end
     redirect_to root_path
   end
-
-  private
-
-    def accept(bounty_id)
-      @bounty = Bounty.find(params[:id])
-      if @bounty.owner == currentUser
-        redirect_to root_path, :notice => "You have accepted the bounty."
-      else
-        redirect_to root_path, :error => "You are not authorized to accept this bounty."
-      end
-    end
-  
-    def reject(bounty_id)
-      @bounty = Bounty.find(params[:id])
-      if @bounty.owner == currentUser
-        redirect_to root_path, :notice => "You have rejected the bounty."
-      else
-        redirect_to root_path, :error => "You are not authorized to reject this bounty."
-      end
-    end
-  
-    def accept(bounty_id)
-      @bounty = Bounty.find(params[:id])
-      if @bounty.owner == currentUser
-        redirect_to root_path, :notice => "You have accepted the bounty."
-      else
-        redirect_to root_path, :error => "You are not authorized to accept this bounty."
-      end
-    end
 end
 
