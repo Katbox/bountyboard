@@ -115,4 +115,13 @@ class Bounty < ActiveRecord::Base
     return 'Unclaimed'
   end
 
+  def accepting_artist
+    acceptor_candidacy = candidacies.where( :acceptor => true)
+	if acceptor_candidacy.nil?
+      return nil
+    else
+      return acceptor_candidacy.first.artist
+    end
+  end
+
 end
