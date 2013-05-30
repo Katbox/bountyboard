@@ -44,7 +44,7 @@
 
     Accept<br>
     <% if (currentUser != nil) && (currentUser.type == 'Artist') %>
-      <%=   link_to 'Accept', bounty_path(@bounty, :bounty => {:accept => true}), :method => :put, :confirm => "Are you sure you want to accept this bounty?", class: 'btn btn-primary' %>
+      <%=   link_to 'Accept', candidacy_path(:candidacy => {:acceptor => true}), :method => :put, :confirm => "Are you sure you want to accept this bounty?", class: 'btn btn-primary' %>
     <% end %>
 
 
