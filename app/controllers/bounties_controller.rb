@@ -54,10 +54,15 @@ class BountiesController < ApplicationController
   def update
     @bounty = Bounty.find(params[:id])
 
+    #If an "accept" parameter was passed, we need to intercept it because it's
+    #part of the bounty model and you shouldn't call "update attributes" on it.
     if params[:bounty][:accept]
+      #If the user that initiated this action is an artist...
       if currentUser.type == 'Artist'
+        #And they are a candidate for the bounty...
         targetCandidacy = Candidacy.where(:artist_id => currentUser.id, :bounty_id => @bounty.id).first
         if targetCandidacy
+          #Mark them as the acceptor.
           targetCandidacy.acceptor = true
           if targetCandidacy.save
             redirect_to root_path, :notice => "Bounty Accepted!"
@@ -70,6 +75,7 @@ class BountiesController < ApplicationController
       else
         redirect_to root_path, :error => "Only artists may accept bounties."
       end
+    #Otherwise, update the remainder of the bounty parameters.
     else
       if @bounty.owner != currentUser
         redirect_to root_path, :error => "You are not authorized to edit this bounty."
@@ -80,8 +86,6 @@ class BountiesController < ApplicationController
         redirect_to edit_bounty_path(@bounty.id), :error => "Error updating bounty."
       end
     end
-
-
   end
 
   def destroy
