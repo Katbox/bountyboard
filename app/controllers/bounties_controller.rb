@@ -56,7 +56,17 @@ class BountiesController < ApplicationController
 
     if params[:bounty][:accept]
       if currentUser.type == 'Artist'
-        redirect_to root_path, :notice => "Bounty Accepted."
+        targetCandidacy = Candidacy.where(:artist_id => currentUser.id, :bounty_id => @bounty.id).first
+        if targetCandidacy
+          targetCandidacy.acceptor = true
+          if targetCandidacy.save
+            redirect_to root_path, :notice => "Bounty Accepted!"
+          else
+            redirect_to root_path, :error => "Error updating candidacy."
+          end
+        else
+          redirect_to root_path, :error => "You are not a candidate for that bounty."
+        end
       else
         redirect_to root_path, :error => "Only artists may accept bounties."
       end
