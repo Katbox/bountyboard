@@ -1,7 +1,6 @@
 class BountiesController < ApplicationController
 
   include SessionsHelper
-  include BountyHelper
 
   def index
     @bounty = Bounty.all
@@ -54,14 +53,25 @@ class BountiesController < ApplicationController
 
   def update
     @bounty = Bounty.find(params[:id])
-    unless @bounty.owner == currentUser
-      redirect_to root_path, :error => "You are not authorized to edit this bounty."
-    end
-    if @bounty.update_attributes(params[:bounty])
-      redirect_to root_path, :error => "Error updating bounty."
+
+    if params[:bounty][:accept]
+      if currentUser.type == 'Artist'
+        redirect_to root_path, :notice => "Bounty Accepted."
+      else
+        redirect_to root_path, :error => "Only artists may accept bounties."
+      end
     else
-      redirect_to edit_bounty_path(@bounty.id), :error => "Error updating bounty."
+      if @bounty.owner != currentUser
+        redirect_to root_path, :error => "You are not authorized to edit this bounty."
+      end
+      if @bounty.update_attributes(params[:bounty])
+        redirect_to root_path, :notice => "Bounty Updated!"
+      else
+        redirect_to edit_bounty_path(@bounty.id), :error => "Error updating bounty."
+      end
     end
+
+
   end
 
   def destroy
@@ -79,7 +89,7 @@ class BountiesController < ApplicationController
       else
         if @bounty.status == "Accepted"
           acceptor = @bounty.accepting_artist.get_identifier
-		  flash[:error] =<<message
+      flash[:error] =<<message
 "This bounty is being worked on by #{acceptor} and cannot be deleted. You will
 need to contact #{acceptor} and ask that he or she release their claim to the
 bounty."
