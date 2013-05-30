@@ -54,6 +54,22 @@ footer {
     text-align: center;
 }
 
+/*
+Removes an input or button's fancy button look and makes it appear like a link
+instead. This is useful for interactive elements on a page that should be HTML
+buttons or are required by Bootstrap to have the .btn style to work correctly,
+but button style would look out of place, i.e. for elements in the nav bar.
+*/
+.linklike, {
+	/* !important to prevent Bootstrap's btn.open style from overwriting this
+	 * one, making the button toggle between link-style and button-style when
+	 * clicked */
+    background: none !important; 
+    border: none; 
+    padding: 0;
+	cursor: pointer;
+}
+
 // Bounty Index ****************************************************************
 // Bounty Board Header =========================================================
 .hero-unit {
