@@ -79,7 +79,7 @@ class BountiesController < ApplicationController
       else
         if @bounty.status == "Accepted"
           acceptor = @bounty.accepting_artist.get_identifier
-		  flash[:error] =<<message
+      flash[:error] =<<message
 "This bounty is being worked on by #{acceptor} and cannot be deleted. You will
 need to contact #{acceptor} and ask that he or she release their claim to the
 bounty."
