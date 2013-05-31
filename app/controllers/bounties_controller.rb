@@ -60,7 +60,7 @@ class BountiesController < ApplicationController
       redirect_to root_path, :notice => "Bounty Updated!"
     else
       redirect_to edit_bounty_path(@bounty.id), :error => "Error updating bounty."
-      end
+    end
   end
 
   def destroy
