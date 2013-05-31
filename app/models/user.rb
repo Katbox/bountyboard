@@ -17,7 +17,7 @@
 
 class User < ActiveRecord::Base
   attr_accessible :name, :email
-  attr_protected :id
+  attr_protected :id, :admin
 
   #OWNERSHIP OF A VOTE
   has_many :votes
@@ -35,6 +35,10 @@ class User < ActiveRecord::Base
 
   def get_identifier
     return self[:name] ? self[:name] : self[:email]
+  end
+
+  def is_admin?
+    return self[:admin]
   end
 
   private
