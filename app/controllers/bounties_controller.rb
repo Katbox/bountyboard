@@ -65,27 +65,28 @@ class BountiesController < ApplicationController
 
   def destroy
     @bounty = Bounty.find(params[:id])
-    reasonsToDelete = ['Unclaimed', 'Rejected']
-    if @bounty.owner == currentUser && reasonsToDelete.include?(@bounty.status)
+
+    #Only admins and the bounty's owner may delete the bounty. But the bounty's
+    #owner may only delete the bounty if it is unclaimed.
+    if (@bounty.owner == currentUser && (@bounty.status == 'Unclaimed')) || currentUser.is_admin?)
       if Bounty.destroy(params[:id])
         flash[:notice] = "Bounty successfully removed."
       else
         flash[:error] = "Error removing bounty."
       end
     else
-      if @bounty.owner == currentUser
+      if @bounty.owner != currentUser
         flash[:error] = "You are not authorized to remove this bounty."
-      else
-        if @bounty.status == "Accepted"
-          acceptor = @bounty.accepting_artist.get_identifier
-      flash[:error] =<<message
+      elsif @bounty.status == "Accepted"
+        acceptor = @bounty.accepting_artist.get_identifier
+        flash[:error] =<<message
 "This bounty is being worked on by #{acceptor} and cannot be deleted. You will
 need to contact #{acceptor} and ask that he or she release their claim to the
 bounty."
 message
-        else
-          flash[:error] = "This bounty is #{@bounty.status} and cannot be deleted."
-        end
+      end
+      else
+        flash[:error] = "This bounty is #{@bounty.status} and cannot be deleted."
       end
     end
     redirect_to root_path
