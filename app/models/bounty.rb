@@ -124,4 +124,26 @@ class Bounty < ActiveRecord::Base
     end
   end
 
+  # Bounty query filters
+  # use these to get specific subsets of bounties
+  # these methods are chainable
+  def cost_greater_than(limit)
+    where('cost > ?', limit)
+  end
+  def cost_less_than(limit)
+    where('cost < ?', limit)
+  end
+  def age_greater_than(limit)
+    where('created_at > ?', limit.to_date)
+  end
+  def age_less_than(limit)
+    where('created_at < ?', limit.to_date)
+  end
+  def only_adult_content()
+    where( :adult_only => true )
+  end
+  def no_adult_content()
+    where( :adult_only => false )
+  end
+
 end

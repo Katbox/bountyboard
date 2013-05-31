@@ -324,13 +324,6 @@ candidacy.artist = artist1
 candidacy.bounty_id = bounty9.id
 candidacy.save!
 
-# define filter templates
-FilterTemplate.create!( :name => 'More expensive than', :sql => 'price > ?')
-FilterTemplate.create!( :name => 'Cheaper than', :sql => 'price < ?')
-FilterTemplate.create!( :name => 'Older than', :sql => 'created_at > ?')
-FilterTemplate.create!( :name => 'Newer than', :sql => 'created_at < ?')
-FilterTemplate.create!( :name => 'Minimum rating', :sql => 'votes > ?')
-
 #Resave to ensure validation.
 bounty1.save!
 bounty2.save!
