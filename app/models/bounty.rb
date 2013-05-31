@@ -17,7 +17,7 @@
 #
 
 class Bounty < ActiveRecord::Base
-  attr_accessible :name, :desc, :price_cents, :rating, :url, :is_private, :mood_ids
+  attr_accessible :name, :desc, :price_cents, :adult_only, :url, :is_private, :mood_ids
   attr_protected :user_id, :reject_id
 
   monetize :price_cents
@@ -72,7 +72,7 @@ class Bounty < ActiveRecord::Base
   }
   validates :is_private, :inclusion => {:in => [true, false]}
 
-  validates :rating, :inclusion => {:in => [true, false]}
+  validates :adult_only, :inclusion => {:in => [true, false]}
 
   def self.MINIMUM_PRICE
     5.00

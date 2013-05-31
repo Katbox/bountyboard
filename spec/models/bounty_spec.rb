@@ -23,7 +23,7 @@ describe Bounty do
   it { should respond_to(:name) }
   it { should respond_to(:desc) }
   it { should respond_to(:price_cents) }
-  it { should respond_to(:rating) }
+  it { should respond_to(:adult_only) }
   it { should respond_to(:url) }
   it { should respond_to(:is_private) }
   it { should respond_to(:user_id) }
@@ -47,10 +47,10 @@ describe Bounty do
     bounty.should have(1).error_on(:price)
   end
 
-  it 'should not allow rating to be anything other than true or false' do
-    bounty = FactoryGirl.build(:bounty, :rating => 'cheese')
+  it 'should not allow adult_only to be anything other than true or false' do
+    bounty = FactoryGirl.build(:bounty, :adult_only => 'cheese')
     bounty.should be_valid
-    bounty.rating.should == false
+    bounty.adult_only.should == false
   end
 
   it 'should not allow null values for its name property' do
@@ -83,10 +83,10 @@ describe Bounty do
     bounty.should have(1).error_on(:price_cents)
   end
 
-  it 'should not allow null values for its rating property' do
-    bounty = FactoryGirl.build(:bounty, :rating => nil)
+  it 'should not allow null values for its adult_only property' do
+    bounty = FactoryGirl.build(:bounty, :adult_only => nil)
     bounty.should_not be_valid
-    bounty.should have(1).error_on(:rating)
+    bounty.should have(1).error_on(:adult_only)
   end
 
   it 'should not allow null values for its is_private property' do
