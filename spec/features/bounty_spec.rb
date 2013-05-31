@@ -14,7 +14,7 @@ describe 'Bounty' do
         :name => "My First Bounty",
         :desc => "My very first bounty ever.",
         :price => 9.99,
-        :rating => false,
+        :adult_only => false,
         :is_private => false,
         :user_id => @user.id
         )
@@ -77,7 +77,7 @@ describe 'Bounty' do
         :name => "My First Bounty",
         :desc => "My very first bounty ever.",
         :price => 9.99,
-        :rating => false,
+        :adult_only => false,
         :is_private => false,
         :user_id => @user.id
         )

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130517043329) do
+ActiveRecord::Schema.define(:version => 20130531004603) do
 
   create_table "filter_templates", :force => true do |t|
     t.string   "name",                             :null => false
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 20130517043329) do
     t.text     "desc",                              :null => false
     t.integer  "price_cents",    :default => 0,     :null => false
     t.string   "price_currency", :default => "USD", :null => false
-    t.boolean  "rating",         :default => false, :null => false
+    t.boolean  "adult_only",     :default => false, :null => false
     t.boolean  "is_private",     :default => false, :null => false
     t.string   "url"
     t.integer  "user_id",                           :null => false
@@ -41,6 +41,13 @@ ActiveRecord::Schema.define(:version => 20130517043329) do
     t.integer  "artist_id",                     :null => false
     t.boolean  "acceptor",   :default => false, :null => false
   end
+
+  create_table "filter_templates", :force => true do |t|
+    t.string "name", :null => false
+    t.string "sql",  :null => false
+  end
+
+  add_index "filter_templates", ["name"], :name => "index_filter_templates_on_name"
 
   create_table "moods", :force => true do |t|
     t.string   "name",       :null => false

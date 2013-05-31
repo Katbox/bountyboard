@@ -132,7 +132,7 @@ bounty8 = Bounty.new(
   :name => "Seedy Adult Commission",
   :desc => "I'm totally not ashamed to make an adult commission public!",
   :price => 666.00,
-  :rating => true
+  :adult_only => true
 )
 bounty8.user_id = customer2.id
 bounty8.save!(:validate => false)
@@ -142,7 +142,7 @@ bounty9 = Bounty.new(
   :name => "My Little Pony \"Fan Art\"",
   :desc => "Clop. Clop. Keep this private. Clop. Clop.",
   :price => 100.00,
-  :rating => true,
+  :adult_only => true,
   :is_private => true
 )
 bounty9.user_id = customer1.id

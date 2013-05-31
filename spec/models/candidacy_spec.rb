@@ -44,7 +44,7 @@ describe Candidacy do
 
   it 'should not allow more than one acceptor per bounty' do
     candidacy1 = FactoryGirl.build(:candidacy,
-      :acceptor => true,
+      :acceptor => false,
       :bounty => @bounty,
       :artist => @artist
     )
@@ -52,7 +52,7 @@ describe Candidacy do
     candidacy1.save!
 
     candidacy2 = FactoryGirl.build(:candidacy,
-      :acceptor => true,
+      :acceptor => false,
       :bounty => @bounty,
       :artist => @artist
     )
