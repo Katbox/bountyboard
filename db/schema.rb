@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130531004603) do
+ActiveRecord::Schema.define(:version => 20130531224815) do
 
   create_table "bounties", :force => true do |t|
     t.string   "name",                              :null => false
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20130531004603) do
     t.text     "bio",           :default => "",    :null => false
     t.text     "bounty_rules",  :default => "",    :null => false
     t.boolean  "approved",      :default => false, :null => false
+    t.boolean  "admin"
   end
 
   add_index "users", ["rememberToken"], :name => "index_users_on_rememberToken"
