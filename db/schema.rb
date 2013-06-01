@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(:version => 20130601031418) do
     t.text     "bio",           :default => "",    :null => false
     t.text     "bounty_rules",  :default => "",    :null => false
     t.boolean  "approved",      :default => false, :null => false
-    t.boolean  "admin"
+    t.boolean  "admin",         :default => false, :null => false
   end
 
   add_index "users", ["rememberToken"], :name => "index_users_on_rememberToken"
