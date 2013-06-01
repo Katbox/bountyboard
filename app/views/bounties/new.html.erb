@@ -4,7 +4,7 @@
         <%= bounty_form.input :name, :required => true %>
         <%= bounty_form.input :desc, :as => :string, :required => true %>
         <%= bounty_form.input :price, :required => true %>
-        <%= bounty_form.input :artists, :as => :check_boxes%>
+        <%= bounty_form.input :artists, :collection => Artist.where(:active => true, :approved => true), :as => :check_boxes%>
         <%= bounty_form.input :moods, :as => :check_boxes%>
         <%= bounty_form.submit %>
     <% end %>
