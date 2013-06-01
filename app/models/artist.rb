@@ -13,6 +13,7 @@
 #  bounty_rules  :text             default(""), not null
 #  approved      :boolean          default(FALSE), not null
 #  admin         :boolean          default(FALSE), not null
+#  active        :boolean
 #
 
 class Artist < User
