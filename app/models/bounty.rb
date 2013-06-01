@@ -108,17 +108,13 @@ class Bounty < ActiveRecord::Base
   def status
     accepted = candidacies.where( :acceptor => true ).length > 0
     completed = (self.url != "" && self.url != nil)
-    # These combinations should not exist.
-    if (completed && accepted )
-      return 'Invalid'
-    end
     if completed
       return 'Completed'
-    end
-    if accepted
+    elsif accepted
       return 'Accepted'
+    else
+      return 'Unclaimed'
     end
-    return 'Unclaimed'
   end
 
   def accepting_artist
