@@ -35,7 +35,7 @@
       Update
       <hr>
       <% if (@bounty.owner == currentUser) || currentUser.is_admin? %>
-        <%=   link_to 'Update', edit_bounty_path(@bounty.id), class: 'btn btn-primary' %>
+        <%=   link_to 'Update', edit_bounty_path(@bounty.id, "Edit"), class: 'btn btn-primary' %>
       <% end %><br><br>
 
       Delete
@@ -58,8 +58,8 @@
 
       Complete
       <hr>
-      <% if currentUser.is_artist? %>
-        <%=   link_to 'Complete', bounty_path(:bounty => {:complete => true}), :method => :put, :confirm => "Are you sure you want to complete this bounty?", class: 'btn btn-primary' %>
+      <% if currentUser %>
+        <%=   link_to 'Complete', edit_bounty_path(@bounty.id, "Complete"), :confirm => "Are you sure you want to complete this bounty?", class: 'btn btn-primary' %>
       <% end %>
 
       Return

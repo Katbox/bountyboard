@@ -45,7 +45,8 @@ class BountiesController < ApplicationController
 
   def edit
     @bounty = Bounty.find(params[:id])
-    unless (@bounty.owner == currentUser)
+    @format = params[:format]
+    unless (@bounty.owner == currentUser || @bounty.has_candidate?(currentUser.name))
       flash[:error] = "You are not authorized to edit this bounty."
       redirect_to root_path
     end
@@ -53,13 +54,13 @@ class BountiesController < ApplicationController
 
   def update
     @bounty = Bounty.find(params[:id])
-    if @bounty.owner != currentUser
+    unless (@bounty.owner == currentUser || @bounty.has_candidate?(currentUser.name))
       redirect_to root_path, :error => "You are not authorized to edit this bounty."
     end
     if @bounty.update_attributes(params[:bounty])
       redirect_to root_path, :notice => "Bounty Updated!"
     else
-      redirect_to edit_bounty_path(@bounty.id), :error => "Error updating bounty."
+      redirect_to root_path, :error => "Error updating bounty."
     end
   end
 
