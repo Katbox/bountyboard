@@ -30,26 +30,44 @@
     The bounty's status.<br>
     <%= @bounty.status %><br><br>
 
-    Common Controls.<br>
+    <% if signed_in? %>
 
-    Delete (Only will show if you are the owner.) <br>
-    <% if @bounty.owner == currentUser %>
-      <%=   link_to 'Delete', @bounty, :confirm => "Are you sure you want to delete #{@bounty.name}?", :method => :delete, class: 'btn btn-primary' %><br>
-    <% end %>
+      Update
+      <hr>
+      <% if (@bounty.owner == currentUser) || currentUser.is_admin? %>
+        <%=   link_to 'Update', edit_bounty_path(@bounty.id), class: 'btn btn-primary' %>
+      <% end %><br><br>
 
-    Update<br>
-    <%=   link_to 'Edit this Bounty', edit_bounty_path(@bounty.id), class: 'btn btn-primary' %><br>
-    Return to Root Path.<br>
-    <%=   link_to 'Back', root_path, class: 'btn btn-primary' %><br>
+      Delete
+      <hr>
+      <% if (@bounty.owner == currentUser) || currentUser.is_admin? %>
+        <%=   link_to 'Delete', @bounty, :confirm => "Are you sure you want to delete #{@bounty.name}?", :method => :delete, class: 'btn btn-primary' %><br>
+      <% end %><br><br>
 
-    Accept<br>
-    <% if (currentUser != nil) && (currentUser.type == 'Artist') %>
-      <%=   link_to 'Accept', candidacy_path(:candidacy => {:acceptor => true}), :method => :put, :confirm => "Are you sure you want to accept this bounty?", class: 'btn btn-primary' %>
-    <% end %>
+      Accept
+      <hr>
+      <% if currentUser.is_artist? %>
+        <%=   link_to 'Accept', candidacy_path(:candidacy => {:acceptor => true}), :method => :put, :confirm => "Are you sure you want to accept this bounty?", class: 'btn btn-primary' %>
+      <% end %>
 
-    <% if (currentUser != nil) && (currentUser.type == 'Artist') %>
-      <%=   link_to 'Reject', candidacy_path, :method => :delete, :confirm => "Are you sure you want to delete your candidacy with this bounty?", class: 'btn btn-primary' %>
-    <% end %>
+      Reject
+      <hr>
+      <% if currentUser.is_artist? %>
+        <%=   link_to 'Reject', candidacy_path, :method => :delete, :confirm => "Are you sure you want to reject this bounty?", class: 'btn btn-primary' %>
+      <% end %>
+
+      Complete
+      <hr>
+      <% if currentUser.is_artist? %>
+        <%=   link_to 'Complete', bounty_path(:bounty => {:complete => true}), :method => :put, :confirm => "Are you sure you want to complete this bounty?", class: 'btn btn-primary' %>
+      <% end %>
+
+      Return
+      <hr>
+      <%=   link_to 'Back', root_path, class: 'btn btn-primary' %><br><br>
+
+   <% end %>
+
 
   </div>
 </div>
