@@ -2,12 +2,13 @@
 #
 # Table name: candidacies
 #
-#  id         :integer          not null, primary key
-#  bounty_id  :integer          not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  artist_id  :integer          not null
-#  acceptor   :boolean          default(FALSE), not null
+#  id          :integer          not null, primary key
+#  bounty_id   :integer          not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  artist_id   :integer          not null
+#  acceptor    :boolean          default(FALSE), not null
+#  accepted_at :datetime
 #
 
 class Candidacy < ActiveRecord::Base

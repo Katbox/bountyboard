@@ -12,7 +12,7 @@
 #  bio           :text             default(""), not null
 #  bounty_rules  :text             default(""), not null
 #  approved      :boolean          default(FALSE), not null
-#  admin         :boolean
+#  admin         :boolean          default(FALSE), not null
 #
 
 require 'spec_helper'
