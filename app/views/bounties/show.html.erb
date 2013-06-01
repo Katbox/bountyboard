@@ -28,7 +28,7 @@
     </ul>
 
     The bounty's status.<br>
-    <%= @bounty.status %><br><br>
+    <%= @bounty.status %><% if @bounty.status == 'Accepted' %> on <%= @bounty.accepted_on.to_s(:accepted_on) %><% end %><br><br>
 
     <% if signed_in? %>
 
