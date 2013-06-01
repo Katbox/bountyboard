@@ -9,7 +9,7 @@
         </ul>
       </nav>
       <span class="pull-right">
-      <% if signedIn? %>
+      <% if signed_in? %>
         <span class="login-notify-area">Logged in as <%= currentUser.get_identifier() %></span>
       <%  else %>
         <button class="persona-login-button btn" type="button">Sign In with Persona</button>

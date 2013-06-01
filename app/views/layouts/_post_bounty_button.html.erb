@@ -3,7 +3,7 @@
   # rendering a login button if the user isn't logged in (and therefore shouldn't
   # be able to post a bounty).
 %>
-<% if signedIn? %>
+<% if signed_in? %>
 <%=   link_to 'Post a Bounty', new_bounty_path, id: 'post-bounty', class: 'btn btn-large btn-primary' %>
 <%  else %>
     <button class="persona-login-button btn btn-large btn-primary" type="button">Sign In to Post Your Bounty</button>

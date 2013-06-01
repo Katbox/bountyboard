@@ -17,7 +17,7 @@ class BountiesController < ApplicationController
   end
 
   def create
-    if not signedIn?
+    if not signed_in?
       redirect_to root_path, :error => "You must sign in to create a bounty."
       return
     end
