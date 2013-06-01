@@ -18,7 +18,7 @@
 
 class Bounty < ActiveRecord::Base
   attr_accessible :name, :desc, :price_cents, :adult_only, :url, :is_private, :mood_ids
-  attr_protected :user_id, :reject_id
+  attr_protected :user_id
 
   monetize :price_cents
 
@@ -27,9 +27,6 @@ class Bounty < ActiveRecord::Base
 
   #OWNERSHIP OF A BOUNTY
   belongs_to :owner, :foreign_key => "user_id", :class_name => "User"
-
-  #REJECTION OF A BOUNTY
-  belongs_to :rejector, :foreign_key => "reject_id", :class_name => "User"
 
   #CANDIDACY TO ACCEPT A BOUNTY
   has_many :candidacies

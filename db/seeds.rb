@@ -145,7 +145,7 @@ bounty8 = Bounty.new(
 bounty8.user_id = customer2.id
 bounty8.save!(:validate => false)
 
-# A bounty created by customer 1, rejected by artist 4.
+# A bounty created by customer 1
 bounty9 = Bounty.new(
   :name => "My Little Pony \"Fan Art\"",
   :desc => "Clop. Clop. Keep this private. Clop. Clop.",
@@ -154,7 +154,6 @@ bounty9 = Bounty.new(
   :is_private => true
 )
 bounty9.user_id = customer1.id
-bounty9.reject_id = artist4.id
 bounty9.save!(:validate => false)
 
 #Bounty 1's moods
