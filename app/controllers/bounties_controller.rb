@@ -84,7 +84,6 @@ class BountiesController < ApplicationController
 need to contact #{acceptor} and ask that he or she release their claim to the
 bounty."
 message
-      end
       else
         flash[:error] = "This bounty is #{@bounty.status} and cannot be deleted."
       end
