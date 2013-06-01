@@ -6,7 +6,7 @@ module SessionsHelper
     self.currentUser = user
   end
 
-  def signedIn?
+  def signed_in?
     !currentUser.nil?
   end
 
