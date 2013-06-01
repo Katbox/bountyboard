@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130601031418) do
+ActiveRecord::Schema.define(:version => 20130601041202) do
 
   create_table "bounties", :force => true do |t|
     t.string   "name",                              :null => false
@@ -27,19 +27,13 @@ ActiveRecord::Schema.define(:version => 20130601031418) do
   end
 
   create_table "candidacies", :force => true do |t|
-    t.integer  "bounty_id",                     :null => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.integer  "artist_id",                     :null => false
-    t.boolean  "acceptor",   :default => false, :null => false
+    t.integer  "bounty_id",                      :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "artist_id",                      :null => false
+    t.boolean  "acceptor",    :default => false, :null => false
+    t.datetime "accepted_at"
   end
-
-  create_table "filter_templates", :force => true do |t|
-    t.string "name", :null => false
-    t.string "sql",  :null => false
-  end
-
-  add_index "filter_templates", ["name"], :name => "index_filter_templates_on_name"
 
   create_table "moods", :force => true do |t|
     t.string   "name",       :null => false
@@ -64,7 +58,7 @@ ActiveRecord::Schema.define(:version => 20130601031418) do
     t.text     "bio",           :default => "",    :null => false
     t.text     "bounty_rules",  :default => "",    :null => false
     t.boolean  "approved",      :default => false, :null => false
-    t.boolean  "admin"
+    t.boolean  "admin",         :default => false, :null => false
   end
 
   add_index "users", ["rememberToken"], :name => "index_users_on_rememberToken"

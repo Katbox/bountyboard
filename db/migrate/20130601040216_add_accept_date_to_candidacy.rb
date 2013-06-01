@@ -1,4 +1,4 @@
-class AddIsAdminFlagToUser < ActiveRecord::Migration
+class AddAcceptDateToCandidacy < ActiveRecord::Migration
   def up
     add_column :candidacies, :accepted_at, :datetime
   end
