@@ -11,7 +11,6 @@
 #  is_private     :boolean          default(FALSE), not null
 #  url            :string(255)
 #  user_id        :integer          not null
-#  reject_id      :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
@@ -108,14 +107,10 @@ class Bounty < ActiveRecord::Base
 
   def status
     accepted = candidacies.where( :acceptor => true ).length > 0
-    rejected = (self.rejector != nil)
     completed = (self.url != "" && self.url != nil)
     # These combinations should not exist.
-    if (accepted && rejected || completed && rejected )
+    if (completed && accepted )
       return 'Invalid'
-    end
-    if rejected
-      return 'Rejected'
     end
     if completed
       return 'Completed'

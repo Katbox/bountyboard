@@ -11,7 +11,6 @@
 #  is_private     :boolean          default(FALSE), not null
 #  url            :string(255)
 #  user_id        :integer          not null
-#  reject_id      :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
@@ -27,7 +26,6 @@ describe Bounty do
   it { should respond_to(:url) }
   it { should respond_to(:is_private) }
   it { should respond_to(:user_id) }
-  it { should respond_to(:reject_id) }
 
   it 'should not allow name to be too long' do
     bounty = FactoryGirl.build(:bounty, :name => '$' * (Bounty.MAXIMUM_NAME_LENGTH + 1))
@@ -107,29 +105,8 @@ describe Bounty do
 
     it 'should be Accepted' do
       @bounty.candidacies[0].acceptor = true
-	  @bounty.candidacies.each { |candidacy| candidacy.save! }
+    @bounty.candidacies.each { |candidacy| candidacy.save! }
       @bounty.status.should == 'Accepted'
-    end
-
-    it 'should be Rejected' do
-      @bounty.rejector = FactoryGirl.create(:artist)
-	  @bounty.rejector.save!
-      @bounty.status.should == 'Rejected'
-    end
-
-    it 'should be Invalid if accepted and rejected' do
-      @bounty.candidacies[0].acceptor = true
-	  @bounty.candidacies.each { |candidacy| candidacy.save! }
-      @bounty.rejector = FactoryGirl.create(:artist)
-      @bounty.status.should == 'Invalid'
-    end
-
-    it 'should prevent saving if Invalid' do
-      @bounty.url = 'http://uhoh.com'
-      @bounty.rejector = FactoryGirl.create(:artist)
-      @bounty.status.should == 'Invalid'
-	  @bounty.should be_invalid
-      @bounty.should have(1).error_on(:status)
     end
 
   end
