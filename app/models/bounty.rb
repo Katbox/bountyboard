@@ -131,7 +131,7 @@ class Bounty < ActiveRecord::Base
 
   def accepting_artist
     acceptor_candidacy = candidacies.where( :acceptor => true)
-	if acceptor_candidacy.nil?
+  if acceptor_candidacy.nil?
       return nil
     else
       return acceptor_candidacy.first.artist
