@@ -6,6 +6,12 @@ class ArtistsController < ApplicationController
   end
 
   def show
+      @artist = Artist.find(params[:id])
+      candidacies = Candidacy.where(:artist_id => currentUser.id, :acceptor => true)
+      @bounties = []
+      candidacies.each do |c|
+        @bounties.append(c.bounty)
+      end
   end
 
   def new
