@@ -1,0 +1,51 @@
+class ArtistsController < ApplicationController
+
+  include SessionsHelper
+
+  def index
+  end
+
+  def show
+  end
+
+  def new
+    unless signed_in?
+      redirect_to root_path, :error => "You must sign in."
+      return
+    end
+    if currentUser.is_admin?
+      @artist = Artist.new
+    else
+      redirect_to root_path, :error => "Only administrators can create new artists."
+    end
+  end
+
+  def create
+    unless signed_in?
+      redirect_to root_path, :error => "You must sign in."
+      return
+    end
+    if currentUser.is_admin?
+      #Auto approve for now.
+      params[:artist][:approved] = true
+      @artist = Artist.new(params[:artist])
+      if @artist.save
+        redirect_to root_path, :notice => "Artist created successfully."
+      else
+        flash[:error] = "Error saving Artist."
+        render 'new'
+      end
+    else
+      redirect_to root_path, :error => "Only administrators can create new artists."
+    end
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+  end
+end
