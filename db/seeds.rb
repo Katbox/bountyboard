@@ -1,7 +1,7 @@
 admin1 = User.new(
   :name => 'Admin1',
-  :email => 'admin1@test.com',
-  # :email => 'lionheartstudio@gmail.com',
+  # :email => 'admin1@test.com',
+  :email => 'lionheartstudio@gmail.com',
   :approved => true
 )
 admin1.admin = true
@@ -9,11 +9,12 @@ admin1.save!
 
 artist1 = Artist.new(
   :name => 'Artist1',
-  :email => 'lionheartstudio@gmail.com',
-  # :email => 'artist1@test.com',
+  # :email => 'lionheartstudio@gmail.com',
+  :email => 'artist1@test.com',
   :bio => 'Artist 1 is a nice person who likes the Art Deco style.',
   :bounty_rules => 'Bounties over $20 only, please.',
-  :approved => true
+  :approved => true,
+  :active => true
 )
 artist1.save!
 
@@ -22,7 +23,8 @@ artist2 = Artist.new(
   :email => 'artist2@test.com',
   :bio => 'Artist 2 is a withdrawn person who emerges periodically to draw mostly surrealist art.',
   :bounty_rules => 'Surrealist art only!',
-  :approved => true
+  :approved => true,
+  :active => true
 )
 artist2.save!
 
@@ -31,7 +33,8 @@ artist3 = Artist.new(
   :email => 'artist3@test.com',
   :bio => 'Artist 3 is inquisitive and energetic, exploring new artistic styles all the time.',
   :bounty_rules => 'I only accept major art projects, costing $50 or more.',
-  :approved => true
+  :approved => true,
+  :active => true
 )
 artist3.save!
 
@@ -40,7 +43,8 @@ artist4 = Artist.new(
   :email => 'artist4@test.com',
   :bio => 'Artist 4 is a complete tool who only draws still lifes.',
   :bounty_rules => 'I\'m a troll *rargle blargle*.',
-  :approved => false
+  :approved => false,
+  :active => false
 )
 artist4.save!
 
