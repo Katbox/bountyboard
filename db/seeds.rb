@@ -1,14 +1,14 @@
 admin1 = User.new(
   :name => 'Admin1',
-  :email => 'lionheartstudio@gmail.com',
-  :admin => true,
+  :email => 'admin1@test.com',
   :approved => true
 )
+admin1.admin = true
 admin1.save!
 
 artist1 = Artist.new(
   :name => 'Artist1',
-  :email => 'artist1@test.com',
+  :email => 'lionheartstudio@gmail.com',
   :bio => 'Artist 1 is a nice person who likes the Art Deco style.',
   :bounty_rules => 'Bounties over $20 only, please.',
   :approved => true
