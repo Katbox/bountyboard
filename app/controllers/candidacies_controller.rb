@@ -22,6 +22,7 @@ class CandidaciesController < ApplicationController
     redirect_to root_path, :error => "Only artists may accept bounties." if (currentUser.is_artist? == false)
     @candidacy = Candidacy.where(:artist_id => currentUser.id, :bounty_id => @bounty.id).first
     unless @candidacy.nil?
+      params[:candidacy][:accepted_at] = Time.now
       if @candidacy.update_attributes(params[:candidacy])
         redirect_to root_path, :notice => "Bounty Accepted!"
       else

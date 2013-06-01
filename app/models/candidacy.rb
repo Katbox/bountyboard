@@ -2,16 +2,17 @@
 #
 # Table name: candidacies
 #
-#  id         :integer          not null, primary key
-#  bounty_id  :integer          not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  artist_id  :integer          not null
-#  acceptor   :boolean          default(FALSE), not null
+#  id          :integer          not null, primary key
+#  bounty_id   :integer          not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  artist_id   :integer          not null
+#  acceptor    :boolean          default(FALSE), not null
+#  accepted_at :datetime
 #
 
 class Candidacy < ActiveRecord::Base
-  attr_accessible :acceptor, :artist_id, :bounty_id
+  attr_accessible :acceptor, :accepted_at, :artist_id, :bounty_id
 
   #Many to many join table between artists and bounty.
   belongs_to :artist
