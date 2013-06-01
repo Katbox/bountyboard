@@ -41,6 +41,10 @@ class User < ActiveRecord::Base
     return self[:admin]
   end
 
+  def is_artist?
+    return true if self[:type] == 'Artist'
+  end
+
   private
 
   def createRememberToken
