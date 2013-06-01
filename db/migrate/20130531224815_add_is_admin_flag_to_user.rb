@@ -4,6 +4,6 @@ class AddIsAdminFlagToUser < ActiveRecord::Migration
   end
 
   def down
-    remove_column :users, :admin, :boolean
+    remove_column :users, :admin
   end
 end
