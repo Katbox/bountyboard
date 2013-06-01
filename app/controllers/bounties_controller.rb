@@ -5,7 +5,6 @@ class BountiesController < ApplicationController
   def index
     @bounty = Bounty.all
     @bounty.sort_by{|e| e[:created_at]}
-    @candidacy = Candidacy.all
   end
 
   def show
