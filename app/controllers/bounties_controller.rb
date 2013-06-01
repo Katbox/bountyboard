@@ -68,7 +68,7 @@ class BountiesController < ApplicationController
 
     #Only admins and the bounty's owner may delete the bounty. But the bounty's
     #owner may only delete the bounty if it is unclaimed.
-    if (@bounty.owner == currentUser && (@bounty.status == 'Unclaimed')) || currentUser.is_admin?)
+    if (@bounty.owner == currentUser && (@bounty.status == 'Unclaimed')) || currentUser.is_admin?
       if Bounty.destroy(params[:id])
         flash[:notice] = "Bounty successfully removed."
       else
