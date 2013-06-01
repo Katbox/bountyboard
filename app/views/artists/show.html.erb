@@ -27,7 +27,7 @@
         <%=   link_to 'Update', edit_artist_path(@artist.id, "Edit"), class: 'btn btn-primary' %><br><br>
       <% end %>
 
-      <% if (@artist == currentUser) || currentUser.is_admin? %>
+      <% if currentUser.is_admin? %>
         <%=   link_to 'Delete', @artist, :confirm => "Are you sure you want to delete #{@artist.name}?", :method => :delete, class: 'btn btn-primary' %><br><br>
       <% end %>
 

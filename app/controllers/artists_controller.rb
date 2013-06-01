@@ -53,5 +53,12 @@ class ArtistsController < ApplicationController
   end
 
   def destroy
+    @artist = Artist.find(params[:id])
+    if currentUser.is_admin?
+      @artist.active = false
+      redirect_to root_path, :notice => "Artist #{@artist.name} is now inactive."
+    else
+      redirect_to root_path, :error => "Only administrators can delete artists."
+    end
   end
 end
