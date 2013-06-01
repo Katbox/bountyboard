@@ -13,9 +13,9 @@ artist1 = Artist.new(
   :email => 'artist1@test.com',
   :bio => 'Artist 1 is a nice person who likes the Art Deco style.',
   :bounty_rules => 'Bounties over $20 only, please.',
-  :approved => true,
-  :active => true
+  :approved => true
 )
+artist1.active = true
 artist1.save!
 
 artist2 = Artist.new(
@@ -23,9 +23,9 @@ artist2 = Artist.new(
   :email => 'artist2@test.com',
   :bio => 'Artist 2 is a withdrawn person who emerges periodically to draw mostly surrealist art.',
   :bounty_rules => 'Surrealist art only!',
-  :approved => true,
-  :active => true
+  :approved => true
 )
+artist2.active = true
 artist2.save!
 
 artist3 = Artist.new(
@@ -33,9 +33,9 @@ artist3 = Artist.new(
   :email => 'artist3@test.com',
   :bio => 'Artist 3 is inquisitive and energetic, exploring new artistic styles all the time.',
   :bounty_rules => 'I only accept major art projects, costing $50 or more.',
-  :approved => true,
-  :active => true
+  :approved => true
 )
+artist3.active = true
 artist3.save!
 
 artist4 = Artist.new(
@@ -43,9 +43,9 @@ artist4 = Artist.new(
   :email => 'artist4@test.com',
   :bio => 'Artist 4 is a complete tool who only draws still lifes.',
   :bounty_rules => 'I\'m a troll *rargle blargle*.',
-  :approved => false,
-  :active => false
+  :approved => false
 )
+artist4.active = false
 artist4.save!
 
 customer1 = User.new(:name => 'Customer1', :email => 'customer1@test.com')
