@@ -118,11 +118,20 @@ class Bounty < ActiveRecord::Base
   end
 
   def accepting_artist
-    acceptor_candidacy = candidacies.where( :acceptor => true)
+    acceptor_candidacy = candidacies.where( :acceptor => true).first
   if acceptor_candidacy.nil?
       return nil
     else
-      return acceptor_candidacy.first.artist
+      return acceptor_candidacy.artist
+    end
+  end
+
+  def accepted_on
+    acceptor_candidacy = candidacies.where( :acceptor => true).first
+  if acceptor_candidacy.nil?
+      return nil
+    else
+      return acceptor_candidacy.accepted_at
     end
   end
 

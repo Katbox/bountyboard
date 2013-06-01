@@ -12,7 +12,7 @@
 #
 
 class Candidacy < ActiveRecord::Base
-  attr_accessible :acceptor, :artist_id, :bounty_id
+  attr_accessible :acceptor, :accepted_at, :artist_id, :bounty_id
 
   #Many to many join table between artists and bounty.
   belongs_to :artist
