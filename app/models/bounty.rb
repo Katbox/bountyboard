@@ -53,6 +53,20 @@ class Bounty < ActiveRecord::Base
     return self[:is_private] ? "private" : "public"
   end
 
+  def has_candidate?(name)
+    artist = Artist.find_by_name(name)
+    if artist
+      candidacy = Candidacy.where(:artist_id => artist.id, :bounty_id => self[:id]).first
+      if candidacy
+        return true
+      else
+        return false
+      end
+    else
+      return false
+    end
+  end
+
   def self.MAXIMUM_NAME_LENGTH
     30
   end
