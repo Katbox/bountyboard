@@ -11,11 +11,10 @@
 class Mood < ActiveRecord::Base
     attr_accessible :name
 
-    #PERSONALITY OF A BOUNTY
+    # Relationships ============================================================
     has_many :personalities
     has_many :bounties, :through => :personalities
 
-    #VALIDATIONS
+    # Validations ==============================================================
     validates :name, :presence => true
-
 end
