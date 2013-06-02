@@ -24,11 +24,12 @@
 				<li id="only-adult-content-filter"><input type="checkbox" class="filter-toggle"> Only Show Adult Content</li>
 			</ul>
 		  </li>
+          <%= render 'artists/new_artist_button' %>
         </ul>
       </nav>
       <span class="pull-right">
       <% if signed_in? %>
-        <span class="login-notify-area">Logged in as <%= currentUser.get_identifier() %></span>
+        <span class="login-notify-area">Logged in as <%= currentUser.get_identifier() %><%= render 'artists/show_artist_button' %></span>
       <%  else %>
         <button class="persona-login-button btn" type="button">Sign In with Persona</button>
       <%  end %>

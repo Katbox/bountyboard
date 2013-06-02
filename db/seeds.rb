@@ -1,6 +1,7 @@
 admin1 = User.new(
   :name => 'Admin1',
-  :email => 'admin1@test.com',
+  # :email => 'admin1@test.com',
+  :email => 'lionheartstudio@gmail.com',
   :approved => true
 )
 admin1.admin = true
@@ -8,11 +9,13 @@ admin1.save!
 
 artist1 = Artist.new(
   :name => 'Artist1',
-  :email => 'lionheartstudio@gmail.com',
+  # :email => 'lionheartstudio@gmail.com',
+  :email => 'artist1@test.com',
   :bio => 'Artist 1 is a nice person who likes the Art Deco style.',
   :bounty_rules => 'Bounties over $20 only, please.',
   :approved => true
 )
+artist1.active = true
 artist1.save!
 
 artist2 = Artist.new(
@@ -22,6 +25,7 @@ artist2 = Artist.new(
   :bounty_rules => 'Surrealist art only!',
   :approved => true
 )
+artist2.active = true
 artist2.save!
 
 artist3 = Artist.new(
@@ -31,6 +35,7 @@ artist3 = Artist.new(
   :bounty_rules => 'I only accept major art projects, costing $50 or more.',
   :approved => true
 )
+artist3.active = true
 artist3.save!
 
 artist4 = Artist.new(
@@ -40,6 +45,7 @@ artist4 = Artist.new(
   :bounty_rules => 'I\'m a troll *rargle blargle*.',
   :approved => false
 )
+artist4.active = false
 artist4.save!
 
 customer1 = User.new(:name => 'Customer1', :email => 'customer1@test.com')

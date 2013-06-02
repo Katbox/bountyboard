@@ -1,0 +1,16 @@
+<div class="row-fluid">
+  <div id="bounty-page-area" class="span8 offset2">
+    <%= semantic_form_for @artist do |artist_form| %>
+        <%= artist_form.input :name, :required => true %>
+        <%= artist_form.input :email, :required => true %>
+        <%= artist_form.input :bio, :as => :string, :required => true %>
+        <%= artist_form.input :bounty_rules, :as => :string, :required => true %>
+        <% if currentUser.is_admin? %>
+          <%= artist_form.input :approved%>
+          <%= artist_form.input :active%>
+        <% end %>
+        <%= artist_form.submit %>
+    <% end %>
+    <%=   link_to 'Return to Bounty', artist_path(@artist.id), class: 'btn btn-primary' %>
+  </div>
+</div>

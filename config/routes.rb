@@ -2,6 +2,7 @@ Bountyboard::Application.routes.draw do
 
   root :to => 'Bounties#index'
 
+  resources :artists
   resources :bounties
   resources :candidacies
 
