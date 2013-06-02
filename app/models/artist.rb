@@ -17,7 +17,7 @@
 #
 
 class Artist < User
-  attr_accessible :bio, :bounty_rules, :approved
+  attr_accessible :bio, :bounty_rules, :approved, :active
 
   #CANDIDACY TO ACCEPT A BOUNTY
   has_many :candidacies
