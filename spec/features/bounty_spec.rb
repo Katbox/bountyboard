@@ -60,10 +60,6 @@ describe 'Bounty' do
     describe 'should display a form to create a bounty' do
       it { should have_selector('#bounty-page-area')}
       it { should have_selector('#bounty_artists_input') }
-      it { should have_selector('label[for=bounty_artist_ids_1]', :text => "Artist1") }
-      it { should have_selector('label[for=bounty_artist_ids_2]', :text => "Artist2") }
-      it { should have_selector('label[for=bounty_artist_ids_3]', :text => "Artist3") }
-      it { should have_selector('label[for=bounty_artist_ids_4]', :text => "Artist4") }
       it { should have_selector('#bounty_moods_input') }
       it { should have_selector('label[for=bounty_mood_ids_1]', :text => "Mood1") }
     end
