@@ -49,12 +49,21 @@ class ArtistsController < ApplicationController
   def edit
     @artist = Artist.find(params[:id])
     unless (@artist == currentUser || currentUser.is_admin?)
-      flash[:error] = "You are not authorized to edit this bounty."
+      flash[:error] = "You are not authorized to edit this artist."
       redirect_to root_path
     end
   end
 
   def update
+    @artist = Artist.find(params[:id])
+    unless (@artist == currentUser || currentUser.is_admin?)
+      redirect_to root_path, :error => "You are not authorized to edit this artist."
+    end
+    if @artist.update_attributes(params[:artist])
+      redirect_to root_path, :notice => "Artist Updated!"
+    else
+      redirect_to root_path, :error => "Error updating Artist."
+    end
   end
 
   def destroy
