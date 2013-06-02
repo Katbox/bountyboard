@@ -113,7 +113,7 @@ class Bounty < ActiveRecord::Base
   # Accepted, or Unclaimed.
   def status
     accepted = candidacies.where( :acceptor => true ).length > 0
-    completed = ((self.url != "") && (self.url != nil)
+    completed = ((self.url != "") && (self.url != nil))
     if completed
       return 'Completed'
     elsif accepted
