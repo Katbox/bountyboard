@@ -6,7 +6,7 @@
       <li><%= @bounty.desc %></li>
       <li>$<%= @bounty.price %></li>
       <li><%= @bounty.adult_only %></li>
-      <li><%= @bounty.get_url %></li>
+      <li><% if @bounty.status == 'Completed' %><%= @bounty.url %><% end %></li>
       <li><%= @bounty.get_private %></li>
       <li><%= @bounty.created_at.to_s(:created_on) %></li>
     </ul>

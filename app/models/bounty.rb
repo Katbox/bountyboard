@@ -16,35 +16,29 @@
 #
 
 class Bounty < ActiveRecord::Base
-  attr_accessible :name, :desc, :price_cents, :adult_only, :url, :is_private, :mood_ids
-  attr_protected :user_id
+  attr_accessible :name, :desc, :price_cents, :adult_only, :url, :is_private, :mood_ids, :price, :artist_ids
 
+  # Money gem. "price_cents" is the price of the bounty in cents.
+  # The gem will apply proper formatting if the implicit "price" property is
+  # used. Ex. @bounty.price_cents -> 100050 @bounty.price -> 1,000.50. Price
+  # symbols like $ are accessed separately.
   monetize :price_cents
 
-  #OWNERSHIP OF A VOTE
+  # Relationships ==============================================================
   has_many :votes, :dependent => :destroy
 
-  #OWNERSHIP OF A BOUNTY
   belongs_to :owner, :foreign_key => "user_id", :class_name => "User"
 
-  #CANDIDACY TO ACCEPT A BOUNTY
   has_many :candidacies
   has_many :artists, :through => :candidacies, :dependent => :destroy
 
-  #PERSONALITY OF A BOUNTY
   has_many :personalities
   has_many :moods, :through => :personalities, :dependent => :destroy
 
-  #CANDIDACIES MAY BE SAVED WHEN A BOUNTY IS SAVED
-  accepts_nested_attributes_for :candidacies
-
-  #VALIDATIONS
+  # Validations ================================================================
   validates :name, :desc, :price, :user_id, :presence => true
 
-  def get_url
-    return self[:url] ? self[:url] : "This bounty is not yet completed!"
-  end
-
+  # Returns private or public based on the boolean is_private property.
   def get_private
     return self[:is_private] ? "private" : "public"
   end
