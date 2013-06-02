@@ -169,5 +169,4 @@ class Bounty < ActiveRecord::Base
   def no_adult_content()
     where( :adult_only => false )
   end
-
 end
