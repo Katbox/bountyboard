@@ -4,6 +4,7 @@ class BountiesController < ApplicationController
 
   def index
     @bounty = Bounty.all
+    @artist = Artist.all
     @bounty.sort_by{|e| e[:created_at]}
   end
 
