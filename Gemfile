@@ -29,6 +29,7 @@ end
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
+  gem 'jquery-ui-sass-rails'
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -49,6 +50,7 @@ end
 
 # Universal gems that should be used in all environments.
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'normalize-rails'
 gem 'bootstrap-sass'
 gem 'omniauth-browserid'
