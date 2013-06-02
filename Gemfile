@@ -31,6 +31,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'jquery-ui-sass-rails'
   gem 'coffee-rails', '~> 3.2.1'
+  gem 'bootstrap-sass'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
@@ -52,7 +53,6 @@ end
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'normalize-rails'
-gem 'bootstrap-sass'
 gem 'omniauth-browserid'
 gem 'omniauth-deviantart'
 gem 'money-rails'
