@@ -10,7 +10,6 @@
 
 class Mood < ActiveRecord::Base
     attr_accessible :name
-    attr_protected :id
 
     #PERSONALITY OF A BOUNTY
     has_many :personalities
