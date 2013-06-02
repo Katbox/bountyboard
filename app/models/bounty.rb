@@ -35,14 +35,66 @@ class Bounty < ActiveRecord::Base
   has_many :personalities
   has_many :moods, :through => :personalities, :dependent => :destroy
 
+  # Attributes =================================================================
+  def self.MAXIMUM_NAME_LENGTH
+    30
+  end
+
+  def self.MAXIMUM_DESC_LENGTH
+    5000
+  end
+
+  def self.MINIMUM_PRICE
+    5.00
+  end
+
   # Validations ================================================================
   validates :name, :desc, :price, :user_id, :presence => true
+
+  validates :name, :length => {
+    :minimum => 1,
+    :maximum => Bounty.MAXIMUM_NAME_LENGTH,
+    :message => "must be between 1 and 30 characters long"
+  }
+
+  validates :desc, :length => {
+    :minimum => 1,
+  :maximum => Bounty.MAXIMUM_DESC_LENGTH,
+  :message => "must be between 1 and 5000 characters long"
+  }
+
+  validates :private, :inclusion => {:in => [true, false]}
+
+  validates :adult_only, :inclusion => {:in => [true, false]}
+
+  validates :price,
+    :numericality => {
+      :greater_than_or_equal_to => self.MINIMUM_PRICE,
+      message: "must be #{self.MINIMUM_PRICE} or more"
+    }
+
+  validates :status, :exclusion => {
+    :in => 'Invalid',
+    :message => 'Cannot save a bounty with status invalid.'
+  }
+
+  validate :validate_num_of_moods
+
+  # If this bounty is not have the correct range of moods, throw an error.
+  def validate_num_of_moods
+    errors.add(:moods, "for this bounty exceeds #{Personality.MAXIMUM_MOODS}") if moods.length > Personality.MAXIMUM_MOODS
+    errors.add(:moods, "for this bounty must be at least #{Personality.MINIMUM_MOODS}") if moods.length < Personality.MINIMUM_MOODS
+  end
+
+  # Methods ====================================================================
 
   # Returns private or public based on the boolean private property.
   def is_private?
     return self[:private]
   end
 
+  # Checks if an artist is a candidate for a bounty based on the artist's name.
+  # Returns true if he is, and false if he isn't.
   def has_candidate?(name)
     artist = Artist.find_by_name(name)
     if artist
@@ -57,51 +109,11 @@ class Bounty < ActiveRecord::Base
     end
   end
 
-  def self.MAXIMUM_NAME_LENGTH
-    30
-  end
-  validates :name, :length => {
-    :minimum => 1,
-  :maximum => Bounty.MAXIMUM_NAME_LENGTH,
-  :message => "must be between 1 and 30 characters long"
-  }
-
-  def self.MAXIMUM_DESC_LENGTH
-    5000
-  end
-  validates :desc, :length => {
-    :minimum => 1,
-  :maximum => Bounty.MAXIMUM_DESC_LENGTH,
-  :message => "must be between 1 and 5000 characters long"
-  }
-  validates :private, :inclusion => {:in => [true, false]}
-
-  validates :adult_only, :inclusion => {:in => [true, false]}
-
-  def self.MINIMUM_PRICE
-    5.00
-  end
-  validates :price,
-    :numericality => {
-      :greater_than_or_equal_to => self.MINIMUM_PRICE,
-      message: "must be #{self.MINIMUM_PRICE} or more"
-    }
-
-  validates :status, :exclusion => {
-    :in => 'Invalid',
-    :message => 'Cannot save a bounty with status invalid.'
-  }
-
-  validate :validate_num_of_moods
-
-  def validate_num_of_moods
-    errors.add(:moods, "for this bounty exceeds #{Personality.MAXIMUM_MOODS}") if moods.length > Personality.MAXIMUM_MOODS
-    errors.add(:moods, "for this bounty must be at least #{Personality.MINIMUM_MOODS}") if moods.length < Personality.MINIMUM_MOODS
-  end
-
+  # Returns the status of the bounty as a string. May either be Completed,
+  # Accepted, or Unclaimed.
   def status
     accepted = candidacies.where( :acceptor => true ).length > 0
-    completed = (self.url != "" && self.url != nil)
+    completed = ((self.url != "") && (self.url != nil)
     if completed
       return 'Completed'
     elsif accepted
@@ -111,42 +123,49 @@ class Bounty < ActiveRecord::Base
     end
   end
 
+  # Return the artist object that is the acceptor of this bounty. Return
+  # nil if bounty is not accepted.
   def accepting_artist
     acceptor_candidacy = candidacies.where( :acceptor => true).first
-  if acceptor_candidacy.nil?
+    if acceptor_candidacy.nil?
       return nil
     else
       return acceptor_candidacy.artist
     end
   end
 
+  # Return the date the bounty was accepted and nil if the bounty is unclaimed.
   def accepted_on
     acceptor_candidacy = candidacies.where( :acceptor => true).first
-  if acceptor_candidacy.nil?
+    if acceptor_candidacy.nil?
       return nil
     else
       return acceptor_candidacy.accepted_at
     end
   end
 
-  # Bounty query filters
-  # use these to get specific subsets of bounties
-  # these methods are chainable
+  # Bounty query filters use these to get specific subsets of bounties. These
+  # methods are chainable
   def cost_greater_than(limit)
     where('cost > ?', limit)
   end
+
   def cost_less_than(limit)
     where('cost < ?', limit)
   end
+
   def age_greater_than(limit)
     where('created_at > ?', limit.to_date)
   end
+
   def age_less_than(limit)
     where('created_at < ?', limit.to_date)
   end
+
   def only_adult_content()
     where( :adult_only => true )
   end
+
   def no_adult_content()
     where( :adult_only => false )
   end
