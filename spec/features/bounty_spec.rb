@@ -15,7 +15,7 @@ describe 'Bounty' do
         :desc => "My very first bounty ever.",
         :price => 9.99,
         :adult_only => false,
-        :is_private => false,
+        :private => false,
         :user_id => @user.id
         )
       visit root_path
@@ -74,7 +74,7 @@ describe 'Bounty' do
         :desc => "My very first bounty ever.",
         :price => 9.99,
         :adult_only => false,
-        :is_private => false,
+        :private => false,
         :user_id => @user.id
         )
       visit bounty_path(@bounty.id)

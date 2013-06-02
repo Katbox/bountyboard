@@ -8,7 +8,7 @@
 #  price_cents    :integer          default(0), not null
 #  price_currency :string(255)      default("USD"), not null
 #  adult_only     :boolean          default(FALSE), not null
-#  is_private     :boolean          default(FALSE), not null
+#  private        :boolean          default(FALSE), not null
 #  url            :string(255)
 #  user_id        :integer          not null
 #  created_at     :datetime         not null
@@ -16,7 +16,7 @@
 #
 
 class Bounty < ActiveRecord::Base
-  attr_accessible :name, :desc, :price_cents, :adult_only, :url, :is_private, :mood_ids, :price, :artist_ids
+  attr_accessible :name, :desc, :price_cents, :adult_only, :url, :private, :mood_ids, :price, :artist_ids
 
   # Money gem. "price_cents" is the price of the bounty in cents.
   # The gem will apply proper formatting if the implicit "price" property is
@@ -38,9 +38,9 @@ class Bounty < ActiveRecord::Base
   # Validations ================================================================
   validates :name, :desc, :price, :user_id, :presence => true
 
-  # Returns private or public based on the boolean is_private property.
+  # Returns private or public based on the boolean private property.
   def get_private
-    return self[:is_private] ? "private" : "public"
+    return self[:private] ? "private" : "public"
   end
 
   def has_candidate?(name)
@@ -74,7 +74,7 @@ class Bounty < ActiveRecord::Base
   :maximum => Bounty.MAXIMUM_DESC_LENGTH,
   :message => "must be between 1 and 5000 characters long"
   }
-  validates :is_private, :inclusion => {:in => [true, false]}
+  validates :private, :inclusion => {:in => [true, false]}
 
   validates :adult_only, :inclusion => {:in => [true, false]}
 

@@ -157,7 +157,7 @@ bounty9 = Bounty.new(
   :desc => "Clop. Clop. Keep this private. Clop. Clop.",
   :price => 100.00,
   :adult_only => true,
-  :is_private => true
+  :private => true
 )
 bounty9.user_id = customer1.id
 bounty9.save!(:validate => false)
