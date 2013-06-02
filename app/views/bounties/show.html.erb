@@ -6,8 +6,8 @@
       <li><%= @bounty.desc %></li>
       <li>$<%= @bounty.price %></li>
       <li><%= @bounty.adult_only %></li>
-      <li><% if @bounty.status == 'Completed' %><%= @bounty.url %><% end %></li>
-      <li><%= @bounty.get_private %></li>
+      <li><% if @bounty.status == 'Completed' %><%= @bounty.url %><% else %>Not completed!<% end %></li>
+      <li><% if @bounty.is_private? %>Private<% else %>Public<% end %></li>
       <li><%= @bounty.created_at.to_s(:created_on) %></li>
     </ul>
     The bounty's candidacies.

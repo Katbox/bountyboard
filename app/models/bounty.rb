@@ -39,8 +39,8 @@ class Bounty < ActiveRecord::Base
   validates :name, :desc, :price, :user_id, :presence => true
 
   # Returns private or public based on the boolean private property.
-  def get_private
-    return self[:private] ? "private" : "public"
+  def is_private?
+    return self[:private]
   end
 
   def has_candidate?(name)
