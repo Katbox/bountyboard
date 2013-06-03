@@ -164,6 +164,7 @@ footer {
   top: 40px;
   width: 100%;
   background-color: white;
+  z-index: 1; // the filter controls should overlay the page content
   @include roundCorners;
 }
 
