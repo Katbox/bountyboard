@@ -2,9 +2,12 @@ class ArtistsController < ApplicationController
 
   include SessionsHelper
 
+  # Display a list of all artists in the system, with links to see their
+  # individual profiles.
   def index
   end
 
+  # Show an individual artist's profile.
   def show
       @artist = Artist.find(params[:id])
       candidacies = Candidacy.where(:artist_id => currentUser.id, :acceptor => true)
@@ -14,6 +17,8 @@ class ArtistsController < ApplicationController
       end
   end
 
+  # Display the form to create a new artist. Only admins may perform this
+  # action.
   def new
     unless signed_in?
       redirect_to root_path, :error => "You must sign in."
@@ -26,19 +31,20 @@ class ArtistsController < ApplicationController
     end
   end
 
+  # Create a new artist. Only admins may perform this action.
   def create
     unless signed_in?
       redirect_to root_path, :error => "You must sign in."
       return
     end
     if currentUser.admin?
-      #Auto approve for now.
+      #TODO Figure out how approved fits into our workflow.
       params[:artist][:approved] = true
       @artist = Artist.new(params[:artist])
       if @artist.save
-        redirect_to root_path, :notice => "Artist created successfully."
+        redirect_to root_path, :notice => "Artist created successfully!"
       else
-        flash[:error] = "Error saving Artist."
+        flash[:error] = "Error saving artist."
         render 'new'
       end
     else
@@ -46,6 +52,8 @@ class ArtistsController < ApplicationController
     end
   end
 
+  # Display the edit form for the currently logged in artist or for an
+  # administrator.
   def edit
     @artist = Artist.find(params[:id])
     unless (@artist == currentUser || currentUser.admin?)
@@ -54,24 +62,29 @@ class ArtistsController < ApplicationController
     end
   end
 
+  # Update the currently logged in user. Admins are allowed to update artist
+  # properties.
   def update
     @artist = Artist.find(params[:id])
     unless (@artist == currentUser || currentUser.admin?)
       redirect_to root_path, :error => "You are not authorized to edit this artist."
     end
     if @artist.update_attributes(params[:artist])
-      redirect_to root_path, :notice => "Artist Updated!"
+      redirect_to root_path, :notice => "Artist updated!"
     else
-      redirect_to root_path, :error => "Error updating Artist."
+      redirect_to root_path, :error => "Error updating artist."
     end
   end
 
+  # Artists may not be deleted. Instead, an "active" property is set to false,
+  # prventing an artist from participating in the system or being selected for
+  # bounties.
   def destroy
     @artist = Artist.find(params[:id])
     if currentUser.admin?
       @artist.active = false
       if @artist.save
-        redirect_to root_path, :notice => "Artist #{@artist.name} is now inactive."
+        redirect_to root_path, :notice => "Artist #{@artist.name} is now inactive!"
       else
         redirect_to root_path, :error => "Error deactivating Artist."
       end
