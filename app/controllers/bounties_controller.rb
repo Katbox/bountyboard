@@ -29,12 +29,14 @@ class BountiesController < ApplicationController
     end
 
     # If no specific artists were selected. Then create a candidacy to all
-    # artists.
+    # active artists.
     if params[:bounty][:artist_ids]==[""]
       id_array = []
       @artist = Artist.all
       @artist.each do |a|
-        id_array.append(a.id.to_s)
+        if a.active
+          id_array.append(a.id.to_s)
+        end
       end
       params[:bounty][:artist_ids] = id_array
     end
