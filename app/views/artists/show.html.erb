@@ -23,15 +23,15 @@
 
     <% if signed_in? %>
 
-      <% if (@artist == currentUser) || currentUser.is_admin? %>
+      <% if (@artist == currentUser) || currentUser.admin? %>
         <%=   link_to 'Update', edit_artist_path(@artist.id, "Edit"), class: 'btn btn-primary' %><br><br>
       <% end %>
 
-      <% if currentUser.is_admin? %>
+      <% if currentUser.admin? %>
         <%=   link_to 'Delete', @artist, :confirm => "Are you sure you want to delete #{@artist.name}?", :method => :delete, class: 'btn btn-primary' %><br><br>
       <% end %>
 
-      <% if currentUser.is_admin? %>
+      <% if currentUser.admin? %>
         <%=   link_to 'Approve', artist_path(:artist => {:approved => true}), :method => :put, :confirm => "Are you sure you want to approve this artist?", class: 'btn btn-primary' %><br><br>
       <% end %>
 

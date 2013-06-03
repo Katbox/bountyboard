@@ -86,7 +86,7 @@ class Bounty < ActiveRecord::Base
   # Methods ====================================================================
 
   # Returns private or public based on the boolean private property.
-  def is_private?
+  def private?
     return self[:private]
   end
 

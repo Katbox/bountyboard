@@ -19,7 +19,7 @@ class ArtistsController < ApplicationController
       redirect_to root_path, :error => "You must sign in."
       return
     end
-    if currentUser.is_admin?
+    if currentUser.admin?
       @artist = Artist.new
     else
       redirect_to root_path, :error => "Only administrators can create new artists."
@@ -31,7 +31,7 @@ class ArtistsController < ApplicationController
       redirect_to root_path, :error => "You must sign in."
       return
     end
-    if currentUser.is_admin?
+    if currentUser.admin?
       #Auto approve for now.
       params[:artist][:approved] = true
       @artist = Artist.new(params[:artist])
@@ -48,7 +48,7 @@ class ArtistsController < ApplicationController
 
   def edit
     @artist = Artist.find(params[:id])
-    unless (@artist == currentUser || currentUser.is_admin?)
+    unless (@artist == currentUser || currentUser.admin?)
       flash[:error] = "You are not authorized to edit this artist."
       redirect_to root_path
     end
@@ -56,7 +56,7 @@ class ArtistsController < ApplicationController
 
   def update
     @artist = Artist.find(params[:id])
-    unless (@artist == currentUser || currentUser.is_admin?)
+    unless (@artist == currentUser || currentUser.admin?)
       redirect_to root_path, :error => "You are not authorized to edit this artist."
     end
     if @artist.update_attributes(params[:artist])
@@ -68,7 +68,7 @@ class ArtistsController < ApplicationController
 
   def destroy
     @artist = Artist.find(params[:id])
-    if currentUser.is_admin?
+    if currentUser.admin?
       @artist.active = false
       if @artist.save
         redirect_to root_path, :notice => "Artist #{@artist.name} is now inactive."

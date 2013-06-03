@@ -37,12 +37,12 @@ class User < ActiveRecord::Base
   end
 
   # Returns if the user is an admin. Returns nil if not.
-  def is_admin?
+  def admin?
     return self[:admin]
   end
 
   # Returns if the user is an artist. Returns nil if not.
-  def is_artist?
+  def artist?
     return true if self[:type] == 'Artist'
   end
 
