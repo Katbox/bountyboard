@@ -93,7 +93,7 @@ class ArtistsController < ApplicationController
       if @artist.save
         redirect_to root_path, :notice => "Artist #{@artist.name} is now inactive!"
       else
-        redirect_to root_path, :error => "Error deactivating Artist."
+        redirect_to root_path, :error => "Error deactivating artist."
       end
     else
       redirect_to root_path, :error => "Only administrators can delete artists."
