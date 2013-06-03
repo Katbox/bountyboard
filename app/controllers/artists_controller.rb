@@ -5,6 +5,7 @@ class ArtistsController < ApplicationController
   # Display a list of all artists in the system, with links to see their
   # individual profiles.
   def index
+    @artist = Artist.all
   end
 
   # Display an individual artist's profile.
