@@ -107,7 +107,7 @@ class BountiesController < ApplicationController
         redirect_to root_path, :error => "You are not authorized to remove this bounty."
       elsif @bounty.status == "Accepted"
         acceptor = @bounty.accepting_artist.get_identifier
-        redirect_to root_path, :error => = "This bounty is being worked on by #{acceptor} and cannot be deleted."
+        redirect_to root_path, :error => "This bounty is being worked on by #{acceptor} and cannot be deleted."
       else
         redirect_to root_path, :error => "This bounty is #{@bounty.status} and cannot be deleted."
       end
