@@ -26,8 +26,7 @@ class BountiesController < ApplicationController
   # Create a new bounty. Anyone may perform this action.
   def create
     unless signed_in?
-      redirect_to root_path, :error => "You must sign in to create a bounty."
-      return
+      redirect_to root_path, :error => "You must sign in."
     end
 
     # If no specific artists were selected. Then create a candidacy to all
@@ -56,6 +55,9 @@ class BountiesController < ApplicationController
   # bounty may use this for completion of a bounty. Owners of the bounty
   # may edit all other properties.
   def edit
+    unless signed_in?
+      redirect_to root_path, :error => "You must sign in."
+    end
     @bounty = Bounty.find(params[:id])
     # The format parameter is a string passed along with the id when using
     # bounty_path. Ex. bounty_path(4, "Complete") would set @format to
@@ -63,7 +65,7 @@ class BountiesController < ApplicationController
     # bounty, maintaining REST.
     @format = params[:format]
     unless (@bounty.owner == currentUser || @bounty.has_candidate?(currentUser.name))
-      flash[:error] = "You are not authorized to edit this bounty."
+      redirect_to root_path, :error => "You are not authorized to edit this bounty."
       redirect_to root_path
     end
   end
@@ -72,6 +74,9 @@ class BountiesController < ApplicationController
   # for completion of a bounty. Owners of the bounty may edit all other
   # properties.
   def update
+    unless signed_in?
+      redirect_to root_path, :error => "You must sign in."
+    end
     @bounty = Bounty.find(params[:id])
     unless (@bounty.owner == currentUser || @bounty.has_candidate?(currentUser.name))
       redirect_to root_path, :error => "You are not authorized to edit this bounty."
@@ -86,29 +91,27 @@ class BountiesController < ApplicationController
   # Delete the bounty. Admins may delete any bounty. But the bounty's owner may
   # only do this if the bounty is unclaimed.
   def destroy
+    unless signed_in?
+      redirect_to root_path, :error => "You must sign in."
+    end
     @bounty = Bounty.find(params[:id])
 
     if (@bounty.owner == currentUser && (@bounty.status == 'Unclaimed')) || currentUser.admin?
       if Bounty.destroy(params[:id])
-        flash[:notice] = "Bounty successfully removed."
+        redirect_to root_path, :notice => "Bounty successfully removed."
       else
-        flash[:error] = "Error removing bounty."
+        redirect_to root_path, :error => "Error removing bounty."
       end
     else
       if @bounty.owner != currentUser
-        flash[:error] = "You are not authorized to remove this bounty."
+        redirect_to root_path, :error => "You are not authorized to remove this bounty."
       elsif @bounty.status == "Accepted"
         acceptor = @bounty.accepting_artist.get_identifier
-        flash[:error] =<<message
-"This bounty is being worked on by #{acceptor} and cannot be deleted. You will
-need to contact #{acceptor} and ask that he or she release their claim to the
-bounty."
-message
+        redirect_to root_path, :error => = "This bounty is being worked on by #{acceptor} and cannot be deleted."
       else
-        flash[:error] = "This bounty is #{@bounty.status} and cannot be deleted."
+        redirect_to root_path, :error => "This bounty is #{@bounty.status} and cannot be deleted."
       end
     end
-    redirect_to root_path
   end
 end
 
