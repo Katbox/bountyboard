@@ -65,7 +65,6 @@ class BountiesController < ApplicationController
     @format = params[:format]
     unless (@bounty.owner == currentUser || @bounty.has_candidate?(currentUser.name))
       redirect_to root_path, :error => "You are not authorized to edit this bounty."
-      redirect_to root_path
     end
   end
 
