@@ -17,9 +17,9 @@
             </ul>
           <!-- <button class="linklike">Filters (in future should display your active filter)</button> -->
           </li>
-          <% if signed_in? && currentUser.is_admin? %>
-	      <li><%= link_to 'New Artist', new_artist_path %></li>
-	      <% end %>
+          <% if signed_in? && currentUser.admin? %>
+        <li><%= link_to 'New Artist', new_artist_path %></li>
+        <% end %>
         </ul>
       </nav>
       <span class="pull-right">
