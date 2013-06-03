@@ -54,6 +54,11 @@ describe 'Bounty' do
       @artist3 = FactoryGirl.create(:artist, :name => "Artist3")
       @artist4 = FactoryGirl.create(:artist, :name => "Artist4")
       @mood = FactoryGirl.create(:mood, :name => "Mood1")
+      OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
+        :provider => 'browserid',
+        :uid => 'test-user@example.com'
+      })
+      visit '/auth/browser_id'
       visit new_bounty_path
     }
 
