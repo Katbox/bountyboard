@@ -7,7 +7,7 @@ class ArtistsController < ApplicationController
   def index
   end
 
-  # Show an individual artist's profile.
+  # Display an individual artist's profile.
   def show
       @artist = Artist.find(params[:id])
       candidacies = Candidacy.where(:artist_id => currentUser.id, :acceptor => true)
@@ -22,7 +22,6 @@ class ArtistsController < ApplicationController
   def new
     unless signed_in?
       redirect_to root_path, :error => "You must sign in."
-      return
     end
     if currentUser.admin?
       @artist = Artist.new
@@ -35,7 +34,6 @@ class ArtistsController < ApplicationController
   def create
     unless signed_in?
       redirect_to root_path, :error => "You must sign in."
-      return
     end
     if currentUser.admin?
       #TODO Figure out how approved fits into our workflow.
@@ -55,6 +53,9 @@ class ArtistsController < ApplicationController
   # Display the edit form for the currently logged in artist or for an
   # administrator.
   def edit
+    unless signed_in?
+      redirect_to root_path, :error => "You must sign in."
+    end
     @artist = Artist.find(params[:id])
     unless (@artist == currentUser || currentUser.admin?)
       flash[:error] = "You are not authorized to edit this artist."
@@ -62,9 +63,12 @@ class ArtistsController < ApplicationController
     end
   end
 
-  # Update the currently logged in user. Admins are allowed to update artist
+  # Update the currently logged in artist. Admins are allowed to update artist
   # properties.
   def update
+    unless signed_in?
+      redirect_to root_path, :error => "You must sign in."
+    end
     @artist = Artist.find(params[:id])
     unless (@artist == currentUser || currentUser.admin?)
       redirect_to root_path, :error => "You are not authorized to edit this artist."
@@ -80,6 +84,9 @@ class ArtistsController < ApplicationController
   # prventing an artist from participating in the system or being selected for
   # bounties.
   def destroy
+    unless signed_in?
+      redirect_to root_path, :error => "You must sign in."
+    end
     @artist = Artist.find(params[:id])
     if currentUser.admin?
       @artist.active = false
