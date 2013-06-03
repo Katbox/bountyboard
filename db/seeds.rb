@@ -8,8 +8,8 @@ admin1.save!
 
 artist1 = Artist.new(
   :name => 'Artist1',
-  # :email => 'lionheartstudio@gmail.com',
-  :email => 'artist1@test.com',
+  :email => 'lionheartstudio@gmail.com',
+  # :email => 'artist1@test.com',
   :bio => 'Artist 1 is a nice person who likes the Art Deco style.',
   :bounty_rules => 'Bounties over $20 only, please.'
 )
@@ -47,8 +47,8 @@ artist4.active = false
 artist4.approved = false
 artist4.save!
 
-# customer1 = User.new(:name => 'Customer1', :email => 'customer1@test.com')
-customer1 = User.new(:name => 'Customer1', :email => 'lionheartstudio@gmail.com')
+customer1 = User.new(:name => 'Customer1', :email => 'customer1@test.com')
+# customer1 = User.new(:name => 'Customer1', :email => 'lionheartstudio@gmail.com')
 customer1.save!
 
 customer2 = User.new(:name => 'Customer2', :email => 'customer2@test.com')

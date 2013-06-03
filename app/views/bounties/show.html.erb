@@ -28,7 +28,7 @@
     </ul>
 
     The bounty's status.<br>
-    <%= @bounty.status %><% if @bounty.status == 'Accepted' %> on <%= @bounty.accepted_on.to_s(:accepted_on) %><% end %><br><br>
+    <%= @bounty.status %><% if @bounty.status == 'Accepted' %> on <%= @bounty.accepted_on.to_s(:accepted_on) %> by <%= @bounty.accepting_artist.name %><% end %><br><br>
 
     <% if signed_in? %>
 
@@ -40,15 +40,15 @@
         <%=   link_to 'Delete', @bounty, :confirm => "Are you sure you want to delete #{@bounty.name}?", :method => :delete, class: 'btn btn-primary' %><br><br>
       <% end %>
 
-      <% if currentUser.artist? && @bounty.has_candidate?(currentUser.name) %>
+      <% if currentUser.artist? && @bounty.has_candidate?(currentUser.name) && @bounty.status == 'Unclaimed' %>
         <%=   link_to 'Accept', candidacy_path(:candidacy => {:acceptor => true}), :method => :put, :confirm => "Are you sure you want to accept this bounty?", class: 'btn btn-primary' %><br><br>
       <% end %>
 
-      <% if currentUser.artist? && @bounty.has_candidate?(currentUser.name) %>
+      <% if currentUser.artist? && @bounty.has_candidate?(currentUser.name) && @bounty.status == 'Unclaimed' %>
         <%=   link_to 'Reject', candidacy_path, :method => :delete, :confirm => "Are you sure you want to reject this bounty?", class: 'btn btn-primary' %><br><br>
       <% end %>
 
-      <% if currentUser == @bounty.accepting_artist %>
+      <% if currentUser == @bounty.accepting_artist && @bounty.status == 'Accepted' %>
         <%=   link_to 'Complete', edit_bounty_path(@bounty.id, "Complete"), :confirm => "Are you sure you want to complete this bounty?", class: 'btn btn-primary' %><br><br>
       <% end %>
 
