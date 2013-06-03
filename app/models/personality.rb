@@ -12,14 +12,16 @@
 class Personality < ActiveRecord::Base
   attr_accessible :mood_id, :bounty_id
 
-  #Many to many join table between user and bounty.
+  # Relationships ==============================================================
   belongs_to :mood
   belongs_to :bounty
 
+  # Validations ================================================================
   validates :mood_id, presence: true
   validates :bounty_id, presence: true
   validates_uniqueness_of :mood_id, :scope => :bounty_id
 
+  # Attributes =================================================================
   def self.MAXIMUM_MOODS
     2
   end

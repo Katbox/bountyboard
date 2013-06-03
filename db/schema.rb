@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130601232452) do
+ActiveRecord::Schema.define(:version => 20130602232246) do
 
   create_table "bounties", :force => true do |t|
     t.string   "name",                              :null => false
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 20130601232452) do
     t.integer  "price_cents",    :default => 0,     :null => false
     t.string   "price_currency", :default => "USD", :null => false
     t.boolean  "adult_only",     :default => false, :null => false
-    t.boolean  "is_private",     :default => false, :null => false
+    t.boolean  "private",        :default => false, :null => false
     t.string   "url"
     t.integer  "user_id",                           :null => false
     t.datetime "created_at",                        :null => false

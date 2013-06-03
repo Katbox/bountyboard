@@ -8,7 +8,7 @@
 #  price_cents    :integer          default(0), not null
 #  price_currency :string(255)      default("USD"), not null
 #  adult_only     :boolean          default(FALSE), not null
-#  is_private     :boolean          default(FALSE), not null
+#  private        :boolean          default(FALSE), not null
 #  url            :string(255)
 #  user_id        :integer          not null
 #  created_at     :datetime         not null
@@ -24,7 +24,7 @@ describe Bounty do
   it { should respond_to(:price_cents) }
   it { should respond_to(:adult_only) }
   it { should respond_to(:url) }
-  it { should respond_to(:is_private) }
+  it { should respond_to(:private) }
   it { should respond_to(:user_id) }
 
   it 'should not allow name to be too long' do
@@ -87,10 +87,10 @@ describe Bounty do
     bounty.should have(1).error_on(:adult_only)
   end
 
-  it 'should not allow null values for its is_private property' do
-    bounty = FactoryGirl.build(:bounty, :is_private => nil)
+  it 'should not allow null values for its private property' do
+    bounty = FactoryGirl.build(:bounty, :private => nil)
     bounty.should_not be_valid
-    bounty.should have(1).error_on(:is_private)
+    bounty.should have(1).error_on(:private)
   end
 
   describe 'status' do

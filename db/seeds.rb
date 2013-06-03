@@ -1,54 +1,54 @@
 admin1 = User.new(
   :name => 'Admin1',
-  # :email => 'admin1@test.com',
-  :email => 'lionheartstudio@gmail.com',
-  :approved => true
+  :email => 'admin1@test.com',
+  # :email => 'lionheartstudio@gmail.com',
 )
 admin1.admin = true
 admin1.save!
 
 artist1 = Artist.new(
   :name => 'Artist1',
-  # :email => 'lionheartstudio@gmail.com',
-  :email => 'artist1@test.com',
+  :email => 'lionheartstudio@gmail.com',
+  # :email => 'artist1@test.com',
   :bio => 'Artist 1 is a nice person who likes the Art Deco style.',
-  :bounty_rules => 'Bounties over $20 only, please.',
-  :approved => true
+  :bounty_rules => 'Bounties over $20 only, please.'
 )
 artist1.active = true
+artist1.approved = true
 artist1.save!
 
 artist2 = Artist.new(
   :name => 'Artist2',
   :email => 'artist2@test.com',
   :bio => 'Artist 2 is a withdrawn person who emerges periodically to draw mostly surrealist art.',
-  :bounty_rules => 'Surrealist art only!',
-  :approved => true
+  :bounty_rules => 'Surrealist art only!'
 )
 artist2.active = true
+artist2.approved = true
 artist2.save!
 
 artist3 = Artist.new(
   :name => 'Artist3',
   :email => 'artist3@test.com',
   :bio => 'Artist 3 is inquisitive and energetic, exploring new artistic styles all the time.',
-  :bounty_rules => 'I only accept major art projects, costing $50 or more.',
-  :approved => true
+  :bounty_rules => 'I only accept major art projects, costing $50 or more.'
 )
 artist3.active = true
+artist3.approved = true
 artist3.save!
 
 artist4 = Artist.new(
   :name => 'Artist4',
   :email => 'artist4@test.com',
   :bio => 'Artist 4 is a complete tool who only draws still lifes.',
-  :bounty_rules => 'I\'m a troll *rargle blargle*.',
-  :approved => false
+  :bounty_rules => 'I\'m a troll *rargle blargle*.'
 )
 artist4.active = false
+artist4.approved = false
 artist4.save!
 
 customer1 = User.new(:name => 'Customer1', :email => 'customer1@test.com')
+# customer1 = User.new(:name => 'Customer1', :email => 'lionheartstudio@gmail.com')
 customer1.save!
 
 customer2 = User.new(:name => 'Customer2', :email => 'customer2@test.com')
@@ -157,7 +157,7 @@ bounty9 = Bounty.new(
   :desc => "Clop. Clop. Keep this private. Clop. Clop.",
   :price => 100.00,
   :adult_only => true,
-  :is_private => true
+  :private => true
 )
 bounty9.user_id = customer1.id
 bounty9.save!(:validate => false)

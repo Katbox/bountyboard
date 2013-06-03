@@ -18,36 +18,37 @@
 
 class User < ActiveRecord::Base
   attr_accessible :name, :email
-  attr_protected :id, :admin
 
-  #OWNERSHIP OF A VOTE
+  # Relationships ==============================================================
   has_many :votes
-
-  #OWNERSHIP OF A BOUNTY
   has_many :ownerships, :foreign_key => "user_id", :class_name => "Bounty"
-
-  #REJECTION OF A BOUNTY
   has_many :rejections, :foreign_key => "reject_id", :class_name => "Bounty"
 
+  # Validations ================================================================
   validates :email, presence: true
   validates_uniqueness_of :email, :case_sensitive => false
 
+  # Token to allow session persistence.
   before_save :createRememberToken
 
+  # Returns the name of the user if provided, email if not.
   def get_identifier
     return self[:name] ? self[:name] : self[:email]
   end
 
-  def is_admin?
+  # Returns if the user is an admin. Returns nil if not.
+  def admin?
     return self[:admin]
   end
 
-  def is_artist?
+  # Returns if the user is an artist. Returns nil if not.
+  def artist?
     return true if self[:type] == 'Artist'
   end
 
   private
 
+  # Create a token to be used with session persistence.
   def createRememberToken
     self.rememberToken = SecureRandom.urlsafe_base64
   end

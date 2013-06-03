@@ -5,7 +5,7 @@
         <%= artist_form.input :email, :required => true %>
         <%= artist_form.input :bio, :as => :string, :required => true %>
         <%= artist_form.input :bounty_rules, :as => :string, :required => true %>
-        <% if currentUser.is_admin? %>
+        <% if currentUser.admin? %>
           <%= artist_form.input :approved%>
           <%= artist_form.input :active%>
         <% end %>
