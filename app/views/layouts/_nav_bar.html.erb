@@ -6,23 +6,10 @@
       <nav class="nav-collapse collapse">
         <ul class="nav">
           <li><%= link_to 'About', '#' %></li>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              Filters (in future your active filters will be displayed here)
-              <span class="caret"></span>
+          <li>
+            <a id="filters-dialog-show" href="#">
+              Customize Bounty List
             </a>
-            <ul class="dropdown-menu">
-              <li id="bounty-cost-filter">
-                <input type="checkbox" class="filter-toggle">
-                Cost:
-                <label>above <input type="radio" name="cost-range-filter" value="1"></label>
-                <label>below <input type="radio" name="cost-range-filter" value="0"></label>
-                $<input type="number" min="5" step="0.01" value="5.00">
-              </li>
-              <li id="bounty-age-filter"><input type="checkbox" class="filter-toggle"> Age: <input type="range"> days</li>
-              <li id="no-adult-content-filter"><input type="checkbox" class="filter-toggle"> Don't Show Adult Content</li>
-              <li id="only-adult-content-filter"><input type="checkbox" class="filter-toggle"> Only Show Adult Content</li>
-            </ul>
           </li>
           <% if signed_in? && currentUser.is_admin? %>
           <li><%= link_to 'New Artist', new_artist_path %></li>
@@ -39,4 +26,16 @@
     </div>
   </div>
 </header>
+<div id="filters-controls">
+    <span id="bounty-cost-filter">
+      <input type="checkbox" class="filter-toggle">
+      Cost:
+      <label>above <input type="radio" name="cost-range-filter" value="1"></label>
+      <label>below <input type="radio" name="cost-range-filter" value="0"></label>
+      $<input type="number" min="5" step="0.01" value="5.00">
+    </span>
+    <span id="bounty-age-filter"><input type="checkbox" class="filter-toggle"> Age: <input type="range"> days</span>
+    <span id="no-adult-content-filter"><input type="checkbox" class="filter-toggle"> Don't Show Adult Content</span>
+    <span id="only-adult-content-filter"><input type="checkbox" class="filter-toggle"> Only Show Adult Content</span>
+</div>
 

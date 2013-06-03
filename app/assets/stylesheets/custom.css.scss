@@ -155,3 +155,33 @@ footer {
   background-image:url('PaperTexture.jpg');
   margin-bottom: 20px;
 }
+
+// Filter Controls for the Bounty List  ****************************************
+#filters-controls {
+  padding: 5px;
+  display: none;
+  position: fixed;
+  top: 40px;
+  width: 100%;
+  background-color: white;
+  @include roundCorners;
+}
+
+#filters-controls > * {
+  display: inline-block;
+  margin-left: 3px;
+  margin-right: 3px;
+  padding: 5px;
+  border: 1px solid black;
+  @include roundCorners;
+}
+
+#filters-controls > * * {
+  display: inline;
+  vertical-align: text-top;
+}
+
+#filters-controls input {
+  height: 1em;
+}
+
