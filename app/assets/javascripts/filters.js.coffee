@@ -8,3 +8,6 @@ $(document).ready ->
       filters_pane.stop(true, true)
     event.stopPropagation()
 
+  # initialize all buttonsets used by the filter controls
+  $(".filters-buttonset").buttonset()
+
