@@ -5,14 +5,15 @@
       <div class="nail"></div>
       <div class="ribbon-wrapper"><div class="ribbon"><%= humanized_money_with_symbol b.price %></div></div>
         <div class="name"><%= b.name %></div>
-        <div class="candidates">
-          <% b.candidacies.each do |c| %>
-            <div id="<%= c.artist.get_identifier %>"></div>
-          <% end %>
-        </div>
         <div class="short-desc">
           <%= b.desc %>
-          <div class="read-more"><%=   link_to 'Read More', bounty_path(b.id), class: 'btn btn-primary' %></div>
+          <div class="control-area">
+            <div class="vote-controls">
+              <div class="upvote"></div>
+              <div class="downvote"></div>
+            </div>
+            <%=   link_to 'Read More', bounty_path(b.id), class: 'btn btn-primary read-more' %>
+          </div>
         </div>
       </div>
     <% end %>
