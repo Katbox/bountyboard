@@ -21,7 +21,7 @@
     <% end %>
 
     <% if @bounty.status == "Completed" %>
-     <img src=<%="#{@bounty.url}"%> class="completed-art">
+     <a href=<%="#{@bounty.url}"%>><img src=<%="#{@bounty.url}"%> class="completed-art"></a>
     <% else %>
       <div class="desc"><%= @bounty.desc %></div>
       <div class="moods">
