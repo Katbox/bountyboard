@@ -18,6 +18,10 @@ p {
     line-height: 1.7em;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     padding-top: 60px;
     background: $darkBrown;
@@ -52,6 +56,18 @@ footer {
     color: $white;
     @include linkColor($orange);
     text-align: center;
+}
+
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -30px;
+}
+
+footer .footer-wrapper {
+    padding-top: 30px;
+    padding-bottom: 20px;
 }
 
 // Bounty Board Header =========================================================
@@ -233,10 +249,12 @@ footer {
   margin-top: 20px;
   width: 95%;
   font-size: 120%;
+  margin: 0 auto;
 }
 
 #bounty-show .control-panel {
   display: inline-block;
   margin-top: 20px;
   width: 95%;
+  margin: 20px auto;
 }

@@ -17,30 +17,32 @@
 </head>
 
 <body>
-<!--    Header navigation bar on the top of the page with sign-in controls. -->
+  <div class="wrapper">
+  <!--    Header navigation bar on the top of the page with sign-in controls. -->
 
-  <%= render 'layouts/nav_bar' %>
+    <%= render 'layouts/nav_bar' %>
 
-  <% [:notice, :error, :alert].each do |level| %>
-    <% unless flash[level].blank? %>
-      <div class="alert <%= flash_class(level) %>">
-        <a class="close" href="#">×</a>
-          <%= content_tag :p, flash[level] %>
-      </div>
+    <% [:notice, :error, :alert].each do |level| %>
+      <% unless flash[level].blank? %>
+        <div class="alert <%= flash_class(level) %>">
+          <a class="close" href="#">×</a>
+            <%= content_tag :p, flash[level] %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
 
-<!--    Greeting to be later styled and image enhanced to resemble a RL bounty. -->
-  <div class="hero-unit">
-    <%= render 'layouts/post_bounty_button' %>
+  <!--    Greeting to be later styled and image enhanced to resemble a RL bounty. -->
+    <div class="hero-unit">
+      <%= render 'layouts/post_bounty_button' %>
+    </div>
+
+  <!--    Primary Board Index Content -->
+    <div class="container-fluid ">
+      <%= yield %>
+    </div>
+
   </div>
-
-<!--    Primary Board Index Content -->
-  <div class="container-fluid ">
-    <%= yield %>
-  </div>
-
-<!--    Footer with copyright and liscence info. -->
+  <!--    Footer with copyright and liscence info. -->
   <%= render 'layouts/footer' %>
 
 </body>
