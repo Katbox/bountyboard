@@ -54,7 +54,6 @@ footer {
     text-align: center;
 }
 
-// Bounty Index ****************************************************************
 // Bounty Board Header =========================================================
 .hero-unit {
     color: $black;
@@ -78,7 +77,38 @@ footer {
     margin-top: 140px;
 }
 
-// Bounties ====================================================================
+// Filter Controls for the Bounty List  ****************************************
+#filters-controls {
+  padding: 5px;
+  display: none;
+  position: fixed;
+  top: 40px;
+  width: 100%;
+  background-color: white;
+  z-index: 1; // the filter controls should overlay the page content
+  @include roundCorners;
+}
+
+#filters-controls > * {
+  display: inline-block;
+  margin-left: 3px;
+  margin-right: 3px;
+  padding: 5px;
+  border: 1px solid black;
+  @include roundCorners;
+}
+
+#filters-controls > * * {
+  display: inline;
+  vertical-align: text-top;
+}
+
+#filters-controls input {
+  height: 1em;
+}
+
+
+// Bounty List =================================================================
 .bounty-square {
   height: 240px;
   width: 280px !important;
@@ -164,7 +194,7 @@ footer {
   margin-bottom: 11%;
 }
 
-// Bounty New / Bounty Show ****************************************************
+// Bounty New ==================================================================
 #bounty-page-area {
   color: $black;
   background: $yellow;
@@ -174,33 +204,70 @@ footer {
   margin-bottom: 20px;
 }
 
-// Filter Controls for the Bounty List  ****************************************
-#filters-controls {
-  padding: 5px;
-  display: none;
-  position: fixed;
-  top: 40px;
-  width: 100%;
-  background-color: white;
-  z-index: 1; // the filter controls should overlay the page content
+// Bounty Show =================================================================
+#bounty-show {
+  color: $black;
+  background: $yellow;
+  border: 1px inset $black;
   @include roundCorners;
+  background-image:url('PaperTexture.jpg');
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 20px;
 }
 
-#filters-controls > * {
+#bounty-show .name {
+  width: 75%;
+  line-height: 50px;
+  font-size: 400%;
+  font-family: 'Carnevalee Freakshow';
+  margin: 0 auto;
+}
+
+#bounty-show .name .adult {
   display: inline-block;
-  margin-left: 3px;
-  margin-right: 3px;
-  padding: 5px;
-  border: 1px solid black;
-  @include roundCorners;
+  color: $lightRed;
+  margin: 0 20px;
 }
 
-#filters-controls > * * {
-  display: inline;
-  vertical-align: text-top;
+#bounty-show .candidacies {
+  width: 75%;
+  line-height: 50px;
+  font-size: 220%;
+  font-family: 'Carnevalee Freakshow';
+  margin: 10px auto;
 }
 
-#filters-controls input {
-  height: 1em;
+#bounty-show .completed-art {
+  max-width: 100%;
+  margin: 10px auto;
 }
 
+#bounty-show .status {
+  display: inline-block;
+  margin-top: 10px;
+  line-height: 50px;
+  font-size: 350%;
+  font-family: 'Carnevalee Freakshow';
+}
+
+#bounty-show .desc {
+  text-align: justified;
+  font-size: 120%;
+  margin: 30px auto;
+  width: 80%;
+  min-height: 200px;
+  @include verticalCenter;
+}
+
+#bounty-show .dates {
+  margin-top: 20px;
+  width: 95%;
+  font-size: 120%;
+}
+
+#bounty-show .control-panel {
+  display: inline-block;
+  margin-top: 20px;
+  width: 95%;
+}

@@ -13,10 +13,11 @@
 #  user_id        :integer          not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  completed_at   :datetime
 #
 
 class Bounty < ActiveRecord::Base
-  attr_accessible :name, :desc, :price_cents, :adult_only, :url, :private, :mood_ids, :price, :artist_ids
+  attr_accessible :name, :desc, :price_cents, :adult_only, :url, :private, :mood_ids, :price, :artist_ids, :completed_at
 
   # Money gem. "price_cents" is the price of the bounty in cents.
   # The gem will apply proper formatting if the implicit "price" property is
@@ -104,6 +105,15 @@ class Bounty < ActiveRecord::Base
     else
       return false
     end
+  end
+
+  # Returns true if the bounty has no candidacies.
+  def is_abandoned?
+    num_of_candidacies = Candidacy.where(:bounty_id => self[:id]).count
+    if num_of_candidacies > 0
+      return false
+    end
+    return true
   end
 
   # Returns the status of the bounty as a string. May either be Completed,
