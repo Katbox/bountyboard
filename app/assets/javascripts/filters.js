@@ -4,9 +4,7 @@
       var filters_pane;
 
       filters_pane = $("#filters-controls");
-      filters_pane.slideToggle(null, function() {
-        return filters_pane.stop(true, true);
-      });
+      filters_pane.slideToggle();
       return event.stopPropagation();
     });
     return $(".filters-buttonset").buttonset();
