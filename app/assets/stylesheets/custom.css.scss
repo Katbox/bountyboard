@@ -194,11 +194,29 @@ footer .footer-wrapper {
   border: 1px inset $black;
   @include roundCorners;
   background-image:url('PaperTexture.jpg');
-  margin-bottom: 20px;
+  padding: 20px;
 }
 
 #form-area form li .choice{
   display: inline-block;
+}
+
+#form-area form li {
+  list-style-type: none;
+}
+
+#form-area form legend {
+  background-color: none;
+}
+
+#form-area .submit-button {
+  width: 125px;
+  height: 35px;
+}
+
+#form-area .submit-container {
+  width: 125px;
+  margin: 0 auto;
 }
 
 // Bounty Show =================================================================

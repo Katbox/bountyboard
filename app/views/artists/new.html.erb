@@ -4,8 +4,8 @@
     <%= semantic_form_for @artist do |artist_form| %>
         <%= artist_form.input :name, :required => true %>
         <%= artist_form.input :email, :required => true %>
-        <%= artist_form.input :bio, :as => :string, :required => true %>
-        <%= artist_form.input :bounty_rules, :as => :string, :required => true %>
+        <%= artist_form.input :bio, :as => :text, :required => true %>
+        <%= artist_form.input :bounty_rules, :as => :text, :required => true %>
         <%= artist_form.submit %>
     <% end %>
   </div>

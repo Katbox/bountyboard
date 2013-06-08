@@ -4,7 +4,7 @@
     <% if (@format == "Edit") %>
       <%= semantic_form_for @bounty do |bounty_form| %>
           <%= bounty_form.input :name, :required => true %>
-          <%= bounty_form.input :desc, :as => :string, :required => true %>
+          <%= bounty_form.input :desc, :as => :text, :required => true %>
           <%= bounty_form.input :price, :required => true %>
           <%= bounty_form.input :artists, :collection => Artist.where(:active => true, :approved => true), :as => :check_boxes%>
           <%= bounty_form.input :moods, :as => :check_boxes%>
