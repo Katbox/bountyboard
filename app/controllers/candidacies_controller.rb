@@ -34,6 +34,13 @@ class CandidaciesController < ApplicationController
     @candidacy = Candidacy.where(:artist_id => currentUser.id, :bounty_id => @bounty.id).first
     unless @candidacy.nil?
       if @candidacy.destroy
+        if @bounty.is_abandoned?
+          if @bounty.destroy
+            redirect_to root_path, :notice => "Bounty & Candidacy removed!"
+            #TODO Mail user that bounty was totally rejected.
+            return
+          end
+        end
         redirect_to root_path, :notice => "Candidacy removed!"
       else
         redirect_to edit_bounty_path(@bounty.id), :error => "Error removing candidacy."

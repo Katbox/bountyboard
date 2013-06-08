@@ -107,6 +107,15 @@ class Bounty < ActiveRecord::Base
     end
   end
 
+  # Returns true if the bounty has no candidacies.
+  def is_abandoned?
+    num_of_candidacies = Candidacy.where(:bounty_id => self[:id]).count
+    if num_of_candidacies > 0
+      return false
+    end
+    return true
+  end
+
   # Returns the status of the bounty as a string. May either be Completed,
   # Accepted, or Unclaimed.
   def status
