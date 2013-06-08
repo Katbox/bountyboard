@@ -32,7 +32,8 @@
     <% end %>
     <div class="dates">
       <%= @bounty.created_at.to_s(:created_on) %>
-      <% unless @bounty.status == "Unclaimed" %> | <%= @bounty.accepted_on.to_s(:accepted_on) %><% end %>
+      <% if @bounty.status != "Unclaimed" %> | <%= @bounty.accepted_on.to_s(:accepted_on) %><% end %>
+      <% if @bounty.status == "Completed" %> | <%= @bounty.completed_at.to_s(:completed_on) %><% end %>
     </div>
     <div class="control-panel">
     <%=   link_to 'Back', root_path, class: 'btn btn-primary' %>
