@@ -67,7 +67,6 @@ footer {
 
 footer .footer-wrapper {
     padding-top: 30px;
-    padding-bottom: 20px;
 }
 
 // Bounty Board Header =========================================================
@@ -179,8 +178,17 @@ footer .footer-wrapper {
   margin-bottom: 11%;
 }
 
-// Bounty New ==================================================================
 #bounty-page-area {
+  color: $black;
+  background: $yellow;
+  border: 1px inset $black;
+  @include roundCorners;
+  background-image:url('PaperTexture.jpg');
+  margin-bottom: 20px;
+}
+
+// Forms =======================================================================
+#form-area {
   color: $black;
   background: $yellow;
   border: 1px inset $black;
