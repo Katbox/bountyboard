@@ -1,5 +1,6 @@
 <div class="row-fluid">
   <div id="form-area" class="span6 offset3">
+    <%= render 'shared/error_messages' %>
     <%= semantic_form_for @bounty do |bounty_form| %>
         <%= bounty_form.input :name, :required => true %>
         <%= bounty_form.input :desc, :as => :string, :required => true %>
