@@ -81,6 +81,9 @@ class BountiesController < ApplicationController
     unless (@bounty.owner == currentUser || @bounty.has_candidate?(currentUser.name))
       redirect_to root_path, :error => "You are not authorized to edit this bounty."
     end
+    if params[:bounty][:url] != nil
+      params[:bounty][:completed_at] = Time.now
+    end
     if @bounty.update_attributes(params[:bounty])
       redirect_to root_path, :notice => "Bounty Updated!"
     else

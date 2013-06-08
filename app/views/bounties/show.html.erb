@@ -53,6 +53,9 @@
       <% if currentUser == @bounty.accepting_artist && @bounty.status == 'Accepted' %>
         <%=   link_to 'Complete This Bounty', edit_bounty_path(@bounty.id, "Complete"), :confirm => "Are you sure you want to complete this bounty?", class: 'btn btn-primary' %>
       <% end %>
+      <% if currentUser == @bounty.accepting_artist && @bounty.status == 'Completed' %>
+        <%=   link_to 'Update Artwork URL', edit_bounty_path(@bounty.id, "Complete"), :confirm => "Are you sure you want to complete this bounty?", class: 'btn btn-primary' %>
+      <% end %>
    <% end %>
   </div>
 </div>
