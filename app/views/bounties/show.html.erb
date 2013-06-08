@@ -1,61 +1,61 @@
 <div class="row-fluid">
-  <div id="bounty-page-area" class="span8 offset2">
-    This bounty's details.
-    <ul>
-      <li><%= @bounty.name %></li>
-      <li><%= @bounty.desc %></li>
-      <li>$<%= @bounty.price %></li>
-      <li><%= @bounty.adult_only %></li>
-      <li><% if @bounty.status == 'Completed' %><%= @bounty.url %><% else %>Not completed!<% end %></li>
-      <li><% if @bounty.private? %>Private<% else %>Public<% end %></li>
-      <li><%= @bounty.created_at.to_s(:created_on) %></li>
-    </ul>
-    The bounty's candidacies.
-    <ul>
-      <% unless @bounty.candidacies.empty? %>
-        <% @bounty.candidacies.each do |c| %>
-          <li><%= c.artist.get_identifier %></li>
+  <div id="bounty-show" class="span6 offset3">
+    <div class="name"><%= @bounty.name %><% if @bounty.adult_only %><div class="adult">18+</div><% end %></div>
+
+    <% if @bounty.status == "Unclaimed" %>
+      <div class="candidacies">
+        <% unless @bounty.candidacies.empty? %>
+          <% @bounty.candidacies.each do |c| %>
+            <%= c.artist.get_identifier %>
+            <% unless c == @bounty.candidacies.last %>
+            or
+            <% end %>
+          <% end %>
+          may complete this bounty for <%= humanized_money_with_symbol @bounty.price %>
+        <% else %>
+          All artists have rejected this bounty. :(
         <% end %>
-      <% else %>
-        All artists may complete this bounty.
-      <% end %>
-    </ul>
-    The bounty's moods.
-    <ul>
-    <% @bounty.moods.each do |m| %>
-      <li><%= m.name %></li>
+      </div>
+    <% else %>
+      <div class="status"><%= @bounty.status %> by <%= @bounty.accepting_artist.name %> for <%= humanized_money_with_symbol @bounty.price %></div>
     <% end %>
-    </ul>
 
-    The bounty's status.<br>
-    <%= @bounty.status %><% if @bounty.status == 'Accepted' %> on <%= @bounty.accepted_on.to_s(:accepted_on) %> by <%= @bounty.accepting_artist.name %><% end %><br><br>
-
+    <% if @bounty.status == "Completed" %>
+     <a href=<%="#{@bounty.url}"%>><img src=<%="#{@bounty.url}"%> class="completed-art"></a>
+    <% else %>
+      <div class="desc"><%= @bounty.desc %></div>
+      <div class="moods">
+          <% @bounty.moods.each do |m| %>
+            <%= m.name %>
+          <% end %>
+      </div>
+    <% end %>
+    <div class="dates">
+      <%= @bounty.created_at.to_s(:created_on) %>
+      <% if @bounty.status != "Unclaimed" %> | <%= @bounty.accepted_on.to_s(:accepted_on) %><% end %>
+      <% if @bounty.status == "Completed" %> | <%= @bounty.completed_at.to_s(:completed_on) %><% end %>
+    </div>
+    <div class="control-panel">
+    <%=   link_to 'Back', root_path, class: 'btn btn-primary' %>
     <% if signed_in? %>
-
       <% if (@bounty.owner == currentUser && @bounty.status == 'Unclaimed') || currentUser.admin? %>
-        <%=   link_to 'Update', edit_bounty_path(@bounty.id, "Edit"), class: 'btn btn-primary' %><br><br>
+        <%=   link_to 'Update This Bounty', edit_bounty_path(@bounty.id, "Edit"), class: 'btn btn-primary' %>
       <% end %>
-
       <% if (@bounty.owner == currentUser && @bounty.status == 'Unclaimed') || currentUser.admin? %>
-        <%=   link_to 'Delete', @bounty, :confirm => "Are you sure you want to delete #{@bounty.name}?", :method => :delete, class: 'btn btn-primary' %><br><br>
+        <%=   link_to 'Delete This Bounty', @bounty, :confirm => "Are you sure you want to delete #{@bounty.name}?", :method => :delete, class: 'btn btn-primary' %>
       <% end %>
-
       <% if currentUser.artist? && @bounty.has_candidate?(currentUser.name) && @bounty.status == 'Unclaimed' %>
-        <%=   link_to 'Accept', candidacy_path(:candidacy => {:acceptor => true}), :method => :put, :confirm => "Are you sure you want to accept this bounty?", class: 'btn btn-primary' %><br><br>
+        <%=   link_to 'Accept This Bounty', candidacy_path(:candidacy => {:acceptor => true}), :method => :put, :confirm => "Are you sure you want to accept this bounty?", class: 'btn btn-primary' %>
       <% end %>
-
       <% if currentUser.artist? && @bounty.has_candidate?(currentUser.name) && @bounty.status == 'Unclaimed' %>
-        <%=   link_to 'Reject', candidacy_path, :method => :delete, :confirm => "Are you sure you want to reject this bounty?", class: 'btn btn-primary' %><br><br>
+        <%=   link_to 'Reject This Bounty', candidacy_path, :method => :delete, :confirm => "Are you sure you want to reject this bounty?", class: 'btn btn-primary' %>
       <% end %>
-
       <% if currentUser == @bounty.accepting_artist && @bounty.status == 'Accepted' %>
-        <%=   link_to 'Complete', edit_bounty_path(@bounty.id, "Complete"), :confirm => "Are you sure you want to complete this bounty?", class: 'btn btn-primary' %><br><br>
+        <%=   link_to 'Complete This Bounty', edit_bounty_path(@bounty.id, "Complete"), class: 'btn btn-primary' %>
       <% end %>
-
-      <%=   link_to 'Back', root_path, class: 'btn btn-primary' %><br><br>
-
+      <% if currentUser == @bounty.accepting_artist && @bounty.status == 'Completed' %>
+        <%=   link_to 'Update Artwork URL', edit_bounty_path(@bounty.id, "Complete"), class: 'btn btn-primary' %>
+      <% end %>
    <% end %>
-
-
   </div>
 </div>

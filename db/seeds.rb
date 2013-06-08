@@ -82,7 +82,8 @@ bounty1 = Bounty.new(
   :price => 1000.00
 )
 bounty1.user_id = customer1.id
-bounty1.url = "completed URL"
+bounty1.url = "http://nyquil.org/uploads/IndianHeadTestPattern16x9.png"
+bounty1.completed_at = '2013-06-31 21:43:52 -0700'
 bounty1.save!(:validate => false)
 
 # A bounty created by customer 1, accepted by artist 1.
@@ -119,7 +120,8 @@ bounty5 = Bounty.new(
   :price => 45.00
 )
 bounty5.user_id = customer2.id
-bounty5.url = "completed URL"
+bounty5.url = "http://nyquil.org/uploads/IndianHeadTestPattern16x9.png"
+bounty5.completed_at = '2013-06-31 21:43:52 -0700'
 bounty5.save!(:validate => false)
 
 # A bounty created by customer 1, accepted by artist 4.
@@ -138,7 +140,8 @@ bounty7 = Bounty.new(
   :price => 999.99
 )
 bounty7.user_id = customer2.id
-bounty7.url = "completed URL"
+bounty7.url = "http://nyquil.org/uploads/IndianHeadTestPattern16x9.png"
+bounty7.completed_at = '2013-06-31 21:43:52 -0700'
 bounty7.save!(:validate => false)
 
 # A bounty created by customer 2, accepted by artist 2.
