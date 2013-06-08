@@ -199,11 +199,16 @@ footer {
   margin: 0 20px;
 }
 
-#bounty-show .price {
+#bounty-show .candidacies {
   width: 75%;
   line-height: 50px;
-  font-size: 400%;
+  font-size: 200%;
   font-family: 'Carnevalee Freakshow';
+  margin: 10px auto;
+}
+
+#bounty-show .completed-art {
+  max-width: 100%;
   margin: 10px auto;
 }
 
@@ -224,10 +229,10 @@ footer {
   @include verticalCenter;
 }
 
-#bounty-show .candidacies {
+#bounty-show .price {
   width: 75%;
   line-height: 50px;
-  font-size: 200%;
+  font-size: 400%;
   font-family: 'Carnevalee Freakshow';
   margin: 10px auto;
 }
