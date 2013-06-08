@@ -217,13 +217,19 @@ footer {
 
 #bounty-show .desc {
   text-align: justified;
-  border-style: dashed;
-  border-width: 3px;
   font-size: 120%;
   margin: 30px auto;
   width: 80%;
   min-height: 200px;
   @include verticalCenter;
+}
+
+#bounty-show .candidacies {
+  width: 75%;
+  line-height: 50px;
+  font-size: 200%;
+  font-family: 'Carnevalee Freakshow';
+  margin: 10px auto;
 }
 
 #bounty-show .dates {

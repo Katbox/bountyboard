@@ -4,7 +4,6 @@
 
     <% if @bounty.status == "Unclaimed" %>
       <div class="candidacies">
-        These artists may complete this bounty!
         <% unless @bounty.candidacies.empty? %>
           <% @bounty.candidacies.each do |c| %>
             <%= c.artist.get_identifier %>
