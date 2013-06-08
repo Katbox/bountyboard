@@ -5,7 +5,7 @@ require File.expand_path('../application', __FILE__)
 
 Time::DATE_FORMATS[:created_on] = "Created on %B %d %Y"
 Time::DATE_FORMATS[:joined_on] = "Joined on %B %d %Y"
-Time::DATE_FORMATS[:accepted_on] = "%B %d %Y"
+Time::DATE_FORMATS[:accepted_on] = "Accepted on %B %d %Y"
 
 # Initialize the rails application
 Bountyboard::Application.initialize!
