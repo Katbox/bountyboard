@@ -10,7 +10,6 @@
  *
  *= require normalize-rails
  *= require bootstrap
- *= require formtastic
  *= require_self
  *= require_tree .
  *= require_tree ../../../vendor/assets/stylesheets
