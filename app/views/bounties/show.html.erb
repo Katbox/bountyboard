@@ -7,13 +7,17 @@
         <% unless @bounty.candidacies.empty? %>
           <% @bounty.candidacies.each do |c| %>
             <%= c.artist.get_identifier %>
+            <% unless c == @bounty.candidacies.last %>
+            or
+            <% end %>
           <% end %>
+          may complete this bounty for <%= humanized_money_with_symbol @bounty.price %>
         <% else %>
           All artists have rejected this bounty. :(
         <% end %>
       </div>
     <% else %>
-      <div class="status"><%= @bounty.status %> by <%= @bounty.accepting_artist.name %></div>
+      <div class="status"><%= @bounty.status %> by <%= @bounty.accepting_artist.name %> for <%= humanized_money_with_symbol @bounty.price %></div>
     <% end %>
 
     <% if @bounty.status == "Completed" %>
@@ -26,7 +30,6 @@
           <% end %>
       </div>
     <% end %>
-    <div class="price"><%= humanized_money_with_symbol @bounty.price %></div>
     <div class="dates">
       <%= @bounty.created_at.to_s(:created_on) %>
       <% unless @bounty.status == "Unclaimed" %> | <%= @bounty.accepted_on.to_s(:accepted_on) %><% end %>
