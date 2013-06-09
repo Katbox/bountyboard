@@ -208,15 +208,6 @@ footer .footer-wrapper {
   margin-bottom: 11%;
 }
 
-#bounty-page-area {
-  color: $black;
-  background: $yellow;
-  border: 1px inset $black;
-  @include roundCorners;
-  background-image:url('PaperTexture.jpg');
-  margin-bottom: 20px;
-}
-
 // Forms =======================================================================
 #form-area {
   color: $black;
@@ -225,6 +216,8 @@ footer .footer-wrapper {
   @include roundCorners;
   background-image:url('PaperTexture.jpg');
   padding: 20px;
+  width: 65%;
+  margin: 0 auto;
 }
 
 #form-area form li .choice{
@@ -291,6 +284,8 @@ footer .footer-wrapper {
   margin-bottom: 20px;
   text-align: center;
   padding: 20px;
+  width: 65%;
+  margin: 0 auto;
 }
 
 #bounty-show .name {
@@ -349,4 +344,16 @@ footer .footer-wrapper {
   margin-top: 20px;
   width: 95%;
   margin: 20px auto;
+}
+
+// Artist =======================================================================
+#artist-show {
+  color: $black;
+  background: $yellow;
+  border: 1px inset $black;
+  @include roundCorners;
+  background-image:url('PaperTexture.jpg');
+  padding: 20px;
+  width: 65%;
+  margin: 0 auto;
 }
