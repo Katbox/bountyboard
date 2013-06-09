@@ -4,14 +4,10 @@
     <ul>
       <li><%= link_to 'About', '#' %></li>
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-          Filters (in future your active filters will be displayed here)
-          <span class="caret"></span>
+        <a id="filters-dialog-show" class="dropdown-toggle" data-toggle="dropdown" href="#">
+          Filter Displayed Bounties
         </a>
-  <!--       <ul class="dropdown-menu">
-          <li>Filter Property 1</li>
-          <li>Filter Property 2</li>
-        </ul> -->
+        <%= render 'layouts/filters_controls' %>
       </li>
       <li><%= link_to 'Show All Artists', artists_path %></li>
       <% if signed_in? && currentUser.admin? %>
