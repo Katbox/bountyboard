@@ -32,7 +32,11 @@
     <% end %>
 
     <div class="banner">
-      <%= render 'layouts/post_bounty_button' %>
+      <% if signed_in? %>
+        <button class="header-button bounty-button"><%=   link_to 'Post a Bounty', new_bounty_path, id: 'post-bounty' %></button>
+      <%  else %>
+        <button id="persona-login-button" class="header-button bounty-button">Sign In to Post Your Bounty</button>
+      <%  end %>
     </div>
 
     <div class="page-area">
