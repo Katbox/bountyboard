@@ -6,10 +6,11 @@
       <nav class="nav-collapse collapse">
         <ul class="nav">
           <li><%= link_to 'About', '#' %></li>
-          <li>
-            <a id="filters-dialog-show" href="#">
-              Customize Bounty List
+          <li class="dropdown">
+            <a id="filters-dialog-show" class="dropdown-toggle" data-toggle="dropdown" href="#">
+              Filter Displayed Bounties
             </a>
+            <%= render 'layouts/filters_controls' %>
           </li>
           <li><%= link_to 'Show All Artists', artists_path %></li>
           <% if signed_in? && currentUser.admin? %>
@@ -27,20 +28,4 @@
     </div>
   </div>
 </header>
-<div id="filters-controls">
-    <span id="bounty-cost-filter">
-      <input type="checkbox" class="filter-toggle">
-      Cost:
-      <span class="filters-buttonset">
-        <label for="filters-cost-range-high">above</label><input id="filters-cost-range-high" type="radio" name="cost-range-filter" value="1">
-        <label for="filters-cost-range-low">below</label><input id="filters-cost-range-low" type="radio" name="cost-range-filter" value="0">
-      </span>
-      $<input type="number" min="5" step="0.01" value="5.00">
-    </span>
-    <span id="bounty-age-filter"><input type="checkbox" class="filter-toggle"> Max Age: <input type="range"> days</span>
-    <div>
-      <span id="no-adult-content-filter"><input type="checkbox" class="filter-toggle"> Don't Show Adult Content</span>
-      <span id="only-adult-content-filter"><input type="checkbox" class="filter-toggle"> Only Show Adult Content</span>
-    </div>
-</div>
 

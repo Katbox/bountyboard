@@ -1,11 +1,14 @@
 $(document).ready ->
+  $("#filter-cost").css "display", "none"
+  $("#filter-cost-widget").slider
+    range: true
+    min: 5
+    max: 500
+    values: [5, 500]
+    slide: (event, ui) ->
+      $("#filter-cost").val("$" + ui.values[0] + " - $" + ui.values[1])
 
-  # set up the button that shows and hides the filters controls
-  $("#filters-dialog-show").click (event) ->
-    filters_pane = $("#filters-controls")
-    filters_pane.slideToggle()
-    event.stopPropagation()
-
-  # initialize all buttonsets used by the filter controls
-  $(".filters-buttonset").buttonset()
+  $('.filter-control input[type="checkbox"]').button
+    create: (event, ui) ->
+      console.log "Created a checkbox button."
 

@@ -78,35 +78,17 @@ footer {
 }
 
 // Filter Controls for the Bounty List  ****************************************
-#filters-controls {
-  padding: 5px;
-  display: none;
-  position: fixed;
-  top: 40px;
-  width: 100%;
-  background-color: white;
-  z-index: 1; // the filter controls should overlay the page content
-  @include roundCorners;
+.filter-control {
+	width: 600px;
+	vertical-align: middle;
 }
 
-#filters-controls > * {
-  display: inline-block;
-  margin-left: 3px;
-  margin-right: 3px;
-  padding: 5px;
-  border: 1px solid black;
-  @include roundCorners;
+.filters-slider {
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+	display: inline-block;
 }
-
-#filters-controls > * * {
-  display: inline;
-  vertical-align: text-top;
-}
-
-#filters-controls input {
-  height: 1em;
-}
-
 
 // Bounty List =================================================================
 .bounty-square {

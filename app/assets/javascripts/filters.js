@@ -1,13 +1,20 @@
 (function() {
   $(document).ready(function() {
-    $("#filters-dialog-show").click(function(event) {
-      var filters_pane;
-
-      filters_pane = $("#filters-controls");
-      filters_pane.slideToggle();
-      return event.stopPropagation();
+    $("#filter-cost").css("display", "none");
+    $("#filter-cost-widget").slider({
+      range: true,
+      min: 5,
+      max: 500,
+      values: [5, 500],
+      slide: function(event, ui) {
+        return $("#filter-cost").val("$" + ui.values[0] + " - $" + ui.values[1]);
+      }
     });
-    return $(".filters-buttonset").buttonset();
+    return $('.filter-control input[type="checkbox"]').button({
+      create: function(event, ui) {
+        return console.log("Created a checkbox button.");
+      }
+    });
   });
 
 }).call(this);
