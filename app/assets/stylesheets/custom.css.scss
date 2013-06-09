@@ -13,6 +13,8 @@
     src: url('nashvill.ttf');
 }
 
+@include linkDecoration();
+
 p {
     font-size: 1.1em;
     line-height: 1.7em;
@@ -23,7 +25,6 @@ html, body {
 }
 
 body {
-    padding-top: 60px;
     background: $darkBrown;
     font-family: 'Courier';
     color: $black;
@@ -55,11 +56,6 @@ body {
   border: none;
 }
 
-header .login-notify-area {
-    vertical-align: middle;
-    color: $white;
-}
-
 footer {
     padding-top: 30px;
     color: $white;
@@ -76,6 +72,27 @@ footer {
 
 footer .footer-wrapper {
     padding-top: 30px;
+}
+
+// Nav Bar =====================================================================
+.navbar {
+  background: $black;
+  font-size: 80%;
+  color: $white;
+  @include linkColor($white);
+  padding: 5px 10px 5px 10px;
+}
+
+.navbar .nav-right {
+  float: right;
+}
+
+.navbar ul {
+  display: inline-block;
+}
+
+.navbar li {
+  display: inline-block;
 }
 
 // Bounty Board Header =========================================================

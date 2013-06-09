@@ -21,24 +21,6 @@ describe 'Bounty' do
       visit root_path
     }
 
-    describe 'should display the nav bar' do
-      it { should have_selector('.navbar') }
-      it { should have_selector('.brand') }
-      it { should have_selector('.persona-login-button', :text => "Sign In with Persona") }
-      it { should_not have_selector('.login-notify-area') }
-    end
-
-    describe 'should display the page header and sign-in button' do
-      it { should have_selector('.hero-unit') }
-    end
-
-    describe 'should display existing bounties' do
-      it { should have_selector('.bounty-square') }
-      it { should have_selector('.bounty-square .ribbon', :text => "$9.99") }
-      it { should have_selector('.bounty-square .name', :text => "My First Bounty") }
-      it { should have_selector('.bounty-square .short-desc', :text => "My very first bounty ever.") }
-      it { should have_selector('.bounty-square .read-more', :text => "Read More") }
-    end
   end
 
   describe "create page" do
