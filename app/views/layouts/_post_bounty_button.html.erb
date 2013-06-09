@@ -1,7 +1,7 @@
 <% if signed_in? %>
-  <%=   link_to 'Post a Bounty', new_bounty_path, id: 'post-bounty header-button', class: '' %>
+  <%=   link_to 'Post a Bounty', new_bounty_path, id: 'post-bounty', class: 'header-button' %>
 <%  else %>
-  <button class="persona-login-button header-button">Sign In to Post Your Bounty</button>
+  <button id="persona-login-button" class="header-button">Sign In to Post Your Bounty</button>
 <%  end %>
 
 

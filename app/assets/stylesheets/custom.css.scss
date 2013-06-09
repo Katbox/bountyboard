@@ -111,11 +111,15 @@ footer .footer-wrapper {
     margin: 20px auto;
 }
 
+.header-button {
+  margin-top: 100px;
+}
+
 // Bounty List =================================================================
 .bounty-square {
+  display: inline-block;
   height: 240px;
-  width: 280px !important;
-  margin: 0px 10px 10px !important;
+  width: 240px;
   background: $yellow;
   border: 1px inset $black;
   @include roundCorners;
