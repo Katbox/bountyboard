@@ -47,8 +47,6 @@ describe 'Sessions' do
       it { should have_selector('.navbar-inner .login-notify-area',
         :text => 'Logged in as test-user@example.com') }
     end
-
-    end
   end
 end
 
