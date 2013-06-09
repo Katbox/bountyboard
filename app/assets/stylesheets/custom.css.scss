@@ -205,10 +205,6 @@ footer .footer-wrapper {
   list-style-type: none;
 }
 
-#form-area form legend {
-  background-color: none;
-}
-
 #form-area .submit-button {
   width: 125px;
   height: 35px;
@@ -216,6 +212,47 @@ footer .footer-wrapper {
 
 #form-area .submit-container {
   width: 125px;
+  margin: 0 auto;
+}
+
+#form-area input[type=text] {
+  width: 60%;
+}
+
+#form-area textarea {
+  width: 60%;
+}
+
+#form-area legend {
+  width: 0px;
+}
+
+#form-area .inline-hints {
+  padding: 0;
+}
+
+#form-area label {
+  font-family: 'Carnevalee Freakshow';
+  color: $black;
+  background-color: transparent;
+  font-size: 200%;
+  line-height: 20px;
+  cursor: default;
+  font-weight: normal;
+}
+
+#form-area #errors {
+  background: $darkRed;
+  @include roundCorners;
+  color: white;
+  padding: 5px;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  margin: 10px auto;
+  width: 70%;
+}
+
+#form-area #errors #error-wrapper {
+  width: 450px;
   margin: 0 auto;
 }
 
