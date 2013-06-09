@@ -1,5 +1,5 @@
 <div class="row-fluid">
-  <div id="bounty-page-area" class="span6 offset3">
+  <div id="form-area" class="span6 offset3">
     <%= render 'shared/error_messages' %>
     <%= semantic_form_for @artist do |artist_form| %>
         <%= artist_form.input :name, :required => true %>
@@ -10,8 +10,7 @@
           <%= artist_form.input :approved%>
           <%= artist_form.input :active%>
         <% end %>
-        <%= artist_form.submit %>
+        <div class="control-panel"><%= artist_form.submit :class => "btn btn-primary submit-button" %><%=   link_to 'Back', artist_path(@artist.id), class: 'btn btn-primary' %></div>
     <% end %>
-    <%=   link_to 'Return to Bounty', artist_path(@artist.id), class: 'btn btn-primary' %>
   </div>
 </div>
