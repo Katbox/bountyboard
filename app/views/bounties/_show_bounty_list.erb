@@ -1,7 +1,7 @@
 <% if @bounty %>
   <% @bounty.sort{|b,a| a.created_at <=> b.created_at}.each do |b| %>
     <% unless b.private %>
-      <div class="span3 bounty-square">
+      <div class="bounty-square">
       <div class="nail"></div>
       <div class="ribbon-wrapper"><div class="ribbon"><%= humanized_money_with_symbol b.price %></div></div>
         <div class="name"><%= b.name %></div>
@@ -12,7 +12,7 @@
               <div class="upvote"></div>
               <div class="downvote"></div>
             </div>
-            <%=   link_to 'Read More', bounty_path(b.id), class: 'btn btn-primary read-more' %>
+            <%=   link_to 'Read More', bounty_path(b.id), class: 'read-more' %>
           </div>
         </div>
       </div>

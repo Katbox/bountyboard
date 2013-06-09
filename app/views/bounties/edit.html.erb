@@ -1,20 +1,19 @@
-<div class="row-fluid">
-  <div id="form-area" class="span6 offset3">
-    <%= render 'shared/error_messages' %>
-    <% if (@format == "Edit") %>
-      <%= semantic_form_for @bounty do |bounty_form| %>
-          <%= bounty_form.input :name, :required => true %>
-          <%= bounty_form.input :desc, :as => :text, :required => true %>
-          <%= bounty_form.input :price, :required => true %>
-          <%= bounty_form.input :artists, :collection => Artist.where(:active => true, :approved => true), :as => :check_boxes%>
-          <%= bounty_form.input :moods, :as => :check_boxes%>
-        <div class="control-panel"><%= bounty_form.submit :class => "btn btn-primary submit-button" %><%=   link_to 'Back', bounty_path(@bounty.id), class: 'btn btn-primary' %></div>
-      <% end %>
-    <% elsif (@format == "Complete") %>
-      <%= semantic_form_for @bounty do |bounty_form| %>
-        <%= bounty_form.input :url, :as => :string, :required => true %>
-        <div class="control-panel"><%= bounty_form.submit :class => "btn btn-primary submit-button" %><%=   link_to 'Back', bounty_path(@bounty.id), class: 'btn btn-primary' %></div>
-      <% end %>
+<div id="form-area">
+  <%= render 'shared/error_messages' %>
+  <% if (@format == "Edit") %>
+    <%= semantic_form_for @bounty do |bounty_form| %>
+        <%= bounty_form.input :name, :required => true %>
+        <%= bounty_form.input :desc, :as => :text, :required => true %>
+        <%= bounty_form.input :price, :required => true %>
+        <%= bounty_form.input :artists, :collection => Artist.where(:active => true, :approved => true), :as => :check_boxes%>
+        <%= bounty_form.input :moods, :as => :check_boxes%>
+      <div class="control-panel"><%= bounty_form.submit :class => "submit-button" %><%=   link_to 'Back', bounty_path(@bounty.id), class: '' %></div>
     <% end %>
-  </div>
+  <% elsif (@format == "Complete") %>
+    <%= semantic_form_for @bounty do |bounty_form| %>
+      <%= bounty_form.input :url, :as => :string, :required => true %>
+      <div class="control-panel"><%= bounty_form.submit :class => "submit-button" %><%=   link_to 'Back', bounty_path(@bounty.id), class: '' %></div>
+    <% end %>
+  <% end %>
 </div>
+

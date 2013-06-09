@@ -1,5 +1,4 @@
-<div class="row-fluid">
-  <div id="form-area" class="span6 offset3">
+<div id="form-area" class="">
     <%= render 'shared/error_messages' %>
     <%= semantic_form_for @bounty do |bounty_form| %>
         <%= bounty_form.input :name, :required => true, :hint => "The name of your bounty." %>
@@ -7,7 +6,7 @@
         <%= bounty_form.input :price, :required => true, :hint => "The price you're willing to pay. Min $5.00 USD" %>
         <%= bounty_form.input :artists, :collection => Artist.where(:active => true, :approved => true), :as => :check_boxes, :input_html => { :checked => 'checked' }, :hint => "Which artists may complete your bounty?"%>
         <%= bounty_form.input :moods, :as => :check_boxes, :hint => "Tags that help describe your bounty at a glance. Min 1. Max 2."%>
-        <div class="control-panel"><%= bounty_form.submit :class => "btn btn-primary submit-button" %><%=   link_to 'Back', root_path, class: 'btn btn-primary' %></div>
-    <% end %>
-  </div>
+        <div class="control-panel"><%= bounty_form.submit :class => "submit-button" %><%=   link_to 'Back', root_path, class: '' %></div>
+<% end %>
 </div>
+

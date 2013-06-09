@@ -1,36 +1,29 @@
 # encoding: UTF-8
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
-    <div class="container-fluid">
-      <%= link_to 'The Bounty Board', root_path, class: 'brand' %>
-      <nav class="nav-collapse collapse">
-        <ul class="nav">
-          <li><%= link_to 'About', '#' %></li>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              Filters (in future your active filters will be displayed here)
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li>Filter Property 1</li>
-              <li>Filter Property 2</li>
-            </ul>
-          <!-- <button class="linklike">Filters (in future should display your active filter)</button> -->
-          </li>
-          <li><%= link_to 'Show All Artists', artists_path %></li>
-          <% if signed_in? && currentUser.admin? %>
-            <li><%= link_to 'New Artist', new_artist_path %></li>
-          <% end %>
-        </ul>
-      </nav>
-      <span class="pull-right">
-      <% if signed_in? %>
-        <span class="login-notify-area">Logged in as <%= currentUser.get_identifier() %><%= render 'artists/show_artist_button' %></span>
-      <%  else %>
-        <button class="persona-login-button btn" type="button">Sign In with Persona</button>
-      <%  end %>
-      </span>
-    </div>
-  </div>
+<header class="navbar">
+  <%= link_to 'The Bounty Board', root_path, class: 'brand' %>
+  <ul>
+    <li><%= link_to 'About', '#' %></li>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        Filters (in future your active filters will be displayed here)
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li>Filter Property 1</li>
+        <li>Filter Property 2</li>
+      </ul>
+    </li>
+    <li><%= link_to 'Show All Artists', artists_path %></li>
+    <% if signed_in? && currentUser.admin? %>
+      <li><%= link_to 'New Artist', new_artist_path %></li>
+    <% end %>
+  </ul>
+  <span class="nav-right">
+  <% if signed_in? %>
+    <span class="login-notify-area">Logged in as <%= currentUser.get_identifier() %><%= render 'artists/show_artist_button' %></span>
+  <%  else %>
+    <button class="persona-login-button">Sign In with Persona</button>
+  <%  end %>
+  </span>
 </header>
 

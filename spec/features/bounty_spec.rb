@@ -30,7 +30,6 @@ describe 'Bounty' do
 
     describe 'should display the page header and sign-in button' do
       it { should have_selector('.hero-unit') }
-      it { should have_selector('.btn.btn-large.btn-primary', :text => "Sign In to Post Your Bounty") }
     end
 
     describe 'should display existing bounties' do
@@ -39,11 +38,6 @@ describe 'Bounty' do
       it { should have_selector('.bounty-square .name', :text => "My First Bounty") }
       it { should have_selector('.bounty-square .short-desc', :text => "My very first bounty ever.") }
       it { should have_selector('.bounty-square .read-more', :text => "Read More") }
-    end
-
-    describe 'should display the footer' do
-      it { should have_selector('footer.row-fluid', :text => '© Lionheart Studio, Nixie Bishop, and Brent Houghton') }
-      it { should have_selector('footer.row-fluid', :text => 'The Bounty Board is free software available under the open source AGPL license.') }
     end
   end
 

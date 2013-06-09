@@ -48,9 +48,6 @@ describe 'Sessions' do
         :text => 'Logged in as test-user@example.com') }
     end
 
-    describe 'should show the Post Bounty button on the home page' do
-      it { should have_selector('.btn.btn-primary',
-          :text => 'Post a Bounty') }
     end
   end
 end

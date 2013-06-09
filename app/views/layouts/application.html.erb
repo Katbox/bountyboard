@@ -31,18 +31,16 @@
       <% end %>
     <% end %>
 
-  <!--    Greeting to be later styled and image enhanced to resemble a RL bounty. -->
-    <div class="hero-unit">
+    <div class="banner">
       <%= render 'layouts/post_bounty_button' %>
     </div>
 
-  <!--    Primary Board Index Content -->
-    <div class="container-fluid ">
+    <div class="page-area">
       <%= yield %>
     </div>
 
   </div>
-  <!--    Footer with copyright and liscence info. -->
+
   <%= render 'layouts/footer' %>
 
 </body>

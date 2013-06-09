@@ -1,9 +1,8 @@
-<div class="row-fluid">
-  <div id="bounty-page-area" class="span8 offset2">
-    <ul>
-    <% @artist.each do |a| %>
-        <li><%= link_to a.name, artist_path(a.id) %></li>
-    <% end %>
-    </ul>
-  </div>
+<div id="bounty-page-area">
+  <ul>
+  <% @artist.each do |a| %>
+      <li><%= link_to a.name, artist_path(a.id) %></li>
+  <% end %>
+  </ul>
 </div>
+

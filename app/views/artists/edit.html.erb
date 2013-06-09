@@ -1,16 +1,15 @@
-<div class="row-fluid">
-  <div id="form-area" class="span6 offset3">
-    <%= render 'shared/error_messages' %>
-    <%= semantic_form_for @artist do |artist_form| %>
-        <%= artist_form.input :name, :required => true %>
-        <%= artist_form.input :email, :required => true %>
-        <%= artist_form.input :bio, :as => :text, :required => true %>
-        <%= artist_form.input :bounty_rules, :as => :text, :required => true %>
-        <% if currentUser.admin? %>
-          <%= artist_form.input :approved%>
-          <%= artist_form.input :active%>
-        <% end %>
-        <div class="control-panel"><%= artist_form.submit :class => "btn btn-primary submit-button" %><%=   link_to 'Back', artist_path(@artist.id), class: 'btn btn-primary' %></div>
-    <% end %>
-  </div>
+<div id="form-area">
+  <%= render 'shared/error_messages' %>
+  <%= semantic_form_for @artist do |artist_form| %>
+      <%= artist_form.input :name, :required => true %>
+      <%= artist_form.input :email, :required => true %>
+      <%= artist_form.input :bio, :as => :text, :required => true %>
+      <%= artist_form.input :bounty_rules, :as => :text, :required => true %>
+      <% if currentUser.admin? %>
+        <%= artist_form.input :approved%>
+        <%= artist_form.input :active%>
+      <% end %>
+      <div class="control-panel"><%= artist_form.submit :class => "submit-button" %><%=   link_to 'Back', artist_path(@artist.id), class: '' %></div>
+  <% end %>
 </div>
+

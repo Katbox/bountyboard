@@ -31,21 +31,6 @@ body {
     background-image:url('WoodTexture.jpg');
 }
 
-.btn-primary {
-    background: $darkRed;
-    color: $white;
-    @include linkColor($white);
-    @include gradient($lightRed, $darkRed);
-}
-
-.btn-primary:hover {
-    background: $lightRed;
-}
-
-.btn-primary:active {
-    background: $darkRed;
-}
-
 .alert-error {
   text-align: center;
   font-family: 'Carnevalee Freakshow';
