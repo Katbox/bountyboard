@@ -5,6 +5,6 @@
         <%= artist_form.input :email, :required => true %>
         <%= artist_form.input :bio, :as => :text, :required => true %>
         <%= artist_form.input :bounty_rules, :as => :text, :required => true %>
-        <div class="control-panel"><%= artist_form.submit :class => "submit-button" %><%=   link_to 'Back', root_path, class: '' %></div>
+        <div class="control-panel"><%= artist_form.submit :class => "bounty-button submit-button" %><%=   link_to 'Back', root_path, class: 'bounty-button' %></div>
     <% end %>
 </div>

@@ -7,12 +7,12 @@
         <%= bounty_form.input :price, :required => true %>
         <%= bounty_form.input :artists, :collection => Artist.where(:active => true, :approved => true), :as => :check_boxes%>
         <%= bounty_form.input :moods, :as => :check_boxes%>
-      <div class="control-panel"><%= bounty_form.submit :class => "submit-button" %><%=   link_to 'Back', bounty_path(@bounty.id), class: '' %></div>
+      <div class="control-panel"><%= bounty_form.submit :class => "bounty-button submit-button" %><%=   link_to 'Back', bounty_path(@bounty.id), class: 'bounty-button' %></div>
     <% end %>
   <% elsif (@format == "Complete") %>
     <%= semantic_form_for @bounty do |bounty_form| %>
       <%= bounty_form.input :url, :as => :string, :required => true %>
-      <div class="control-panel"><%= bounty_form.submit :class => "submit-button" %><%=   link_to 'Back', bounty_path(@bounty.id), class: '' %></div>
+      <div class="control-panel"><%= bounty_form.submit :class => "bounty-button submit-button" %><%=   link_to 'Back', bounty_path(@bounty.id), class: 'bounty-button' %></div>
     <% end %>
   <% end %>
 </div>

@@ -35,25 +35,25 @@
     <% if @bounty.status == "Completed" %> | <%= @bounty.completed_at.to_s(:completed_on) %><% end %>
   </div>
   <div class="control-panel">
-  <%=   link_to 'Back', root_path, class: '' %>
+  <%=   link_to 'Back', root_path, class: 'bounty-button' %>
   <% if signed_in? %>
     <% if (@bounty.owner == currentUser && @bounty.status == 'Unclaimed') || currentUser.admin? %>
-      <%=   link_to 'Update This Bounty', edit_bounty_path(@bounty.id, "Edit"), class: '' %>
+      <%=   link_to 'Update This Bounty', edit_bounty_path(@bounty.id, "Edit"), class: 'bounty-button' %>
     <% end %>
     <% if (@bounty.owner == currentUser && @bounty.status == 'Unclaimed') || currentUser.admin? %>
-      <%=   link_to 'Delete This Bounty', @bounty, :confirm => "Are you sure you want to delete #{@bounty.name}?", :method => :delete, class: '' %>
+      <%=   link_to 'Delete This Bounty', @bounty, :confirm => "Are you sure you want to delete #{@bounty.name}?", :method => :delete, class: 'bounty-button' %>
     <% end %>
     <% if currentUser.artist? && @bounty.has_candidate?(currentUser.name) && @bounty.status == 'Unclaimed' %>
-      <%=   link_to 'Accept This Bounty', candidacy_path(:candidacy => {:acceptor => true}), :method => :put, :confirm => "Are you sure you want to accept this bounty?", class: '' %>
+      <%=   link_to 'Accept This Bounty', candidacy_path(:candidacy => {:acceptor => true}), :method => :put, :confirm => "Are you sure you want to accept this bounty?", class: 'bounty-button' %>
     <% end %>
     <% if currentUser.artist? && @bounty.has_candidate?(currentUser.name) && @bounty.status == 'Unclaimed' %>
-      <%=   link_to 'Reject This Bounty', candidacy_path, :method => :delete, :confirm => "Are you sure you want to reject this bounty?", class: '' %>
+      <%=   link_to 'Reject This Bounty', candidacy_path, :method => :delete, :confirm => "Are you sure you want to reject this bounty?", class: 'bounty-button' %>
     <% end %>
     <% if currentUser == @bounty.accepting_artist && @bounty.status == 'Accepted' %>
-      <%=   link_to 'Complete This Bounty', edit_bounty_path(@bounty.id, "Complete"), class: '' %>
+      <%=   link_to 'Complete This Bounty', edit_bounty_path(@bounty.id, "Complete"), class: 'bounty-button' %>
     <% end %>
     <% if currentUser == @bounty.accepting_artist && @bounty.status == 'Completed' %>
-      <%=   link_to 'Update Artwork URL', edit_bounty_path(@bounty.id, "Complete"), class: '' %>
+      <%=   link_to 'Update Artwork URL', edit_bounty_path(@bounty.id, "Complete"), class: 'bounty-button' %>
     <% end %>
  <% end %>
 </div>
