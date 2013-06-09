@@ -47,11 +47,6 @@
     a:active {text-decoration:none;}
 }
 
-@mixin marginCenter() {
-    margin-left: auto;
-    margin-right: auto;
-}
-
 @mixin rotate($degree) {
     -webkit-transform: rotate($degree);
     -moz-transform:    rotate($degree);

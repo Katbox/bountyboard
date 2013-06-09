@@ -96,7 +96,7 @@ footer .footer-wrapper {
 }
 
 // Bounty Board Header =========================================================
-.hero-unit {
+.banner {
     color: $black;
     font-weight: bold;
     width: 950px;
@@ -104,18 +104,11 @@ footer .footer-wrapper {
     padding: 0px;
     border: 1px inset $black;
     @include linkColor($white);
-    @include marginCenter();
+    @include roundCorners;
     text-align: center;
     background: $yellow;
     background-image:url('bountyHeader.jpg');
-}
-
-.hero-unit button {
-    margin-top: 140px;
-}
-
-#post-bounty {
-    margin-top: 140px;
+    margin: 20px auto;
 }
 
 // Bounty List =================================================================
