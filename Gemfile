@@ -52,6 +52,7 @@ end
 # Universal gems that should be used in all environments.
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'masonry-rails'
 gem 'normalize-rails'
 gem 'omniauth-browserid'
 gem 'omniauth-deviantart'

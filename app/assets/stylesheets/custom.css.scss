@@ -116,10 +116,16 @@ footer .footer-wrapper {
 }
 
 // Bounty List =================================================================
+
+#bounty-list {
+  width: 1000px;
+  margin: 0 auto;
+}
+
 .bounty-square {
-  display: inline-block;
+  float: left;
   height: 240px;
-  width: 240px;
+  width: 280px;
   background: $yellow;
   border: 1px inset $black;
   @include roundCorners;
@@ -128,6 +134,7 @@ footer .footer-wrapper {
   padding: 9px;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-bottom: 10px;
 }
 
 .bounty-square .nail {
