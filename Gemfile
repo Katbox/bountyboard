@@ -23,6 +23,7 @@ group :development do
   gem 'guard-coffeescript'
   gem 'ruby-growl'
   gem 'annotate'
+  gem 'magic_encoding'
 end
 
 

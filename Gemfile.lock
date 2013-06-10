@@ -97,6 +97,7 @@ GEM
     lumberjack (1.0.3)
     macaddr (1.6.1)
       systemu (~> 2.5.0)
+    magic_encoding (0.0.2)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -235,6 +236,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   jquery-ui-sass-rails
+  magic_encoding
   masonry-rails
   money-rails
   normalize-rails
