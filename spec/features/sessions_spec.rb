@@ -44,7 +44,7 @@ describe 'Sessions' do
     end
 
     describe 'should display the user\'s name or email' do
-      it { should have_selector('.navbar-inner .login-notify-area',
+      it { should have_selector('.login-notify-area',
         :text => 'Logged in as test-user@example.com') }
     end
   end
