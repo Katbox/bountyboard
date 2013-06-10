@@ -22,21 +22,23 @@
 
     <%= render 'layouts/nav_bar' %>
 
-    <% [:notice, :error, :alert].each do |level| %>
-      <% unless flash[level].blank? %>
-        <div class="alert <%= flash_class(level) %>">
-          <a class="close" href="#">×</a>
-            <%= content_tag :p, flash[level] %>
-        </div>
-      <% end %>
-    <% end %>
-
     <div class="banner">
       <% if signed_in? %>
         <button class="header-button bounty-button"><%=   link_to 'Post a Bounty', new_bounty_path, id: 'post-bounty' %></button>
       <%  else %>
         <button id="persona-login-button" class="header-button bounty-button">Sign In to Post Your Bounty</button>
       <%  end %>
+    </div>
+
+    <div class="flash-box">
+      <% [:notice, :error, :alert].each do |level| %>
+        <% unless flash[level].blank? %>
+          <div class="alert <%= flash_class(level) %>">
+              <%= flash[level] %>
+              <a class="close" href="#">x</a>
+          </div>
+        <% end %>
+      <% end %>
     </div>
 
     <div class="page-area">
