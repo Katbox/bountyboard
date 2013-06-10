@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 admin1 = User.new(
   :name => 'Admin1',
   :email => 'admin1@test.com',

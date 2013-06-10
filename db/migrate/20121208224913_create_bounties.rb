@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateBounties < ActiveRecord::Migration
   def change
     create_table :bounties do |t|

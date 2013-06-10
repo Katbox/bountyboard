@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ArtistsController < ApplicationController
 
   include SessionsHelper

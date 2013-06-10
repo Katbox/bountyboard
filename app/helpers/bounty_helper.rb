@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module BountyHelper
     def accept(bounty_id)
       @bounty = Bounty.find(bounty_id)
