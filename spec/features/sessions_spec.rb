@@ -6,6 +6,17 @@ describe 'Sessions' do
 
   subject { page }
 
+  before { visit root_path }
+
+  describe 'while logged out' do
+    it { should_not have_selector('*', :text => 'Logged in as') }
+    it { should_not have_selector('*', :text => 'Post a Bounty') }
+    it { should_not have_selector('.login-notify-area') }
+
+    it { should have_selector('*', :text => 'Sign In to Post Your Bounty') }
+    it { should have_selector('.persona-login-button') }
+  end
+
   describe 'hidden Persona form should not be visible' do
     it { should_not have_selector('#browser-id-form') }
   end
@@ -44,8 +55,15 @@ describe 'Sessions' do
     end
 
     describe 'should display the user\'s name or email' do
-      it { should have_selector('.navbar-inner .login-notify-area',
+      it { should have_selector('*',
         :text => 'Logged in as test-user@example.com') }
+    end
+
+    describe 'should show the Post Bounty button on the home page' do
+      it {
+        should have_selector('button, input[type="button"]',
+          :text => 'Post a Bounty')
+      }
     end
   end
 end
