@@ -11,7 +11,6 @@ describe 'Sessions' do
   describe 'while logged out' do
     it { should_not have_selector('*', :text => 'Logged in as') }
     it { should_not have_selector('*', :text => 'Post a Bounty') }
-    it { should_not have_selector('.login-notify-area') }
 
     it { should have_selector('*', :text => 'Sign In to Post Your Bounty') }
     it { should have_selector('.persona-login-button') }
@@ -55,7 +54,7 @@ describe 'Sessions' do
     end
 
     describe 'should display the user\'s name or email' do
-      it { should have_selector('*',
+      it { should have_selector('.login-notify-area',
         :text => 'Logged in as test-user@example.com') }
     end
 
