@@ -1,4 +1,0 @@
-<% # -*- encoding : utf-8 -*- %>
-<% if signed_in? %>
-  <br><% if currentUser.artist? %><%= link_to 'Your Profile', artist_path(currentUser.id) %><% end %>
-<% end %>

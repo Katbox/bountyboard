@@ -85,7 +85,7 @@ footer .footer-wrapper {
 }
 
 // Nav Bar =====================================================================
-.navbar {
+.wrapper > nav {
   background: $black;
   font-size: 80%;
   color: $white;
@@ -93,16 +93,14 @@ footer .footer-wrapper {
   padding: 5px 10px 5px 10px;
 }
 
-.navbar .nav-right {
-  float: right;
+.wrapper > nav li {
+  display: inline-block;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
-.navbar ul {
-  display: inline-block;
-}
-
-.navbar li {
-  display: inline-block;
+.wrapper > nav .login-notify-area {
+	float: right;
 }
 
 // Bounty Board Header =========================================================
