@@ -10,11 +10,7 @@
         return $("#filter-cost").val("$" + ui.values[0] + " - $" + ui.values[1]);
       }
     });
-    return $('.filter-control input[type="checkbox"]').button({
-      create: function(event, ui) {
-        return console.log("Created a checkbox button.");
-      }
-    });
+    return $('.filter-control input[type="checkbox"]').button();
   });
 
 }).call(this);
