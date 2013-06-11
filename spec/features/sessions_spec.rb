@@ -16,10 +16,6 @@ describe 'Sessions' do
     it { should have_selector('.persona-login-button') }
   end
 
-  describe 'hidden Persona form should not be visible' do
-    it { should_not have_selector('#browser-id-form') }
-  end
-
   describe 'on failed login' do
 
     before {
