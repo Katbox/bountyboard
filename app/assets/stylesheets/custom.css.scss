@@ -104,7 +104,7 @@ footer .footer-wrapper {
 }
 
 // Bounty Board Header =========================================================
-.banner {
+.wrapper > header {
     color: $black;
     width: 950px;
     height: 225px;
@@ -116,7 +116,7 @@ footer .footer-wrapper {
     text-align: center;
 }
 
-.header-button {
+.wrapper > header button {
   font-size: 120%;
   margin-top: 150px;
 }
