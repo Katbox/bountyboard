@@ -1,31 +1,26 @@
 <% # -*- encoding : utf-8 -*- %>
 <nav>
-  <ul>
-    <li><%= link_to 'The Bounty Board', root_path, class: 'brand' %></li>
-    <li><%= link_to 'About', '#' %></li>
-    <li class="dropdown">
-      <a id="filters-dialog-show" class="dropdown-toggle" data-toggle="dropdown" href="#">
-        Filter Displayed Bounties
-      </a>
-      <%= render 'layouts/filters_controls' %>
-    </li>
-    <li><%= link_to 'Show All Artists', artists_path %></li>
-    <% if signed_in? && currentUser.admin? %>
-      <li><%= link_to 'New Artist', new_artist_path %></li>
-    <% end %>
-    <% if signed_in? && currentUser.artist? %>
-      <%= link_to 'Your Profile', artist_path(currentUser.id) %>
-	<% end %>
-    <li class="login-notify-area">
-      <% if signed_in? %>
-            Logged in as
-        <%= currentUser.get_identifier() %>
-      <%  else %>
-        <button class="persona-login-button">
-          Sign In with Persona
-        </button>
-      <%  end %>
-    </li>
-  </ul>
+  <%= link_to 'The Bounty Board', root_path %>
+  <%= link_to 'About', '#' %>
+  <a data-dropdown="#dropdown-filters-controls" href="#">
+	  Filter Displayed Bounties
+  </a>
+  <%= link_to 'Show All Artists', artists_path %>
+  <% if signed_in? && currentUser.admin? %>
+    <%= link_to 'New Artist', new_artist_path %>
+  <% end %>
+  <% if signed_in? && currentUser.artist? %>
+    <%= link_to 'Your Profile', artist_path(currentUser.id) %>
+  <% end %>
+  <span class="login-notify-area">
+    <% if signed_in? %>
+          Logged in as
+      <%= currentUser.get_identifier() %>
+    <%  else %>
+      <button class="persona-login-button">
+        Sign In with Persona
+      </button>
+    <%  end %>
+  </span>
 </nav>
 

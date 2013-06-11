@@ -86,17 +86,35 @@ footer .footer-wrapper {
 
 // Nav Bar =====================================================================
 .wrapper > nav {
-  background: $black;
-  font-size: 80%;
-  color: $white;
-  @include linkColor($white);
-  padding: 5px 10px 5px 10px;
+	background: $black;
+	font-size: 80%;
+	color: $white;
+	padding: 15px;
 }
 
-.wrapper > nav li {
-  display: inline-block;
-  margin-left: 15px;
-  margin-right: 15px;
+.wrapper > nav a:visited {
+	color: $white;
+}
+.wrapper > nav a:active {
+	color: $white;
+}
+.wrapper > nav a:hover {
+	color: $steelBlue;
+}
+.wrapper > nav a:link {
+	color: $white;
+}
+
+.wrapper > nav > * {
+	display: inline-block;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+// make the first nav element stand out, since it will hold our
+// site's name and logo
+.wrapper > nav > *:first-child {
+	font-size: 150%;
 }
 
 .wrapper > nav .login-notify-area {
