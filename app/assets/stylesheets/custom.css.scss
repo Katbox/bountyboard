@@ -103,9 +103,7 @@ footer .footer-wrapper {
 
 .wrapper > nav a {
 	color: $white;
-}
-.wrapper > nav a:hover, .wrapper > nav a:active {
-	color: $steelBlue;
+	&:hover { color: $steelBlue; }
 }
 
 .wrapper > nav > * {
