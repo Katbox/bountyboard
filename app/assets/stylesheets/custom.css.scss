@@ -86,10 +86,22 @@ footer .footer-wrapper {
 
 // Nav Bar =====================================================================
 .wrapper > nav {
-	background: $black;
 	font-size: 80%;
 	color: $white;
 	padding: 15px;
+
+	// a slight inner shadow
+	box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 2px;
+	
+	// Try to make a pretty background gradient. Unfortunately there's no
+	// standard CSS property for this, so vendor-prefixed properties are
+	// necessary.
+	background: $black; /* Show a solid color for older browsers */
+	background: -moz-linear-gradient(top, #393939, #181818);
+	background: -webkit-linear-gradient(top, #393939, #181818);
+	background: -ms-linear-gradient(top, #393939, #181818);
+	background: -o-linear-gradient(top, #393939, #181818);
+	border-bottom: 1px solid #333333;
 }
 
 .wrapper > nav a {
