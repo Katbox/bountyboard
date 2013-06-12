@@ -92,17 +92,11 @@ footer .footer-wrapper {
 	padding: 15px;
 }
 
-.wrapper > nav a:visited {
+.wrapper > nav a {
 	color: $white;
 }
-.wrapper > nav a:active {
-	color: $white;
-}
-.wrapper > nav a:hover {
+.wrapper > nav a:hover, .wrapper > nav a:active {
 	color: $steelBlue;
-}
-.wrapper > nav a:link {
-	color: $white;
 }
 
 .wrapper > nav > * {
