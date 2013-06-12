@@ -20,7 +20,6 @@ group :development do
   gem 'sqlite3'
   gem 'rspec-rails'
   gem 'guard'
-  gem 'guard-coffeescript'
   gem 'ruby-growl'
   gem 'annotate'
   gem 'magic_encoding'
