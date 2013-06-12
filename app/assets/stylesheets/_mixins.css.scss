@@ -25,7 +25,7 @@
     box-align:center;
 }
 
-@mixin gradient($one, $two) {
+@mixin background-gradient($one, $two) {
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($one), to($two));
     background-image: -webkit-linear-gradient(top, $one, $two);
     background-image: -moz-linear-gradient(top, $one, $two);
