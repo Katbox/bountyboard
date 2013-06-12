@@ -28,9 +28,10 @@
 @mixin gradient($one, $two) {
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($one), to($two));
     background-image: -webkit-linear-gradient(top, $one, $two);
-    background-image:    -moz-linear-gradient(top, $one, $two);
-    background-image:     -ms-linear-gradient(top, $one, $two);
-    background-image:      -o-linear-gradient(top, $one, $two);
+    background-image: -moz-linear-gradient(top, $one, $two);
+    background-image: -ms-linear-gradient(top, $one, $two);
+    background-image: -o-linear-gradient(top, $one, $two);
+    background-image: linear-gradient(top, $one, $two);
 }
 
 @mixin linkColor($color) {
@@ -53,3 +54,4 @@
     -ms-transform:     rotate($degree);
     -o-transform:      rotate($degree);
 }
+
