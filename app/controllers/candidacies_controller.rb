@@ -6,7 +6,8 @@ class CandidaciesController < ApplicationController
   # candidacy to the bounty in question may perform this action.
   def update
     unless signed_in?
-      redirect_to root_path, :error => "You must sign in."
+      flash[:error] = "You must sign in."
+      redirect_to root_path
     end
     @bounty = Bounty.find(params[:id])
     redirect_to root_path, :error => "Only artists may accept bounties." if (currentUser.artist? == false)
@@ -14,12 +15,15 @@ class CandidaciesController < ApplicationController
     unless @candidacy.nil?
       params[:candidacy][:accepted_at] = Time.now
       if @candidacy.update_attributes(params[:candidacy])
-        redirect_to root_path, :notice => "Bounty Accepted!"
+        flash[:notice] = "Bounty Accepted!"
+        redirect_to root_path
       else
-        redirect_to edit_bounty_path(@bounty.id), :error => "Error accepting bounty."
+        flash[:error] = "Error accepting bounty."
+        redirect_to edit_bounty_path(@bounty.id)
       end
     else
-      redirect_to root_path, :error => "You are not a candidate for that bounty."
+      flash[:error] = "You are not a candidate for that bounty."
+      redirect_to root_path
     end
   end
 
@@ -27,26 +31,35 @@ class CandidaciesController < ApplicationController
   # bounty.
   def destroy
     unless signed_in?
-      redirect_to root_path, :error => "You must sign in."
+      flash[:error] = "You must sign in."
+      redirect_to root_path
     end
     @bounty = Bounty.find(params[:id])
-    redirect_to root_path, :error => "Only artists may reject bounties." if (currentUser.artist? == false)
+    flash[:error] = "You are not a candidate for that bounty."
+    if (currentUser.artist? == false)
+      flash[:error] = "Only artists may reject bounties."
+      redirect_to root_path
+    end
     @candidacy = Candidacy.where(:artist_id => currentUser.id, :bounty_id => @bounty.id).first
     unless @candidacy.nil?
       if @candidacy.destroy
         if @bounty.is_abandoned?
           if @bounty.destroy
-            redirect_to root_path, :notice => "Bounty & Candidacy removed!"
+            flash[:notice] = "Bounty & Candidacy removed!"
+            redirect_to root_path
             #TODO Mail user that bounty was totally rejected.
             return
           end
         end
-        redirect_to root_path, :notice => "Candidacy removed!"
+        flash[:notice] = "Candidacy removed!"
+        redirect_to root_path
       else
-        redirect_to edit_bounty_path(@bounty.id), :error => "Error removing candidacy."
+        flash[:error] = "Error removing candidacy."
+        redirect_to edit_bounty_path(@bounty.id)
       end
     else
-      redirect_to root_path, :error => "You are not a candidate for that bounty."
+      flash[:error] = "You are not a candidate for that bounty."
+      redirect_to root_path
     end
   end
 

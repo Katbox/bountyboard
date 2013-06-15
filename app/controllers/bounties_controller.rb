@@ -17,7 +17,8 @@ class BountiesController < ApplicationController
   # Display the form to create a new bounty. Anyone may perform this action.
   def new
     unless signed_in?
-      redirect_to root_path, :error => "You must sign in."
+      flash[:error] = "You must sign in."
+      redirect_to root_path
     end
     @bounty = Bounty.new
   end
@@ -25,7 +26,8 @@ class BountiesController < ApplicationController
   # Create a new bounty. Anyone may perform this action.
   def create
     unless signed_in?
-      redirect_to root_path, :error => "You must sign in."
+      flash[:error] = "You must sign in."
+      redirect_to root_path
     end
 
     # If no specific artists were selected. Then create a candidacy to all
@@ -45,7 +47,8 @@ class BountiesController < ApplicationController
     @bounty.owner = currentUser
 
     if @bounty.save
-      redirect_to root_path, :notice => "Bounty created successfully."
+      flash[:notice] = "Bounty created successfully."
+      redirect_to root_path
     else
       flash[:error] = "Error saving bounty."
       render 'new'
@@ -57,7 +60,8 @@ class BountiesController < ApplicationController
   # may edit all other properties.
   def edit
     unless signed_in?
-      redirect_to root_path, :error => "You must sign in."
+      flash[:error] = "You must sign in."
+      redirect_to root_path
     end
     @bounty = Bounty.find(params[:id])
     # The format parameter is a string passed along with the id when using
@@ -66,7 +70,8 @@ class BountiesController < ApplicationController
     # bounty, maintaining REST.
     @format = params[:format]
     unless (@bounty.owner == currentUser || @bounty.has_candidate?(currentUser.name))
-      redirect_to root_path, :error => "You are not authorized to edit this bounty."
+      flash[:error] = "You are not authorized to edit this bounty."
+      redirect_to root_path
     end
   end
 
@@ -75,19 +80,23 @@ class BountiesController < ApplicationController
   # properties.
   def update
     unless signed_in?
-      redirect_to root_path, :error => "You must sign in."
+      flash[:error] = "You must sign in."
+      redirect_to root_path
     end
     @bounty = Bounty.find(params[:id])
     unless (@bounty.owner == currentUser || @bounty.has_candidate?(currentUser.name))
-      redirect_to root_path, :error => "You are not authorized to edit this bounty."
+      flash[:error] = "You are not authorized to edit this bounty."
+      redirect_to root_path
     end
     if params[:bounty][:url] != nil
       params[:bounty][:completed_at] = Time.now
     end
     if @bounty.update_attributes(params[:bounty])
-      redirect_to root_path, :notice => "Bounty Updated!"
+      flash[:notice] = "Bounty Updated!"
+      redirect_to root_path
     else
-      redirect_to root_path, :error => "Error updating bounty."
+      flash[:error] = "Error updating bounty."
+      redirect_to root_path
     end
   end
 
@@ -95,24 +104,30 @@ class BountiesController < ApplicationController
   # only do this if the bounty is unclaimed.
   def destroy
     unless signed_in?
-      redirect_to root_path, :error => "You must sign in."
+      flash[:error] = "You must sign in."
+      redirect_to root_path
     end
     @bounty = Bounty.find(params[:id])
 
     if (@bounty.owner == currentUser && (@bounty.status == 'Unclaimed')) || currentUser.admin?
       if Bounty.destroy(params[:id])
-        redirect_to root_path, :notice => "Bounty successfully removed."
+        flash[:notice] = "Bounty successfully removed."
+        redirect_to root_path
       else
-        redirect_to root_path, :error => "Error removing bounty."
+        flash[:error] = "Error removing bounty."
+        redirect_to root_path
       end
     else
       if @bounty.owner != currentUser
-        redirect_to root_path, :error => "You are not authorized to remove this bounty."
+        flash[:error] = "You are not authorized to remove this bounty."
+        redirect_to root_path
       elsif @bounty.status == "Accepted"
         acceptor = @bounty.accepting_artist.get_identifier
-        redirect_to root_path, :error => "This bounty is being worked on by #{acceptor} and cannot be deleted."
+        flash[:error] = "This bounty is being worked on by #{acceptor} and cannot be deleted."
+        redirect_to root_path
       else
-        redirect_to root_path, :error => "This bounty is #{@bounty.status} and cannot be deleted."
+        flash[:error] = "This bounty is #{@bounty.status} and cannot be deleted."
+        redirect_to root_path
       end
     end
   end

@@ -22,32 +22,37 @@ class ArtistsController < ApplicationController
   # action.
   def new
     unless signed_in?
-      redirect_to root_path, :error => "You must sign in."
+      flash[:error] = "You must sign in."
+      redirect_to root_path
     end
     if currentUser.admin?
       @artist = Artist.new
     else
-      redirect_to root_path, :error => "Only administrators can create new artists."
+      flash[:error] = "Only administrators can create new artists."
+      redirect_to root_path
     end
   end
 
   # Create a new artist. Only admins may perform this action.
   def create
     unless signed_in?
-      redirect_to root_path, :error => "You must sign in."
+      flash[:error] = "You must sign in."
+      redirect_to root_path
     end
     if currentUser.admin?
       #TODO Figure out how approved fits into our workflow.
       params[:artist][:approved] = true
       @artist = Artist.new(params[:artist])
       if @artist.save
-        redirect_to root_path, :notice => "Artist created successfully!"
+        flash[:notice] = "Artist created successfully!"
+        redirect_to root_path
       else
         flash[:error] = "Error saving artist."
         render 'new'
       end
     else
-      redirect_to root_path, :error => "Only administrators can create new artists."
+      flash[:error] = "Only administrators can create new artists."
+      redirect_to root_path
     end
   end
 
@@ -68,16 +73,20 @@ class ArtistsController < ApplicationController
   # properties.
   def update
     unless signed_in?
-      redirect_to root_path, :error => "You must sign in."
+      flash[:error] = "You must sign in."
+      redirect_to root_path
     end
     @artist = Artist.find(params[:id])
     unless (@artist == currentUser || currentUser.admin?)
-      redirect_to root_path, :error => "You are not authorized to edit this artist."
+      flash[:error] = "You are not authorized to edit this artist."
+      redirect_to root_path
     end
     if @artist.update_attributes(params[:artist])
-      redirect_to root_path, :notice => "Artist updated!"
+      flash[:notice] = "Artist updated!"
+      redirect_to root_path
     else
-      redirect_to root_path, :error => "Error updating artist."
+      flash[:error] = "Error updating artist."
+      redirect_to root_path
     end
   end
 
@@ -86,18 +95,22 @@ class ArtistsController < ApplicationController
   # bounties.
   def destroy
     unless signed_in?
-      redirect_to root_path, :error => "You must sign in."
+      flash[:error] = "You must sign in."
+      redirect_to root_path
     end
     @artist = Artist.find(params[:id])
     if currentUser.admin?
       @artist.active = false
       if @artist.save
-        redirect_to root_path, :notice => "Artist #{@artist.name} is now inactive!"
+        flash[:notice] = "Artist #{@artist.name} is now inactive!"
+        redirect_to root_path
       else
-        redirect_to root_path, :error => "Error deactivating artist."
+        flash[:error] = "Error deactivating artist."
+        redirect_to root_path
       end
     else
-      redirect_to root_path, :error => "Only administrators can delete artists."
+      flash[:error] = "Only administrators can delete artists."
+      redirect_to root_path
     end
   end
 end
