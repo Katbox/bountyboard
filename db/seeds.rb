@@ -20,6 +20,7 @@ artist1.save!
 artist2 = Artist.new(
   :name => 'Artist2',
   :email => 'artist2@test.com',
+  # :email => 'lionheartstudio@gmail.com',
   :bio => 'Artist 2 is a withdrawn person who emerges periodically to draw mostly surrealist art.',
   :bounty_rules => 'Surrealist art only!'
 )
