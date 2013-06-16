@@ -35,7 +35,7 @@
         <% unless flash[level].blank? %>
           <div class="alert <%= flash_class(level) %>">
               <%= flash[level] %>
-              <a class="close" href="#">x</a>
+              <%=   link_to 'x', root_path, class: 'close' %>
           </div>
         <% end %>
       <% end %>

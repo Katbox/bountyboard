@@ -35,7 +35,7 @@ body {
   display: inline-block;
   font-family: 'Carnevalee Freakshow';
   font-size: 300%;
-  margin: 20px auto;
+  margin: 0px auto 20px auto;
   @include linkColor($white);
   @include roundCorners;
   color: $white;
