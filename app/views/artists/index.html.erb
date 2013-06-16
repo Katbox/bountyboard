@@ -1,4 +1,4 @@
-<div id="artist-show">
+<div id="artist-list">
   <ul>
   <% @artist.each do |a| %>
       <li><%= link_to a.name, artist_path(a.id) %></li>

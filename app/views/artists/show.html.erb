@@ -1,24 +1,42 @@
 <div id="artist-show">
-  Artist Details
-  <ul>
-    <li><%= @artist.name %></li>
-    <li><%= @artist.email %></li>
-    <li><%= @artist.bio %></li>
-    <li><%= @artist.bounty_rules %></li>
-    <li><%= @artist.approved %></li>
-    <li><%= @artist.created_at.to_s(:joined_on) %></li>
-  </ul>
+  <div class="header">Artist Details</div>
+  <div class="profile-wrapper">
+    <div class="content-left">
+      <ul>
+        <li class="subheader">Name</li>
+        <li class="profile-data"><%= @artist.name %> <%= @artist.email %></li>
+        <li class="subheader">Biography</li>
+        <li class="profile-data"><%= @artist.bio %></li>
+        <li class="subheader">Bounty Rules</li>
+        <li class="profile-data"><%= @artist.bounty_rules %></li>
+      </ul>
+    </div>
+    <div class="content-right">
+      <div class="join-date"><%= @artist.created_at.to_s(:joined_on) %></div>
+    </div>
+  </div>
 
-  Artist's Accepted Bounties
-  <ul>
-    <% unless @bounties.empty? %>
-      <% @bounties.each do |b| %>
-        <li><%= b.name %><% if b.status == 'Completed' %> | <%= b.url %><% end %></li>
-      <% end %>
+  <div class="header"><%= @artist.name %> is currently working on...</div>
+    <% unless @acceptedBounties.empty? %>
+      <div class="button-wrapper">
+        <% @acceptedBounties.each do |b| %>
+          <%=   link_to "#{b.name}", bounty_path(b.id), class: 'bounty-button' %>
+        <% end %>
+      </div>
     <% else %>
-      You haven't accepted any bounties!
+      Nothing!
     <% end %>
-  </ul>
+
+   <div class="header"><%= @artist.name %>'s Completed Bounties</div>
+    <% unless @completedBounties.empty? %>
+      <div class="button-wrapper">
+        <% @completedBounties.each do |b| %>
+          <%=   link_to "#{b.name}", bounty_path(b.id), class: 'bounty-button' %>
+        <% end %>
+      </div>
+    <% else %>
+      <%= @artist.name %> hasn't completed any bounties!
+    <% end %>
 
   <div class="control-panel">
     <%=   link_to 'Back', root_path, class: 'bounty-button' %>
