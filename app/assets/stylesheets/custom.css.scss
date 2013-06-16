@@ -320,7 +320,14 @@ footer .footer-wrapper {
 #bounty-show .name .adult {
   display: inline-block;
   color: $lightRed;
-  margin: 0 20px;
+  margin: 0 10px;
+  font-size: 90%;
+}
+
+#bounty-show .private {
+  display: inline-block;
+  color: $lightRed;
+  font-size: 100%;
 }
 
 #bounty-show .candidacies {
