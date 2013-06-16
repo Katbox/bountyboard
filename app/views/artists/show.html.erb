@@ -16,27 +16,29 @@
     </div>
   </div>
 
-  <div class="header"><%= @artist.name %> is currently working on...</div>
-    <% unless @acceptedBounties.empty? %>
-      <div class="button-wrapper">
-        <% @acceptedBounties.each do |b| %>
-          <%=   link_to "#{b.name}", bounty_path(b.id), class: 'bounty-button' %>
-        <% end %>
-      </div>
-    <% else %>
-      Nothing!
-    <% end %>
+  <div class="bounty-wrapper">
+    <div class="header"><%= @artist.name %> is currently working on...</div>
+      <% unless @acceptedBounties.empty? %>
+        <div class="button-wrapper">
+          <% @acceptedBounties.each do |b| %>
+            <%=   link_to "#{b.name}", bounty_path(b.id), class: 'bounty-button' %>
+          <% end %>
+        </div>
+      <% else %>
+        <h2>Nothing!</h2>
+      <% end %>
 
-   <div class="header"><%= @artist.name %>'s Completed Bounties</div>
-    <% unless @completedBounties.empty? %>
-      <div class="button-wrapper">
-        <% @completedBounties.each do |b| %>
-          <%=   link_to "#{b.name}", bounty_path(b.id), class: 'bounty-button' %>
-        <% end %>
-      </div>
-    <% else %>
-      <%= @artist.name %> hasn't completed any bounties!
-    <% end %>
+     <div class="header"><%= @artist.name %>'s Completed Bounties</div>
+      <% unless @completedBounties.empty? %>
+        <div class="button-wrapper">
+          <% @completedBounties.each do |b| %>
+            <%=   link_to "#{b.name}", bounty_path(b.id), class: 'bounty-button' %>
+          <% end %>
+        </div>
+      <% else %>
+         <h2><%= @artist.name %> hasn't completed any bounties!</h2>
+      <% end %>
+    </div>
 
   <div class="control-panel">
     <%=   link_to 'Back', root_path, class: 'bounty-button' %>

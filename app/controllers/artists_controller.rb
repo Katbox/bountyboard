@@ -11,7 +11,7 @@ class ArtistsController < ApplicationController
   # Display an individual artist's profile.
   def show
       @artist = Artist.find(params[:id])
-      acceptingCandidacies = Candidacy.where(:artist_id => currentUser.id, :acceptor => true)
+      acceptingCandidacies = Candidacy.where(:artist_id =>  @artist.id, :acceptor => true)
       @acceptedBounties = []
       @completedBounties = []
       acceptingCandidacies.each do |c|
