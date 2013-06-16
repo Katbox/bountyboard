@@ -47,7 +47,7 @@ class BountiesController < ApplicationController
     @bounty.owner = currentUser
 
     if @bounty.save
-      flash[:notice] = "Bounty created successfully."
+      flash[:notice] = "Bounty created successfully!"
       redirect_to root_path
     else
       flash[:error] = "Error saving bounty."
@@ -111,7 +111,7 @@ class BountiesController < ApplicationController
 
     if (@bounty.owner == currentUser && (@bounty.status == 'Unclaimed')) || currentUser.admin?
       if Bounty.destroy(params[:id])
-        flash[:notice] = "Bounty successfully removed."
+        flash[:notice] = "Bounty successfully removed!"
         redirect_to root_path
       else
         flash[:error] = "Error removing bounty."
