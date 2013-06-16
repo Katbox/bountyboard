@@ -4,6 +4,7 @@
         <%= bounty_form.input :name, :required => true, :hint => "The name of your bounty." %>
         <%= bounty_form.input :desc, :as => :text, :label => "Description", :required => true, :hint => "Enter a detailed description of your bounty. References help!" %>
         <%= bounty_form.input :price, :required => true, :hint => "The price you're willing to pay. Min $5.00 USD" %>
+        <%= bounty_form.input :complete_by, :as => :date_select, :start_year => Time.now.year, :label => "Due Date", :required => false, :hint => "The date by which this bounty must be finished. (Optional)" %>
         <%= bounty_form.input :artists, :collection => Artist.where(:active => true, :approved => true), :as => :check_boxes, :input_html => { :checked => 'checked' }, :hint => "Which artists may complete your bounty?"%>
         <%= bounty_form.input :moods, :as => :check_boxes, :hint => "Tags that help describe your bounty at a glance. Min 1. Max 2."%>
         <div class="control-panel"><%= bounty_form.submit :class => "bounty-button submit-button" %><%=   link_to 'Back', root_path, class: 'bounty-button' %></div>

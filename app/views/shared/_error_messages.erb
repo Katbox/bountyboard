@@ -1,7 +1,7 @@
 <% if @bounty and @bounty.errors.any? %>
     <div id="errors">
       <div id="error-wrapper">
-        <p class="error-title"><%= pluralize(@bounty.errors.count, "error") %> were found when saving your bounty!</p>
+        <p class="error-title"><%= pluralize(@bounty.errors.count, "error") %> found while saving your bounty!</p>
         <p>There were problems with the following fields:</p>
         <ol>
             <% @bounty.errors.full_messages.each do |message| %>

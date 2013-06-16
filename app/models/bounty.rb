@@ -17,7 +17,7 @@
 #
 
 class Bounty < ActiveRecord::Base
-  attr_accessible :name, :desc, :price_cents, :adult_only, :url, :private, :mood_ids, :price, :artist_ids, :completed_at
+  attr_accessible :name, :desc, :price_cents, :adult_only, :url, :private, :mood_ids, :price, :artist_ids, :completed_at, :complete_by
 
   # Money gem. "price_cents" is the price of the bounty in cents.
   # The gem will apply proper formatting if the implicit "price" property is
@@ -78,10 +78,17 @@ class Bounty < ActiveRecord::Base
 
   validate :validate_num_of_moods
 
+  validate :due_date_in_future
+
   # If this bounty is not have the correct range of moods, throw an error.
   def validate_num_of_moods
     errors.add(:moods, "for this bounty exceeds #{Personality.MAXIMUM_MOODS}") if moods.length > Personality.MAXIMUM_MOODS
     errors.add(:moods, "for this bounty must be at least #{Personality.MINIMUM_MOODS}") if moods.length < Personality.MINIMUM_MOODS
+  end
+
+  # If the create_by date is in the past, throw an error.
+  def due_date_in_future
+    errors.add(:complete_by, "is in the past. Specify a date in the future.") if complete_by < Time.now
   end
 
   # Methods ====================================================================
