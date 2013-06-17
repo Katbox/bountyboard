@@ -1,0 +1,33 @@
+@import colors
+@import mixins
+
+.wrapper > nav
+  font-size: 80%
+  color: $white
+  padding: 15px
+  // Try to make a pretty background gradient. Unfortunately the
+  // linear-gradient property is very new and older browser
+  // versions require the vendor-prefixed properties.
+  background: $black  // show a solid color for older browsers
+  +background-gradient(#393939, #181818)
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 2px
+  border-bottom: 1px solid #333333
+
+  a
+    color: $white
+    &:hover
+      color: $steelBlue
+
+  & > *
+    display: inline-block
+    padding-left: 10px
+    padding-right: 10px
+
+    // make the first nav element stand out, since it will hold our
+    // site's name and logo
+    &:first-child
+      font-size: 150%
+    
+    &.login-notify-area
+      float: right
+

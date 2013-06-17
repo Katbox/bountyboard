@@ -1,0 +1,65 @@
+@import colors
+@import mixins
+
+#bounty-show
+  color: $black
+  background: $yellow
+  border: 1px inset $black
+  +roundCorners
+  background-image: url('PaperTexture.jpg')
+  margin-bottom: 20px
+  text-align: center
+  padding: 20px
+  width: 65%
+  margin: 0 auto
+
+  .name
+    width: 75%
+    line-height: 50px
+    font-size: 400%
+    font-family: 'Carnevalee Freakshow'
+    margin: 0 auto
+
+    .adult
+      display: inline-block
+      color: $lightRed
+      margin: 0 20px
+
+  .candidacies
+    width: 75%
+    line-height: 50px
+    font-size: 220%
+    font-family: 'Carnevalee Freakshow'
+    margin: 10px auto
+
+  .completed-art
+    max-width: 100%
+    margin: 10px auto
+
+  .status
+    display: inline-block
+    margin-top: 10px
+    line-height: 50px
+    font-size: 350%
+    font-family: 'Carnevalee Freakshow'
+
+  .desc
+    text-align: justified
+    font-size: 120%
+    margin: 30px auto
+    width: 80%
+    min-height: 200px
+    +verticalCenter
+
+  .dates
+    margin-top: 20px
+    width: 95%
+    font-size: 120%
+    margin: 0 auto
+
+  .control-panel
+    display: inline-block
+    margin-top: 20px
+    width: 95%
+    margin: 20px auto
+
