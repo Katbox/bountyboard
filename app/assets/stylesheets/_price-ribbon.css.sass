@@ -1,0 +1,43 @@
+@import colors
+@import mixins
+
+// Price Ribbon ****************************************************************
+.ribbon-wrapper 
+  width: 85px
+  height: 88px
+  overflow: hidden
+  position: absolute
+  top: -3px
+  right: -3px
+
+.ribbon 
+  font-family: 'Carnevalee Freakshow'
+  color: $white
+  text-align: center
+  font-size: 150%
+  text-shadow: 2px 2px $black
+  +rotate(45deg)
+  position: relative
+  padding: 0 0 4px 0
+  left: -5px
+  top: 15px
+  width: 120px
+  background-color: $darkBrown
+  +background-gradient($orange, $brown)
+  -webkit-box-shadow: 1px 0px 3px rgba(0,0,0,0.3)
+  -moz-box-shadow:    0px 0px 3px rgba(0,0,0,0.3)
+  box-shadow:         0px 0px 3px rgba(0,0,0,0.3)
+
+  &:before, &:after 
+    content: ""
+    border-top:   3px solid #6e8900
+    border-left:  3px solid transparent
+    border-right: 3px solid transparent
+    position: absolute
+    bottom: -3px
+
+  &:before 
+    left: 0
+  &:after 
+    right: 0
+

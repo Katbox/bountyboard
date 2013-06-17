@@ -1,4 +1,4 @@
-# encoding: UTF-8
+<% # -*- encoding : utf-8 -*- %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,13 +22,13 @@
 
     <%= render 'layouts/nav_bar' %>
 
-    <div class="banner">
+    <header>
       <% if signed_in? %>
-        <button class="header-button bounty-button"><%=   link_to 'Post a Bounty', new_bounty_path, id: 'post-bounty' %></button>
+        <button class="bounty-button"><%=   link_to 'Post a Bounty', new_bounty_path, id: 'post-bounty' %></button>
       <%  else %>
-        <button id="persona-login-button" class="header-button bounty-button">Sign In to Post Your Bounty</button>
+        <button class="persona-login-button bounty-button">Sign In to Post Your Bounty</button>
       <%  end %>
-    </div>
+    </header>
 
     <div class="flash-box">
       <% [:notice, :error, :alert].each do |level| %>
@@ -48,6 +48,12 @@
   </div>
 
   <%= render 'layouts/footer' %>
+
+  <%
+	# dropdown menus and panels are defined here, and are attached to
+  # their appropriate launchers by the jQuery dropdowns plugin
+  %>
+  <%= render 'layouts/filters_controls' %>
 
 </body>
 </html>

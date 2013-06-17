@@ -1,5 +1,7 @@
 $(document).ready ->
 
+  $(".persona-login-button").button()
+
   navigator.id.watch(
     onlogin: (assertion) ->
 

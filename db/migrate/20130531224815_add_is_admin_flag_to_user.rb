@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddIsAdminFlagToUser < ActiveRecord::Migration
   def up
     add_column :users, :admin, :boolean, :default => false, :null => false

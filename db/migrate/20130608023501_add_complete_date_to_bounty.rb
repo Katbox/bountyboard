@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddCompleteDateToBounty < ActiveRecord::Migration
   def up
     add_column :bounties, :completed_at, :datetime

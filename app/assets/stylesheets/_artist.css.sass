@@ -1,0 +1,87 @@
+@import colors
+@import mixins
+
+.control-panel
+  width: 100%
+  margin: 20px auto
+  text-align: center
+
+#artist-show
+  color: $black
+  background: $yellow
+  border: 1px inset $black
+  +roundCorners
+  background-image: url('PaperTexture.jpg')
+  padding: 20px
+  width: 65%
+  margin: 0 auto
+  text-align: center
+
+  .profile-wrapper
+    width: 100%
+    margin-bottom: 10px
+
+  .content-left 
+    display: inline-block
+    width: 70%
+
+  .content-right 
+    display: inline-block
+    position: relative
+    width: 20%
+
+  .join-date 
+    position:absolute
+    height: 100%
+    margin-top: -70%
+
+  ul 
+    padding: 0px
+
+  li 
+    list-style-type: none
+    font-size: 120%
+
+  .header 
+    font-family: 'Carnevalee Freakshow'
+    font-size: 250%
+    text-align: center
+
+  .subheader 
+    margin-left: 40px
+    font-size: 160%
+
+  .profile-data 
+    margin: 20px auto
+    border: 3px
+    border-style: dashed
+    border-color: $brown
+    padding: 30px
+    width: 80%
+
+  .button-wrapper 
+    width: 100%
+    margin: 20px auto 60px auto
+    text-align: center
+
+  .bounty-wrapper
+    text-align: center
+
+#artist-list 
+  color: $black
+  background: $yellow
+  border: 1px inset $black
+  @include roundCorners
+  background-image: url('PaperTexture.jpg')
+  padding: 20px
+  width: 45%
+  margin: 0 auto
+  text-align: center
+
+  li 
+    font-family: 'Carnevalee Freakshow'
+    @include linkColor($black)
+    list-style-type: none
+    font-size: 400%
+
+
