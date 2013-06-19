@@ -55,5 +55,17 @@ describe Artist do
     artist.should_not be_valid
     artist.should have(1).error_on(:bounty_rules)
   end
+
+  it 'should not allow approved to be anything other than true or false' do
+    artist = FactoryGirl.build(:artist, :approved => 'cheese')
+    artist.should be_valid
+    artist.approved.should == false
+  end
+
+  it 'should not allow active to be anything other than true or false' do
+    artist = FactoryGirl.build(:artist, :active => 'cheese')
+    artist.should be_valid
+    artist.active.should == false
+  end
 end
 
