@@ -1,2 +1,2 @@
 $(document).ready ->
-  $(".short-desc").ellipsis()
+  $(".bounty-square > .short-desc").ellipsis()
