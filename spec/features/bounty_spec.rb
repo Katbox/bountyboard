@@ -357,49 +357,5 @@ describe 'Bounty' do
     end
   end
 
-  # describe "show bounty" do
-  #   before {
-  #     @user = FactoryGirl.create(:user)
-  #     @artist = FactoryGirl.create(:artist)
-  #     @bounty = FactoryGirl.create(:bounty,
-  #       :name => "My First Bounty",
-  #       :desc => "My very first bounty ever.",
-  #       :price => 9.99,
-  #       :adult_only => false,
-  #       :private => false,
-  #       :user_id => @user.id
-  #       )
-  #     visit bounty_path(@bounty.id)
-  #   }
-  #   describe 'should display a page for the bounty' do
-  #     # it { print @bounty.candidacies }
-  #     it { should have_selector('#bounty-show')}
-  #     #TODO Create tests for selectors and content when inerface is redone.
-  #   end
-  # end
-
-  # describe "destroy" do
-  #   before {
-  #     @user = FactoryGirl.create(:user, :name => 'User1')
-  #     @artist = FactoryGirl.create(:artist, :name => 'Artist1')
-  #     @bounty = FactoryGirl.create(:bounty, :name => 'Bounty1')
-  #     @bounty.owner = @user
-  #     @mood = FactoryGirl.create(:mood, :name => "Mood1")
-  #     @vote = FactoryGirl.create(:vote,
-  #       :user_id => @user.id,
-  #       :bounty_id => @bounty.id
-  #       )
-  #     @candidacy = FactoryGirl.create(:candidacy,
-  #       :acceptor => false,
-  #       :bounty => @bounty,
-  #       :artist => @artist
-  #     )
-  #     @personality = FactoryGirl.create(:personality,
-  #       :mood => @mood,
-  #       :bounty => @bounty
-  #     )
-  #   }
-  # end
-
 end
 
