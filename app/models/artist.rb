@@ -28,6 +28,7 @@ class Artist < User
   validates :bio, presence: true
   validates :bounty_rules, presence: true
   validates :approved, :inclusion => {:in => [true, false]}
+  validates :active, :inclusion => {:in => [true, false]}
 
   # The "name" property is optional for users but required for artists
   validates :name, presence: true
