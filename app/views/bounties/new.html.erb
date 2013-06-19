@@ -2,7 +2,7 @@
 <div id="form-area" class="">
     <%= render 'shared/error_messages' %>
     <%= semantic_form_for @bounty do |bounty_form| %>
-        <%= bounty_form.input :name, :required => true, :hint => "The name of your bounty." %>
+        <%= bounty_form.input :name, :required => true, :hint => "The name of your bounty. Max 25 characters." %>
         <%= bounty_form.input :desc, :as => :text, :label => "Description", :required => true, :hint => "Enter a detailed description of your bounty. References help!" %>
         <%= bounty_form.input :price, :required => true, :hint => "The price you're willing to pay. Min $5.00 USD" %>
         <%= bounty_form.input :private, :required => false, :as => :select, :hint => "If a bounty is private, only the artists you pick and admins may see it." %>
