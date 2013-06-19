@@ -6,3 +6,4 @@ en:
     attributes:
         bounty:
             complete_by: "Due Date"
+            desc: "Description"
