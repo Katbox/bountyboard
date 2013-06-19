@@ -314,29 +314,48 @@ describe 'Bounty' do
     it { should_not have_selector('#bounty-show .control-panel .bounty-button', :text =>  "Complete") }
   end
 
-  # describe "create page" do
-  #   before {
+  describe "create page" do
+    before {
 
-  #     @artist1 = FactoryGirl.create(:artist, :name => "Artist1")
-  #     @artist2 = FactoryGirl.create(:artist, :name => "Artist2")
-  #     @artist3 = FactoryGirl.create(:artist, :name => "Artist3")
-  #     @artist4 = FactoryGirl.create(:artist, :name => "Artist4")
-  #     @mood = FactoryGirl.create(:mood, :name => "Mood1")
-  #     OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
-  #       :provider => 'browserid',
-  #       :uid => 'test-user@example.com'
-  #     })
-  #     visit '/auth/browser_id'
-  #     visit new_bounty_path
-  #   }
+      @customer1 = FactoryGirl.create(:user)
+      @artist1 = FactoryGirl.create(:artist, :name => "Artist1")
+      @artist2 = FactoryGirl.create(:artist, :name => "Artist2")
+      @artist3 = FactoryGirl.create(:artist, :name => "Artist3")
+      @artist4 = FactoryGirl.create(:artist, :name => "Artist4")
+      @mood1 = FactoryGirl.create(:mood, :name => "Mood1")
+      @mood2 = FactoryGirl.create(:mood, :name => "Mood2")
+      OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
+        :provider => 'browserid',
+        :uid => @customer1.email
+      })
+      visit '/auth/browser_id'
+      visit new_bounty_path
+    }
 
-  #   describe 'should display a form to create a bounty' do
-  #     it { should have_selector('#form-area')}
-  #     it { should have_selector('#bounty_artists_input') }
-  #     it { should have_selector('#bounty_moods_input') }
-  #     it { should have_selector('label[for=bounty_mood_ids_1]', :text => "Mood1") }
-  #   end
-  # end
+    describe 'should display a form to create a bounty' do
+      it { should have_selector('#form-area')}
+      it { should have_selector('#bounty_name_input') }
+      it { should have_selector('#bounty_name_input #bounty_name') }
+      it { should have_selector('#bounty_desc_input') }
+      it { should have_selector('#bounty_desc_input #bounty_desc') }
+      it { should have_selector('#bounty_private_input') }
+      it { should have_selector('#bounty_private_input #bounty_private') }
+      it { should have_selector('#bounty_complete_by_input') }
+      it { should have_selector('#bounty_complete_by_input .fragment #bounty_complete_by_1i') }
+      it { should have_selector('#bounty_complete_by_input .fragment #bounty_complete_by_2i') }
+      it { should have_selector('#bounty_complete_by_input .fragment #bounty_complete_by_3i') }
+      it { should have_selector('#bounty_artists_input') }
+      it { should have_selector('#bounty_artists_input .choices label', :text => @artist1.name) }
+      it { should have_selector('#bounty_artists_input .choices label', :text => @artist2.name) }
+      it { should have_selector('#bounty_artists_input .choices label', :text => @artist3.name) }
+      it { should have_selector('#bounty_artists_input .choices label', :text => @artist4.name) }
+      it { should have_selector('#bounty_moods_input') }
+      it { should have_selector('#bounty_moods_input label[for=bounty_mood_ids_1]', :text => @mood1.name) }
+      it { should have_selector('#bounty_moods_input label[for=bounty_mood_ids_2]', :text => @mood2.name) }
+      it { should have_selector('#form-area .control-panel .bounty-button', :text =>  "") }
+      it { should have_selector('#form-area .control-panel .bounty-button', :text =>  "Back") }
+    end
+  end
 
   # describe "show bounty" do
   #   before {
