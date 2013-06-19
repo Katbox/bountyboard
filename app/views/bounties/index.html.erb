@@ -15,13 +15,13 @@
         <div class="name"><%= b.name %></div>
         <div class="short-desc">
           <%= b.desc %>
-          <div class="control-area">
-            <div class="vote-controls">
-              <div class="upvote"></div>
-              <div class="downvote"></div>
-            </div>
-            <%=   link_to 'Read More', bounty_path(b.id), class: 'bounty-button read-more-button' %>
+        </div>
+        <div class="control-area">
+          <div class="vote-controls">
+            <div class="upvote"></div>
+            <div class="downvote"></div>
           </div>
+          <%=   link_to 'Read More', bounty_path(b.id), class: 'bounty-button read-more-button' %>
         </div>
       </div>
     <% end %>

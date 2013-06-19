@@ -15,3 +15,4 @@
 //= require jquery.ui.all
 //= require_tree .
 //= require masonry/jquery.masonry
+//= require jquery.autoellipsis-1.0.10
