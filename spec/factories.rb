@@ -6,6 +6,11 @@ FactoryGirl.define do
     sequence(:email) { |n| "user#{n}@example.com" }
   end
 
+  factory :admin, :parent => :user do
+    sequence(:name) { |n| "admin#{n}" }
+    admin true
+  end
+
   factory :artist, :class => :artist, :parent => :user do
     sequence(:name) { |n| "artist#{n}" }
     bio "This is my artist's biography."
