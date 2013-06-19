@@ -1,7 +1,6 @@
 <% # -*- encoding : utf-8 -*- %>
 <div id="artist-show">
   <div class="header">Artist Details</div>
-  <div class="profile-wrapper">
     <div class="content-left">
       <ul>
         <li class="subheader">Name</li>
@@ -15,7 +14,6 @@
     <div class="content-right">
       <div class="join-date"><%= @artist.created_at.to_s(:joined_on) %></div>
     </div>
-  </div>
 
   <div class="bounty-wrapper">
     <div class="header"><%= @artist.name %> is currently working on...</div>

@@ -60,7 +60,7 @@
       <%=   link_to 'Reject', candidacy_path, :method => :delete, :confirm => "Are you sure you want to reject this bounty?", class: 'bounty-button' %>
     <% end %>
     <% if currentUser == @bounty.accepting_artist && @bounty.status == 'Accepted' %>
-      <%=   link_to 'Complete This Bounty', edit_bounty_path(@bounty.id, "Complete"), class: 'bounty-button' %>
+      <%=   link_to 'Complete', edit_bounty_path(@bounty.id, "Complete"), class: 'bounty-button' %>
     <% end %>
     <% if currentUser == @bounty.accepting_artist && @bounty.status == 'Completed' %>
       <%=   link_to 'Update Artwork URL', edit_bounty_path(@bounty.id, "Complete"), class: 'bounty-button' %>
