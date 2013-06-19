@@ -98,9 +98,8 @@ describe Bounty do
   end
 
   describe 'status' do
-
     before {
-      @bounty = FactoryGirl.create(:bounty_with_candidacy)
+      @bounty = FactoryGirl.create(:bounty)
     }
 
     it 'should be Unclaimed' do
@@ -112,7 +111,7 @@ describe Bounty do
     @bounty.candidacies.each { |candidacy| candidacy.save! }
       @bounty.status.should == 'Accepted'
     end
-
   end
+
 end
 

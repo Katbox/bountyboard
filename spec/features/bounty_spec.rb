@@ -18,6 +18,7 @@ describe 'Bounty' do
         :private => false,
         :user_id => @user.id
         )
+
       visit root_path
     }
 
@@ -25,6 +26,7 @@ describe 'Bounty' do
 
   describe "create page" do
     before {
+
       @artist1 = FactoryGirl.create(:artist, :name => "Artist1")
       @artist2 = FactoryGirl.create(:artist, :name => "Artist2")
       @artist3 = FactoryGirl.create(:artist, :name => "Artist3")
@@ -61,6 +63,7 @@ describe 'Bounty' do
       visit bounty_path(@bounty.id)
     }
     describe 'should display a page for the bounty' do
+      # it { print @bounty.candidacies }
       it { should have_selector('#bounty-show')}
       #TODO Create tests for selectors and content when inerface is redone.
     end
@@ -87,18 +90,6 @@ describe 'Bounty' do
         :bounty => @bounty
       )
     }
-
-    # describe 'should delete bounty and dependencies' do
-    #   Bounty.all.should_not be_empty
-    #   Personality.all.should_not be_empty
-    #   Candidacy.all.should_not be_empty
-    #   Vote.all.should_not be_empty
-    #   @bounty.destroy()
-    #   Bounty.all.should be_empty
-    #   Personality.all.should be_empty
-    #   Candidacy.all.should be_empty
-    #   Vote.all.should be_empty
-    # end
   end
 
 end
