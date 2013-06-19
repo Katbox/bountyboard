@@ -6,7 +6,7 @@
         <% if !signed_in? %>
           <% next %>
         <% end %>
-        <% if !b.has_candidate?(currentUser.name) && !currentUser.admin? %>
+        <% if !b.has_candidate?(currentUser.name) && !currentUser.admin? && (b.owner != currentUser) %>
           <% next %>
         <% end %>
       <% end %>
