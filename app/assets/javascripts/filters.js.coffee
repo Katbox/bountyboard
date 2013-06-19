@@ -8,7 +8,5 @@ $(document).ready ->
     slide: (event, ui) ->
       $("#filter-cost").val("$" + ui.values[0] + " - $" + ui.values[1])
 
-  $('.filter-control input[type="checkbox"]').button
-    create: (event, ui) ->
-      console.log "Created a checkbox button."
+  $('.filter-control input[type="checkbox"]').button()
 

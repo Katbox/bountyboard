@@ -1,0 +1,83 @@
+@import colors
+@import mixins
+@import nav-bar
+@import header
+@import bounty-list
+@import bounty-show
+@import forms
+@import artist
+
+@font-face
+  font-family: 'Carnevalee Freakshow'
+  src: url('carnevaleeFreakshow.ttf')
+
+@font-face
+  font-family: 'Nashvill'
+  src: url('nashvill.ttf')
+
++linkDecoration()
+
+p
+  font-size: 1.1em
+  line-height: 1.7em
+
+html, body
+  height: 100%
+
+body
+  background: $darkBrown
+  font-family: 'Courier'
+  color: $black
+  +background-gradient($black, $brown)
+  background-image: url('WoodTexture.jpg')
+
+.flash-box
+  text-align: center
+
+.alert
+  text-align: center
+  font-family: 'Carnevalee Freakshow'
+  font-size: 300%
+  margin: 20px auto
+  +linkColor($white)
+  +roundCorners
+  color: $white
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)
+  border: none
+  padding: 5px 0 10px 35px
+
+.alert-error
+  +background-gradient($lightRed, $darkRed)
+
+.alert-info
+  +background-gradient($orange, $darkBrown)
+
+.close
+  position: relative
+  bottom: 30px
+  right: 7px
+  font-size: 40%
+  height: 30px
+  width: 30px
+  font-family: 'Courier'
+
+.submit-button
+  height: 34px
+  margin: 0 5px !important
+
+.wrapper
+  min-height: 100%
+  height: auto !important
+  height: 100%
+  margin: 0 auto -30px
+
+body > footer
+  padding-top: 30px
+  padding-bottom: 15px
+  color: $white
+  +linkColor($orange)
+  text-align: center
+
+  .footer-wrapper
+    padding-top: 30px
+

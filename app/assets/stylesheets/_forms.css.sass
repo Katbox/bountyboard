@@ -1,0 +1,51 @@
+@import colors
+@import mixins
+
+#form-area
+  color: $black
+  background: $yellow
+  border: 1px inset $black
+  +roundCorners
+  background-image: url('PaperTexture.jpg')
+  padding: 20px
+  width: 55%
+  margin: 0 auto
+
+  form li
+    list-style-type: none
+
+    .choice
+      display: inline-block
+
+  .submit-button
+    width: 125px
+    padding: 4px
+
+  input[type=text], textarea
+    width: 60%
+
+  .inline-hints
+    padding: 0
+
+  label
+    font-family: 'Carnevalee Freakshow'
+    color: $black
+    background-color: transparent
+    font-size: 200%
+    line-height: 20px
+    cursor: default
+    font-weight: normal
+
+  #errors
+    background: $darkRed
+    +roundCorners
+    color: white
+    padding: 5px
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)
+    margin: 10px auto
+    width: 70%
+
+    #error-wrapper
+      width: 450px
+      margin: 0 auto
+

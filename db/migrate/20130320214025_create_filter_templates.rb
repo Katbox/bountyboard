@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateFilterTemplates < ActiveRecord::Migration
   def change
     create_table :filter_templates do |t|

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class RemoveUnnecessaryUserIdsFromBounties < ActiveRecord::Migration
   def change
     add_column :candidacies, :is_acceptor, :boolean, :default => false, :null => false

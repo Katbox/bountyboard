@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # == Schema Information
 #
 # Table name: bounties
@@ -14,8 +15,10 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  completed_at   :datetime
+#  complete_by    :datetime
 #
 
+# -*- encoding : utf-8 -*-
 class Bounty < ActiveRecord::Base
   attr_accessible :name, :desc, :price_cents, :adult_only, :url, :private, :mood_ids, :price, :artist_ids, :completed_at, :complete_by
 
