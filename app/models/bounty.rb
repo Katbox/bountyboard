@@ -31,10 +31,10 @@ class Bounty < ActiveRecord::Base
   # Relationships ==============================================================
   has_many :votes, :dependent => :destroy
   belongs_to :owner, :foreign_key => "user_id", :class_name => "User"
-  has_many :candidacies
-  has_many :artists, :through => :candidacies, :dependent => :destroy
-  has_many :personalities
-  has_many :moods, :through => :personalities, :dependent => :destroy
+  has_many :candidacies, :dependent => :destroy
+  has_many :artists, :through => :candidacies
+  has_many :personalities, :dependent => :destroy
+  has_many :moods, :through => :personalities
 
   # Attributes =================================================================
   def self.MAXIMUM_NAME_LENGTH
