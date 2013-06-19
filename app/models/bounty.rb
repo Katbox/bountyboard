@@ -42,6 +42,10 @@ class Bounty < ActiveRecord::Base
     5000
   end
 
+  def self.MAXIMUM_PRICE
+    1000000
+  end
+
   def self.MINIMUM_PRICE
     5.00
   end
@@ -57,8 +61,8 @@ class Bounty < ActiveRecord::Base
 
   validates :desc, :length => {
     :minimum => 1,
-  :maximum => Bounty.MAXIMUM_DESC_LENGTH,
-  :message => "must be between 1 and 5000 characters long"
+    :maximum => Bounty.MAXIMUM_DESC_LENGTH,
+    :message => "must be between 1 and 5000 characters long"
   }
 
   validates :private, :inclusion => {:in => [true, false]}
@@ -69,6 +73,12 @@ class Bounty < ActiveRecord::Base
     :numericality => {
       :greater_than_or_equal_to => self.MINIMUM_PRICE,
       message: "must be #{self.MINIMUM_PRICE} or more"
+    }
+
+  validates :price,
+    :numericality => {
+      :less_than_or_equal_to => self.MAXIMUM_PRICE,
+      message: "must be #{self.MAXIMUM_PRICE} or less"
     }
 
   validates :status, :exclusion => {
