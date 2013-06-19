@@ -80,18 +80,10 @@ footer .footer-wrapper {
     padding-top: 30px;
 }
 
-.bounty-button {
-  color: white;
-  padding: 8px 7px;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  border: 0px;
-  @include linkColor($white);
-  @include gradient($lightRed, $darkRed);
-  @include roundCorners;
-}
-
 .submit-button {
-  height: 34px;
+  font-size: 1.2em !important;
+  font-family: 'Courier' !important;
+  height: 39px !important;
   margin: 0 5px !important;
 }
 
@@ -136,8 +128,8 @@ footer .footer-wrapper {
 }
 
 .header-button {
-  font-size: 120%;
-  margin-top: 150px;
+  font-size: 1.5em !important;
+  margin-top: 15%;
 }
 
 // Bounty List =================================================================
@@ -201,7 +193,7 @@ footer .footer-wrapper {
 
 .bounty-square .vote-controls{
   margin-top: 5%;
-  margin-right: 10%;
+  margin-right: 5%;
   display: inline-block;
 }
 
@@ -225,7 +217,8 @@ footer .footer-wrapper {
 
 .bounty-square .read-more-button {
   display: inline-block;
-  margin-bottom: 20%;
+  margin-right: 5%;
+  margin-bottom: 10%;
 }
 
 // Forms =======================================================================
@@ -246,11 +239,6 @@ footer .footer-wrapper {
 
 #form-area form li {
   list-style-type: none;
-}
-
-#form-area .submit-button {
-  width: 125px;
-  padding: 4px;
 }
 
 #form-area input[type=text] {
