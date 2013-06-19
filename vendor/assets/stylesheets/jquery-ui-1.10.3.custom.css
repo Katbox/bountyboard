@@ -801,7 +801,7 @@ body .ui-tooltip {
 }
 .ui-widget-content {
 	border: 1px solid #3c1f08;
-	background: #ecd3a8 url(images/ui-bg_flat_75_ecd3a8_40x100.png) 50% 50% repeat-x;
+	background: #ecd3a8 url(ui-bg_flat_75_ecd3a8_40x100.png) 50% 50% repeat-x;
 	color: #000000;
 }
 .ui-widget-content a {
@@ -809,7 +809,7 @@ body .ui-tooltip {
 }
 .ui-widget-header {
 	border: 1px solid #771c00;
-	background: #4d220c url(images/ui-bg_highlight-soft_20_4d220c_1x100.png) 50% 50% repeat-x;
+	background: #4d220c url(ui-bg_highlight-soft_20_4d220c_1x100.png) 50% 50% repeat-x;
 	color: #ffbe47;
 	font-weight: bold;
 }
@@ -823,7 +823,7 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
 	border: 1px solid #771c00;
-	background: #a81800 url(images/ui-bg_highlight-hard_20_a81800_1x100.png) 50% 50% repeat-x;
+	background: #a81800 url(ui-bg_highlight-hard_20_a81800_1x100.png) 50% 50% repeat-x;
 	font-weight: normal;
 	color: #ffffff;
 }
@@ -840,7 +840,7 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
 	border: 1px solid #ba4500;
-	background: #ffbe47 url(images/ui-bg_highlight-hard_70_ffbe47_1x100.png) 50% 50% repeat-x;
+	background: #ffbe47 url(ui-bg_highlight-hard_70_ffbe47_1x100.png) 50% 50% repeat-x;
 	font-weight: normal;
 	color: #000000;
 }
@@ -855,7 +855,7 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active {
 	border: 1px solid #ba4500;
-	background: #f29100 url(images/ui-bg_highlight-hard_70_f29100_1x100.png) 50% 50% repeat-x;
+	background: #f29100 url(ui-bg_highlight-hard_70_f29100_1x100.png) 50% 50% repeat-x;
 	font-weight: normal;
 	color: #000000;
 }
@@ -872,7 +872,7 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
 	border: 1px solid #3c1f08;
-	background: #ecd3a8 url(images/ui-bg_flat_55_ecd3a8_40x100.png) 50% 50% repeat-x;
+	background: #ecd3a8 url(ui-bg_flat_55_ecd3a8_40x100.png) 50% 50% repeat-x;
 	color: #000000;
 }
 .ui-state-highlight a,
@@ -884,7 +884,7 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-error,
 .ui-widget-header .ui-state-error {
 	border: 1px solid #cd0a0a;
-	background: #fef1ec url(images/ui-bg_flat_95_fef1ec_40x100.png) 50% 50% repeat-x;
+	background: #fef1ec url(ui-bg_flat_95_fef1ec_40x100.png) 50% 50% repeat-x;
 	color: #cd0a0a;
 }
 .ui-state-error a,
@@ -930,27 +930,27 @@ body .ui-tooltip {
 }
 .ui-icon,
 .ui-widget-content .ui-icon {
-	background-image: url(images/ui-icons_ffbe47_256x240.png);
+	background-image: url(ui-icons_ffbe47_256x240.png);
 }
 .ui-widget-header .ui-icon {
-	background-image: url(images/ui-icons_ffbe47_256x240.png);
+	background-image: url(ui-icons_ffbe47_256x240.png);
 }
 .ui-state-default .ui-icon {
-	background-image: url(images/ui-icons_ffbe47_256x240.png);
+	background-image: url(ui-icons_ffbe47_256x240.png);
 }
 .ui-state-hover .ui-icon,
 .ui-state-focus .ui-icon {
-	background-image: url(images/ui-icons_000000_256x240.png);
+	background-image: url(ui-icons_000000_256x240.png);
 }
 .ui-state-active .ui-icon {
-	background-image: url(images/ui-icons_000000_256x240.png);
+	background-image: url(ui-icons_000000_256x240.png);
 }
 .ui-state-highlight .ui-icon {
-	background-image: url(images/ui-icons_3c1f08_256x240.png);
+	background-image: url(ui-icons_3c1f08_256x240.png);
 }
 .ui-state-error .ui-icon,
 .ui-state-error-text .ui-icon {
-	background-image: url(images/ui-icons_cd0a0a_256x240.png);
+	background-image: url(ui-icons_cd0a0a_256x240.png);
 }
 
 /* positioning */
@@ -1163,14 +1163,14 @@ body .ui-tooltip {
 
 /* Overlays */
 .ui-widget-overlay {
-	background: #3c1f08 url(images/ui-bg_flat_0_3c1f08_40x100.png) 50% 50% repeat-x;
+	background: #3c1f08 url(ui-bg_flat_0_3c1f08_40x100.png) 50% 50% repeat-x;
 	opacity: .5;
 	filter: Alpha(Opacity=50);
 }
 .ui-widget-shadow {
 	margin: -2px 0 0 -2px;
 	padding: 2px;
-	background: #3c1f08 url(images/ui-bg_flat_0_3c1f08_40x100.png) 50% 50% repeat-x;
+	background: #3c1f08 url(ui-bg_flat_0_3c1f08_40x100.png) 50% 50% repeat-x;
 	opacity: .3;
 	filter: Alpha(Opacity=30);
 	border-radius: 4px;
