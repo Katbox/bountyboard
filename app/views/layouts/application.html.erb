@@ -16,7 +16,14 @@
   <![endif]-->
 </head>
 
-<body>
+<%= tag("body", :data => {
+  :page => [
+    controller_name.capitalize,
+	'#',
+    action_name
+  ].join
+} )
+%>
   <div class="wrapper">
   <!--    Header navigation bar on the top of the page with sign-in controls. -->
 
