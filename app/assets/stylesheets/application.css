@@ -17,8 +17,9 @@
  *= require 'masonry/infinitescroll'
  *= require 'masonry/right-to-left'
  *= require 'masonry/transitions'
- *= require_self
- *= require_tree .
  *= require_tree ../../../vendor/assets/stylesheets
+ *= require_tree ../../../lib/assets/stylesheets
+ *= require_tree .
+ *= require_self
  */
 
