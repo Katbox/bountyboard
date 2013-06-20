@@ -42,11 +42,6 @@ class User < ActiveRecord::Base
     return self[:admin]
   end
 
-  # Returns if the user is an artist. Returns nil if not.
-  def artist?
-    return true if self[:type] == 'Artist'
-  end
-
   private
 
   # Create a token to be used with session persistence.

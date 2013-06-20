@@ -11,7 +11,7 @@ class CandidaciesController < ApplicationController
       redirect_to root_path
     end
     @bounty = Bounty.find(params[:id])
-    redirect_to root_path, :error => "Only artists may accept bounties." if (currentUser.artist? == false)
+    redirect_to root_path, :error => "Only artists may accept bounties." if (not currentUser.is_a?(Artist))
     @candidacy = Candidacy.where(:artist_id => currentUser.id, :bounty_id => @bounty.id).first
     unless @candidacy.nil?
       params[:candidacy][:accepted_at] = Time.now
@@ -37,7 +37,7 @@ class CandidaciesController < ApplicationController
     end
     @bounty = Bounty.find(params[:id])
     flash[:error] = "You are not a candidate for that bounty."
-    if (currentUser.artist? == false)
+    if (not currentUser.is_a?(Artist))
       flash[:error] = "Only artists may reject bounties."
       redirect_to root_path
     end

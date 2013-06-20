@@ -9,7 +9,7 @@
   <% if signed_in? && currentUser.admin? %>
     <%= link_to 'New Artist', new_artist_path %>
   <% end %>
-  <% if signed_in? && currentUser.artist? %>
+  <% if signed_in? && currentUser.is_a?(Artist) %>
     <%= link_to 'Your Profile', artist_path(currentUser.id) %>
   <% end %>
   <span class="login-notify-area">
