@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20130621184232) do
     t.datetime "updated_at",                        :null => false
     t.datetime "completed_at"
     t.datetime "complete_by"
-    t.decimal  "score"
+    t.decimal  "score",          :default => 0.0
   end
 
   create_table "candidacies", :force => true do |t|
