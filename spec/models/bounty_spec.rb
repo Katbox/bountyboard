@@ -34,6 +34,7 @@ describe Bounty do
   it { should respond_to(:user_id) }
   it { should respond_to(:completed_at) }
   it { should respond_to(:complete_by) }
+  it { should respond_to(:score) }
 
   it 'should not allow name to be too long' do
     bounty = FactoryGirl.build(:bounty, :name => '$' * (Bounty.MAXIMUM_NAME_LENGTH + 1))
