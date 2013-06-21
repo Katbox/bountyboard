@@ -175,7 +175,7 @@ class Bounty < ActiveRecord::Base
   # Bounty query filters
   #
   # Use these to get specific subsets of bounties. These
-  # methods are chainable
+  # methods are chainable.
   class << self
     def cost_greater_than(limit)
       where('cost > ?', limit)
@@ -202,16 +202,15 @@ class Bounty < ActiveRecord::Base
     end
   
     def viewable_by(user)
-	  # these will have to be written in raw SQL
       if user.is_a?(Artist)
         joins(:candidacies).where(
-          :private => false or
-          :owner => user or
-          :candidacies => { :artist => user }
+          "private='f' OR user_id=? OR candidacies.artist_id=?",
+          user.id,
+          user.id
         )
-  	else
-        where( :private => false or :owner => user)
-  	end
+  	  else
+        where("private='f' OR user_id=?", user.id)
+  	  end
     end
   end
 end

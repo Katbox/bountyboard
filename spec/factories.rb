@@ -27,11 +27,11 @@ FactoryGirl.define do
   end
 
   factory :bounty do
-  sequence(:name) { |n| "bounty#{n}" }
-  desc "Bounty description."
-  price Bounty.MINIMUM_PRICE
-  user_id {FactoryGirl.create(:user)}
-  after(:build) do |bounty|
+    sequence(:name) { |n| "bounty#{n}" }
+    desc "Bounty description."
+    price Bounty.MINIMUM_PRICE
+    user_id {FactoryGirl.create(:user)}
+    after(:build) do |bounty|
       (1..Personality.MINIMUM_MOODS).each do
         bounty.moods.append(FactoryGirl.create(:mood))
       end
@@ -39,6 +39,10 @@ FactoryGirl.define do
         bounty.artists.append(FactoryGirl.create(:artist))
       end
     end
+  end
+
+  factory :private_bounty, :parent => :bounty do
+    private true
   end
 
   factory :personality do
