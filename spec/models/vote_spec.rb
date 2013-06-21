@@ -12,12 +12,14 @@
 
 # -*- encoding : utf-8 -*-
 require 'spec_helper'
+include VotesHelper
 
 describe Vote do
 
   it { should respond_to(:id) }
   it { should respond_to(:user_id) }
   it { should respond_to(:bounty_id) }
+  it { should respond_to(:vote_type) }
 
   before {
     @user = FactoryGirl.create(:user)
@@ -35,5 +37,19 @@ describe Vote do
       :bounty_id => @bounty.id
       )
     invalid_vote.should be_invalid
+  end
+
+  it 'should update the score of a bounty' do
+    score = @bounty.score
+    vote = FactoryGirl.build(:vote,
+      :user_id => @user.id,
+      :bounty_id => @bounty.id,
+      :vote_type => true
+      )
+    vote.save!
+    @bounty.save
+    update_bounty_scores
+    @bounty.reload.score
+    score.should_not eq(@bounty.reload.score)
   end
 end
