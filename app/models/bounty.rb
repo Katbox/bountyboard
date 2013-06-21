@@ -205,6 +205,10 @@ class Bounty < ActiveRecord::Base
     def viewable_by(user)
       if user.nil?
         where( :private => false )
+      elsif user.admin
+        where('1=1')
+        # in Rails 4, you can simply use this line:
+        # all
       elsif user.is_a?(Artist)
         joins(:candidacies).where(
           "private='f' OR user_id=? OR candidacies.artist_id=?",
@@ -223,6 +227,9 @@ class Bounty < ActiveRecord::Base
   def viewable_by?(user)
     viewable = !self.private
     if !user.nil?
+      if user.admin
+        viewable = true
+      end
       viewable = viewable || (self.owner == user)
       if user.is_a?(Artist)
         viewable = viewable || self.artists.include?(user)

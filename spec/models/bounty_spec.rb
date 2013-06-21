@@ -187,6 +187,7 @@ describe Bounty do
 
   describe '.viewable_by()' do
     before do
+      @admin = FactoryGirl.create(:admin)
       @poster = FactoryGirl.create(:user)
       @unrelated_user = FactoryGirl.create(:user)
       @candidate_artist = FactoryGirl.create(:artist)
@@ -203,6 +204,7 @@ describe Bounty do
 
     it 'should let anyone view public bounties' do
       Bounty.viewable_by(nil).all.should include(@public_bounty)
+      Bounty.viewable_by(@admin).all.should include(@public_bounty)
       Bounty.viewable_by(@poster).all.should include(@public_bounty)
       Bounty.viewable_by(@unrelated_user).all.should include(@public_bounty)
       Bounty.viewable_by(@candidate_artist).all.should include(@public_bounty)
@@ -223,10 +225,15 @@ describe Bounty do
       Bounty.viewable_by(@candidate_artist).all.should include(@private_bounty)
     end
 
+    it 'should allow an admin to view a private bounty' do
+      Bounty.viewable_by(@admin).all.should include(@private_bounty)
+    end
+
   end
 
   describe '.viewable_by?()' do
     before do
+      @admin = FactoryGirl.create(:admin)
       @poster = FactoryGirl.create(:user)
       @unrelated_user = FactoryGirl.create(:user)
       @candidate_artist = FactoryGirl.create(:artist)
@@ -243,6 +250,7 @@ describe Bounty do
 
     it 'should let anyone view public bounties' do
       @public_bounty.viewable_by?(nil).should == true
+      @public_bounty.viewable_by?(@admin).should == true
       @public_bounty.viewable_by?(@poster).should == true
       @public_bounty.viewable_by?(@unrelated_user).should == true
       @public_bounty.viewable_by?(@candidate_artist).should == true
@@ -261,6 +269,10 @@ describe Bounty do
 
     it 'should allow a candidate artist to view a private bounty' do
       @private_bounty.viewable_by?(@candidate_artist).should == true
+    end
+
+    it 'should allow an admin to view a private bounty' do
+      @private_bounty.viewable_by?(@admin).should == true
     end
 
   end
