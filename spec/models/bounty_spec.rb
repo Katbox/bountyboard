@@ -201,6 +201,7 @@ describe Bounty do
     end
 
     it 'should let anyone view public bounties' do
+      Bounty.viewable_by(nil).all.should include(@public_bounty)
       Bounty.viewable_by(@poster).all.should include(@public_bounty)
       Bounty.viewable_by(@unrelated_user).all.should include(@public_bounty)
       Bounty.viewable_by(@candidate_artist).all.should include(@public_bounty)
@@ -208,6 +209,7 @@ describe Bounty do
     end
 
     it 'should prevent an unrelated user from viewing private bounties' do
+      Bounty.viewable_by(nil).all.should_not include(@private_bounty)
       Bounty.viewable_by(@unrelated_user).all.should_not include(@private_bounty)
       Bounty.viewable_by(@unrelated_artist).all.should_not include(@private_bounty)
     end

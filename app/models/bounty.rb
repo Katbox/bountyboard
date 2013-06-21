@@ -202,15 +202,17 @@ class Bounty < ActiveRecord::Base
     end
   
     def viewable_by(user)
-      if user.is_a?(Artist)
+      if user.nil?
+        where( :private => false )
+      elsif user.is_a?(Artist)
         joins(:candidacies).where(
           "private='f' OR user_id=? OR candidacies.artist_id=?",
           user.id,
           user.id
         )
-  	  else
+      else
         where("private='f' OR user_id=?", user.id)
-  	  end
+      end
     end
   end
 end
