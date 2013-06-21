@@ -1,7 +1,7 @@
 module VotesHelper
   def update_bounty_scores
     bounties = Bounty.all
-    bounty.each do |b|
+    bounties.each do |b|
       #Variables required for "Lower bound of Wilson score confidence interval
       #for a Bernoulli parameter"
       pos = Vote.where(:bounty_id => b.id, :vote_type => true).count
