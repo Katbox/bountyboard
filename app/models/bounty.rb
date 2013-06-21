@@ -216,5 +216,19 @@ class Bounty < ActiveRecord::Base
       end
     end
   end
+
+  # an instance-level version of the viewable_by filter, this returns true if
+  # this bounty can be viewed by the specified user (or by an anonymous user if
+  # the user paramter is set to nil) and returns false otherwise
+  def viewable_by?(user)
+    viewable = !self.private
+    if !user.nil?
+      viewable = viewable || (self.owner == user)
+      if user.is_a?(Artist)
+        viewable = viewable || self.artists.include?(user)
+      end
+    end
+    return viewable
+  end
 end
 
