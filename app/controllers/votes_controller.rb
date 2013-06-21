@@ -2,6 +2,7 @@ class VotesController < ApplicationController
 
   require 'statistics2'
   include SessionsHelper
+  include VotesHelper
 
   def create
     if signed_in?
@@ -10,16 +11,7 @@ class VotesController < ApplicationController
       @bounty = Bounty.find(params[:bounty])
       @vote.bounty_id = @bounty.id
       if @vote.save
-
-        #Variables required for "Lower bound of Wilson score confidence interval
-        #for a Bernoulli parameter"
-        pos = Vote.where(:bounty_id => @bounty.id, :vote_type => true).count
-        n = Vote.where(:bounty_id => @bounty.id).count
-        #Magic number indicating 95% confidence level.
-        confidence = 0.95
-        @bounty.setRating(pos, n, confidence)
-        @bounty.save
-
+        update_bounty_scores
         if @vote.vote_type
           flash[:notice] = "You have upvoted #{@bounty.name}!"
         else
