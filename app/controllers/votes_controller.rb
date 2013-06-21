@@ -10,7 +10,7 @@ class VotesController < ApplicationController
       @bounty = Bounty.find(params[:bounty])
       @vote.bounty_id = @bounty.id
       if @vote.save
-        if params[:vote][:vote_type]
+        if @vote.vote_type
           flash[:notice] = "You have upvoted #{@bounty.name}!"
         else
           flash[:notice] = "You have downvoted #{@bounty.name}!"
@@ -23,6 +23,7 @@ class VotesController < ApplicationController
     else
       flash[:error] = "You must sign in."
       redirect_to root_path
+    end
   end
 
   def destroy

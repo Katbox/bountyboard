@@ -19,8 +19,18 @@
         </div>
         <div class="control-area">
           <div class="vote-controls">
-            <%=   link_to '', votes_path(:vote => {:vote_type => true}, :bounty => b.id), :action => :create, :method => :post, :confirm => "Are you sure you want to upvote #{b.name}?", class: 'upvote' %>
-            <%=   link_to '', votes_path(:vote => {:vote_type => true}, :bounty => b.id), :action => :create, :method => :post, :confirm => "Are you sure you want to downvote #{b.name}?", class: 'downvote' %>
+            <% unless b.voted_on?(currentUser.id).nil? %>
+              <% if b.voted_on?(currentUser.id) %>
+                <div class="upvote upvote-red"></div>
+                <div class="downvote downvote-grey"></div>
+              <% else %>
+                <div class="upvote upvote-grey"></div>
+                <div class="downvote downvote-red"></div>
+              <% end %>
+            <% else %>
+              <%=   link_to '', votes_path(:vote => {:vote_type => true}, :bounty => b.id), :action => :create, :method => :post, :confirm => "Are you sure you want to upvote #{b.name}?", class: 'upvote' %>
+              <%=   link_to '', votes_path(:vote => {:vote_type => false}, :bounty => b.id), :action => :create, :method => :post, :confirm => "Are you sure you want to downvote #{b.name}?", class: 'downvote' %>
+            <% end %>
           </div>
           <%=   link_to 'Read More', bounty_path(b.id), class: 'bounty-button read-more-button' %>
         </div>
