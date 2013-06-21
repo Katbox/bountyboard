@@ -58,6 +58,7 @@ gem 'omniauth-browserid'
 gem 'omniauth-deviantart'
 gem 'money-rails'
 gem 'formtastic'
+gem 'statistics2'
 
 
 # To use ActiveModel has_secure_password

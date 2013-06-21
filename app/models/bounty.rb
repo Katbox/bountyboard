@@ -108,6 +108,18 @@ class Bounty < ActiveRecord::Base
 
   # Methods ====================================================================
 
+  # Sets the rating of the bounty to the Lower bound of Wilson score confidence
+  # interval for a Bernoulli parameter, invoked only when a bounty is voted
+  # on to recalculate the rating.
+  def setRating(pos, n, confidence)
+    if n == 0
+      return 0
+    end
+    z = Statistics2.pnormaldist(1-(1-confidence)/2)
+    phat = 1.0*pos/n
+    self[:score] = (phat + z*z/(2*n) - z * Math.sqrt((phat*(1-phat)+z*z/(4*n))/n))/(1+z*z/n)
+  end
+
   # Returns private or public based on the boolean private property.
   def private?
     return self[:private]
@@ -136,6 +148,16 @@ class Bounty < ActiveRecord::Base
       return false
     end
     return true
+  end
+
+  # Returns true if the specified user has already voted on this bounty.
+  def voted_on?(id)
+    votes = Vote.where(:user_id => id, :bounty_id => self[:id])
+    if votes.count < 1
+      return nil
+    else
+      return votes[0].vote_type
+    end
   end
 
   # Returns the status of the bounty as a string. May either be Completed,
