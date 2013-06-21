@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130616205259) do
+ActiveRecord::Schema.define(:version => 20130621184232) do
 
   create_table "bounties", :force => true do |t|
     t.string   "name",                              :null => false
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20130616205259) do
     t.datetime "updated_at",                        :null => false
     t.datetime "completed_at"
     t.datetime "complete_by"
+    t.decimal  "score"
   end
 
   create_table "candidacies", :force => true do |t|
@@ -67,10 +68,11 @@ ActiveRecord::Schema.define(:version => 20130616205259) do
   add_index "users", ["rememberToken"], :name => "index_users_on_rememberToken"
 
   create_table "votes", :force => true do |t|
-    t.integer  "user_id",    :null => false
-    t.integer  "bounty_id",  :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "user_id",                       :null => false
+    t.integer  "bounty_id",                     :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "type",       :default => false, :null => false
   end
 
 end
