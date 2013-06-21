@@ -56,6 +56,15 @@ customer1.save!
 customer2 = User.new(:name => 'Customer2', :email => 'customer2@test.com')
 customer2.save!
 
+customer3 = User.new(:name => 'Customer3', :email => 'customer3@test.com')
+customer3.save!
+
+customer4 = User.new(:name => 'Customer4', :email => 'customer4@test.com')
+customer4.save!
+
+customer5 = User.new(:name => 'Customer5', :email => 'customer5@test.com')
+customer5.save!
+
 practicalMood = Mood.new(:name => "Practical")
 practicalMood.save!
 
@@ -348,6 +357,119 @@ candidacy = Candidacy.new()
 candidacy.artist = artist1
 candidacy.bounty_id = bounty9.id
 candidacy.save!
+
+#Bounty 1 has an upvote vote on it from all customers.
+vote = Vote.new()
+vote.bounty_id = bounty1.id
+vote.user_id = customer1.id
+vote.vote_type = true
+vote.save!
+
+vote = Vote.new()
+vote.bounty_id = bounty1.id
+vote.user_id = customer2.id
+vote.vote_type = true
+vote.save!
+
+vote = Vote.new()
+vote.bounty_id = bounty1.id
+vote.user_id = customer3.id
+vote.vote_type = true
+vote.save!
+
+vote = Vote.new()
+vote.bounty_id = bounty1.id
+vote.user_id = customer4.id
+vote.vote_type = true
+vote.save!
+
+vote = Vote.new()
+vote.bounty_id = bounty1.id
+vote.user_id = customer5.id
+vote.vote_type = true
+vote.save!
+
+#Bounty 2 has an upvote vote on it from all but one customer.
+vote = Vote.new()
+vote.bounty_id = bounty2.id
+vote.user_id = customer1.id
+vote.vote_type = true
+vote.save!
+
+vote = Vote.new()
+vote.bounty_id = bounty2.id
+vote.user_id = customer2.id
+vote.vote_type = true
+vote.save!
+
+vote = Vote.new()
+vote.bounty_id = bounty2.id
+vote.user_id = customer3.id
+vote.vote_type = true
+vote.save!
+
+vote = Vote.new()
+vote.bounty_id = bounty2.id
+vote.user_id = customer4.id
+vote.vote_type = true
+vote.save!
+
+vote = Vote.new()
+vote.bounty_id = bounty2.id
+vote.user_id = customer5.id
+vote.vote_type = false
+vote.save!
+
+#Bounty 3 has an upvote vote on it from three customers.
+vote = Vote.new()
+vote.bounty_id = bounty3.id
+vote.user_id = customer1.id
+vote.vote_type = true
+vote.save!
+
+vote = Vote.new()
+vote.bounty_id = bounty3.id
+vote.user_id = customer2.id
+vote.vote_type = true
+vote.save!
+
+vote = Vote.new()
+vote.bounty_id = bounty3.id
+vote.user_id = customer3.id
+vote.vote_type = true
+vote.save!
+
+#Bounty 4 has an upvote vote on it from one customer. No one else likes it.
+vote = Vote.new()
+vote.bounty_id = bounty4.id
+vote.user_id = customer1.id
+vote.vote_type = true
+vote.save!
+
+vote = Vote.new()
+vote.bounty_id = bounty4.id
+vote.user_id = customer2.id
+vote.vote_type = false
+vote.save!
+
+vote = Vote.new()
+vote.bounty_id = bounty4.id
+vote.user_id = customer3.id
+vote.vote_type = false
+vote.save!
+
+vote = Vote.new()
+vote.bounty_id = bounty4.id
+vote.user_id = customer4.id
+vote.vote_type = false
+vote.save!
+
+vote = Vote.new()
+vote.bounty_id = bounty4.id
+vote.user_id = customer5.id
+vote.vote_type = false
+vote.save!
+
 
 #Resave to ensure validation.
 bounty1.save!
