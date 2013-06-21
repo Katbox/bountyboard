@@ -138,6 +138,16 @@ class Bounty < ActiveRecord::Base
     return true
   end
 
+  # Returns true if the specified user has already voted on this bounty.
+  def voted_on?(id)
+    votes = Vote.where(:user_id => id, :bounty_id => self[:id]).count
+    if votes < 1
+      return false
+    else
+      return true
+    end
+  end
+
   # Returns the status of the bounty as a string. May either be Completed,
   # Accepted, or Unclaimed.
   def status
