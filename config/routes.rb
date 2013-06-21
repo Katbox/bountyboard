@@ -6,6 +6,7 @@ Bountyboard::Application.routes.draw do
   resources :artists
   resources :bounties
   resources :candidacies
+  resources :votes
 
   # authentication routes
   match '/auth/:provider/callback', to: 'Sessions#create'

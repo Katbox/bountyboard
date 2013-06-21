@@ -7,12 +7,13 @@
 #  bounty_id  :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  type       :boolean          default(FALSE), not null
+#  vote_type  :boolean          default(FALSE), not null
 #
 
 # -*- encoding : utf-8 -*-
 class Vote < ActiveRecord::Base
   attr_protected :id, :user_id, :bounty_id
+  attr_accessible :vote_type
 
   # Relationships ==============================================================
   belongs_to :user
