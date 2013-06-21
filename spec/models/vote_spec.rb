@@ -7,7 +7,7 @@
 #  bounty_id  :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  type       :boolean          default(FALSE), not null
+#  vote_type  :boolean          default(FALSE), not null
 #
 
 # -*- encoding : utf-8 -*-

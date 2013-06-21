@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(:version => 20130621184232) do
     t.integer  "bounty_id",                     :null => false
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
-    t.boolean  "type",       :default => false, :null => false
+    t.boolean  "vote_type",  :default => false, :null => false
   end
 
 end
