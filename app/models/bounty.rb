@@ -140,11 +140,11 @@ class Bounty < ActiveRecord::Base
 
   # Returns true if the specified user has already voted on this bounty.
   def voted_on?(id)
-    votes = Vote.where(:user_id => id, :bounty_id => self[:id]).count
-    if votes < 1
-      return false
+    votes = Vote.where(:user_id => id, :bounty_id => self[:id])
+    if votes.count < 1
+      return nil
     else
-      return true
+      return votes[0].vote_type
     end
   end
 
