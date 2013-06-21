@@ -1,4 +1,3 @@
-# -*- encoding : utf-8 -*-
 # == Schema Information
 #
 # Table name: votes
@@ -8,8 +7,10 @@
 #  bounty_id  :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  type       :boolean          default(FALSE), not null
 #
 
+# -*- encoding : utf-8 -*-
 class Vote < ActiveRecord::Base
   attr_protected :id, :user_id, :bounty_id
 
