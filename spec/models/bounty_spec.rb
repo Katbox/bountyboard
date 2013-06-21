@@ -170,13 +170,6 @@ describe Bounty do
       @bounty.is_abandoned?.should == true
     end
 
-    it 'should respond to has_candidate method' do
-      @artist = @bounty.candidacies[0].artist
-      @bounty.has_candidate?(@artist.name).should == true
-      @artist2 = FactoryGirl.create(:artist)
-      @bounty.has_candidate?(@artist2.name).should == false
-    end
-
     it 'should respond to accepting_artist method' do
       @bounty.accepting_artist.should == nil
       @bounty.candidacies[0].acceptor = true

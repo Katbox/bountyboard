@@ -125,22 +125,6 @@ class Bounty < ActiveRecord::Base
     return self[:private]
   end
 
-  # Checks if an artist is a candidate for a bounty based on the artist's name.
-  # Returns true if he is, and false if he isn't.
-  def has_candidate?(name)
-    artist = Artist.find_by_name(name)
-    if artist
-      candidacy = Candidacy.where(:artist_id => artist.id, :bounty_id => self[:id]).first
-      if candidacy
-        return true
-      else
-        return false
-      end
-    else
-      return false
-    end
-  end
-
   # Returns true if the bounty has no candidacies.
   def is_abandoned?
     num_of_candidacies = Candidacy.where(:bounty_id => self[:id]).count

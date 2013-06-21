@@ -70,7 +70,7 @@ class BountiesController < ApplicationController
     # "Complete", which the view will use to render the form for Completing a
     # bounty, maintaining REST.
     @format = params[:format]
-    unless (@bounty.owner == currentUser || @bounty.has_candidate?(currentUser.name))
+    unless (@bounty.owner == currentUser || @bounty.artists.include?(currentUser))
       flash[:error] = "You are not authorized to edit this bounty."
       redirect_to root_path
     end
@@ -85,7 +85,7 @@ class BountiesController < ApplicationController
       redirect_to root_path
     end
     @bounty = Bounty.find(params[:id])
-    unless (@bounty.owner == currentUser || @bounty.has_candidate?(currentUser.name))
+    unless (@bounty.owner == currentUser || @bounty.artists.include?(currentUser))
       flash[:error] = "You are not authorized to edit this bounty."
       redirect_to root_path
     end
