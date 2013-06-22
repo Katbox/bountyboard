@@ -34,6 +34,7 @@ describe Bounty do
   it { should respond_to(:user_id) }
   it { should respond_to(:completed_at) }
   it { should respond_to(:complete_by) }
+  it { should respond_to(:score) }
 
   it 'should not allow name to be too long' do
     bounty = FactoryGirl.build(:bounty, :name => '$' * (Bounty.MAXIMUM_NAME_LENGTH + 1))
@@ -165,22 +166,16 @@ describe Bounty do
     end
 
     it 'should respond to abandoned method' do
-      @bounty.is_abandoned?.should == false
-      @bounty.candidacies.each { |candidacy| candidacy.destroy }
-      @bounty.is_abandoned?.should == true
-    end
-
-    it 'should respond to has_candidate method' do
-      @artist = @bounty.candidacies[0].artist
-      @bounty.has_candidate?(@artist.name).should == true
-      @artist2 = FactoryGirl.create(:artist)
-      @bounty.has_candidate?(@artist2.name).should == false
+      @bounty.abandoned?.should == false
+      Candidacy.destroy_all( :bounty_id => @bounty.id )
+      @bounty.reload
+      @bounty.abandoned?.should == true
     end
 
     it 'should respond to accepting_artist method' do
       @bounty.accepting_artist.should == nil
       @bounty.candidacies[0].acceptor = true
-      @bounty.candidacies.each { |candidacy| candidacy.save! }
+      @bounty.candidacies[0].save!
       @bounty.accepting_artist.should == @bounty.candidacies[0].artist
     end
   end

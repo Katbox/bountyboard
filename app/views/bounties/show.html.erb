@@ -50,10 +50,10 @@
     <% if (@bounty.owner == currentUser && @bounty.status == 'Unclaimed') || currentUser.admin? %>
       <%=   link_to 'Delete', @bounty, :confirm => "Are you sure you want to delete #{@bounty.name}?", :method => :delete, class: 'bounty-button' %>
     <% end %>
-    <% if currentUser.is_a?(Artist) && @bounty.has_candidate?(currentUser.name) && @bounty.status == 'Unclaimed' %>
+    <% if @bounty.artists.include?(currentUser) && @bounty.status == 'Unclaimed' %>
       <%=   link_to 'Accept', candidacy_path(:candidacy => {:acceptor => true}), :method => :put, :confirm => "Are you sure you want to accept this bounty?", class: 'bounty-button' %>
     <% end %>
-    <% if currentUser.is_a?(Artist) && @bounty.has_candidate?(currentUser.name) && @bounty.status == 'Unclaimed' %>
+    <% if @bounty.artists.include?(currentUser) && @bounty.status == 'Unclaimed' %>
       <%=   link_to 'Reject', candidacy_path, :method => :delete, :confirm => "Are you sure you want to reject this bounty?", class: 'bounty-button' %>
     <% end %>
     <% if currentUser == @bounty.accepting_artist && @bounty.status == 'Accepted' %>
