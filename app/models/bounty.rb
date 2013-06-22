@@ -126,12 +126,8 @@ class Bounty < ActiveRecord::Base
   end
 
   # Returns true if the bounty has no candidacies.
-  def is_abandoned?
-    num_of_candidacies = Candidacy.where(:bounty_id => self[:id]).count
-    if num_of_candidacies > 0
-      return false
-    end
-    return true
+  def abandoned?
+    self.candidacies.empty?
   end
 
   # Returns true if the specified user has already voted on this bounty.

@@ -44,7 +44,7 @@ class CandidaciesController < ApplicationController
     @candidacy = Candidacy.where(:artist_id => currentUser.id, :bounty_id => @bounty.id).first
     unless @candidacy.nil?
       if @candidacy.destroy
-        if @bounty.is_abandoned?
+        if @bounty.abandoned?
           if @bounty.destroy
             flash[:notice] = "Bounty & Candidacy removed!"
             redirect_to root_path

@@ -166,15 +166,16 @@ describe Bounty do
     end
 
     it 'should respond to abandoned method' do
-      @bounty.is_abandoned?.should == false
-      @bounty.candidacies.each { |candidacy| candidacy.destroy }
-      @bounty.is_abandoned?.should == true
+      @bounty.abandoned?.should == false
+      Candidacy.destroy_all( :bounty_id => @bounty.id )
+      @bounty.reload
+      @bounty.abandoned?.should == true
     end
 
     it 'should respond to accepting_artist method' do
       @bounty.accepting_artist.should == nil
       @bounty.candidacies[0].acceptor = true
-      @bounty.candidacies.each { |candidacy| candidacy.save! }
+      @bounty.candidacies[0].save!
       @bounty.accepting_artist.should == @bounty.candidacies[0].artist
     end
   end
