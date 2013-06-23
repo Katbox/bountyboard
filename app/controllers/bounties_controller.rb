@@ -7,13 +7,17 @@ class BountiesController < ApplicationController
   # Display a list of all bounties in the system, with links to see their
   # individual bounties.
   def index
-    @bounty = Bounty.all
+    @bounty = Bounty.viewable_by(currentUser).limit(250)
     @bounty.sort_by{|e| e[:created_at]}
   end
 
   # Display an individual bounty.
   def show
     @bounty = Bounty.find(params[:id])
+    if !@bounty.viewable_by?(currentUser)
+      flash[:error] = "That bounty is private."
+      redirect_to root_path
+    end
   end
 
   # Display the form to create a new bounty. Anyone may perform this action.

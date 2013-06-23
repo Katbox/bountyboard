@@ -23,6 +23,8 @@ group :development do
   gem 'ruby-growl'
   gem 'annotate'
   gem 'magic_encoding'
+  gem 'factory_girl_rails', :require => false
+  gem 'faker'
 end
 
 

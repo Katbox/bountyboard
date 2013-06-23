@@ -188,6 +188,10 @@ describe 'Bounty' do
     before {
       @guest = FactoryGirl.create(:user)
       @customer1 = FactoryGirl.create(:user)
+      @artist1 = FactoryGirl.create(:artist)
+      @artist2 = FactoryGirl.create(:artist)
+      @artist3 = FactoryGirl.create(:artist)
+      @mood1 = FactoryGirl.create(:mood)
       @normalBounty = FactoryGirl.create(:bounty,
         :name => "Normal Bounty",
         :desc => "Bounty#1",
@@ -195,12 +199,10 @@ describe 'Bounty' do
         :adult_only => false,
         :private => false,
         :complete_by => DateTime.now + 5,
-        :user_id => @customer1.id
-        )
-      @artist1 = @normalBounty.artists[0]
-      @artist2 = @normalBounty.artists[1]
-      @artist3 = @normalBounty.artists[2]
-      @mood1 = @normalBounty.moods[0]
+        :user_id => @customer1.id,
+        :artists => [ @artist1, @artist2, @artist3 ],
+        :moods => [ @mood1 ]
+      )
 
       OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
         :provider => 'browserid',
@@ -231,6 +233,10 @@ describe 'Bounty' do
   describe "owner bounty show" do
     before {
       @customer1 = FactoryGirl.create(:user)
+      @artist1 = FactoryGirl.create(:artist)
+      @artist2 = FactoryGirl.create(:artist)
+      @artist3 = FactoryGirl.create(:artist)
+      @mood1 = FactoryGirl.create(:mood)
       @normalBounty = FactoryGirl.create(:bounty,
         :name => "Normal Bounty",
         :desc => "Bounty#1",
@@ -238,12 +244,10 @@ describe 'Bounty' do
         :adult_only => false,
         :private => false,
         :complete_by => DateTime.now + 5,
-        :user_id => @customer1.id
-        )
-      @artist1 = @normalBounty.artists[0]
-      @artist2 = @normalBounty.artists[1]
-      @artist3 = @normalBounty.artists[2]
-      @mood1 = @normalBounty.moods[0]
+        :user_id => @customer1.id,
+        :artists => [ @artist1, @artist2, @artist3 ],
+        :moods => [ @mood1 ]
+      )
 
       OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
         :provider => 'browserid',
@@ -274,6 +278,10 @@ describe 'Bounty' do
   describe "artist bounty show unclaimed" do
     before {
       @customer1 = FactoryGirl.create(:user)
+      @artist1 = FactoryGirl.create(:artist)
+      @artist2 = FactoryGirl.create(:artist)
+      @artist3 = FactoryGirl.create(:artist)
+      @mood1 = FactoryGirl.create(:mood)
       @normalBounty = FactoryGirl.create(:bounty,
         :name => "Normal Bounty",
         :desc => "Bounty#1",
@@ -281,12 +289,10 @@ describe 'Bounty' do
         :adult_only => false,
         :private => false,
         :complete_by => DateTime.now + 5,
-        :user_id => @customer1.id
-        )
-      @artist1 = @normalBounty.artists[0]
-      @artist2 = @normalBounty.artists[1]
-      @artist3 = @normalBounty.artists[2]
-      @mood1 = @normalBounty.moods[0]
+        :user_id => @customer1.id,
+        :artists => [ @artist1, @artist2, @artist3 ],
+        :moods => [ @mood1 ]
+      )
 
       OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
         :provider => 'browserid',

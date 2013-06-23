@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # == Schema Information
 #
 # Table name: bounties
@@ -178,6 +179,98 @@ describe Bounty do
       @bounty.candidacies[0].save!
       @bounty.accepting_artist.should == @bounty.candidacies[0].artist
     end
+  end
+
+  describe '.viewable_by()' do
+    before do
+      @admin = FactoryGirl.create(:admin)
+      @poster = FactoryGirl.create(:user)
+      @unrelated_user = FactoryGirl.create(:user)
+      @candidate_artist = FactoryGirl.create(:artist)
+      @unrelated_artist = FactoryGirl.create(:artist)
+      @public_bounty = FactoryGirl.create(:bounty,
+        :owner => @poster,
+        :artists => [ @candidate_artist ]
+      )
+      @private_bounty = FactoryGirl.create(:private_bounty,
+        :owner => @poster,
+        :artists => [ @candidate_artist ]
+      )
+    end
+
+    it 'should let anyone view public bounties' do
+      Bounty.viewable_by(nil).all.should include(@public_bounty)
+      Bounty.viewable_by(@admin).all.should include(@public_bounty)
+      Bounty.viewable_by(@poster).all.should include(@public_bounty)
+      Bounty.viewable_by(@unrelated_user).all.should include(@public_bounty)
+      Bounty.viewable_by(@candidate_artist).all.should include(@public_bounty)
+      Bounty.viewable_by(@unrelated_artist).all.should include(@public_bounty)
+    end
+
+    it 'should prevent an unrelated user from viewing private bounties' do
+      Bounty.viewable_by(nil).all.should_not include(@private_bounty)
+      Bounty.viewable_by(@unrelated_user).all.should_not include(@private_bounty)
+      Bounty.viewable_by(@unrelated_artist).all.should_not include(@private_bounty)
+    end
+
+    it 'should allow the poster to view their own private bounty' do
+      Bounty.viewable_by(@poster).all.should include(@private_bounty)
+    end
+
+    it 'should allow a candidate artist to view a private bounty' do
+      Bounty.viewable_by(@candidate_artist).all.should include(@private_bounty)
+    end
+
+    it 'should allow an admin to view a private bounty' do
+      Bounty.viewable_by(@admin).all.should include(@private_bounty)
+    end
+
+  end
+
+  describe '.viewable_by?()' do
+    before do
+      @admin = FactoryGirl.create(:admin)
+      @poster = FactoryGirl.create(:user)
+      @unrelated_user = FactoryGirl.create(:user)
+      @candidate_artist = FactoryGirl.create(:artist)
+      @unrelated_artist = FactoryGirl.create(:artist)
+      @public_bounty = FactoryGirl.create(:bounty,
+        :owner => @poster,
+        :artists => [ @candidate_artist ]
+      )
+      @private_bounty = FactoryGirl.create(:private_bounty,
+        :owner => @poster,
+        :artists => [ @candidate_artist ]
+      )
+    end
+
+    it 'should let anyone view public bounties' do
+      @public_bounty.viewable_by?(nil).should == true
+      @public_bounty.viewable_by?(@admin).should == true
+      @public_bounty.viewable_by?(@poster).should == true
+      @public_bounty.viewable_by?(@unrelated_user).should == true
+      @public_bounty.viewable_by?(@candidate_artist).should == true
+      @public_bounty.viewable_by?(@unrelated_artist).should == true
+    end
+
+    it 'should prevent an unrelated user from viewing private bounties' do
+      @private_bounty.viewable_by?(nil).should == false
+      @private_bounty.viewable_by?(@unrelated_user).should == false
+      @private_bounty.viewable_by?(@unrelated_artist).should == false
+    end
+
+    it 'should allow the poster to view their own private bounty' do
+      @private_bounty.viewable_by?(@poster).should == true
+    end
+
+    it 'should allow a candidate artist to view a private bounty' do
+      @private_bounty.viewable_by?(@candidate_artist).should == true
+    end
+
+    it 'should allow an admin to view a private bounty' do
+      @private_bounty.viewable_by?(@admin).should == true
+    end
+
   end
 
 end

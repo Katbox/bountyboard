@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # == Schema Information
 #
 # Table name: bounties
@@ -18,7 +19,6 @@
 #  score          :decimal(, )
 #
 
-# -*- encoding : utf-8 -*-
 class Bounty < ActiveRecord::Base
   attr_accessible :name, :desc, :price_cents, :adult_only, :url, :private, :mood_ids, :price, :artist_ids, :completed_at, :complete_by
 
@@ -175,29 +175,69 @@ class Bounty < ActiveRecord::Base
     end
   end
 
-  # Bounty query filters use these to get specific subsets of bounties. These
-  # methods are chainable
-  def cost_greater_than(limit)
-    where('cost > ?', limit)
+  # Bounty query filters
+  #
+  # Use these to get specific subsets of bounties. These
+  # methods are chainable.
+  class << self
+    def cost_greater_than(limit)
+      where('cost > ?', limit)
+    end
+  
+    def cost_less_than(limit)
+      where('cost < ?', limit)
+    end
+  
+    def age_greater_than(limit)
+      where('created_at > ?', limit.to_date)
+    end
+  
+    def age_less_than(limit)
+      where('created_at < ?', limit.to_date)
+    end
+  
+    def only_adult_content()
+      where( :adult_only => true )
+    end
+  
+    def no_adult_content()
+      where( :adult_only => false )
+    end
+  
+    def viewable_by(user)
+      if user.nil?
+        where( :private => false )
+      elsif user.admin
+        where('1=1')
+        # in Rails 4, you can simply use this line:
+        # all
+      elsif user.is_a?(Artist)
+        joins(:candidacies).where(
+          "private='f' OR user_id=? OR candidacies.artist_id=?",
+          user.id,
+          user.id
+        )
+      else
+        where("private='f' OR user_id=?", user.id)
+      end
+    end
   end
 
-  def cost_less_than(limit)
-    where('cost < ?', limit)
-  end
-
-  def age_greater_than(limit)
-    where('created_at > ?', limit.to_date)
-  end
-
-  def age_less_than(limit)
-    where('created_at < ?', limit.to_date)
-  end
-
-  def only_adult_content()
-    where( :adult_only => true )
-  end
-
-  def no_adult_content()
-    where( :adult_only => false )
+  # an instance-level version of the viewable_by filter, this returns true if
+  # this bounty can be viewed by the specified user (or by an anonymous user if
+  # the user paramter is set to nil) and returns false otherwise
+  def viewable_by?(user)
+    viewable = !self.private
+    if !user.nil?
+      if user.admin
+        viewable = true
+      end
+      viewable = viewable || (self.owner == user)
+      if user.is_a?(Artist)
+        viewable = viewable || self.artists.include?(user)
+      end
+    end
+    return viewable
   end
 end
+
