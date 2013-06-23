@@ -1,4 +1,7 @@
 # -*- encoding : utf-8 -*-
+
+require 'factory_girl_rails'
+
 admin1 = User.new(
   :name => 'Admin1',
   # :email => 'admin1@test.com',
@@ -470,7 +473,6 @@ vote.user_id = customer5.id
 vote.vote_type = false
 vote.save!
 
-
 #Resave to ensure validation.
 bounty1.save!
 bounty2.save!
@@ -481,3 +483,32 @@ bounty6.save!
 bounty7.save!
 bounty8.save!
 bounty9.save!
+
+# generate a bunch of random users
+200.times do
+  FactoryGirl.create(:user,
+    :name => Faker::Name.name,
+    :email => Faker::Internet.email
+  )
+end
+
+# generate a bunch of random bounties
+3000.times do
+  FactoryGirl.create(:bounty,
+    :owner => User.offset(rand(User.count)).first,
+    :desc => Faker::Lorem.paragraph,
+    # generate a created_at date between about July 1, 2011 and June 23, 2013
+    :created_at => DateTime.strptime(
+      Random.rand(1309483481..1372027453).to_s, "%s"
+    ),
+    :artists => Artist
+      .limit(Random.rand(1..Artist.count))
+      .offset(rand(Artist.count))
+      .all,
+    :moods => Mood
+      .limit(Random.rand(Personality.MINIMUM_MOODS..Personality.MAXIMUM_MOODS))
+      .offset(rand(Mood.count)).all,
+    :price => Random.rand(Bounty.MINIMUM_PRICE..Bounty.MAXIMUM_PRICE)
+  )
+end
+
