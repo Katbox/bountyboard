@@ -31,14 +31,8 @@ FactoryGirl.define do
     desc "Bounty description."
     price Bounty.MINIMUM_PRICE
     user_id {FactoryGirl.create(:user)}
-    after(:build) do |bounty|
-      (1..Personality.MINIMUM_MOODS).each do
-        bounty.moods.append(FactoryGirl.create(:mood))
-      end
-      (1..3).each do
-        bounty.artists.append(FactoryGirl.create(:artist))
-      end
-    end
+    moods {[FactoryGirl.create(:mood)]}
+    artists {[FactoryGirl.create(:artist)]}
   end
 
   factory :private_bounty, :parent => :bounty do
