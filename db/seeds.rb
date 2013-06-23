@@ -507,7 +507,8 @@ end
       .all,
     :moods => Mood
       .limit(Random.rand(Personality.MINIMUM_MOODS..Personality.MAXIMUM_MOODS))
-      .offset(rand(Mood.count)).all,
+      .offset(rand(Mood.count))
+      .all,
     :price => Random.rand(Bounty.MINIMUM_PRICE..Bounty.MAXIMUM_PRICE)
   )
 end
