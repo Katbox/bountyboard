@@ -27,7 +27,7 @@
   <% if @bounty.status == "Completed" %>
    <a href=<%="#{@bounty.url}"%>><img src=<%="#{@bounty.url}"%> class="completed-art"></a>
   <% else %>
-    <div class="desc hyphenate"><%= @bounty.desc %></div>
+    <div class="desc hyphenate"><%= @bounty.desc.html_safe %></div>
     <div class="moods">
       |
       <% @bounty.moods.each do |m| %>

@@ -6,9 +6,9 @@
         <li class="subheader">Name</li>
         <li class="profile-data"><%= @artist.name %> <%= @artist.email %></li>
         <li class="subheader">Biography</li>
-        <li class="profile-data"><%= @artist.bio %></li>
+        <li class="profile-data"><%= @artist.bio.html_safe %></li>
         <li class="subheader">Bounty Rules</li>
-        <li class="profile-data"><%= @artist.bounty_rules %></li>
+        <li class="profile-data"><%= @artist.bounty_rules.html_safe %></li>
       </ul>
     </div>
     <div class="content-right">
