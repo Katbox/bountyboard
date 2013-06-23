@@ -2,6 +2,7 @@
 class BountiesController < ApplicationController
 
   include SessionsHelper
+  require 'sanitize'
 
   # Display a list of all bounties in the system, with links to see their
   # individual bounties.
@@ -43,6 +44,17 @@ class BountiesController < ApplicationController
       end
       params[:bounty][:artist_ids] = id_array
     end
+
+    # Sanitize the name and description fields for bounties. Clean name of all
+    # HTML, clean descs using "Relaxed" method which allows:
+    #
+    # "Allows an even wider variety of markup than BASIC, including images and
+    # tables. Links are still limited to FTP, HTTP, HTTPS, and mailto protocols,
+    # while images are limited to HTTP and HTTPS. In this mode, rel="nofollow"
+    # is not added to links."
+
+    params[:bounty][:name] = Sanitize.clean(params[:bounty][:name])
+    params[:bounty][:desc] = Sanitize.clean(params[:bounty][:desc], Sanitize::Config::RELAXED)
 
     @bounty = Bounty.new(params[:bounty])
     @bounty.owner = currentUser
@@ -92,6 +104,18 @@ class BountiesController < ApplicationController
     if params[:bounty][:url] != nil
       params[:bounty][:completed_at] = Time.now
     end
+
+    # Sanitize the name and description fields for bounties. Clean name of all
+    # HTML, clean descs using "Relaxed" method which allows:
+    #
+    # "Allows an even wider variety of markup than BASIC, including images and
+    # tables. Links are still limited to FTP, HTTP, HTTPS, and mailto protocols,
+    # while images are limited to HTTP and HTTPS. In this mode, rel="nofollow"
+    # is not added to links."
+
+    params[:bounty][:name] = Sanitize.clean(params[:bounty][:name])
+    params[:bounty][:desc] = Sanitize.clean(params[:bounty][:desc], Sanitize::Config::RELAXED)
+
     if @bounty.update_attributes(params[:bounty])
       flash[:notice] = "Bounty Updated!"
       redirect_to root_path

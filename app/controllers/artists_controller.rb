@@ -2,6 +2,7 @@
 class ArtistsController < ApplicationController
 
   include SessionsHelper
+  # require 'sanitize'
 
   # Display a list of all artists in the system, with links to see their
   # individual profiles.
@@ -48,6 +49,20 @@ class ArtistsController < ApplicationController
     if currentUser.admin?
       #TODO Figure out how approved fits into our workflow.
       params[:artist][:approved] = true
+
+      # Sanitize the name, bio, and bounty_rules fields for artists.
+      # Clean name of all HTML, clean the rest using "Relaxed" method which
+      # allows:
+      #
+      # "Allows an even wider variety of markup than BASIC, including images and
+      # tables. Links are still limited to FTP, HTTP, HTTPS, and mailto
+      # protocols, while images are limited to HTTP and HTTPS. In this mode,
+      # rel="nofollow" is not added to links."
+
+      params[:artist][:name] = Sanitize.clean(params[:artist][:name])
+      params[:artist][:bio] = Sanitize.clean(params[:artist][:bio], Sanitize::Config::RELAXED)
+      params[:artist][:bounty_rules] = Sanitize.clean(params[:artist][:bounty_rules], Sanitize::Config::RELAXED)
+
       @artist = Artist.new(params[:artist])
       if @artist.save
         flash[:notice] = "Artist created successfully!"
@@ -87,6 +102,18 @@ class ArtistsController < ApplicationController
       flash[:error] = "You are not authorized to edit this artist."
       redirect_to root_path
     end
+    # Sanitize the name, bio, and bounty_rules fields for artists.
+    # Clean name of all HTML, clean the rest using "Relaxed" method which
+    # allows:
+    #
+    # "Allows an even wider variety of markup than BASIC, including images and
+    # tables. Links are still limited to FTP, HTTP, HTTPS, and mailto
+    # protocols, while images are limited to HTTP and HTTPS. In this mode,
+    # rel="nofollow" is not added to links."
+
+    params[:artist][:name] = Sanitize.clean(params[:artist][:name])
+    params[:artist][:bio] = Sanitize.clean(params[:artist][:bio], Sanitize::Config::RELAXED)
+    params[:artist][:bounty_rules] = Sanitize.clean(params[:artist][:bounty_rules], Sanitize::Config::RELAXED)
     if @artist.update_attributes(params[:artist])
       flash[:notice] = "Artist updated!"
       redirect_to root_path
