@@ -49,6 +49,7 @@ class ArtistsController < ApplicationController
     if currentUser.admin?
       #TODO Figure out how approved fits into our workflow.
       params[:artist][:approved] = true
+      params[:artist][:active] = true
 
       # Sanitize the name, bio, and bounty_rules fields for artists.
       # Clean name of all HTML, clean the rest using "Relaxed" method which
