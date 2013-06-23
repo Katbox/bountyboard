@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # == Schema Information
 #
 # Table name: votes
@@ -10,7 +11,6 @@
 #  vote_type  :boolean          default(FALSE), not null
 #
 
-# -*- encoding : utf-8 -*-
 class Vote < ActiveRecord::Base
   attr_protected :id, :user_id, :bounty_id
   attr_accessible :vote_type

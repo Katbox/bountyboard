@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # == Schema Information
 #
 # Table name: bounties
@@ -18,7 +19,6 @@
 #  score          :decimal(, )
 #
 
-# -*- encoding : utf-8 -*-
 class Bounty < ActiveRecord::Base
   attr_accessible :name, :desc, :price_cents, :adult_only, :url, :private, :mood_ids, :price, :artist_ids, :completed_at, :complete_by
 
