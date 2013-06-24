@@ -7,8 +7,10 @@ class BountiesController < ApplicationController
   # Display a list of all bounties in the system, with links to see their
   # individual bounties.
   def index
-    @bounty = Bounty.viewable_by(currentUser).limit(250)
-    @bounty.sort_by{|e| e[:created_at]}
+    @bounties = Bounty
+      .viewable_by(currentUser)
+      .order("created_at DESC")
+      .limit(250)
   end
 
   # Display an individual bounty.
