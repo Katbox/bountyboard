@@ -1,14 +1,6 @@
 <% # -*- encoding : utf-8 -*- %>
 <div id="bounty-list">
   <% @bounties.each do |b| %>
-    <% if b.private %>
-      <% if !signed_in? %>
-        <% next %>
-      <% end %>
-      <% if !b.artists.include?(currentUser) && !currentUser.admin? && (b.owner != currentUser) %>
-        <% next %>
-      <% end %>
-    <% end %>
 	<div class="bounty-square">
       <div class="nail"></div>
       <div class="price-ribbon"><div><%= humanized_money_with_symbol b.price %></div></div>
