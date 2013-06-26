@@ -227,17 +227,21 @@ class Bounty < ActiveRecord::Base
   # this bounty can be viewed by the specified user (or by an anonymous user if
   # the user paramter is set to nil) and returns false otherwise
   def viewable_by?(user)
-    viewable = !self.private
-    if !user.nil?
+    if !self.private
+      return true
+    end
+    if user
       if user.admin
-        viewable = true
+        return true
       end
-      viewable = viewable || (self.owner == user)
-      if user.is_a?(Artist)
+      viewable = (self.owner == user)
+  	  if user.is_a?(Artist)
         viewable = viewable || self.artists.include?(user)
       end
+      return viewable
+    else
+      return false
     end
-    return viewable
   end
 end
 
