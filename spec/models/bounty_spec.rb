@@ -36,6 +36,7 @@ describe Bounty do
   it { should respond_to(:completed_at) }
   it { should respond_to(:complete_by) }
   it { should respond_to(:score) }
+  it { should respond_to(:vote_by) }
 
   it 'should not allow name to be too long' do
     bounty = FactoryGirl.build(:bounty, :name => '$' * (Bounty.MAXIMUM_NAME_LENGTH + 1))
@@ -271,6 +272,21 @@ describe Bounty do
       @private_bounty.viewable_by?(@admin).should == true
     end
 
+  end
+
+  describe '.vote_by()' do
+    before do
+      @bounty = FactoryGirl.create(:bounty_with_vote)
+    end
+
+    it 'should return nil for a nil user' do
+      @bounty.vote_by(nil).should == nil
+    end
+    it 'should return the vote cast by the voter' do
+      the_vote = @bounty.votes[0]
+      voter = the_vote.user
+      @bounty.vote_by(voter).should == the_vote
+    end
   end
 
 end

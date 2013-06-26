@@ -24,6 +24,8 @@ FactoryGirl.define do
   end
 
   factory :vote do
+    user {FactoryGirl.create(:user)}
+    bounty {FactoryGirl.create(:bounty)}
   end
 
   factory :bounty do
@@ -33,6 +35,10 @@ FactoryGirl.define do
     user_id {FactoryGirl.create(:user)}
     moods {[FactoryGirl.create(:mood)]}
     artists {[FactoryGirl.create(:artist)]}
+  end
+
+  factory :bounty_with_vote, :parent => :bounty do
+    votes {[FactoryGirl.create(:vote)]}
   end
 
   factory :private_bounty, :parent => :bounty do
