@@ -32,7 +32,7 @@ FactoryGirl.define do
     sequence(:name) { |n| "bounty#{n}" }
     desc "Bounty description."
     price Bounty.MINIMUM_PRICE
-    user_id {FactoryGirl.create(:user)}
+    owner {FactoryGirl.create(:user)}
     moods {[FactoryGirl.create(:mood)]}
     artists {[FactoryGirl.create(:artist)]}
   end

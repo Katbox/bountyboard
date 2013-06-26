@@ -28,25 +28,25 @@ describe Vote do
   }
 
   it 'should not allow the same user to vote on a bounty multiple times' do
-    vote = FactoryGirl.build(:vote,
-      :user_id => @user.id,
-      :bounty_id => @bounty.id
-      )
+    vote = FactoryGirl.create(:vote,
+      :user => @user,
+      :bounty => @bounty
+    )
     vote.should be_valid
     invalid_vote = FactoryGirl.build(:vote,
-      :user_id => @user_id,
-      :bounty_id => @bounty.id
-      )
+      :user => @user,
+      :bounty => @bounty
+    )
     invalid_vote.should be_invalid
   end
 
   it 'should update the score of a bounty' do
     score = @bounty.score
     vote = FactoryGirl.build(:vote,
-      :user_id => @user.id,
-      :bounty_id => @bounty.id,
+      :user => @user,
+      :bounty => @bounty,
       :vote_type => true
-      )
+    )
     vote.save!
     @bounty.save
     update_bounty_scores

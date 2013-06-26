@@ -18,7 +18,7 @@ describe 'Bounty' do
         :price => 9.99,
         :adult_only => false,
         :private => false,
-        :user_id => @customer1.id
+        :owner => @customer1
         )
       @adultBounty = FactoryGirl.create(:bounty,
         :name => "Adult Bounty",
@@ -26,7 +26,7 @@ describe 'Bounty' do
         :price => 5.00,
         :adult_only => true,
         :private => false,
-        :user_id => @customer2.id
+        :owner => @customer2
         )
       @privateBounty = FactoryGirl.create(:bounty,
         :name => "Private Bounty",
@@ -34,7 +34,7 @@ describe 'Bounty' do
         :price => 500.00,
         :adult_only => false,
         :private => true,
-        :user_id => @customer2.id
+        :owner => @customer2
         )
       @privateAdultBounty = FactoryGirl.create(:bounty,
         :name => "Private Adult Bounty",
@@ -42,7 +42,7 @@ describe 'Bounty' do
         :price => 100.00,
         :adult_only => false,
         :private => true,
-        :user_id => @customer1.id
+        :owner => @customer1
         )
 
       OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
@@ -82,7 +82,7 @@ describe 'Bounty' do
         :price => 9.99,
         :adult_only => false,
         :private => false,
-        :user_id => @customer1.id
+        :owner => @customer1
         )
       @adultBounty = FactoryGirl.create(:bounty,
         :name => "Adult Bounty",
@@ -90,7 +90,7 @@ describe 'Bounty' do
         :price => 5.00,
         :adult_only => true,
         :private => false,
-        :user_id => @customer2.id
+        :owner => @customer2
         )
       @privateBounty = FactoryGirl.create(:bounty,
         :name => "Private Bounty",
@@ -98,7 +98,7 @@ describe 'Bounty' do
         :price => 500.00,
         :adult_only => false,
         :private => true,
-        :user_id => @customer2.id
+        :owner => @customer2
         )
       @privateAdultBounty = FactoryGirl.create(:bounty,
         :name => "Private Adult Bounty",
@@ -106,7 +106,7 @@ describe 'Bounty' do
         :price => 100.00,
         :adult_only => false,
         :private => true,
-        :user_id => @customer1.id
+        :owner => @customer1
         )
 
       OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
@@ -139,7 +139,7 @@ describe 'Bounty' do
         :price => 9.99,
         :adult_only => false,
         :private => false,
-        :user_id => @customer1.id
+        :owner => @customer1
         )
       @adultBounty = FactoryGirl.create(:bounty,
         :name => "Adult Bounty",
@@ -147,7 +147,7 @@ describe 'Bounty' do
         :price => 5.00,
         :adult_only => true,
         :private => false,
-        :user_id => @customer2.id
+        :owner => @customer2
         )
       @privateBounty = FactoryGirl.create(:bounty,
         :name => "Private Bounty",
@@ -155,7 +155,7 @@ describe 'Bounty' do
         :price => 500.00,
         :adult_only => false,
         :private => true,
-        :user_id => @customer2.id
+        :owner => @customer2
         )
       @privateAdultBounty = FactoryGirl.create(:bounty,
         :name => "Private Adult Bounty",
@@ -163,7 +163,7 @@ describe 'Bounty' do
         :price => 100.00,
         :adult_only => false,
         :private => true,
-        :user_id => @customer1.id
+        :owner => @customer1
         )
 
       OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
@@ -199,7 +199,7 @@ describe 'Bounty' do
         :adult_only => false,
         :private => false,
         :complete_by => DateTime.now + 5,
-        :user_id => @customer1.id,
+        :owner => @customer1,
         :artists => [ @artist1, @artist2, @artist3 ],
         :moods => [ @mood1 ]
       )
@@ -210,7 +210,7 @@ describe 'Bounty' do
       })
       visit '/auth/browser_id'
 
-      visit bounty_path(@normalBounty.id)
+      visit bounty_path(@normalBounty)
     }
 
     it { should have_selector('#bounty-show')}
@@ -244,7 +244,7 @@ describe 'Bounty' do
         :adult_only => false,
         :private => false,
         :complete_by => DateTime.now + 5,
-        :user_id => @customer1.id,
+        :owner => @customer1,
         :artists => [ @artist1, @artist2, @artist3 ],
         :moods => [ @mood1 ]
       )
@@ -255,7 +255,7 @@ describe 'Bounty' do
       })
       visit '/auth/browser_id'
 
-      visit bounty_path(@normalBounty.id)
+      visit bounty_path(@normalBounty)
     }
 
     it { should have_selector('#bounty-show')}
@@ -289,7 +289,7 @@ describe 'Bounty' do
         :adult_only => false,
         :private => false,
         :complete_by => DateTime.now + 5,
-        :user_id => @customer1.id,
+        :owner => @customer1,
         :artists => [ @artist1, @artist2, @artist3 ],
         :moods => [ @mood1 ]
       )
@@ -300,7 +300,7 @@ describe 'Bounty' do
       })
       visit '/auth/browser_id'
 
-      visit bounty_path(@normalBounty.id)
+      visit bounty_path(@normalBounty)
     }
 
     it { should have_selector('#bounty-show')}
