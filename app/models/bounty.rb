@@ -108,16 +108,23 @@ class Bounty < ActiveRecord::Base
 
   # Methods ====================================================================
 
-  # Sets the rating of the bounty to the Lower bound of Wilson score confidence
-  # interval for a Bernoulli parameter, invoked only when a bounty is voted
-  # on to recalculate the rating.
-  def setRating(pos, n, confidence)
-    if n == 0
-      return 0
+  # Returns a float giving the rating of the bounty to the Lower
+  # bound of Wilson score confidence interval for a Bernoulli
+  # parameter.
+  def score
+
+    positive_votes = self.votes.count { |vote| vote.vote_type }
+    total_votes = Vote.count
+    if total_votes == 0
+	  return 0.0
     end
+
+    #Magic number indicating 95% confidence level.
+    confidence = 0.95
+
     z = Statistics2.pnormaldist(1-(1-confidence)/2)
-    phat = 1.0*pos/n
-    self[:score] = (phat + z*z/(2*n) - z * Math.sqrt((phat*(1-phat)+z*z/(4*n))/n))/(1+z*z/n)
+    phat = positive_votes/total_votes.to_f
+    (phat + z*z/(2*total_votes) - z * Math.sqrt((phat*(1-phat)+z*z/(4*total_votes))/total_votes))/(1+z*z/total_votes)
   end
 
   # Returns private or public based on the boolean private property.

@@ -19,8 +19,6 @@
 #  score          :decimal(, )
 #
 
-# -*- encoding : utf-8 -*-
-# -*- encoding : utf-8 -*-
 require 'spec_helper'
 
 describe Bounty do
@@ -37,6 +35,7 @@ describe Bounty do
   it { should respond_to(:complete_by) }
   it { should respond_to(:score) }
   it { should respond_to(:vote_by) }
+  it { should respond_to(:score) }
 
   it 'should not allow name to be too long' do
     bounty = FactoryGirl.build(:bounty, :name => '$' * (Bounty.MAXIMUM_NAME_LENGTH + 1))
