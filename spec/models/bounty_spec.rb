@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+
 # == Schema Information
 #
 # Table name: bounties
@@ -16,7 +17,6 @@
 #  updated_at     :datetime         not null
 #  completed_at   :datetime
 #  complete_by    :datetime
-#  score          :decimal(, )
 #
 
 require 'spec_helper'
