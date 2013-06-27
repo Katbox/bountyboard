@@ -10,7 +10,7 @@ class BountiesController < ApplicationController
     @bounties = Bounty
       .viewable_by(currentUser)
       .order("created_at DESC")
-      .limit(250)
+      .limit(50)
   end
 
   # Display an individual bounty.
