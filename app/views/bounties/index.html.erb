@@ -1,7 +1,7 @@
 <% # -*- encoding : utf-8 -*- %>
 <div id="bounty-list">
   <% @bounties.each do |b| %>
-	<div class="bounty-square">
+  <div class="bounty-square">
       <div class="nail"></div>
       <div class="price-ribbon"><div><%= humanized_money_with_symbol b.price %></div></div>
       <div class="name hyphenate"><%= b.name %></div>
