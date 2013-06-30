@@ -113,7 +113,7 @@ class Bounty < ActiveRecord::Base
   # parameter.
   def score
 
-    positive_votes = Vote.where(:vote_type => true, :bounty_id => self[:id]).count
+    positive_votes = self.votes.all.count { |vote| vote.vote_type }
     total_votes = Vote.count
 
     if total_votes == 0
