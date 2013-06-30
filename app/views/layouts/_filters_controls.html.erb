@@ -2,11 +2,13 @@
 <div id="dropdown-filters-controls" class="dropdown dropdown-tip">
   <div class="dropdown-panel">
     <div class="filter-control">
-      <p>Price <label for="filter-cost"></label></p>
-      <input id="filter-cost" type="text">
-  	  <input id="filter-cost-min" type="checkbox"><label for="filter-cost-min">No Min</label>
-  	  <div id="filter-cost-widget" class="filters-slider"></div>
-  	  <input id="filter-cost-max" type="checkbox"><label for="filter-cost-max">No Max</label>
+    <label for="filter-cost">Price:</label>
+    <input id="filter-cost"
+        data-bounty_min_price="<%= Bounty.MINIMUM_PRICE %>"
+        data-bounty_max_price="<%= Bounty.MAXIMUM_PRICE %>"
+        type="text"
+      >
+      <div id="filter-cost-widget" class="filters-slider"></div>
     </div>
   </div>
 </div>
