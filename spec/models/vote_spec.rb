@@ -49,10 +49,10 @@ describe Vote do
       @bounty.score.should > old_score
     end
   end
-  
+
   describe 'that is a downvote' do
     it 'should decrease its bounty\'s score' do
-  	  old_score = @bounty.score
+      old_score = @bounty.score
       downvote = FactoryGirl.create(:vote,
         :bounty => @bounty,
         :vote_type => false

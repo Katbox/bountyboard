@@ -113,13 +113,14 @@ class Bounty < ActiveRecord::Base
   # parameter.
   def score
 
-    positive_votes = self.votes.count { |vote| vote.vote_type }
+    positive_votes = self.votes.all.count { |vote| vote.vote_type }
     total_votes = Vote.count
+
     if total_votes == 0
-	  return 0.0
+      return 0.0
     end
 
-    #Magic number indicating 95% confidence level.
+    # Magic number indicating 95% confidence level.
     confidence = 0.95
 
     z = Statistics2.pnormaldist(1-(1-confidence)/2)
@@ -188,27 +189,27 @@ class Bounty < ActiveRecord::Base
     def cost_greater_than(limit)
       where('cost > ?', limit)
     end
-  
+
     def cost_less_than(limit)
       where('cost < ?', limit)
     end
-  
+
     def age_greater_than(limit)
       where('created_at > ?', limit.to_date)
     end
-  
+
     def age_less_than(limit)
       where('created_at < ?', limit.to_date)
     end
-  
+
     def only_adult_content()
       where( :adult_only => true )
     end
-  
+
     def no_adult_content()
       where( :adult_only => false )
     end
-  
+
     def viewable_by(user)
       if user.nil?
         where( :private => false )
@@ -239,7 +240,7 @@ class Bounty < ActiveRecord::Base
         return true
       end
       viewable = (self.owner == user)
-  	  if user.is_a?(Artist)
+      if user.is_a?(Artist)
         viewable = viewable || self.artists.include?(user)
       end
       return viewable
