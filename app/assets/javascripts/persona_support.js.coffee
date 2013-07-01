@@ -1,4 +1,4 @@
-$(document).ready ->
+initializePersona = ->
 
   $(".persona-login-button").button()
 
@@ -41,4 +41,7 @@ $(document).ready ->
     # note that Persona REQUIRES https on the hosting site when loading logos
     navigator.id.request
       siteName: "The Bounty Board"
+
+$(document).ready initializePersona
+$(document).on "page:load", initializePersona
 

@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
+//= require turbolinks
 //= require masonry/jquery.masonry
 //= require jquery.autoellipsis-1.0.10
 //= require hyphenate

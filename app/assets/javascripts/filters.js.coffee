@@ -1,5 +1,5 @@
-$(document).ready ->
-  if $("body").data("page") is "Bounties#index"
+initializeFilters = ->
+  if $("#dropdown-filters-controls").length > 0
 
     # global filters object
     filters = []
@@ -53,4 +53,7 @@ $(document).ready ->
       gutterWidth: 5
       isAnimated: true
       isFitWidth: true
+
+$(document).ready initializeFilters
+$(document).on "page:load", initializeFilters
 

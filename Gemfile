@@ -62,6 +62,7 @@ gem 'money-rails'
 gem 'formtastic'
 gem 'statistics2'
 gem 'sanitize'
+gem 'turbolinks'
 
 
 # To use ActiveModel has_secure_password
