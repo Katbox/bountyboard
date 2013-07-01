@@ -1,8 +1,23 @@
 initializeFilters = ->
   if $("#dropdown-filters-controls").length > 0
 
-    # global filters object
-    filters = []
+      # wait for update requests from slider controls to subside for
+      # at least this many milliseconds before actually updating to
+      # prevent sliding the control from generating hundreds of
+      # refresh requests
+    SLIDER_DELAY = 500
+
+    # parameters passed to the back end for filtering are stored
+    # here, indexed by the property being filtered (i.e.
+    # filters["price"] = "price_min=30&price_max=60")
+    filter_parameters = []
+    apply_filters = ->
+      sanitized_parameters = []
+      for param of filter_parameters
+        key = encodeURIComponent(param)
+        value = encodeURIComponent(filter_parameters[param])
+        sanitized_parameters.push(key + "=" + value)
+      Turbolinks.visit(location.pathname + "?" + sanitized_parameters.join("&"))
 
     # initialize filters controls
 
@@ -25,10 +40,21 @@ initializeFilters = ->
     # lower and upper bound are the upper and lower bound of the price range
     # selected (both parameters should be in actual dollars and not the
     # exponential scale used by the slider control)
-    price_filter_update = (lower_bound, upper_bound) ->
-      console.log "Price filter range updated to [$#{lower_bound}, $#{upper_bound}]"
+    # the reload parameter is a boolean specifying whether the page
+    # should be reloaded with the new filters, defaulting to true
+    price_update_timer = null
+    price_filter_update = (lower_bound, upper_bound, reload=true) ->
       $("#filter-cost").val("$#{lower_bound} - $#{upper_bound}")
-      filters.price = [lower_bound, upper_bound]
+
+      if reload
+        if price_update_timer != null
+          clearTimeout price_update_timer
+        complete_update = ->
+          price_update_timer = null
+          filter_parameters["price_min"] = lower_bound
+          filter_parameters["price_max"] = upper_bound
+          apply_filters()
+        price_update_timer = setTimeout complete_update, SLIDER_DELAY
 
     $("#filter-cost-widget").slider
       range: true
@@ -43,7 +69,7 @@ initializeFilters = ->
         price_filter_update(lower_bound, upper_bound)
 
     # initialize the price display
-    price_filter_update(bounty_min_price, bounty_max_price)
+    price_filter_update(bounty_min_price, bounty_max_price, false)
 
 
     # set up the bounty display

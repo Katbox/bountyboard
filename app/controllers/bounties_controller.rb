@@ -11,6 +11,14 @@ class BountiesController < ApplicationController
       .viewable_by(currentUser)
       .order("created_at DESC")
       .limit(50)
+
+    # apply filters from the user
+    if params["price_min"]
+      @bounties = @bounties.price_greater_than params["price_min"].to_f
+    end
+    if params["price_max"]
+      @bounties = @bounties.price_less_than params["price_max"].to_f
+    end
   end
 
   # Display an individual bounty.

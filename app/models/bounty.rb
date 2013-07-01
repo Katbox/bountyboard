@@ -186,12 +186,12 @@ class Bounty < ActiveRecord::Base
   # Use these to get specific subsets of bounties. These
   # methods are chainable.
   class << self
-    def cost_greater_than(limit)
-      where('cost > ?', limit)
+    def price_greater_than(limit)
+      where('price_cents > ?', limit * 100)
     end
 
-    def cost_less_than(limit)
-      where('cost < ?', limit)
+    def price_less_than(limit)
+      where('price_cents < ?', limit * 100)
     end
 
     def age_greater_than(limit)
