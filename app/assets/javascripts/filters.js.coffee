@@ -28,19 +28,24 @@ initializeFilters = ->
     # initialize filters controls
 
     # price filter
-    # the price filter uses an exponential scale, since fine dollar-by-dollar
-    # control isn't needed in the $10,000 range, but is in the $10 range
-    bounty_min_price = parseFloat(
-      $("#filter-cost").data("bounty_min_price")
-    )
-    if bounty_min_price > 0
-      bounty_min_price_scaled = Math.log(bounty_min_price)
-    else
-      bounty_min_price_scaled = 0
-    bounty_max_price = parseFloat(
-      $("#filter-cost").data("bounty_max_price")
-    )
-    bounty_max_price_scaled = Math.log(bounty_max_price)
+
+    # The price filter uses an exponential scale, since fine dollar-by-dollar
+    # control isn't needed in the $10,000 range, but is in the $10 range. These
+    # methods provide conversion routines from dollars to exponential scale and
+    # back.
+    dollars_to_scale = (dollars) ->
+      if dollars > 0
+        Math.log(dollars)
+      else
+        0
+    scale_to_dollars = (scale) ->
+      Math.pow(Math.E, scale)
+
+    price_filter_attrs = $("#filter-cost").data()
+    bounty_min_price = parseFloat(price_filter_attrs.bounty_min_price)
+    bounty_min_price_scaled = dollars_to_scale(bounty_min_price)
+    bounty_max_price = parseFloat(price_filter_attrs.bounty_max_price)
+    bounty_max_price_scaled = dollars_to_scale(bounty_max_price)
 
     # updates the price filter display
     # lower and upper bound are the upper and lower bound of the price range
@@ -69,9 +74,9 @@ initializeFilters = ->
       step: 0.01
       values: [bounty_min_price_scaled, bounty_max_price_scaled]
       slide: (event, ui) ->
-        # convert from the exponential scale back to dollars
-        lower_bound = Math.floor(Math.pow(Math.E, parseFloat(ui.values[0])))
-        upper_bound = Math.ceil(Math.pow(Math.E, parseFloat(ui.values[1])))
+        # round to whole dollars for a prettier display
+        lower_bound = Math.floor(scale_to_dollars(ui.values[0]))
+        upper_bound = Math.ceil(scale_to_dollars(ui.values[1]))
         price_filter_update(lower_bound, upper_bound)
 
     # initialize the price display
