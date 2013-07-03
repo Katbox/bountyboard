@@ -4,6 +4,8 @@ class BountiesController < ApplicationController
   include SessionsHelper
   require 'sanitize'
 
+  respond_to :json, :html
+
   # Display a list of all bounties in the system, with links to see their
   # individual bounties.
   def index
@@ -19,6 +21,8 @@ class BountiesController < ApplicationController
     if params["price_max"]
       @bounties = @bounties.price_less_than params["price_max"].to_f
     end
+
+	respond_with @bounties
   end
 
   # Display an individual bounty.

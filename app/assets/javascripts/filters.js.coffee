@@ -17,7 +17,13 @@ initializeFilters = ->
         key = encodeURIComponent(param)
         value = encodeURIComponent(filter_parameters[param])
         sanitized_parameters.push(key + "=" + value)
-      Turbolinks.visit(location.pathname + "?" + sanitized_parameters.join("&"))
+      $("#bounty-list").load(
+        "/bounties #bounty-list",
+        sanitized_parameters.join("&"),
+        window.refresh_bounties
+      )
+ 
+
 
     # initialize filters controls
 
@@ -71,14 +77,6 @@ initializeFilters = ->
     # initialize the price display
     price_filter_update(bounty_min_price, bounty_max_price, false)
 
-
-    # set up the bounty display
-    $("#bounty-list").masonry
-      itemSelector: ".bounty-square"
-      columnWidth: 100
-      gutterWidth: 5
-      isAnimated: true
-      isFitWidth: true
 
 $(document).ready initializeFilters
 $(document).on "page:load", initializeFilters
