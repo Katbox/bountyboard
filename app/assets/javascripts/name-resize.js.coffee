@@ -5,10 +5,10 @@
 resize_titles = ->
     $(".name").each ->
         name_length = $(this).text().length
-        font_size_num = 230 - (name_length * 2)
+        font_size_num = 280 - (name_length * 3.5)
         font_size = "#{font_size_num}%"
         $(this).css("font-size", font_size)
-        $(this).css("line-height", "90%")
+        $(this).css("line-height", "95%")
 
 
 $(document).ready resize_titles
