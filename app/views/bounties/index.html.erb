@@ -8,7 +8,7 @@
       <%=   link_to content_tag(:span, ""), bounty_path(b.id), class: 'bounty-click-wrapper' %>
       <div class="nail"></div>
       <div class="price-ribbon"><div><%= humanized_money_with_symbol b.price %></div></div>
-      <div class="name hyphenate"><%= b.name %></div>
+      <div class="name"><%= b.name %></div>
       <div class="short-desc hyphenate">
         <%= b.desc.html_safe %>
       </div>

@@ -13,7 +13,6 @@
     border: 1px inset $black
     +roundCorners
     background-image: url('PaperTexture.jpg')
-    position: relative
     padding: 9px
     overflow: hidden
     text-overflow: ellipsis
@@ -21,6 +20,7 @@
 
     .nail
       position: absolute
+      z-index: 2
       bottom: 85%
       left: 55%
       height: 22px
@@ -30,19 +30,18 @@
       background-position: center
 
     .name
-      width: 150px
-      font-size: 240%
+      font-size: 200%
+      width: 53%
       line-height: 30px
+      position: absolute
       font-family: 'Carnevalee Freakshow'
-      margin: 0px 0px 15px 0px
-      padding: 5px
       text-align: center
-      +rotate(-10deg)
+      +rotate(-8deg)
       overflow: hidden
 
     .short-desc
-      margin: 5%
-      max-height: 35%
+      margin-top: 26%
+      max-height: 60%
 
     .upvote
       height: 44px
