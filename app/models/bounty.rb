@@ -108,24 +108,30 @@ class Bounty < ActiveRecord::Base
 
   # Methods ====================================================================
 
-  # Returns a float giving the rating of the bounty to the Lower
-  # bound of Wilson score confidence interval for a Bernoulli
-  # parameter.
+  # Returns a float giving the rating of the bounty to the Lower bound of
+  # Wilson score confidence interval for a Bernoulli parameter. This is the
+  # rating method made famous by Reddit's "best" sort algorithm.
   def score
+    Rails.cache.fetch "/bounty/#{self.id}/score",
+      :expires_in => 15.minutes.to_i,
+      :race_condition_ttl => 15.seconds.to_i do
+ 
+      positive_votes = self.votes.all.count { |vote| vote.vote_type }
+      total_votes = Vote.count
 
-    positive_votes = self.votes.all.count { |vote| vote.vote_type }
-    total_votes = Vote.count
+      if total_votes == 0
+        return 0.0
+      end
 
-    if total_votes == 0
-      return 0.0
+      z = 1.96
+      # 1.96 is hard-coded to optimize performance, here's the full calculation
+      # used to produce that constant:
+      # confidence = 0.95
+      # z = Statistics2.pnormaldist(1-(1-confidence)/2)
+
+      phat = positive_votes/total_votes.to_f
+      (phat + z*z/(2*total_votes) - z * Math.sqrt((phat*(1-phat)+z*z/(4*total_votes))/total_votes))/(1+z*z/total_votes)
     end
-
-    # Magic number indicating 95% confidence level.
-    confidence = 0.95
-
-    z = Statistics2.pnormaldist(1-(1-confidence)/2)
-    phat = positive_votes/total_votes.to_f
-    (phat + z*z/(2*total_votes) - z * Math.sqrt((phat*(1-phat)+z*z/(4*total_votes))/total_votes))/(1+z*z/total_votes)
   end
 
   # Returns private or public based on the boolean private property.
