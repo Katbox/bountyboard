@@ -2,15 +2,17 @@
 <nav>
   <%= link_to 'The Bounty Board', root_path %>
   <%= link_to 'About', '#' %>
-  <a data-dropdown="#dropdown-filters-controls" href="#">
-	  Filter Displayed Bounties
-  </a>
   <%= link_to 'Show All Artists', artists_path %>
   <% if signed_in? && currentUser.admin? %>
     <%= link_to 'New Artist', new_artist_path %>
   <% end %>
   <% if signed_in? && currentUser.is_a?(Artist) %>
     <%= link_to 'Your Profile', artist_path(currentUser.id) %>
+  <% end %>
+  <% if controller_name == 'bounties' && action_name == 'index' %>
+	  <a data-dropdown="#dropdown-filters-controls" href="#">
+		  Filter Displayed Bounties
+	  </a>
   <% end %>
   <span class="login-notify-area">
     <% if signed_in? %>
