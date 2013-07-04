@@ -38,7 +38,7 @@ class Bounty < ActiveRecord::Base
 
   # Attributes =================================================================
   def self.MAXIMUM_NAME_LENGTH
-    25
+    40
   end
 
   def self.MAXIMUM_DESC_LENGTH
@@ -59,7 +59,7 @@ class Bounty < ActiveRecord::Base
   validates :name, :length => {
     :minimum => 1,
     :maximum => Bounty.MAXIMUM_NAME_LENGTH,
-    :message => "must be between 1 and 25 characters long"
+    :message => "must be between 1 and 40 characters long"
   }
 
   validates :desc, :length => {

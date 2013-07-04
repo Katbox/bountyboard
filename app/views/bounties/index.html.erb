@@ -5,32 +5,28 @@
     class="bounty-square"
     data-price="<%= b.price %>"
   >
+      <%=   link_to content_tag(:span, ""), bounty_path(b.id), class: 'bounty-click-wrapper' %>
       <div class="nail"></div>
       <div class="price-ribbon"><div><%= humanized_money_with_symbol b.price %></div></div>
-      <div class="name hyphenate"><%= b.name %></div>
+      <div class="name"><%= b.name %></div>
       <div class="short-desc hyphenate">
         <%= b.desc.html_safe %>
       </div>
-      <div class="control-area">
-        <% if signed_in? %>
-          <div class="vote-controls">
-            <% cast_vote = b.vote_by(currentUser) %>
-            <% if cast_vote %>
-              <% if cast_vote.vote_type %>
-                <div class="upvote upvote-red"></div>
-                <div class="downvote downvote-grey"></div>
-              <% else %>
-                <div class="upvote upvote-grey"></div>
-                <div class="downvote downvote-red"></div>
-              <% end %>
+      <% if signed_in? %>
+          <% cast_vote = b.vote_by(currentUser) %>
+          <% if cast_vote %>
+            <% if cast_vote.vote_type %>
+              <div class="upvote upvote-red"></div>
+              <div class="downvote downvote-grey"></div>
             <% else %>
-              <%=  link_to '', votes_path(:vote => {:vote_type => true}, :bounty => b.id), :action => :create, :method => :post, :confirm => "Are you sure you want to upvote #{b.name}?", class: 'upvote' %>
-              <%=   link_to '', votes_path(:vote => {:vote_type => false}, :bounty => b.id), :action => :create, :method => :post, :confirm => "Are you sure you want to downvote #{b.name}?", class: 'downvote' %>
+              <div class="upvote upvote-grey"></div>
+              <div class="downvote downvote-red"></div>
             <% end %>
-          </div>
+          <% else %>
+            <%=  link_to '', votes_path(:vote => {:vote_type => true}, :bounty => b.id), :action => :create, :method => :post, class: 'upvote' %>
+            <%=   link_to '', votes_path(:vote => {:vote_type => false}, :bounty => b.id), :action => :create, :method => :post, class: 'downvote' %>
+          <% end %>
         <% end %>
-        <%=   link_to 'Read More', bounty_path(b.id), class: 'bounty-button read-more-button' %>
-      </div>
     </div>
   <% end %>
 </div>

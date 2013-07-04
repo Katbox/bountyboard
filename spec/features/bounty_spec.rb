@@ -59,11 +59,8 @@ describe 'Bounty' do
     it { should have_selector('.bounty-square .name', :text => "Normal Bounty") }
     it { should have_selector('.bounty-square .short-desc', :text => "Bounty#1") }
     it { should have_selector('.bounty-square .price-ribbon', :text => "$9.99") }
-    it { should have_selector('.bounty-square .control-area') }
-    it { should have_selector('.bounty-square .vote-controls') }
     it { should have_selector('.bounty-square .upvote') }
     it { should have_selector('.bounty-square .downvote') }
-    it { should have_selector('.bounty-square .read-more-button') }
     it { should have_selector('.bounty-square .name', :text => "Adult Bounty") }
     it { should_not have_selector('.bounty-square .name', :text => "Private Bounty") }
     it { should_not have_selector('.bounty-square .name', :text => "Private Adult Bounty") }
