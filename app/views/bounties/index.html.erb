@@ -5,6 +5,7 @@
     class="bounty-square"
     data-price="<%= b.price %>"
   >
+      <%=   link_to content_tag(:span, ""), bounty_path(b.id), class: 'bounty-click-wrapper' %>
       <div class="nail"></div>
       <div class="price-ribbon"><div><%= humanized_money_with_symbol b.price %></div></div>
       <div class="name hyphenate"><%= b.name %></div>
@@ -29,7 +30,6 @@
             <% end %>
           </div>
         <% end %>
-        <%=   link_to 'Read More', bounty_path(b.id), class: 'bounty-button read-more-button' %>
       </div>
     </div>
   <% end %>
