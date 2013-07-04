@@ -113,17 +113,20 @@ class Bounty < ActiveRecord::Base
   # parameter.
   def score
 
-    positive_votes = self.votes.all.count { |vote| vote.vote_type }
-    total_votes = Vote.count
+    all_votes = self.votes.all
+    total_votes = all_votes.length
+    positive_votes = all_votes.count { |vote| vote.vote_type }
 
     if total_votes == 0
       return 0.0
     end
 
-    # Magic number indicating 95% confidence level.
-    confidence = 0.95
+    z = 1.96
+    # the number 1.96 is hard-coded for performance, but is calculated from
+    # this formula:
+    # confidence = 0.95
+    # z = Statistics2.pnormaldist(1-(1-confidence)/2)
 
-    z = Statistics2.pnormaldist(1-(1-confidence)/2)
     phat = positive_votes/total_votes.to_f
     (phat + z*z/(2*total_votes) - z * Math.sqrt((phat*(1-phat)+z*z/(4*total_votes))/total_votes))/(1+z*z/total_votes)
   end
