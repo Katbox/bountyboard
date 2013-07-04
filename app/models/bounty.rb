@@ -38,7 +38,7 @@ class Bounty < ActiveRecord::Base
 
   # Attributes =================================================================
   def self.MAXIMUM_NAME_LENGTH
-    25
+    40
   end
 
   def self.MAXIMUM_DESC_LENGTH
@@ -59,13 +59,13 @@ class Bounty < ActiveRecord::Base
   validates :name, :length => {
     :minimum => 1,
     :maximum => Bounty.MAXIMUM_NAME_LENGTH,
-    :message => "must be between 1 and 25 characters long"
+    :message => "must be between 1 and #{self.MAXIMUM_NAME_LENGTH} characters long"
   }
 
   validates :desc, :length => {
     :minimum => 1,
     :maximum => Bounty.MAXIMUM_DESC_LENGTH,
-    :message => "must be between 1 and 5000 characters long"
+    :message => "must be between 1 and #{self.MAXIMUM_DESC_LENGTH} characters long"
   }
 
   validates :private, :inclusion => {:in => [true, false]}
@@ -108,27 +108,31 @@ class Bounty < ActiveRecord::Base
 
   # Methods ====================================================================
 
-  # Returns a float giving the rating of the bounty to the Lower
-  # bound of Wilson score confidence interval for a Bernoulli
-  # parameter.
+  # Returns a float giving the rating of the bounty to the Lower bound of
+  # Wilson score confidence interval for a Bernoulli parameter. This is the
+  # rating method made famous by Reddit's "best" sort algorithm.
   def score
+    Rails.cache.fetch "/bounty/#{self.id}/score",
+      :expires_in => 15.minutes.to_i,
+      :race_condition_ttl => 15.seconds.to_i do
 
-    all_votes = self.votes.all
-    total_votes = all_votes.length
-    positive_votes = all_votes.count { |vote| vote.vote_type }
+      all_votes = self.votes.all
+      total_votes = all_votes.length
+      positive_votes = all_votes.count { |vote| vote.vote_type }
 
-    if total_votes == 0
-      return 0.0
+      if total_votes == 0
+        return 0.0
+      end
+
+      z = 1.96
+      # the number 1.96 is hard-coded for performance, but is calculated from
+      # this formula:
+      # confidence = 0.95
+      # z = Statistics2.pnormaldist(1-(1-confidence)/2)
+
+      phat = positive_votes/total_votes.to_f
+      (phat + z*z/(2*total_votes) - z * Math.sqrt((phat*(1-phat)+z*z/(4*total_votes))/total_votes))/(1+z*z/total_votes)
     end
-
-    z = 1.96
-    # the number 1.96 is hard-coded for performance, but is calculated from
-    # this formula:
-    # confidence = 0.95
-    # z = Statistics2.pnormaldist(1-(1-confidence)/2)
-
-    phat = positive_votes/total_votes.to_f
-    (phat + z*z/(2*total_votes) - z * Math.sqrt((phat*(1-phat)+z*z/(4*total_votes))/total_votes))/(1+z*z/total_votes)
   end
 
   # Returns private or public based on the boolean private property.

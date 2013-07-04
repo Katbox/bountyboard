@@ -11,7 +11,6 @@ class BountiesController < ApplicationController
   def index
     @bounties = Bounty
       .viewable_by(currentUser)
-      .order("created_at DESC")
       .limit(50)
 
     # apply filters from the user
@@ -22,7 +21,7 @@ class BountiesController < ApplicationController
       @bounties = @bounties.price_less_than params["price_max"].to_f
     end
 
-	respond_with @bounties
+	respond_with @bounties.all.sort { |bounty| -bounty.score }
   end
 
   # Display an individual bounty.
