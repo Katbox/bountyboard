@@ -1,10 +1,10 @@
 initializeFilters = ->
   if $("#dropdown-filters-controls").length > 0
 
-      # wait for update requests from slider controls to subside for
-      # at least this many milliseconds before actually updating to
-      # prevent sliding the control from generating hundreds of
-      # refresh requests
+    # wait for update requests from slider controls to subside for
+    # at least this many milliseconds before actually updating to
+    # prevent sliding the control from generating hundreds of
+    # refresh requests
     SLIDER_DELAY = 500
 
     # parameters passed to the back end for filtering are stored
