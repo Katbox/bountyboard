@@ -22,11 +22,11 @@
           <% cast_vote = b.vote_by(currentUser) %>
           <% if cast_vote %>
             <% if cast_vote.vote_type %>
-              <div class="upvote upvote-red"></div>
+              <%=  link_to '', cast_vote, :method => :delete, class: 'upvote upvote-red' %>
               <div class="downvote downvote-grey"></div>
             <% else %>
               <div class="upvote upvote-grey"></div>
-              <div class="downvote downvote-red"></div>
+              <%=  link_to '', cast_vote, :method => :delete, class: 'downvote downvote-red' %>
             <% end %>
           <% else %>
             <%=  link_to '', votes_path(:vote => {:vote_type => true}, :bounty => b.id), :action => :create, :method => :post, class: 'upvote' %>
