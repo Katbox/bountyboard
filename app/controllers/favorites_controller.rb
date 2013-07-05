@@ -11,7 +11,21 @@ class FavoritesController < ApplicationController
         flash[:notice] = "You have favorited #{@favorite.bounty.name}!"
         redirect_to root_path
       else
-        flash[:error] = "Error saving favorite."
+        flash[:error] =P "Error saving favorite."
+        redirect_to root_path
+      end
+    else
+      flash[:error] = "You must sign in."
+      redirect_to root_path
+    end
+  end
+
+  def destroy
+    if signed_in?
+      if Favorite.destroy(params[:id])
+        redirect_to root_path
+      else
+        flash[:error] = "Error removing favorite."
         redirect_to root_path
       end
     else

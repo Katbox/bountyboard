@@ -155,10 +155,10 @@ class Bounty < ActiveRecord::Base
     end
   end
 
-  # Returns true if the specified user favorited this bounty.
+  # Returns the favorite object if the specified user favorited this bounty.
   def favored_by(user)
     if user
-      self.favorites.any? { |favorite| favorite.user == user }
+      self.favorites.find { |favorite| favorite.user == user }
     end
   end
 
