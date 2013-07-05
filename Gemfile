@@ -63,7 +63,7 @@ gem 'formtastic'
 gem 'statistics2'
 gem 'sanitize'
 gem 'turbolinks'
-
+gem 'ckeditor'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
