@@ -155,6 +155,13 @@ class Bounty < ActiveRecord::Base
     end
   end
 
+  # Returns true if the specified user favorited this bounty.
+  def favored_by(user)
+    if user
+      self.favorites.any? { |favorite| favorite.user == user }
+    end
+  end
+
   # Returns the status of the bounty as a string. May either be Completed,
   # Accepted, or Unclaimed.
   def status

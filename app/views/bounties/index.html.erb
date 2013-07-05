@@ -13,7 +13,11 @@
         <%= b.desc.html_safe %>
       </div>
       <% if signed_in? %>
-          <%=  link_to '', favorites_path(:favorite, :bounty => b.id), :action => :create, :method => :post, class: 'fav' %>
+          <% if b.favored_by(currentUser) %>
+            <%=  link_to '', favorites_path(:favorite, :bounty => b.id), :action => :create, :method => :post, class: 'fav fav-red' %>
+          <% else %>
+            <%=  link_to '', favorites_path(:favorite, :bounty => b.id), :action => :destroy, :method => :delete, class: 'fav' %>
+          <% end %>
           <% cast_vote = b.vote_by(currentUser) %>
           <% if cast_vote %>
             <% if cast_vote.vote_type %>
