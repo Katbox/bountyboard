@@ -13,7 +13,7 @@
         <%= b.desc.html_safe %>
       </div>
       <% if signed_in? %>
-          <div class="fav"></div>
+          <%=  link_to '', favorites_path(:favorite, :bounty => b.id), :action => :create, :method => :post, class: 'fav' %>
           <% cast_vote = b.vote_by(currentUser) %>
           <% if cast_vote %>
             <% if cast_vote.vote_type %>
