@@ -1,14 +1,19 @@
 <% # -*- encoding : utf-8 -*- %>
 <div id="dropdown-filters-controls" class="dropdown dropdown-tip">
   <div class="dropdown-panel">
-    <div class="filter-control">
-    <label for="filter-cost">Price:</label>
-    <input id="filter-cost"
+    <div id="filter-control">
+      <label for="filter-cost">Price:</label>
+      <input id="filter-cost"
         data-bounty_min_price="<%= Bounty.MINIMUM_PRICE %>"
         data-bounty_max_price="<%= Bounty.MAXIMUM_PRICE %>"
         type="text"
       >
       <div id="filter-cost-widget" class="filters-slider"></div>
+      <hr>
+      <p>Age-Restricted Bounties:</p>
+      <div id="filter-adult">
+        <label for="filter-adult-all">Show All</label><input id="filter-adult-all" type="radio" name="filter-adult" value="all"><label for="filter-adult-other">G-Rated Only</label><input id="filter-adult-other" type="radio" name="filter-adult" value="kid-friendly" checked><label for="filter-adult-only">Adult Only</label><input id="filter-adult-only" type="radio" name="filter-adult" value="adult">
+      </div>
     </div>
   </div>
 </div>

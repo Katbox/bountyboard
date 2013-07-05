@@ -5,7 +5,7 @@ initializeFilters = ->
     # at least this many milliseconds before actually updating to
     # prevent sliding the control from generating hundreds of
     # refresh requests
-    SLIDER_DELAY = 500
+    SLIDER_DELAY = 300
 
     # parameters passed to the back end for filtering are stored
     # here, indexed by the property being filtered (i.e.
@@ -81,6 +81,14 @@ initializeFilters = ->
 
     # initialize the price display
     price_filter_update(bounty_min_price, bounty_max_price, false)
+
+
+    # adult content filter
+
+    $("#filter-adult").buttonset()
+    $("#filter-adult").change ->
+      filter_parameters["adult"] = $("#filter-adult :checked").val()
+      apply_filters()
 
 
 $(document).ready initializeFilters
