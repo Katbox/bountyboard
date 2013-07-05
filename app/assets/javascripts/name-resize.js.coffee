@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 resize_titles = ->
-    $(".name").each ->
+    $(".bounty-square .name").each ->
         name_length = $(this).text().length
         font_size_num = 280 - (name_length * 3.5)
         font_size = "#{font_size_num}%"
