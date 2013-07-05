@@ -35,6 +35,8 @@ class Bounty < ActiveRecord::Base
   has_many :artists, :through => :candidacies
   has_many :personalities, :dependent => :destroy
   has_many :moods, :through => :personalities
+  has_many :favorites, :dependent => :destroy
+  has_many :users, :through => :favorites
 
   # Attributes =================================================================
   def self.MAXIMUM_NAME_LENGTH

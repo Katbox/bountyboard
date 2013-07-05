@@ -13,6 +13,7 @@
         <%= b.desc.html_safe %>
       </div>
       <% if signed_in? %>
+          <div class="fav"></div>
           <% cast_vote = b.vote_by(currentUser) %>
           <% if cast_vote %>
             <% if cast_vote.vote_type %>
