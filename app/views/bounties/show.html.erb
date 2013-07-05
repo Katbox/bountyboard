@@ -44,7 +44,7 @@
   <div class="control-panel">
   <%=   link_to 'Back', root_path, class: 'bounty-button' %>
   <% if signed_in? %>
-    <% if (@bounty.owner == currentUser && @bounty.status == 'Unclaimed') || currentUser.admin? %>
+    <% if (@bounty.owner == currentUser && @bounty.status == 'Unclaimed') %>
       <%=   link_to 'Update', edit_bounty_path(@bounty.id, "Edit"), class: 'bounty-button' %>
     <% end %>
     <% if (@bounty.owner == currentUser && @bounty.status == 'Unclaimed') || currentUser.admin? %>
