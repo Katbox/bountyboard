@@ -19,7 +19,7 @@ describe 'Bounty' do
         :adult_only => false,
         :private => false,
         :owner => @customer1
-        )
+      )
       @adultBounty = FactoryGirl.create(:bounty,
         :name => "Adult Bounty",
         :desc => "Bounty#2",
@@ -27,7 +27,7 @@ describe 'Bounty' do
         :adult_only => true,
         :private => false,
         :owner => @customer2
-        )
+      )
       @privateBounty = FactoryGirl.create(:bounty,
         :name => "Private Bounty",
         :desc => "Bounty#3",
@@ -35,7 +35,7 @@ describe 'Bounty' do
         :adult_only => false,
         :private => true,
         :owner => @customer2
-        )
+      )
       @privateAdultBounty = FactoryGirl.create(:bounty,
         :name => "Private Adult Bounty",
         :desc => "Bounty#4",
@@ -43,7 +43,7 @@ describe 'Bounty' do
         :adult_only => false,
         :private => true,
         :owner => @customer1
-        )
+      )
 
       OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
         :provider => 'browserid',
@@ -79,7 +79,7 @@ describe 'Bounty' do
         :adult_only => false,
         :private => false,
         :owner => @customer1
-        )
+      )
       @adultBounty = FactoryGirl.create(:bounty,
         :name => "Adult Bounty",
         :desc => "Bounty#2",
@@ -87,7 +87,7 @@ describe 'Bounty' do
         :adult_only => true,
         :private => false,
         :owner => @customer2
-        )
+      )
       @privateBounty = FactoryGirl.create(:bounty,
         :name => "Private Bounty",
         :desc => "Bounty#3",
@@ -95,7 +95,7 @@ describe 'Bounty' do
         :adult_only => false,
         :private => true,
         :owner => @customer2
-        )
+      )
       @privateAdultBounty = FactoryGirl.create(:bounty,
         :name => "Private Adult Bounty",
         :desc => "Bounty#4",
@@ -103,7 +103,7 @@ describe 'Bounty' do
         :adult_only => false,
         :private => true,
         :owner => @customer1
-        )
+      )
 
       OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
         :provider => 'browserid',
@@ -136,7 +136,7 @@ describe 'Bounty' do
         :adult_only => false,
         :private => false,
         :owner => @customer1
-        )
+      )
       @adultBounty = FactoryGirl.create(:bounty,
         :name => "Adult Bounty",
         :desc => "Bounty#2",
@@ -144,7 +144,7 @@ describe 'Bounty' do
         :adult_only => true,
         :private => false,
         :owner => @customer2
-        )
+      )
       @privateBounty = FactoryGirl.create(:bounty,
         :name => "Private Bounty",
         :desc => "Bounty#3",
@@ -152,7 +152,7 @@ describe 'Bounty' do
         :adult_only => false,
         :private => true,
         :owner => @customer2
-        )
+      )
       @privateAdultBounty = FactoryGirl.create(:bounty,
         :name => "Private Adult Bounty",
         :desc => "Bounty#4",
@@ -160,7 +160,7 @@ describe 'Bounty' do
         :adult_only => false,
         :private => true,
         :owner => @customer1
-        )
+      )
 
       OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
         :provider => 'browserid',
