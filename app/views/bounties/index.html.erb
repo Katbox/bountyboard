@@ -24,6 +24,12 @@
           <% else %>
             <%=  link_to '', favorites_path(:favorite, :bounty => b.id), :action => :create, :method => :post, class: 'fav' %>
           <% end %>
+          <% if b.status == "Accepted" %>
+            <div class="accepted-stamp"></div>
+          <% end %>
+          <% if b.status == "Completed" %>
+            <div class="completed-stamp"></div>
+          <% end %>
           <% cast_vote = b.vote_by(currentUser) %>
           <% if cast_vote %>
             <% if cast_vote.vote_type %>
