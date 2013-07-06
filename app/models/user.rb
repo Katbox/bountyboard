@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
   has_many :votes
   has_many :ownerships, :foreign_key => "user_id", :class_name => "Bounty"
   has_many :rejections, :foreign_key => "reject_id", :class_name => "Bounty"
+  has_many :favorites
+  has_many :bounties, :through => :favorites
 
   # Validations ================================================================
   validates :email, presence: true

@@ -23,6 +23,11 @@ FactoryGirl.define do
     sequence(:name) { |n| "mood#{n}" }
   end
 
+  factory :favorite do
+    user {FactoryGirl.create(:user)}
+    bounty {FactoryGirl.create(:bounty)}
+  end
+
   factory :vote do
     user {FactoryGirl.create(:user)}
     bounty {FactoryGirl.create(:bounty)}

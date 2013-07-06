@@ -25,6 +25,7 @@ group :development do
   gem 'magic_encoding'
   gem 'factory_girl_rails', :require => false
   gem 'faker'
+  gem 'debugger'
 end
 
 
@@ -63,7 +64,7 @@ gem 'formtastic'
 gem 'statistics2'
 gem 'sanitize'
 gem 'turbolinks'
-
+gem 'ckeditor'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -77,5 +78,5 @@ gem 'turbolinks'
 # Deploy with Capistrano
 # gem 'capistrano'
 
-# To use debugger
-# gem 'debugger'
+
+

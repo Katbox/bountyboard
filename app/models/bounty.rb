@@ -35,6 +35,8 @@ class Bounty < ActiveRecord::Base
   has_many :artists, :through => :candidacies
   has_many :personalities, :dependent => :destroy
   has_many :moods, :through => :personalities
+  has_many :favorites, :dependent => :destroy
+  has_many :users, :through => :favorites
 
   # Attributes =================================================================
   def self.MAXIMUM_NAME_LENGTH
@@ -150,6 +152,13 @@ class Bounty < ActiveRecord::Base
   def vote_by(user)
     if user
       self.votes.find { |vote| vote.user == user }
+    end
+  end
+
+  # Returns the favorite object if the specified user favorited this bounty.
+  def favored_by(user)
+    if user
+      self.favorites.find { |favorite| favorite.user == user }
     end
   end
 

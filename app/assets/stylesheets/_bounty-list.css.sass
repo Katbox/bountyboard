@@ -17,11 +17,12 @@
     overflow: hidden
     text-overflow: ellipsis
     margin-bottom: 10px
+    text-align: center
 
     .nail
       position: absolute
       z-index: 2
-      bottom: 85%
+      bottom: 90%
       left: 55%
       height: 22px
       width: 22px
@@ -41,6 +42,48 @@
     .short-desc
       margin-top: 31%
       max-height: 54%
+      text-align: left
+      font-weight: normal
+
+    .short-desc img, ul
+      display: none
+
+    .short-desc h1, h2, h3
+      font-size: 100%
+
+    .fav
+      background-image: url('FaveStarBlack.png')
+      height: 38px
+      width: 38px
+      position: absolute
+      z-index: 3
+      bottom: 3px
+      left: 3px
+
+    .fav-red
+      background-image: url('FaveStarRed.png')
+
+    .accepted-stamp
+      height: 44px
+      width: 172px
+      position: absolute
+      z-index: 3
+      bottom: 0px
+      left: 44px
+      background-image: url('Accepted.png')
+      background-repeat: no-repeat
+      background-position: center
+
+    .completed-stamp
+      height: 44px
+      width: 172px
+      position: absolute
+      z-index: 3
+      bottom: 0px
+      left: 44px
+      background-image: url('Complete.png')
+      background-repeat: no-repeat
+      background-position: center
 
     .upvote
       height: 44px
@@ -52,7 +95,6 @@
       background-image: url('VoteUpB.png')
       background-repeat: no-repeat
       background-position: center
-      display: inline-block
 
     .upvote-red
       background-image: url('VoteUp.png')
@@ -70,7 +112,6 @@
       background-image: url('VoteDownB.png')
       background-repeat: no-repeat
       background-position: center
-      display: inline-block
 
     .downvote-red
       background-image: url('VoteDown.png')
@@ -85,4 +126,9 @@
       z-index: 2
       top: 0px
       left: 0px
+
+    .art-thumbnail
+      max-height: 78%
+      max-width: 100%
+      margin-top: 7%
 

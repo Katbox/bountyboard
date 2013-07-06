@@ -4,8 +4,8 @@
   <%= semantic_form_for @artist do |artist_form| %>
       <%= artist_form.input :name, :required => true %>
       <%= artist_form.input :email, :required => true %>
-      <%= artist_form.input :bio, :as => :text, :required => true %>
-      <%= artist_form.input :bounty_rules, :as => :text, :required => true %>
+      <%= artist_form.input :bio, :as => :ckeditor, :input_html => { :ckeditor => { :height => 400, :width => 800 }}, :required => true %>
+      <%= artist_form.input :bounty_rules, :as => :ckeditor, :input_html => { :ckeditor => { :height => 400, :width => 800 }} :required => true %>
       <% if currentUser.admin? %>
         <%= artist_form.input :approved%>
         <%= artist_form.input :active%>

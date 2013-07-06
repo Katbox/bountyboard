@@ -134,27 +134,33 @@ class BountiesController < ApplicationController
       flash[:error] = "You are not authorized to edit this bounty."
       redirect_to root_path
     end
-    if params[:bounty][:url] != nil
+    if params[:bounty][:url]
       params[:bounty][:completed_at] = Time.now
-    end
-
-    # Sanitize the name and description fields for bounties. Clean name of all
-    # HTML, clean descs using "Relaxed" method which allows:
-    #
-    # "Allows an even wider variety of markup than BASIC, including images and
-    # tables. Links are still limited to FTP, HTTP, HTTPS, and mailto protocols,
-    # while images are limited to HTTP and HTTPS. In this mode, rel="nofollow"
-    # is not added to links."
-
-    params[:bounty][:name] = Sanitize.clean(params[:bounty][:name])
-    params[:bounty][:desc] = Sanitize.clean(params[:bounty][:desc], Sanitize::Config::RELAXED)
-
-    if @bounty.update_attributes(params[:bounty])
-      flash[:notice] = "Bounty Updated!"
-      redirect_to root_path
+      if @bounty.update_attributes(params[:bounty])
+        flash[:notice] = "Bounty Completed!"
+        redirect_to root_path
+      else
+        flash[:error] = "Error completing bounty."
+        redirect_to root_path
+      end
     else
-      flash[:error] = "Error updating bounty."
-      redirect_to root_path
+      # Sanitize the name and description fields for bounties. Clean name of all
+      # HTML, clean descs using "Relaxed" method which allows:
+      #
+      # "Allows an even wider variety of markup than BASIC, including images and
+      # tables. Links are still limited to FTP, HTTP, HTTPS, and mailto protocols,
+      # while images are limited to HTTP and HTTPS. In this mode, rel="nofollow"
+      # is not added to links."
+      params[:bounty][:name] = Sanitize.clean(params[:bounty][:name])
+      params[:bounty][:desc] = Sanitize.clean(params[:bounty][:desc], Sanitize::Config::RELAXED)
+
+      if @bounty.update_attributes(params[:bounty])
+        flash[:notice] = "Bounty Updated!"
+        redirect_to root_path
+      else
+        flash[:error] = "Error updating bounty."
+        redirect_to root_path
+      end
     end
   end
 
