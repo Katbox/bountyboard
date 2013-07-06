@@ -36,10 +36,10 @@
     </div>
   <% end %>
   <div class="dates">
-    <%= @bounty.created_at.to_s(:created_on) %>
-    <% if @bounty.status != "Unclaimed" %> | <%= @bounty.accepted_on.to_s(:accepted_on) %><% end %>
-    <% if @bounty.status == "Completed" %> | <%= @bounty.completed_at.to_s(:completed_on) %><% end %>
-    <% if @bounty.complete_by %><h3><%= @bounty.complete_by.to_s(:complete_by) %></h3><% end %>
+    Created on <%= @bounty.created_at.strftime("%B %d %Y") %>
+    <% if @bounty.status != "Unclaimed" %> | Accepted on <%= @bounty.accepted_on.strftime("%B %d, %Y") %><% end %>
+    <% if @bounty.status == "Completed" %> | Completed on <%= @bounty.completed_at.strftime("%B %d, %Y") %><% end %>
+    <% if @bounty.complete_by %><h3>This bounty must be finished by <%= @bounty.complete_by.strftime("%B %d, %Y") %></h3><% end %>
   </div>
   <div class="control-panel">
   <%=   link_to 'Back', root_path, class: 'bounty-button' %>
