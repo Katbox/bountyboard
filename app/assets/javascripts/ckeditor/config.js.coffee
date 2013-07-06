@@ -36,9 +36,9 @@ CKEDITOR.editorConfig = (config) ->
     #   name: "tools"
     #   items: ["Maximize", "ShowBlocks", "-", "About"]
     # ]
-
+    config.format_tags = 'h2;h3;p';
     config.toolbar_Basic = [
       name: "custom"
-      items: ["Bold", "Italic", "FontSize", "-", "NumberedList", "BulletedList", "-", "Link", "Unlink", "Image", "PasteFromWord", "Undo", "Redo", "TextColor"]
+      items: ["Bold", "Italic", "-", "Format", "NumberedList", "BulletedList", "-", "Link", "Unlink", "Image", "PasteFromWord", "Undo", "Redo"]
     ]
     true
