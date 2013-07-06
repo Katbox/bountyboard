@@ -25,6 +25,7 @@ group :development do
   gem 'magic_encoding'
   gem 'factory_girl_rails', :require => false
   gem 'faker'
+  gem 'debugger'
 end
 
 
@@ -77,5 +78,5 @@ gem 'ckeditor'
 # Deploy with Capistrano
 # gem 'capistrano'
 
-# To use debugger
-# gem 'debugger'
+
+
