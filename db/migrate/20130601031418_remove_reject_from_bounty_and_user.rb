@@ -1,4 +1,3 @@
-# -*- encoding : utf-8 -*-
 class RemoveRejectFromBountyAndUser < ActiveRecord::Migration
   def up
     remove_column :bounties, :reject_id

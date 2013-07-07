@@ -1,4 +1,3 @@
-# -*- encoding : utf-8 -*-
 class VotesController < ApplicationController
 
   include SessionsHelper

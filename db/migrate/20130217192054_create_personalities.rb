@@ -1,4 +1,3 @@
-# -*- encoding : utf-8 -*-
 class CreatePersonalities < ActiveRecord::Migration
   def change
     create_table :personalities do |t|
