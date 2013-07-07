@@ -92,6 +92,7 @@ sexyMood.save!
 # A bounty created by customer 1, completed by artist 1.
 bounty1 = Bounty.new(
   :name => "Landscape Painting",
+  :tag_line => "I want a landscape painting.",
   :desc => "I want a painting of a serene landscape, letting me enjoy the neauty and grandeur of nature in my living room. I want it to have a lake and be at sunset.",
   :price => 1000.00
 )
@@ -103,6 +104,7 @@ bounty1.save!(:validate => false)
 # A bounty created by customer 1, accepted by artist 1.
 bounty2 = Bounty.new(
   :name => "Tapestry Design",
+  :tag_line => "I want a Tapestry Design.",
   :desc => "An intricate pattern for a rug design.",
   :price => 2000.00
 )
@@ -112,6 +114,7 @@ bounty2.save!(:validate => false)
 # A bounty created by customer 2, accepted by no one.
 bounty3 = Bounty.new(
   :name => "Comic Character",
+  :tag_line => "I want a comic character.",
   :desc => "I want a picture of my character doing cool stuff! Lots of explosions!",
   :price => 60.00
 )
@@ -121,6 +124,7 @@ bounty3.save!(:validate => false)
 # A bounty created by customer 2, accepted by artist 2.
 bounty4 = Bounty.new(
   :name => "Tattoo Design",
+  :tag_line => "I want tatoo design.",
   :desc => "I need someone to make a design that I will hand over to a tattoo artist for inking on my arm.",
   :price => 35.50
 )
@@ -130,6 +134,7 @@ bounty4.save!(:validate => false)
 # A bounty created by customer 1, completed by artist 3.
 bounty5 = Bounty.new(
   :name => "Cartoon Sketches",
+  :tag_line => "I want cartoon sketches.",
   :desc => "Storyboarding sketches for my animated short.",
   :price => 45.00
 )
@@ -141,6 +146,7 @@ bounty5.save!(:validate => false)
 # A bounty created by customer 1, accepted by artist 4.
 bounty6 = Bounty.new(
   :name => "My Little Pony Fan Art",
+  :tag_line => "I want art of my favorite show.",
   :desc => "Cute art of my favorite show ever!",
   :price => 9999.99
 )
@@ -150,6 +156,7 @@ bounty6.save!(:validate => false)
 # A bounty created by customer 2, completed by artist 3.
 bounty7 = Bounty.new(
   :name => "Swimsuit Design",
+  :tag_line => "I want a pattern for a swimsuit.",
   :desc => "A cute, yet sexy melon pattern.",
   :price => 999.99
 )
@@ -161,6 +168,7 @@ bounty7.save!(:validate => false)
 # A bounty created by customer 2, accepted by artist 2.
 bounty8 = Bounty.new(
   :name => "Seedy Adult Commission",
+  :tag_line => "I want something hard.",
   :desc => "I'm totally not ashamed to make an adult commission public!",
   :price => 666.00,
   :adult_only => true
@@ -171,6 +179,7 @@ bounty8.save!(:validate => false)
 # A bounty created by customer 1
 bounty9 = Bounty.new(
   :name => "My Little Pony \"Fan Art\"",
+  :tag_line => "I want something hard.",
   :desc => "Clop. Clop. Keep this private. Clop. Clop.",
   :price => 100.00,
   :adult_only => true,
