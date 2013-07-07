@@ -15,6 +15,8 @@
 //= require jquery.ui.all
 //= require turbolinks
 //= require masonry/jquery.masonry
+//= require ckeditor/init
+//= require ckeditor/config
 //= require jquery.autoellipsis-1.0.10
 //= require hyphenate
 //= require_tree ../../../vendor/assets/javascripts

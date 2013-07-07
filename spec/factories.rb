@@ -23,6 +23,11 @@ FactoryGirl.define do
     sequence(:name) { |n| "mood#{n}" }
   end
 
+  factory :favorite do
+    user {FactoryGirl.create(:user)}
+    bounty {FactoryGirl.create(:bounty)}
+  end
+
   factory :vote do
     user {FactoryGirl.create(:user)}
     bounty {FactoryGirl.create(:bounty)}
@@ -49,12 +54,8 @@ FactoryGirl.define do
   end
 
   factory :candidacy do
-    acceptor false
+    bounty { FactoryGirl.create(:bounty) }
     artist { FactoryGirl.create(:artist) }
-  end
-
-  factory :acceptor_candidacy, :parent => :candidacy do
-    acceptor true
   end
 
   factory :filter_template do

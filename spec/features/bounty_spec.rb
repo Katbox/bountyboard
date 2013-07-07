@@ -583,7 +583,7 @@ describe 'Bounty' do
   describe 'show page for a normal claimed bounty' do
     before {
       acceptor_candidacy = @normal_bounty.candidacies.first
-      acceptor_candidacy.acceptor = true
+      acceptor_candidacy.accepted_at = 1.seconds.from_now
       acceptor_candidacy.save!
       @normal_bounty.reload
       @acceptor = acceptor_candidacy.artist
@@ -608,15 +608,15 @@ describe 'Bounty' do
         page.should have_selector('#bounty-show .desc', :text => "Bounty#1")
       end
 
-      it 'should display the bounty\'s candidacies' do
+      it 'shouldn\'t display the bounty\'s candidacies' do
         @normal_bounty.artists.length.should == 3
         @normal_bounty.artists.each { |artist|
-          page.should have_selector(
+          page.should_not have_selector(
             '#bounty-show .candidacies',
             :text => artist.name
           )
         }
-        page.should have_selector(
+        page.should_not have_selector(
           '#bounty-show .candidacies',
           :text => @normal_bounty.price
         )
@@ -684,15 +684,15 @@ describe 'Bounty' do
         page.should have_selector('#bounty-show .desc', :text => "Bounty#1")
       end
 
-      it 'should display the bounty\'s candidacies' do
+      it 'shouldn\'t display the bounty\'s candidacies' do
         @normal_bounty.artists.length.should == 3
         @normal_bounty.artists.each { |artist|
-          page.should have_selector(
+          page.should_not have_selector(
             '#bounty-show .candidacies',
             :text => artist.name
           )
         }
-        page.should have_selector(
+        page.should_not have_selector(
           '#bounty-show .candidacies',
           :text => @normal_bounty.price
         )
