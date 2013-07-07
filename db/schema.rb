@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130705031840) do
+ActiveRecord::Schema.define(:version => 20130706233832) do
 
   create_table "bounties", :force => true do |t|
     t.string   "name",                              :null => false
@@ -29,11 +29,10 @@ ActiveRecord::Schema.define(:version => 20130705031840) do
   end
 
   create_table "candidacies", :force => true do |t|
-    t.integer  "bounty_id",                      :null => false
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.integer  "artist_id",                      :null => false
-    t.boolean  "acceptor",    :default => false, :null => false
+    t.integer  "bounty_id",   :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "artist_id",   :null => false
     t.datetime "accepted_at"
   end
 

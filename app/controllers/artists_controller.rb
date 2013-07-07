@@ -12,17 +12,19 @@ class ArtistsController < ApplicationController
 
   # Display an individual artist's profile.
   def show
-      @artist = Artist.find(params[:id])
-      acceptingCandidacies = Candidacy.where(:artist_id =>  @artist.id, :acceptor => true)
-      @acceptedBounties = []
-      @completedBounties = []
-      acceptingCandidacies.each do |c|
-        if c.bounty.status == "Completed"
-          @completedBounties.append(c.bounty)
-        else
-          @acceptedBounties.append(c.bounty)
-        end
+    @artist = Artist.find(params[:id])
+    acceptingCandidacies = Candidacy.where(
+      'artist_id=? AND accepted_on<>NULL',  @artist.id
+    )
+    @acceptedBounties = []
+    @completedBounties = []
+    acceptingCandidacies.each do |c|
+      if c.bounty.status == "Completed"
+        @completedBounties.append(c.bounty)
+      else
+        @acceptedBounties.append(c.bounty)
       end
+    end
   end
 
   # Display the form to create a new artist. Only admins may perform this

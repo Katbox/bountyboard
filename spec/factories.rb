@@ -54,12 +54,8 @@ FactoryGirl.define do
   end
 
   factory :candidacy do
-    acceptor false
+    bounty { FactoryGirl.create(:bounty) }
     artist { FactoryGirl.create(:artist) }
-  end
-
-  factory :acceptor_candidacy, :parent => :candidacy do
-    acceptor true
   end
 
   factory :filter_template do

@@ -13,15 +13,31 @@ class BountiesController < ApplicationController
       .viewable_by(currentUser)
       .limit(50)
 
+
     # apply filters from the user
-    if params["price_min"]
+ 
+    # default filter values
+    filters =  {
+      :price_min => nil,
+      :price_max => nil,
+      :adult => "kid-friendly"
+    }.with_indifferent_access
+
+    filters.merge!(params)
+
+    if filters[:price_min]
       @bounties = @bounties.price_greater_than params["price_min"].to_f
     end
-    if params["price_max"]
+    if filters[:price_max]
       @bounties = @bounties.price_less_than params["price_max"].to_f
     end
+    if filters[:adult] == "adult"
+      @bounties = @bounties.only_adult_content
+    elsif filters[:adult] == "kid-friendly"
+      @bounties = @bounties.no_adult_content
+    end
 
-  respond_with @bounties.all.sort { |bounty| -bounty.score }
+    respond_with @bounties.all.sort { |bounty| -bounty.score }
   end
 
   # Display an individual bounty.
@@ -170,7 +186,7 @@ class BountiesController < ApplicationController
         flash[:error] = "You are not authorized to remove this bounty."
         redirect_to root_path
       elsif @bounty.status == "Accepted"
-        acceptor = @bounty.accepting_artist.get_identifier
+        acceptor = @bounty.acceptor_candidacy.artist.get_identifier
         flash[:error] = "This bounty is being worked on by #{acceptor} and cannot be deleted."
         redirect_to root_path
       else
