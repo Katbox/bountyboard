@@ -44,7 +44,7 @@ class Bounty < ActiveRecord::Base
   end
 
   def self.MAXIMUM_TAG_LENGTH
-    200
+    160
   end
 
   def self.MAXIMUM_DESC_LENGTH

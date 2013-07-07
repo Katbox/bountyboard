@@ -114,7 +114,7 @@ bounty2.save!(:validate => false)
 # A bounty created by customer 2, accepted by no one.
 bounty3 = Bounty.new(
   :name => "Comic Character",
-  :tag_line => "I want a comic character.",
+  :tag_line => "This tag_line is 160 characters long. This tag_line is 160 characters long. This tag_line is 160 characters long. This tag_line is 160 characters long......Now",
   :desc => "I want a picture of my character doing cool stuff! Lots of explosions!",
   :price => 60.00
 )
