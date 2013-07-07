@@ -261,7 +261,6 @@ personality.save!
 candidacy = Candidacy.new()
 candidacy.artist = artist1
 candidacy.bounty_id = bounty1.id
-candidacy.acceptor = true
 candidacy.accepted_at = '2013-05-31 21:43:52 -0700'
 candidacy.save!
 
@@ -287,7 +286,6 @@ candidacy.save!
 candidacy = Candidacy.new()
 candidacy.artist = artist1
 candidacy.bounty_id = bounty2.id
-candidacy.acceptor = true
 candidacy.accepted_at = '2013-05-31 21:43:52 -0700'
 candidacy.save!
 
@@ -319,7 +317,6 @@ candidacy.save!
 candidacy = Candidacy.new()
 candidacy.artist = artist2
 candidacy.bounty_id = bounty4.id
-candidacy.acceptor = true
 candidacy.accepted_at = '2013-05-31 21:43:52 -0700'
 candidacy.save!
 
@@ -327,7 +324,6 @@ candidacy.save!
 candidacy = Candidacy.new()
 candidacy.artist = artist3
 candidacy.bounty_id = bounty5.id
-candidacy.acceptor = true
 candidacy.accepted_at = '2013-05-31 21:43:52 -0700'
 candidacy.save!
 
@@ -335,7 +331,6 @@ candidacy.save!
 candidacy = Candidacy.new()
 candidacy.artist = artist4
 candidacy.bounty_id = bounty6.id
-candidacy.acceptor = true
 candidacy.accepted_at = '2013-05-31 21:43:52 -0700'
 candidacy.save!
 
@@ -343,7 +338,6 @@ candidacy.save!
 candidacy = Candidacy.new()
 candidacy.artist = artist3
 candidacy.bounty_id = bounty7.id
-candidacy.acceptor = true
 candidacy.accepted_at = '2013-05-31 21:43:52 -0700'
 candidacy.save!
 
@@ -351,7 +345,6 @@ candidacy.save!
 candidacy = Candidacy.new()
 candidacy.artist = artist2
 candidacy.bounty_id = bounty8.id
-candidacy.acceptor = true
 candidacy.accepted_at = '2013-05-31 21:43:52 -0700'
 candidacy.save!
 
@@ -484,32 +477,32 @@ bounty7.save!
 bounty8.save!
 bounty9.save!
 
-# # generate a bunch of random users
-# 200.times do
-#   FactoryGirl.create(:user,
-#     :name => Faker::Name.name,
-#     :email => Faker::Internet.email
-#   )
-# end
+# generate a bunch of random users
+200.times do
+  FactoryGirl.create(:user,
+    :name => Faker::Name.name,
+    :email => Faker::Internet.email
+  )
+end
 
-# # generate a bunch of random bounties
-# 3000.times do
-#   FactoryGirl.create(:bounty,
-#     :owner => User.offset(rand(User.count)).first,
-#     :desc => Faker::Lorem.paragraph,
-#     # generate a created_at date between about July 1, 2011 and June 23, 2013
-#     :created_at => DateTime.strptime(
-#       Random.rand(1309483481..1372027453).to_s, "%s"
-#     ),
-#     :artists => Artist
-#       .limit(Random.rand(1..Artist.count))
-#       .offset(rand(Artist.count))
-#       .all,
-#     :moods => Mood
-#       .limit(Random.rand(Personality.MINIMUM_MOODS..Personality.MAXIMUM_MOODS))
-#       .offset(rand(Mood.count))
-#       .all,
-#     :price => Random.rand(Bounty.MINIMUM_PRICE..Bounty.MAXIMUM_PRICE)
-# #   )
-# end
+# generate a bunch of random bounties
+3000.times do
+  FactoryGirl.create(:bounty,
+    :owner => User.offset(rand(User.count)).first,
+    :desc => Faker::Lorem.paragraph,
+    # generate a created_at date between about July 1, 2011 and June 23, 2013
+    :created_at => DateTime.strptime(
+      Random.rand(1309483481..1372027453).to_s, "%s"
+    ),
+    :artists => Artist
+      .limit(Random.rand(1..Artist.count))
+      .offset(rand(Artist.count))
+      .all,
+    :moods => Mood
+      .limit(Random.rand(Personality.MINIMUM_MOODS..Personality.MAXIMUM_MOODS))
+      .offset(rand(Mood.count))
+      .all,
+    :price => Random.rand(Bounty.MINIMUM_PRICE..Bounty.MAXIMUM_PRICE)
+  )
+end
 
