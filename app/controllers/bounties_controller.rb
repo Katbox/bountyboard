@@ -15,7 +15,7 @@ class BountiesController < ApplicationController
 
 
     # apply filters from the user
- 
+
     # default filter values
     filters =  {
       :price_min => nil,
@@ -87,6 +87,7 @@ class BountiesController < ApplicationController
     # is not added to links."
 
     params[:bounty][:name] = Sanitize.clean(params[:bounty][:name])
+    params[:bounty][:name] = Sanitize.clean(params[:bounty][:tag_line])
     params[:bounty][:desc] = Sanitize.clean(params[:bounty][:desc], Sanitize::Config::RELAXED)
 
     @bounty = Bounty.new(params[:bounty])
@@ -152,6 +153,7 @@ class BountiesController < ApplicationController
       # while images are limited to HTTP and HTTPS. In this mode, rel="nofollow"
       # is not added to links."
       params[:bounty][:name] = Sanitize.clean(params[:bounty][:name])
+      params[:bounty][:name] = Sanitize.clean(params[:bounty][:tag_line])
       params[:bounty][:desc] = Sanitize.clean(params[:bounty][:desc], Sanitize::Config::RELAXED)
 
       if @bounty.update_attributes(params[:bounty])

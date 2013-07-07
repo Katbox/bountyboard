@@ -3,6 +3,7 @@
     <%= render 'shared/error_messages' %>
     <%= semantic_form_for @bounty do |bounty_form| %>
         <%= bounty_form.input :name, :required => true, :hint => "The name of your bounty. Max 40 characters." %>
+        <%= bounty_form.input :tag_line, :required => true, :hint => "A short description of your bounty for the front page. Max 160 characters.", :label => "Tag Line" %>
         <%= bounty_form.input :desc, :as => :ckeditor, :input_html => { :ckeditor => { :height => 400, :width => 800 }}, :label => "Description", :required => true, :hint => "Enter a detailed description of your bounty. References help!"%>
         <%= bounty_form.input :price, :required => true, :hint => "The price you're willing to pay. Min $5.00 USD" %>
         <%= bounty_form.input :private, :required => false, :as => :select, :hint => "If a bounty is private, only the artists you pick and admins may see it." %>

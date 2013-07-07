@@ -35,6 +35,7 @@ FactoryGirl.define do
 
   factory :bounty do
     sequence(:name) { |n| "bounty#{n}" }
+    tag_line "Bounty Tag Line."
     desc "Bounty description."
     price Bounty.MINIMUM_PRICE
     owner {FactoryGirl.create(:user)}

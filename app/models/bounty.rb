@@ -1,5 +1,3 @@
-# -*- encoding : utf-8 -*-
-
 # == Schema Information
 #
 # Table name: bounties
@@ -17,10 +15,12 @@
 #  updated_at     :datetime         not null
 #  completed_at   :datetime
 #  complete_by    :datetime
+#  tag_line       :string(255)      not null
 #
 
+# -*- encoding : utf-8 -*-
 class Bounty < ActiveRecord::Base
-  attr_accessible :name, :desc, :price_cents, :adult_only, :url, :private, :mood_ids, :price, :artist_ids, :completed_at, :complete_by
+  attr_accessible :name, :tag_line, :desc, :price_cents, :adult_only, :url, :private, :mood_ids, :price, :artist_ids, :completed_at, :complete_by
 
   # Money gem. "price_cents" is the price of the bounty in cents.
   # The gem will apply proper formatting if the implicit "price" property is
@@ -43,6 +43,10 @@ class Bounty < ActiveRecord::Base
     40
   end
 
+  def self.MAXIMUM_TAG_LENGTH
+    160
+  end
+
   def self.MAXIMUM_DESC_LENGTH
     5000
   end
@@ -62,6 +66,12 @@ class Bounty < ActiveRecord::Base
     :minimum => 1,
     :maximum => Bounty.MAXIMUM_NAME_LENGTH,
     :message => "must be between 1 and #{self.MAXIMUM_NAME_LENGTH} characters long"
+  }
+
+  validates :tag_line, :length => {
+    :minimum => 1,
+    :maximum => Bounty.MAXIMUM_TAG_LENGTH,
+    :message => "must be between 1 and #{self.MAXIMUM_TAG_LENGTH} characters long"
   }
 
   validates :desc, :length => {
@@ -224,7 +234,7 @@ class Bounty < ActiveRecord::Base
           "private='f' OR user_id=? OR candidacies.artist_id=?",
           user.id,
           user.id
-        )
+        ).uniq
       else
         where("private='f' OR user_id=?", user.id)
       end

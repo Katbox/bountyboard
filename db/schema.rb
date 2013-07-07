@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130706233832) do
+ActiveRecord::Schema.define(:version => 20130707061659) do
 
   create_table "bounties", :force => true do |t|
     t.string   "name",                              :null => false
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20130706233832) do
     t.datetime "updated_at",                        :null => false
     t.datetime "completed_at"
     t.datetime "complete_by"
+    t.string   "tag_line",                          :null => false
   end
 
   create_table "candidacies", :force => true do |t|

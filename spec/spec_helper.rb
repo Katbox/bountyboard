@@ -48,8 +48,5 @@ RSpec.configure do |config|
       Rails::logger.info("\n\n#{full_example_description}\n#{'-' * (full_example_description.length)}")
     end
   end
-
-
-
 end
 

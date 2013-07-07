@@ -7,16 +7,11 @@
   >
       <%=   link_to content_tag(:span, ""), bounty_path(b.id), class: 'bounty-click-wrapper' %>
       <div class="nail"></div>
-      <% if b.url %>
-        <img src=<%="#{b.url}"%> class="art-thumbnail">
-      <% else %>
-        <div class="name"><%= b.name %></div>
-        <div class="price-ribbon"><div><%= humanized_money_with_symbol b.price %></div></div>
-        <div class="short-desc hyphenate">
-          <%= b.desc.html_safe %>
-        </div>
-      <% end %>
-
+      <div class="name"><%= b.name %></div>
+      <div class="price-ribbon"><div><%= humanized_money_with_symbol b.price %></div></div>
+      <div class="short-desc hyphenate">
+        <%= b.tag_line %>
+      </div>
       <% if signed_in? %>
           <% favorite = b.favored_by(currentUser) %>
           <% if favorite %>
