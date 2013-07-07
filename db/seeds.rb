@@ -510,6 +510,6 @@ end
       .offset(rand(Mood.count))
       .all,
     :price => Random.rand(Bounty.MINIMUM_PRICE..Bounty.MAXIMUM_PRICE)
-#   )
+  )
 end
 
