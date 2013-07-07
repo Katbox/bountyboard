@@ -10,7 +10,7 @@
       <div class="name"><%= b.name %></div>
       <div class="price-ribbon"><div><%= humanized_money_with_symbol b.price %></div></div>
       <div class="short-desc hyphenate">
-        <%= b.desc.html_safe %>
+        <%= b.tag_line %>
       </div>
       <% if signed_in? %>
           <% favorite = b.favored_by(currentUser) %>
