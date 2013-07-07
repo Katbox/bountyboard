@@ -234,7 +234,7 @@ class Bounty < ActiveRecord::Base
           "private='f' OR user_id=? OR candidacies.artist_id=?",
           user.id,
           user.id
-        )
+        ).uniq
       else
         where("private='f' OR user_id=?", user.id)
       end
