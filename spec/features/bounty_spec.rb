@@ -41,7 +41,15 @@ describe 'Bounty' do
     @normal_bounty.reload
   }
 
+
   describe 'index page' do
+    before {
+      @expensive_bounty = FactoryGirl.create(:bounty,
+        :name => "Expensive Bounty",
+        :price => 25000.00
+      )
+    }
+
     context 'when a guest visits' do
       before {
         visit root_path
@@ -59,6 +67,10 @@ describe 'Bounty' do
         page.should have_selector(
           '.bounty-square .price-ribbon',
           :text => "$9.99"
+        )
+        page.should have_selector(
+          '.bounty-square .name',
+          :text => "Expensive Bounty"
         )
       end
 
@@ -101,6 +113,10 @@ describe 'Bounty' do
           '.bounty-square .price-ribbon',
           :text => "$9.99"
         )
+        page.should have_selector(
+          '.bounty-square .name',
+          :text => "Expensive Bounty"
+        )
       end
 
       it 'should not display private bounties' do
@@ -141,6 +157,10 @@ describe 'Bounty' do
         page.should have_selector(
           '.bounty-square .price-ribbon',
           :text => "$9.99"
+        )
+        page.should have_selector(
+          '.bounty-square .name',
+          :text => "Expensive Bounty"
         )
       end
 
@@ -183,6 +203,10 @@ describe 'Bounty' do
           '.bounty-square .price-ribbon',
           :text => "$9.99"
         )
+        page.should have_selector(
+          '.bounty-square .name',
+          :text => "Expensive Bounty"
+        )
       end
 
       it 'should display private bounties' do
@@ -194,6 +218,144 @@ describe 'Bounty' do
 
       it 'should not display bounties with adult content' do
         page.should_not have_selector(
+          '.bounty-square .name',
+          :text => "Adult Bounty"
+        )
+      end
+    end
+
+    context 'with a price filter' do
+      before {
+        OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
+          :provider => 'browserid',
+          :uid => @generic_user.email
+        })
+        visit '/auth/browser_id'
+
+        visit root_path + "?price_min=5.00&price_max=20000.00"
+      }
+
+      it 'should display normal bounties' do
+        page.should have_selector(
+          '.bounty-square .name',
+          :text => "Normal Bounty"
+        )
+        page.should have_selector(
+          '.bounty-square .short-desc',
+          :text => "Bounty#1"
+        )
+        page.should have_selector(
+          '.bounty-square .price-ribbon',
+          :text => "$9.99"
+        )
+      end
+
+      it 'shouldn\'t display bounties outside the filter price range' do
+        page.should_not have_selector(
+          '.bounty-square .name',
+          :text => "Expensive Bounty"
+        )
+      end
+
+      it 'should not display private bounties' do
+        page.should_not have_selector(
+          '.bounty-square .name',
+          :text => "Private Bounty"
+        )
+      end
+
+      it 'should not display bounties with adult content' do
+        page.should_not have_selector(
+          '.bounty-square .name',
+          :text => "Adult Bounty"
+        )
+      end
+    end
+
+    context 'with adult content filtering set to allow all' do
+      before {
+        OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
+          :provider => 'browserid',
+          :uid => @generic_user.email
+        })
+        visit '/auth/browser_id'
+
+        visit root_path + "?adult=all"
+      }
+
+      it 'should display normal bounties' do
+        page.should have_selector(
+          '.bounty-square .name',
+          :text => "Normal Bounty"
+        )
+        page.should have_selector(
+          '.bounty-square .short-desc',
+          :text => "Bounty#1"
+        )
+        page.should have_selector(
+          '.bounty-square .price-ribbon',
+          :text => "$9.99"
+        )
+        page.should have_selector(
+          '.bounty-square .name',
+          :text => "Expensive Bounty"
+        )
+      end
+
+      it 'should not display private bounties' do
+        page.should_not have_selector(
+          '.bounty-square .name',
+          :text => "Private Bounty"
+        )
+      end
+
+      it 'should display bounties with adult content' do
+        page.should have_selector(
+          '.bounty-square .name',
+          :text => "Adult Bounty"
+        )
+      end
+    end
+
+    context 'with adult content filtering set to adult content only' do
+      before {
+        OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
+          :provider => 'browserid',
+          :uid => @generic_user.email
+        })
+        visit '/auth/browser_id'
+
+        visit root_path + "?adult=adult"
+      }
+
+      it 'shouldn\'t display non-adult bounties' do
+        page.should_not have_selector(
+          '.bounty-square .name',
+          :text => "Normal Bounty"
+        )
+        page.should_not have_selector(
+          '.bounty-square .short-desc',
+          :text => "Bounty#1"
+        )
+        page.should_not have_selector(
+          '.bounty-square .price-ribbon',
+          :text => "$9.99"
+        )
+        page.should_not have_selector(
+          '.bounty-square .name',
+          :text => "Expensive Bounty"
+        )
+      end
+
+      it 'should not display private bounties' do
+        page.should_not have_selector(
+          '.bounty-square .name',
+          :text => "Private Bounty"
+        )
+      end
+
+      it 'should display bounties with adult content' do
+        page.should have_selector(
           '.bounty-square .name',
           :text => "Adult Bounty"
         )
