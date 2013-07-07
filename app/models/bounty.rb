@@ -43,6 +43,10 @@ class Bounty < ActiveRecord::Base
     40
   end
 
+  def self.MAXIMUM_TAG_LENGTH
+    200
+  end
+
   def self.MAXIMUM_DESC_LENGTH
     5000
   end
@@ -62,6 +66,12 @@ class Bounty < ActiveRecord::Base
     :minimum => 1,
     :maximum => Bounty.MAXIMUM_NAME_LENGTH,
     :message => "must be between 1 and #{self.MAXIMUM_NAME_LENGTH} characters long"
+  }
+
+  validates :tag_line, :length => {
+    :minimum => 1,
+    :maximum => Bounty.MAXIMUM_TAG_LENGTH,
+    :message => "must be between 1 and #{self.MAXIMUM_TAG_LENGTH} characters long"
   }
 
   validates :desc, :length => {

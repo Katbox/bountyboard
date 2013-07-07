@@ -489,6 +489,7 @@ end
 3000.times do
   FactoryGirl.create(:bounty,
     :owner => User.offset(rand(User.count)).first,
+    :tag_line => Faker::Lorem.sentence(word_count = 4, supplemental = false),
     :desc => Faker::Lorem.paragraph,
     # generate a created_at date between about July 1, 2011 and June 23, 2013
     :created_at => DateTime.strptime(

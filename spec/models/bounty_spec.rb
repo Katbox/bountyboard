@@ -24,6 +24,7 @@ require 'spec_helper'
 describe Bounty do
 
   it { should respond_to(:name) }
+  it { should respond_to(:tag_line) }
   it { should respond_to(:desc) }
   it { should respond_to(:price_cents) }
   it { should respond_to(:price) }
@@ -42,6 +43,12 @@ describe Bounty do
     bounty = FactoryGirl.build(:bounty, :name => '$' * (Bounty.MAXIMUM_NAME_LENGTH + 1))
     bounty.should_not be_valid
     bounty.should have(1).error_on(:name)
+  end
+
+  it 'should not allow name to be too long' do
+    bounty = FactoryGirl.build(:bounty, :tag_line => '$' * (Bounty.MAXIMUM_TAG_LENGTH + 1))
+    bounty.should_not be_valid
+    bounty.should have(1).error_on(:tag_line)
   end
 
   it 'should not allow desc to be too long' do
