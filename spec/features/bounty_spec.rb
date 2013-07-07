@@ -58,11 +58,13 @@ describe 'Bounty' do
       it 'should display normal bounties' do
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Normal Bounty"
+          :text => "Normal Bounty",
+          :count => 1
         )
         page.should have_selector(
           '.bounty-square .short-desc',
-          :text => "Bounty#1"
+          :text => "Bounty#1",
+          :count => 1
         )
         page.should have_selector(
           '.bounty-square .price-ribbon',
@@ -70,7 +72,8 @@ describe 'Bounty' do
         )
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Expensive Bounty"
+          :text => "Expensive Bounty",
+          :count => 1
         )
       end
 
@@ -103,11 +106,13 @@ describe 'Bounty' do
       it 'should display normal bounties' do
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Normal Bounty"
+          :text => "Normal Bounty",
+          :count => 1
         )
         page.should have_selector(
           '.bounty-square .short-desc',
-          :text => "Bounty#1"
+          :text => "Bounty#1",
+          :count => 1
         )
         page.should have_selector(
           '.bounty-square .price-ribbon',
@@ -115,7 +120,8 @@ describe 'Bounty' do
         )
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Expensive Bounty"
+          :text => "Expensive Bounty",
+          :count => 1
         )
       end
 
@@ -148,11 +154,13 @@ describe 'Bounty' do
       it 'should display normal bounties' do
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Normal Bounty"
+          :text => "Normal Bounty",
+          :count => 1
         )
         page.should have_selector(
           '.bounty-square .short-desc',
-          :text => "Bounty#1"
+          :text => "Bounty#1",
+          :count => 1
         )
         page.should have_selector(
           '.bounty-square .price-ribbon',
@@ -160,14 +168,16 @@ describe 'Bounty' do
         )
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Expensive Bounty"
+          :text => "Expensive Bounty",
+          :count => 1
         )
       end
 
       it 'should display private bounties owned by that user' do
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Private Bounty"
+          :text => "Private Bounty",
+          :count => 1
         )
       end
 
@@ -193,11 +203,13 @@ describe 'Bounty' do
       it 'should display normal bounties' do
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Normal Bounty"
+          :text => "Normal Bounty",
+          :count => 1
         )
         page.should have_selector(
           '.bounty-square .short-desc',
-          :text => "Bounty#1"
+          :text => "Bounty#1",
+          :count => 1
         )
         page.should have_selector(
           '.bounty-square .price-ribbon',
@@ -205,14 +217,16 @@ describe 'Bounty' do
         )
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Expensive Bounty"
+          :text => "Expensive Bounty",
+          :count => 1
         )
       end
 
       it 'should display private bounties' do
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Private Bounty"
+          :text => "Private Bounty",
+          :count => 1
         )
       end
 
@@ -238,11 +252,13 @@ describe 'Bounty' do
       it 'should display normal bounties' do
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Normal Bounty"
+          :text => "Normal Bounty",
+          :count => 1
         )
         page.should have_selector(
           '.bounty-square .short-desc',
-          :text => "Bounty#1"
+          :text => "Bounty#1",
+          :count => 1
         )
         page.should have_selector(
           '.bounty-square .price-ribbon',
@@ -286,11 +302,13 @@ describe 'Bounty' do
       it 'should display normal bounties' do
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Normal Bounty"
+          :text => "Normal Bounty",
+          :count => 1
         )
         page.should have_selector(
           '.bounty-square .short-desc',
-          :text => "Bounty#1"
+          :text => "Bounty#1",
+          :count => 1
         )
         page.should have_selector(
           '.bounty-square .price-ribbon',
@@ -298,7 +316,8 @@ describe 'Bounty' do
         )
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Expensive Bounty"
+          :text => "Expensive Bounty",
+          :count => 1
         )
       end
 
@@ -312,7 +331,8 @@ describe 'Bounty' do
       it 'should display bounties with adult content' do
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Adult Bounty"
+          :text => "Adult Bounty",
+          :count => 1
         )
       end
     end
@@ -357,7 +377,8 @@ describe 'Bounty' do
       it 'should display bounties with adult content' do
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Adult Bounty"
+          :text => "Adult Bounty",
+          :count => 1
         )
       end
     end
