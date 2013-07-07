@@ -18,7 +18,6 @@
 #  tag_line       :string(255)      not null
 #
 
-# -*- encoding : utf-8 -*-
 class Bounty < ActiveRecord::Base
   attr_accessible :name, :tag_line, :desc, :price_cents, :adult_only, :url, :private, :mood_ids, :price, :artist_ids, :completed_at, :complete_by
 

@@ -1,4 +1,3 @@
-# -*- encoding : utf-8 -*-
 class BountiesController < ApplicationController
 
   include SessionsHelper

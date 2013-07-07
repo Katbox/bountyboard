@@ -18,7 +18,6 @@
 #  tag_line       :string(255)      not null
 #
 
-# -*- encoding : utf-8 -*-
 require 'spec_helper'
 
 describe Bounty do

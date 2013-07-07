@@ -1,4 +1,3 @@
-# -*- encoding : utf-8 -*-
 class CreateCandidacies < ActiveRecord::Migration
   def change
     create_table :candidacies do |t|
