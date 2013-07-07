@@ -217,8 +217,8 @@ class Bounty < ActiveRecord::Base
       if user.nil?
         where( :private => false )
       elsif user.admin
-        where('1=1')
         # in Rails 4, you can replace the awkward "where(1=1)" line with "all"
+        where('1=1')
       elsif user.is_a?(Artist)
         joins(:candidacies).where(
           "private='f' OR user_id=? OR candidacies.artist_id=?",
