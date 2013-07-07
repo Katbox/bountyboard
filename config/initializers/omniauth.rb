@@ -7,10 +7,11 @@ OmniAuth.config.logger = Rails.logger
 
 OmniAuth.config.test_mode = true
 
-OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
-  :provider => 'browserid',
-  :uid => 'lionheartstudio@gmail.com'
-})
+# uncomment this line to test logging in as an artist, or another user
+# OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
+#   :provider => 'browserid',
+#   :uid => 'lionheartstudio@gmail.com'
+# })
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :browser_id
