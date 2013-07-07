@@ -1,5 +1,3 @@
-# -*- encoding : utf-8 -*-
-
 # == Schema Information
 #
 # Table name: bounties
@@ -17,8 +15,10 @@
 #  updated_at     :datetime         not null
 #  completed_at   :datetime
 #  complete_by    :datetime
+#  tag_line       :string(255)      not null
 #
 
+# -*- encoding : utf-8 -*-
 require 'spec_helper'
 
 describe Bounty do
