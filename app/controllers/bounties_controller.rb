@@ -186,7 +186,7 @@ class BountiesController < ApplicationController
         flash[:error] = "You are not authorized to remove this bounty."
         redirect_to root_path
       elsif @bounty.status == "Accepted"
-        acceptor = @bounty.accepting_artist.get_identifier
+        acceptor = @bounty.acceptor_candidacy.artist.get_identifier
         flash[:error] = "This bounty is being worked on by #{acceptor} and cannot be deleted."
         redirect_to root_path
       else

@@ -8,12 +8,11 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  artist_id   :integer          not null
-#  acceptor    :boolean          default(FALSE), not null
 #  accepted_at :datetime
 #
 
 class Candidacy < ActiveRecord::Base
-  attr_accessible :acceptor, :accepted_at, :artist_id, :bounty_id
+  attr_accessible :accepted_at, :artist_id, :bounty_id
 
   # Relationships ==============================================================
   belongs_to :artist
@@ -23,17 +22,19 @@ class Candidacy < ActiveRecord::Base
   validates :artist_id, presence: true
   validates :bounty_id, presence: true
   validates :bounty_id, :uniqueness => { :scope => :artist_id }
-  validates :acceptor, :inclusion => {:in => [true, false]}
   validate :validate_one_acceptor
 
   # Ensures that each bounty has only one acceptor at most.
   def validate_one_acceptor
-    if acceptor
-      numberOfAcceptors = Candidacy.where(
-        :bounty_id => bounty_id,
-        :acceptor => true,
+    if accepted_at
+      num_acceptors = Candidacy.where(
+        'bounty_id=? AND accepted_at IS NOT NULL',
+        self.bounty_id
       ).size
-      errors.add(:acceptor, " already exists for this bounty") if numberOfAcceptors > 0
+
+      if num_acceptors > 0
+        errors.add(:accepted_at, "An acceptor already exists for this bounty")
+      end
     end
   end
 end

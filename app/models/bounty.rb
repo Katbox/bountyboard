@@ -165,36 +165,23 @@ class Bounty < ActiveRecord::Base
   # Returns the status of the bounty as a string. May either be Completed,
   # Accepted, or Unclaimed.
   def status
-    accepted = candidacies.where( :acceptor => true ).length > 0
-    completed = ((self.url != "") && (self.url != nil))
-    if completed
-      return 'Completed'
-    elsif accepted
-      return 'Accepted'
+    if self.url
+      'Completed'
     else
-      return 'Unclaimed'
+      if self.acceptor_candidacy
+        'Accepted'
+      else
+        'Unclaimed'
+      end
     end
   end
 
-  # Return the artist object that is the acceptor of this bounty. Return
-  # nil if bounty is not accepted.
-  def accepting_artist
-    acceptor_candidacy = candidacies.where( :acceptor => true).first
-    if acceptor_candidacy.nil?
-      return nil
-    else
-      return acceptor_candidacy.artist
-    end
-  end
-
-  # Return the date the bounty was accepted and nil if the bounty is unclaimed.
-  def accepted_on
-    acceptor_candidacy = candidacies.where( :acceptor => true).first
-    if acceptor_candidacy.nil?
-      return nil
-    else
-      return acceptor_candidacy.accepted_at
-    end
+  # Returns the candidacy that accepted this bounty, or nil if this bounty is
+  # not currently accepted by any artist.
+  def acceptor_candidacy
+    self.candidacies.all.select { |candidacy|
+      candidacy.accepted_at
+    }.first
   end
 
   # Bounty query filters

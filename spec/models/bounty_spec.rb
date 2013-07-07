@@ -36,6 +36,7 @@ describe Bounty do
   it { should respond_to(:score) }
   it { should respond_to(:vote_by) }
   it { should respond_to(:score) }
+  it { should respond_to(:acceptor_candidacy) }
 
   it 'should not allow name to be too long' do
     bounty = FactoryGirl.build(:bounty, :name => '$' * (Bounty.MAXIMUM_NAME_LENGTH + 1))
@@ -125,7 +126,7 @@ describe Bounty do
     end
 
     it 'should be Accepted' do
-      @bounty.candidacies[0].acceptor = true
+      @bounty.candidacies[0].accepted_at = 1.seconds.from_now
       @bounty.candidacies.each { |candidacy| candidacy.save! }
       @bounty.status.should == 'Accepted'
     end
@@ -173,11 +174,11 @@ describe Bounty do
       @bounty.abandoned?.should == true
     end
 
-    it 'should respond to accepting_artist method' do
-      @bounty.accepting_artist.should == nil
-      @bounty.candidacies[0].acceptor = true
+    it 'should respond to acceptor_candidacy method' do
+      @bounty.acceptor_candidacy.should == nil
+      @bounty.candidacies[0].accepted_at = 1.seconds.from_now
       @bounty.candidacies[0].save!
-      @bounty.accepting_artist.should == @bounty.candidacies[0].artist
+      @bounty.acceptor_candidacy.should == @bounty.candidacies[0]
     end
   end
 
