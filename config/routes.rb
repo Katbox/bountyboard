@@ -1,6 +1,17 @@
 Bountyboard::Application.routes.draw do
+  # The priority is based upon order of creation: first created -> highest priority.
+  # See how all your routes lay out with "rake routes".
 
-  root :to => 'Bounties#index'
+  # You can have the root of your site routed with "root"
+  # root 'welcome#index'
+
+  # Example of regular route:
+  #   get 'products/:id' => 'catalog#view'
+
+  # Example of named route that can be invoked with purchase_url(id: product.id)
+  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+
+  root 'bounties#index'
 
   resources :artists
   resources :bounties
@@ -9,8 +20,8 @@ Bountyboard::Application.routes.draw do
   resources :favorites
 
   # authentication routes
-  match '/auth/:provider/callback', to: 'Sessions#create'
-  match '/sign_out', to: 'Sessions#destroy', via: :delete
-  match '/auth/failure', to: 'Sessions#auth_failure'
+  match '/auth/:provider/callback', to: 'sessions#create', via: :get
+  match '/sign_out', to: 'sessions#destroy', via: :delete, via: :get
+  match '/auth/failure', to: 'sessions#auth_failure', via: :get
 end
 
