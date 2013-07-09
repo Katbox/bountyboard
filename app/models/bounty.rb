@@ -85,19 +85,17 @@ class Bounty < ActiveRecord::Base
   validates :price,
     :numericality => {
       :greater_than_or_equal_to => self.MINIMUM_PRICE,
-      message: "must be #{self.MINIMUM_PRICE} or more"
+      :message => "must be #{self.MINIMUM_PRICE} or more"
     }
 
   validates :price,
     :numericality => {
       :less_than_or_equal_to => self.MAXIMUM_PRICE,
-      message: "must be #{self.MAXIMUM_PRICE} or less"
+      :message => "must be #{self.MAXIMUM_PRICE} or less"
     }
 
-  validates :status, :exclusion => {
-    :in => 'Invalid',
-    :message => 'Cannot save a bounty with status invalid.'
-  }
+  validates_exclusion_of :status, :in => ['Invalid'],
+    :message => 'Cannot save a bounty with status "Invalid".'
 
   validate :validate_num_of_moods
 
