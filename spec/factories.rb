@@ -45,6 +45,10 @@ FactoryGirl.define do
     end
   end
 
+  factory :bounty_with_vote, :parent => :bounty do
+    votes {[FactoryGirl.create(:vote)]}
+  end
+
   factory :personality do
     bounty
     mood
