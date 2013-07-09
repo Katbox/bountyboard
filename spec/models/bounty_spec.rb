@@ -190,7 +190,7 @@ describe Bounty do
 
   describe '.viewable_by()' do
     before do
-      @admin = FactoryGirl.create(:admin)
+      @admin = FactoryGirl.create(:user, :admin)
       @poster = FactoryGirl.create(:user)
       @unrelated_user = FactoryGirl.create(:user)
       @candidate_artist = FactoryGirl.create(:artist)
@@ -236,7 +236,7 @@ describe Bounty do
 
   describe '.viewable_by?()' do
     before do
-      @admin = FactoryGirl.create(:admin)
+      @admin = FactoryGirl.create(:user, :admin)
       @poster = FactoryGirl.create(:user)
       @unrelated_user = FactoryGirl.create(:user)
       @candidate_artist = FactoryGirl.create(:artist)
