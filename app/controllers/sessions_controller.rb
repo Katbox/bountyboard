@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       return
     end
 
-    user = User.find(:first, :conditions => ["lower(email)=?", auth_info.uid.downcase])
+    user = User.where("LOWER(email) = ?", :email => auth_info.uid.downcase).first
     if not user
       # if this user has never visited before, create a
       # user entry for them

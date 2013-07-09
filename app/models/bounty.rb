@@ -124,7 +124,7 @@ class Bounty < ActiveRecord::Base
       :expires_in => 15.minutes.to_i,
       :race_condition_ttl => 15.seconds.to_i do
 
-      all_votes = self.votes.all
+      all_votes = self.votes.to_a
       total_votes = all_votes.length
       positive_votes = all_votes.count { |vote| vote.vote_type }
 
@@ -185,7 +185,7 @@ class Bounty < ActiveRecord::Base
   # Returns the candidacy that accepted this bounty, or nil if this bounty is
   # not currently accepted by any artist.
   def acceptor_candidacy
-    self.candidacies.all.select { |candidacy|
+    self.candidacies.to_a.select { |candidacy|
       candidacy.accepted_at
     }.first
   end
@@ -223,8 +223,7 @@ class Bounty < ActiveRecord::Base
       if user.nil?
         where( :private => false )
       elsif user.admin
-        # in Rails 4, you can replace the awkward "where(1=1)" line with "all"
-        where('1=1')
+        all
       elsif user.is_a?(Artist)
         joins(:candidacies).where(
           "private='f' OR user_id=? OR candidacies.artist_id=?",

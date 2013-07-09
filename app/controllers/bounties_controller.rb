@@ -36,7 +36,7 @@ class BountiesController < ApplicationController
       @bounties = @bounties.no_adult_content
     end
 
-    respond_with @bounties.all.sort { |bounty| -bounty.score }
+    respond_with @bounties.to_a.sort { |bounty| -bounty.score }
   end
 
   # Display an individual bounty.
