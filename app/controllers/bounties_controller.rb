@@ -66,15 +66,8 @@ class BountiesController < ApplicationController
 
     # If no specific artists were selected. Then create a candidacy to all
     # active artists.
-    if params[:bounty][:artist_ids]==[""]
-      id_array = []
-      @artist = Artist.all
-      @artist.each do |a|
-        if a.active
-          id_array.append(a.id.to_s)
-        end
-      end
-      params[:bounty][:artist_ids] = id_array
+    if !params[:bounty][:artist_ids] || params[:bounty][:artist_ids] == [""]
+	  params[:bounty][:artist_ids] = Artist.where(:active => true).pluck(:id)
     end
 
     # Sanitize the name and description fields for bounties. Clean name of all
@@ -89,7 +82,7 @@ class BountiesController < ApplicationController
     params[:bounty][:name] = Sanitize.clean(params[:bounty][:tag_line])
     params[:bounty][:desc] = Sanitize.clean(params[:bounty][:desc], Sanitize::Config::RELAXED)
 
-    @bounty = Bounty.new(params[:bounty])
+    @bounty = Bounty.new(bounty_create_params)
     @bounty.owner = currentUser
 
     if @bounty.save
@@ -136,7 +129,7 @@ class BountiesController < ApplicationController
     end
     if params[:bounty][:url]
       params[:bounty][:completed_at] = Time.now
-      if @bounty.update_attributes(params[:bounty])
+      if @bounty.update_attributes(bounty_update_params)
         flash[:notice] = "Bounty Completed!"
         redirect_to root_path
       else
@@ -155,7 +148,7 @@ class BountiesController < ApplicationController
       params[:bounty][:name] = Sanitize.clean(params[:bounty][:tag_line])
       params[:bounty][:desc] = Sanitize.clean(params[:bounty][:desc], Sanitize::Config::RELAXED)
 
-      if @bounty.update_attributes(params[:bounty])
+      if @bounty.update_attributes(bounty_update_params)
         flash[:notice] = "Bounty Updated!"
         redirect_to root_path
       else
@@ -196,5 +189,41 @@ class BountiesController < ApplicationController
       end
     end
   end
+
+  private
+
+    def bounty_create_params
+      params.require(:bounty).permit(
+        :name,
+        :desc,
+        :price_cents,
+        :price_currency,
+        :adult_only,
+        :private,
+        :complete_by,
+        :tag_line
+      )
+    end
+
+    def bounty_update_params(bounty)
+      permitted_keys = [
+        :name,
+        :desc,
+        :price_cents,
+        :price_currency,
+        :adult_only,
+        :private,
+        :complete_by,
+        :tag_line
+      ]
+      # the acccepting artist can complete a bounty
+      if bounty.accepting_candidacy.artist == currentUser
+        permitted_keys.concat([
+          :url
+        ])
+      end
+      params.require(:bounty).permit(permitted_keys)
+    end
+
 end
 

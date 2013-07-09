@@ -17,7 +17,6 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :name, :email
 
   # Relationships ==============================================================
   has_many :votes

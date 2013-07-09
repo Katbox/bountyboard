@@ -11,8 +11,6 @@
 #
 
 class Vote < ActiveRecord::Base
-  attr_protected :id, :user_id, :bounty_id
-  attr_accessible :vote_type
 
   # Relationships ==============================================================
   belongs_to :user

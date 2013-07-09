@@ -17,7 +17,6 @@
 #
 
 class Artist < User
-  attr_accessible :bio, :bounty_rules, :approved, :active
 
   # Relationships ==============================================================
   has_many :candidacies

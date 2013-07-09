@@ -10,7 +10,6 @@
 #
 
 class Favorite < ActiveRecord::Base
-  attr_accessible :user_id, :bounty_id
 
   # Relationships ==============================================================
   belongs_to :user

@@ -34,8 +34,8 @@
               <%=  link_to '', cast_vote, :method => :delete, class: 'downvote downvote-red' %>
             <% end %>
           <% else %>
-            <%=  link_to '', votes_path(:vote => {:vote_type => true}, :bounty => b.id), :action => :create, :method => :post, class: 'upvote' %>
-            <%=   link_to '', votes_path(:vote => {:vote_type => false}, :bounty => b.id), :action => :create, :method => :post, class: 'downvote' %>
+            <%=  link_to '', votes_path(:vote => {:vote_type => true}, :bounty_id => b.id), :action => :create, :method => :post, class: 'upvote' %>
+            <%=   link_to '', votes_path(:vote => {:vote_type => false}, :bounty_id => b.id), :action => :create, :method => :post, class: 'downvote' %>
           <% end %>
         <% end %>
     </div>

@@ -4,9 +4,8 @@ class FavoritesController < ApplicationController
 
   def create
     if signed_in?
-      @favorite = Favorite.new()
+      @favorite = Favorite.new(favorite_create_params)
       @favorite.user = currentUser
-      @favorite.bounty = Bounty.find(params[:bounty])
       if @favorite.save
         flash[:notice] = "You have favorited #{@favorite.bounty.name}!"
         redirect_to root_path
@@ -33,4 +32,11 @@ class FavoritesController < ApplicationController
       redirect_to root_path
     end
   end
+
+  private
+
+    def favorite_create_params
+      params.require(:artist).permit(:bounty_id)
+    end
+
 end

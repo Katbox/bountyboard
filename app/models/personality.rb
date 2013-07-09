@@ -10,7 +10,6 @@
 #
 
 class Personality < ActiveRecord::Base
-  attr_accessible :mood_id, :bounty_id
 
   # Relationships ==============================================================
   belongs_to :mood

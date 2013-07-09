@@ -14,7 +14,7 @@ class CandidaciesController < ApplicationController
     @candidacy = Candidacy.where(:artist_id => currentUser.id, :bounty_id => @bounty.id).first
     unless @candidacy.nil?
       params[:candidacy][:accepted_at] = Time.now
-      if @candidacy.update_attributes(params[:candidacy])
+      if @candidacy.update_attributes(candidacy_update_params)
         flash[:notice] = "Bounty Accepted!"
         redirect_to root_path
       else
@@ -62,6 +62,19 @@ class CandidaciesController < ApplicationController
       redirect_to root_path
     end
   end
+
+  private
+
+    def candidacy_create_params
+      params.require(:artist).permit(
+        :bounty_id,
+        :artist_id
+      )
+    end
+
+    def candidacy_update_params
+      params.require(:artist).permit(:accepted_at)
+    end
 
 end
 
