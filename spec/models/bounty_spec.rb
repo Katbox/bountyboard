@@ -199,7 +199,7 @@ describe Bounty do
         :owner => @poster,
         :artists => [ @candidate_artist ]
       )
-      @private_bounty = FactoryGirl.create(:private_bounty,
+      @private_bounty = FactoryGirl.create(:bounty, :private,
         :owner => @poster,
         :artists => [ @candidate_artist ]
       )
@@ -245,7 +245,7 @@ describe Bounty do
         :owner => @poster,
         :artists => [ @candidate_artist ]
       )
-      @private_bounty = FactoryGirl.create(:private_bounty,
+      @private_bounty = FactoryGirl.create(:bounty, :private,
         :owner => @poster,
         :artists => [ @candidate_artist ]
       )
