@@ -39,7 +39,6 @@ FactoryGirl.define do
     owner
     moods {[FactoryGirl.create(:mood)]}
     artists {[FactoryGirl.create(:artist)]}
-  end
 
     trait :private do
       private true
