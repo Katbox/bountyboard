@@ -1,15 +1,15 @@
 FactoryGirl.define do
 
-  factory :user do
+  factory :user, :aliases => [:owner] do
     sequence(:email) { |n| "user#{n}@example.com" }
-  end
 
-  factory :admin, :parent => :user do
-    sequence(:name) { |n| "admin#{n}" }
-    admin true
+    trait :admin do
+      admin true
+    end
   end
 
   factory :artist, :class => :artist, :parent => :user do
+    sequence(:email) { |n| "artist#{n}@example.com" }
     sequence(:name) { |n| "artist#{n}" }
     bio "This is my artist's biography."
     bounty_rules "These are the rules for my bounties."
@@ -22,13 +22,13 @@ FactoryGirl.define do
   end
 
   factory :favorite do
-    user {FactoryGirl.create(:user)}
-    bounty {FactoryGirl.create(:bounty)}
+    user
+    bounty
   end
 
   factory :vote do
-    user {FactoryGirl.create(:user)}
-    bounty {FactoryGirl.create(:bounty)}
+    user
+    bounty
   end
 
   factory :bounty do
@@ -36,30 +36,24 @@ FactoryGirl.define do
     tag_line "Bounty Tag Line."
     desc "Bounty description."
     price Bounty.MINIMUM_PRICE
-    owner {FactoryGirl.create(:user)}
+    owner
     moods {[FactoryGirl.create(:mood)]}
     artists {[FactoryGirl.create(:artist)]}
   end
 
-  factory :bounty_with_vote, :parent => :bounty do
-    votes {[FactoryGirl.create(:vote)]}
-  end
-
-  factory :private_bounty, :parent => :bounty do
-    private true
+    trait :private do
+      private true
+    end
   end
 
   factory :personality do
+    bounty
+    mood
   end
 
   factory :candidacy do
-    bounty { FactoryGirl.create(:bounty) }
-    artist { FactoryGirl.create(:artist) }
-  end
-
-  factory :filter_template do
-    sequence(:name) { |n| "filter#{n}" }
-    sql 'pwn DROP TABLE VALJ'
+    bounty
+    artist
   end
 end
 

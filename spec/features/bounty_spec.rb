@@ -5,13 +5,14 @@ describe 'Bounty' do
   before {
     @generic_user = FactoryGirl.create(:user)
     @customer = FactoryGirl.create(:user)
-    @admin = FactoryGirl.create(:admin)
+    @admin = FactoryGirl.create(:user, :admin)
     @normal_bounty = FactoryGirl.create(:bounty,
       :name => "Normal Bounty",
       :price => 9.99,
       :adult_only => false,
       :private => false,
       :owner => @customer
+      :complete_by => DateTime.strptime('2018-08-22', '%Y-%m-%d')
     )
     @adult_bounty = FactoryGirl.create(:bounty,
       :name => "Adult Bounty",
@@ -28,8 +29,6 @@ describe 'Bounty' do
       :owner => @customer
     )
 
-    @normal_bounty.complete_by = DateTime.strptime('2018-08-22', '%Y-%m-%d')
-    @normal_bounty.save!
     2.times do
       FactoryGirl.create(:candidacy, :bounty => @normal_bounty)
     end
