@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
-//= require turbolinks
 //= require masonry/jquery.masonry
 //= require ckeditor/init
 //= require ckeditor/config
