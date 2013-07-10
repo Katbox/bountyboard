@@ -50,10 +50,10 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     columnize (0.3.6)
-    debugger (1.6.0)
+    debugger (1.6.1)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.2.1)
+      debugger-ruby_core_source (~> 1.2.3)
     debugger-linecache (1.2.0)
     debugger-ruby_core_source (1.2.3)
     diff-lcs (1.2.4)
@@ -146,7 +146,7 @@ GEM
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
     orm_adapter (0.4.0)
-    pg (0.14.1)
+    pg (0.15.1)
     polyglot (0.3.3)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
@@ -184,10 +184,10 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.5)
-    rspec-core (2.14.0)
+    rspec-core (2.14.2)
     rspec-expectations (2.14.0)
       diff-lcs (>= 1.1.3, < 2.0)
-    rspec-mocks (2.14.0)
+    rspec-mocks (2.14.1)
     rspec-rails (2.14.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
@@ -197,8 +197,8 @@ GEM
       rspec-mocks (~> 2.14.0)
     ruby-growl (4.0)
       uuid (~> 2.3, >= 2.3.5)
-    sanitize (2.0.4)
-      nokogiri (~> 1.6.0)
+    sanitize (2.0.5)
+      nokogiri (>= 1.4.4)
     sass (3.2.9)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -257,7 +257,7 @@ DEPENDENCIES
   normalize-rails
   omniauth-browserid
   omniauth-deviantart
-  pg (= 0.14.1)
+  pg
   rails (= 3.2)
   rspec-rails
   ruby-growl
