@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130710183836) do
+ActiveRecord::Schema.define(:version => 20130710192322) do
 
   create_table "bounties", :force => true do |t|
     t.string   "name",                              :null => false
@@ -94,5 +94,19 @@ ActiveRecord::Schema.define(:version => 20130710183836) do
   end
 
   add_index "votes", ["bounty_id", "user_id"], :name => "index_votes_on_bounty_id_and_user_id", :unique => true
+
+  add_foreign_key "bounties", "users", :name => "bounties_user_id_fk"
+
+  add_foreign_key "candidacies", "bounties", :name => "candidacies_bounty_id_fk"
+  add_foreign_key "candidacies", "users", :name => "candidacies_artist_id_fk", :column => "artist_id"
+
+  add_foreign_key "favorites", "bounties", :name => "favorites_bounty_id_fk"
+  add_foreign_key "favorites", "users", :name => "favorites_user_id_fk"
+
+  add_foreign_key "personalities", "bounties", :name => "personalities_bounty_id_fk"
+  add_foreign_key "personalities", "moods", :name => "personalities_mood_id_fk"
+
+  add_foreign_key "votes", "bounties", :name => "votes_bounty_id_fk"
+  add_foreign_key "votes", "users", :name => "votes_user_id_fk"
 
 end

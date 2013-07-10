@@ -70,6 +70,8 @@ GEM
     faraday (0.8.7)
       multipart-post (~> 1.1)
     ffi (1.9.0)
+    foreigner (1.4.2)
+      activerecord (>= 3.0.0)
     formatador (0.2.4)
     formtastic (2.2.1)
       actionpack (>= 3.0)
@@ -197,7 +199,7 @@ GEM
       rspec-mocks (~> 2.14.0)
     ruby-growl (4.0)
       uuid (~> 2.3, >= 2.3.5)
-    sanitize (2.0.5)
+    sanitize (2.0.6)
       nokogiri (>= 1.4.4)
     sass (3.2.9)
     sass-rails (3.2.6)
@@ -247,6 +249,7 @@ DEPENDENCIES
   execjs
   factory_girl_rails
   faker
+  foreigner
   formtastic
   guard
   jquery-rails
