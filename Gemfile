@@ -42,7 +42,6 @@ end
 
 # Gems used when running tests.
 group :test do
-  gem 'sqlite3'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'factory_girl_rails'
