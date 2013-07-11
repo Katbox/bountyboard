@@ -23,12 +23,12 @@
 #
 
 class Bounty < ActiveRecord::Base
-  attr_accessible :name, :tag_line, :desc, :price_cents, :adult_only, :url, :private, :mood_ids, :price, :artist_ids, :completed_at, :complete_by
+  attr_accessible :name, :tag_line, :desc, :artwork, :price_cents, :adult_only, :url, :private, :mood_ids, :price, :artist_ids, :completed_at, :complete_by
 
   # Paperclip gem. This ties the four properties "artwork_file_name",
   # "artwork_content_type", "artwork_file_size", and "artwork_updated_at" to a
   # single "artwork" property.
-  has_attached_file :artwork, :styles => { :thumb => "300x300>" }
+  has_attached_file :artwork, :styles => { :thumb => "280x200>" }
 
   # Money gem. "price_cents" is the price of the bounty in cents.
   # The gem will apply proper formatting if the implicit "price" property is
@@ -200,6 +200,10 @@ class Bounty < ActiveRecord::Base
     self.candidacies.all.select { |candidacy|
       candidacy.accepted_at
     }.first
+  end
+
+  def artwork_from_url(url)
+    self.artwork = URI.parse(url)
   end
 
   # Bounty query filters

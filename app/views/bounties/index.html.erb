@@ -5,12 +5,16 @@
     data-price="<%= b.price %>"
   >
       <%=   link_to content_tag(:span, ""), bounty_path(b.id), class: 'bounty-click-wrapper' %>
-      <div class="nail"></div>
-      <div class="name"><%= b.name %></div>
-      <div class="price-ribbon"><div><%= humanized_money_with_symbol b.price %></div></div>
-      <div class="short-desc hyphenate">
-        <%= b.tag_line %>
-      </div>
+      <% if b.status == "Completed" %>
+        <%= image_tag("#{b.artwork.url(:thumb)}") %>
+      <% else %>
+        <div class="nail"></div>
+        <div class="name"><%= b.name %></div>
+        <div class="price-ribbon"><div><%= humanized_money_with_symbol b.price %></div></div>
+        <div class="short-desc hyphenate">
+          <%= b.tag_line %>
+        </div>
+      <% end %>
       <% if signed_in? %>
           <% favorite = b.favored_by(currentUser) %>
           <% if favorite %>
