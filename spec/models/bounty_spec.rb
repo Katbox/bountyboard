@@ -29,6 +29,7 @@ describe Bounty do
   it { should respond_to(:name) }
   it { should respond_to(:tag_line) }
   it { should respond_to(:desc) }
+  it { should respond_to(:artwork) }
   it { should respond_to(:price_cents) }
   it { should respond_to(:price) }
   it { should respond_to(:adult_only) }
