@@ -15,6 +15,7 @@
   <% elsif (@format == "Complete") %>
     <%= semantic_form_for @bounty do |bounty_form| %>
       <%= bounty_form.input :url, :as => :string, :required => true, :hint => "Enter a URL where the artwork can be found." %>
+      <%= bounty_form.input :preview, :as => :file, :required => false, :hint => "You may submit a thumbnail for this artwork to be displayed on the front page. Must be 200x280px. (Optional)" %>
       <div class="control-panel"><%= bounty_form.submit :class => "bounty-button submit-button" %><%=   link_to 'Back', bounty_path(@bounty.id), class: 'bounty-button' %></div>
     <% end %>
   <% end %>

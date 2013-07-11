@@ -6,7 +6,11 @@
   >
       <%=   link_to content_tag(:span, ""), bounty_path(b.id), class: 'bounty-click-wrapper' %>
       <% if b.status == "Completed" %>
-        <%= image_tag("#{b.artwork.url(:thumb)}") %>
+        <% if b.preview_file_name %>
+          <%= image_tag("#{b.preview.url(:standard)}") %>
+        <% else %>
+          <%= image_tag("#{b.artwork.url(:thumb)}") %>
+        <% end %>
       <% else %>
         <div class="nail"></div>
         <div class="name"><%= b.name %></div>
