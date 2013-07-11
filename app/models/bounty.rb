@@ -25,6 +25,11 @@
 class Bounty < ActiveRecord::Base
   attr_accessible :name, :tag_line, :desc, :price_cents, :adult_only, :url, :private, :mood_ids, :price, :artist_ids, :completed_at, :complete_by
 
+  # Paperclip gem. This ties the four properties "artwork_file_name",
+  # "artwork_content_type", "artwork_file_size", and "artwork_updated_at" to a
+  # single "artwork" property.
+  has_attached_file :artwork
+
   # Money gem. "price_cents" is the price of the bounty in cents.
   # The gem will apply proper formatting if the implicit "price" property is
   # used. Ex. @bounty.price_cents -> 100050 @bounty.price -> 1,000.50. Price
