@@ -8,7 +8,6 @@ gem 'rails', '3.2'
 
 # Gems used in the production environment.
 group :production do
-  gem 'pg', '0.14.1'
   gem 'unicorn'
   gem 'execjs'
   gem 'therubyracer', :platforms => :ruby
@@ -17,7 +16,6 @@ end
 
 # Gems used in the development environment.
 group :development do
-  gem 'sqlite3'
   gem 'rspec-rails'
   gem 'guard'
   gem 'ruby-growl'
@@ -44,7 +42,6 @@ end
 
 # Gems used when running tests.
 group :test do
-  gem 'sqlite3'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'factory_girl_rails'
@@ -52,6 +49,8 @@ end
 
 
 # Universal gems that should be used in all environments.
+gem 'pg'
+gem 'foreigner'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'masonry-rails'

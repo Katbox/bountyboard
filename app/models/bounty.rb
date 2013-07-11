@@ -230,12 +230,12 @@ class Bounty < ActiveRecord::Base
         where('1=1')
       elsif user.is_a?(Artist)
         joins(:candidacies).where(
-          "private='f' OR user_id=? OR candidacies.artist_id=?",
+          "private=FALSE OR user_id=? OR candidacies.artist_id=?",
           user.id,
           user.id
         ).uniq
       else
-        where("private='f' OR user_id=?", user.id)
+        where("private=FALSE OR user_id=?", user.id)
       end
     end
   end
