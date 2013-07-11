@@ -2,20 +2,24 @@
 #
 # Table name: bounties
 #
-#  id             :integer          not null, primary key
-#  name           :string(255)      not null
-#  desc           :text             not null
-#  price_cents    :integer          default(0), not null
-#  price_currency :string(255)      default("USD"), not null
-#  adult_only     :boolean          default(FALSE), not null
-#  private        :boolean          default(FALSE), not null
-#  url            :string(255)
-#  user_id        :integer          not null
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  completed_at   :datetime
-#  complete_by    :datetime
-#  tag_line       :string(255)      not null
+#  id                   :integer          not null, primary key
+#  name                 :string(255)      not null
+#  desc                 :text             not null
+#  price_cents          :integer          default(0), not null
+#  price_currency       :string(255)      default("USD"), not null
+#  adult_only           :boolean          default(FALSE), not null
+#  private              :boolean          default(FALSE), not null
+#  url                  :string(255)
+#  user_id              :integer          not null
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  completed_at         :datetime
+#  complete_by          :datetime
+#  tag_line             :string(255)      not null
+#  artwork_file_name    :string(255)
+#  artwork_content_type :string(255)
+#  artwork_file_size    :integer
+#  artwork_updated_at   :datetime
 #
 
 class Bounty < ActiveRecord::Base
