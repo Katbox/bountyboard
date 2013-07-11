@@ -20,6 +20,10 @@
 #  artwork_content_type :string(255)
 #  artwork_file_size    :integer
 #  artwork_updated_at   :datetime
+#  preview_file_name    :string(255)
+#  preview_content_type :string(255)
+#  preview_file_size    :integer
+#  preview_updated_at   :datetime
 #
 
 class Bounty < ActiveRecord::Base

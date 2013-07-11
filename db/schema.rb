@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130711001356) do
+ActiveRecord::Schema.define(:version => 20130711055659) do
 
   create_table "bounties", :force => true do |t|
     t.string   "name",                                    :null => false
@@ -31,6 +31,10 @@ ActiveRecord::Schema.define(:version => 20130711001356) do
     t.string   "artwork_content_type"
     t.integer  "artwork_file_size"
     t.datetime "artwork_updated_at"
+    t.string   "preview_file_name"
+    t.string   "preview_content_type"
+    t.integer  "preview_file_size"
+    t.datetime "preview_updated_at"
   end
 
   create_table "candidacies", :force => true do |t|
