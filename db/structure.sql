@@ -59,7 +59,7 @@ CREATE TABLE bounties (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     completed_at timestamp without time zone,
-    complete_by timestamp without time zone,
+    complete_by date,
     tag_line character varying(255) NOT NULL
 );
 
@@ -610,3 +610,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130710183836');
 INSERT INTO schema_migrations (version) VALUES ('20130710192322');
 
 INSERT INTO schema_migrations (version) VALUES ('20130711195843');
+
+INSERT INTO schema_migrations (version) VALUES ('20130712065345');
