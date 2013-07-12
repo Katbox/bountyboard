@@ -50,6 +50,7 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     columnize (0.3.6)
+    dalli (2.6.4)
     debugger (1.6.1)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.2.0)
@@ -243,6 +244,7 @@ DEPENDENCIES
   capybara
   ckeditor
   coffee-rails (~> 3.2.1)
+  dalli
   debugger
   execjs
   factory_girl_rails

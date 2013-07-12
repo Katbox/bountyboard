@@ -11,6 +11,7 @@ group :production do
   gem 'unicorn'
   gem 'execjs'
   gem 'therubyracer', :platforms => :ruby
+  gem 'dalli'
 end
 
 
