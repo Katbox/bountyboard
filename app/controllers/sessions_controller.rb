@@ -6,17 +6,17 @@ class SessionsController < ApplicationController
 
     auth_info = request.env['omniauth.auth']
 
-    if not auth_info.uid
+    if !auth_info.uid
       handle_auth_failure("invalid credentials")
       return
     end
 
-    user = User.find(:first, :conditions => ["lower(email)=?", auth_info.uid.downcase])
-    if not user
+    user = User.where(:email => auth_info.uid).first
+    if !user
       # if this user has never visited before, create a
       # user entry for them
       user = User.new(email: auth_info.uid)
-      if not user.save
+      if !user.save
         handle_auth_failure(auth_info, "this appears to be your first visit to our site, but our database rejected your account (#{user.errors.full_messages})")
         return
       end
