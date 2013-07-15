@@ -20,9 +20,13 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email
 
   # Relationships ==============================================================
-  has_many :votes
-  has_many :ownerships, :foreign_key => "user_id", :class_name => "Bounty"
-  has_many :favorites
+  has_many :votes, :inverse_of => :user
+  has_many :ownerships, {
+    :foreign_key => "user_id",
+    :class_name => "Bounty",
+    :inverse_of => :owner
+  }
+  has_many :favorites, :inverse_of => :user
   has_many :bounties, :through => :favorites
 
   # Validations ================================================================

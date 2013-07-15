@@ -20,7 +20,7 @@ class Artist < User
   attr_accessible :bio, :bounty_rules, :approved, :active
 
   # Relationships ==============================================================
-  has_many :candidacies
+  has_many :candidacies, :inverse_of => :artist
   has_many :bounties, :through => :candidacies
 
   # Validations ================================================================

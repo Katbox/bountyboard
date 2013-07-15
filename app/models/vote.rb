@@ -15,8 +15,8 @@ class Vote < ActiveRecord::Base
   attr_accessible :vote_type
 
   # Relationships ==============================================================
-  belongs_to :user
-  belongs_to :bounty
+  belongs_to :user, :inverse_of => :votes
+  belongs_to :bounty, :inverse_of => :votes
 
   # Validations ================================================================
   validates :user_id, presence: true

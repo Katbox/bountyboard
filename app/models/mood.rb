@@ -12,7 +12,7 @@ class Mood < ActiveRecord::Base
     attr_accessible :name
 
     # Relationships ============================================================
-    has_many :personalities
+    has_many :personalities, :inverse_of => :mood
     has_many :bounties, :through => :personalities
 
     # Validations ==============================================================
