@@ -116,10 +116,8 @@ class Bounty < ActiveRecord::Base
 
   # If the create_by date is in the past, throw an error.
   def due_date_in_future
-    unless complete_by == nil
-      if complete_by < Date.today
-        errors.add(:complete_by, 'is in the past. Specify a date in the future.')
-      end
+    if complete_by && complete_by < Date.today
+      errors.add(:complete_by, 'is in the past. Specify a date in the future.')
     end
   end
 
