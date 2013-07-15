@@ -12,8 +12,8 @@
 class Personality < ActiveRecord::Base
 
   # Relationships ==============================================================
-  belongs_to :mood
-  belongs_to :bounty
+  belongs_to :mood, :inverse_of => :personalities
+  belongs_to :bounty, :inverse_of => :personalities
 
   # Validations ================================================================
   validates :mood_id, presence: true

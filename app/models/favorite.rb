@@ -12,8 +12,8 @@
 class Favorite < ActiveRecord::Base
 
   # Relationships ==============================================================
-  belongs_to :user
-  belongs_to :bounty
+  belongs_to :user, :inverse_of => :favorites
+  belongs_to :bounty, :inverse_of => :favorites
 
   # Validations ================================================================
   validates :user_id, presence: true

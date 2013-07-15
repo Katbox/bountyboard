@@ -13,8 +13,8 @@
 class Candidacy < ActiveRecord::Base
 
   # Relationships ==============================================================
-  belongs_to :artist
-  belongs_to :bounty
+  belongs_to :artist, :inverse_of => :candidacies
+  belongs_to :bounty, :inverse_of => :candidacies
 
   # Validations ================================================================
   validates :artist_id, presence: true

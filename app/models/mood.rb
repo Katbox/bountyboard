@@ -11,7 +11,7 @@
 class Mood < ActiveRecord::Base
 
     # Relationships ============================================================
-    has_many :personalities
+    has_many :personalities, :inverse_of => :mood
     has_many :bounties, :through => :personalities
 
     # Validations ==============================================================

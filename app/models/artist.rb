@@ -19,7 +19,7 @@
 class Artist < User
 
   # Relationships ==============================================================
-  has_many :candidacies
+  has_many :candidacies, :inverse_of => :artist
   has_many :bounties, :through => :candidacies
 
   # Validations ================================================================

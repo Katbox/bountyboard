@@ -27,13 +27,17 @@ class Bounty < ActiveRecord::Base
   monetize :price_cents
 
   # Relationships ==============================================================
-  has_many :votes, :dependent => :destroy
-  belongs_to :owner, :foreign_key => "user_id", :class_name => "User"
-  has_many :candidacies, :dependent => :destroy
+  has_many :votes, :dependent => :destroy, :inverse_of => :bounty
+  belongs_to :owner, {
+    :foreign_key => "user_id",
+    :class_name => "User",
+    :inverse_of => :ownerships
+  }
+  has_many :candidacies, :dependent => :destroy, :inverse_of => :bounty
   has_many :artists, :through => :candidacies
-  has_many :personalities, :dependent => :destroy
+  has_many :personalities, :dependent => :destroy, :inverse_of => :bounty
   has_many :moods, :through => :personalities
-  has_many :favorites, :dependent => :destroy
+  has_many :favorites, :dependent => :destroy, :inverse_of => :bounty
   has_many :users, :through => :favorites
 
   # Attributes =================================================================
