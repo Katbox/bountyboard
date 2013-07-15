@@ -2,24 +2,16 @@
 #
 # Table name: bounties
 #
-#  id             :integer          not null, primary key
-#  name           :string(255)      not null
-#  desc           :text             not null
-#  price_cents    :integer          default(0), not null
-#  price_currency :string(255)      default("USD"), not null
-#  adult_only     :boolean          default(FALSE), not null
-#  private        :boolean          default(FALSE), not null
-#  url            :string(255)
-#  user_id        :integer          not null
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  completed_at   :datetime
-#  complete_by    :date
-#  tag_line       :string(255)      not null
-#
+
 
 class Bounty < ActiveRecord::Base
-  attr_accessible :name, :tag_line, :desc, :price_cents, :adult_only, :url, :private, :mood_ids, :price, :artist_ids, :completed_at, :complete_by
+  attr_accessible :name, :tag_line, :desc, :artwork, :preview, :price_cents, :adult_only, :url, :private, :mood_ids, :price, :artist_ids, :completed_at, :complete_by
+
+  # Paperclip gem. This ties the four properties "artwork_file_name",
+  # "artwork_content_type", "artwork_file_size", and "artwork_updated_at" to a
+  # single "artwork" property.
+  has_attached_file :artwork, :styles => { :thumb => "280x200>" }
+  has_attached_file :preview, :styles => { :standard => "280x200>" }
 
   # Money gem. "price_cents" is the price of the bounty in cents.
   # The gem will apply proper formatting if the implicit "price" property is
@@ -195,6 +187,10 @@ class Bounty < ActiveRecord::Base
     self.candidacies.all.select { |candidacy|
       candidacy.accepted_at
     }.first
+  end
+
+  def artwork_from_url(url)
+    self.artwork = URI.parse(url)
   end
 
   # Bounty query filters

@@ -41,6 +41,10 @@ GEM
     ckeditor (4.0.4)
       mime-types
       orm_adapter
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.1)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -148,6 +152,12 @@ GEM
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
     orm_adapter (0.4.0)
+    paperclip (3.4.2)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.0)
+      mime-types
     pg (0.15.1)
     polyglot (0.3.3)
     pry (0.9.12.2)
@@ -260,8 +270,7 @@ DEPENDENCIES
   normalize-rails
   omniauth-browserid
   omniauth-deviantart
-  pg
-  rails (~> 3.2.8)
+  paperclip
   rspec-rails
   ruby-growl
   sanitize

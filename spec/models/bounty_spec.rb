@@ -2,21 +2,7 @@
 #
 # Table name: bounties
 #
-#  id             :integer          not null, primary key
-#  name           :string(255)      not null
-#  desc           :text             not null
-#  price_cents    :integer          default(0), not null
-#  price_currency :string(255)      default("USD"), not null
-#  adult_only     :boolean          default(FALSE), not null
-#  private        :boolean          default(FALSE), not null
-#  url            :string(255)
-#  user_id        :integer          not null
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  completed_at   :datetime
-#  complete_by    :date
-#  tag_line       :string(255)      not null
-#
+
 
 require 'spec_helper'
 
@@ -25,6 +11,8 @@ describe Bounty do
   it { should respond_to(:name) }
   it { should respond_to(:tag_line) }
   it { should respond_to(:desc) }
+  it { should respond_to(:artwork) }
+  it { should respond_to(:preview) }
   it { should respond_to(:price_cents) }
   it { should respond_to(:price) }
   it { should respond_to(:adult_only) }

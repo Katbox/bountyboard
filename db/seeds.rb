@@ -3,15 +3,13 @@ require 'factory_girl_rails'
 admin1 = User.new(
   :name => 'Admin1',
   :email => 'admin1@test.com',
-  # :email => 'lionheartstudio@gmail.com',
 )
 admin1.admin = true
 admin1.save!
 
 artist1 = Artist.new(
   :name => 'Artist1',
-  :email => 'lionheartstudio@gmail.com',
-  # :email => 'artist1@test.com',
+  :email => 'artist1@test.com',
   :bio => 'Artist 1 is a nice person who likes the Art Deco style.',
   :bounty_rules => 'Bounties over $20 only, please.'
 )
@@ -22,7 +20,6 @@ artist1.save!
 artist2 = Artist.new(
   :name => 'Artist2',
   :email => 'artist2@test.com',
-  # :email => 'lionheartstudio@gmail.com',
   :bio => 'Artist 2 is a withdrawn person who emerges periodically to draw mostly surrealist art.',
   :bounty_rules => 'Surrealist art only!'
 )
@@ -51,7 +48,6 @@ artist4.approved = false
 artist4.save!
 
 customer1 = User.new(:name => 'Customer1', :email => 'customer1@test.com')
-# customer1 = User.new(:name => 'Customer1', :email => 'lionheartstudio@gmail.com')
 customer1.save!
 
 customer2 = User.new(:name => 'Customer2', :email => 'customer2@test.com')
