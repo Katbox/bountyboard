@@ -155,7 +155,7 @@ describe Bounty do
     end
 
     it 'should not accept due dates in the past' do
-      @bounty.complete_by = 1.day.ago
+      @bounty.complete_by = Date.today - 1.day
       @bounty.should_not be_valid
       @bounty.should have(1).error_on(:complete_by)
     end
