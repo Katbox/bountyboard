@@ -60,7 +60,15 @@ CREATE TABLE bounties (
     updated_at timestamp without time zone NOT NULL,
     completed_at timestamp without time zone,
     complete_by date,
-    tag_line character varying(255) NOT NULL
+    tag_line character varying(255) NOT NULL,
+    artwork_file_name character varying(255),
+    artwork_content_type character varying(255),
+    artwork_file_size integer,
+    artwork_updated_at timestamp without time zone,
+    preview_file_name character varying(255),
+    preview_content_type character varying(255),
+    preview_file_size integer,
+    preview_updated_at timestamp without time zone
 );
 
 
@@ -608,6 +616,10 @@ INSERT INTO schema_migrations (version) VALUES ('20130707061659');
 INSERT INTO schema_migrations (version) VALUES ('20130710183836');
 
 INSERT INTO schema_migrations (version) VALUES ('20130710192322');
+
+INSERT INTO schema_migrations (version) VALUES ('20130711001356');
+
+INSERT INTO schema_migrations (version) VALUES ('20130711055659');
 
 INSERT INTO schema_migrations (version) VALUES ('20130711195843');
 
