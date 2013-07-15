@@ -14,7 +14,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  completed_at   :datetime
-#  complete_by    :datetime
+#  complete_by    :date
 #  tag_line       :string(255)      not null
 #
 
@@ -149,8 +149,13 @@ describe Bounty do
       @bounty = FactoryGirl.create(:bounty)
     }
 
+    it 'should accept a due date of today' do
+      @bounty.complete_by = Date.today
+      @bounty.should be_valid
+    end
+
     it 'should not accept due dates in the past' do
-      @bounty.complete_by = DateTime.now - 1
+      @bounty.complete_by = Date.today - 1.day
       @bounty.should_not be_valid
       @bounty.should have(1).error_on(:complete_by)
     end

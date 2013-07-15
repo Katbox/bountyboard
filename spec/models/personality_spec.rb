@@ -26,10 +26,19 @@ describe Personality do
     end
   }
 
-  it 'should not allow a bounty to have more less than MINIMUM_MOODS' do
+  it 'should not allow a bounty to have less than MINIMUM_MOODS' do
+    # can't create a bounty with less than minimum moods
+    expect {
+      FactoryGirl.create(:bounty, :moods => [])
+    }.to raise_error(ActiveRecord::RecordInvalid)
+
+    # can't delete personalities to take a bounty below the minimum
+    # moods
     @bountyWithMinMoods.should be_valid
-    @bountyWithMinMoods.moods.first.destroy
-    @bountyWithMinMoods.reload.should be_invalid
+    @bountyWithMinMoods.personalities.first.destroy
+    @bountyWithMinMoods.reload
+    @bountyWithMinMoods.should_not be_valid
+    @bountyWithMinMoods.should have(1).error_on :moods
   end
 
   it 'should not allow a bounty to have more moods than MAXIMUM_MOODS' do

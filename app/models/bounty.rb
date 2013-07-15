@@ -14,7 +14,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  completed_at   :datetime
-#  complete_by    :datetime
+#  complete_by    :date
 #  tag_line       :string(255)      not null
 #
 
@@ -113,8 +113,8 @@ class Bounty < ActiveRecord::Base
 
   # If the create_by date is in the past, throw an error.
   def due_date_in_future
-    unless complete_by == nil
-      errors.add(:complete_by, "is in the past. Specify a date in the future.") if complete_by < Time.now
+    if complete_by && complete_by < Date.today
+      errors.add(:complete_by, 'is in the past. Specify a date in the future.')
     end
   end
 
@@ -230,12 +230,12 @@ class Bounty < ActiveRecord::Base
         all
       elsif user.is_a?(Artist)
         joins(:candidacies).where(
-          "private='f' OR user_id=? OR candidacies.artist_id=?",
+          "private=FALSE OR user_id=? OR candidacies.artist_id=?",
           user.id,
           user.id
         ).uniq
       else
-        where("private='f' OR user_id=?", user.id)
+        where("private=FALSE OR user_id=?", user.id)
       end
     end
   end
