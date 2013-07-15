@@ -13,7 +13,7 @@ class ArtistsController < ApplicationController
   def show
     @artist = Artist.find(params[:id])
     acceptingCandidacies = Candidacy.where(
-      'artist_id=? AND (accepted_at NOT NULL)',  @artist.id
+      'artist_id=? AND (accepted_at IS NOT NULL)',  @artist.id
     )
     @acceptedBounties = []
     @completedBounties = []
