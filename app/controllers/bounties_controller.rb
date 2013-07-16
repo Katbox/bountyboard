@@ -38,6 +38,9 @@ class BountiesController < ApplicationController
     if filters[:own] == "on"
       @bounties = @bounties.only_owned currentUser.id
     end
+    if filters[:may_accept] == "on"
+      @bounties = @bounties.may_accept currentUser.id
+    end
 
     respond_with @bounties.all.sort { |bounty| -bounty.score }
   end

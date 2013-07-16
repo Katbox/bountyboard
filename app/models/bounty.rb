@@ -249,6 +249,10 @@ class Bounty < ActiveRecord::Base
       where( 'user_id=?', id )
     end
 
+    def may_accept(id)
+      joins(:candidacies).where( 'candidacies.artist_id=? AND candidacies.accepted_at IS NULL', id )
+    end
+
     def viewable_by(user)
       if user.nil?
         where( :private => false )

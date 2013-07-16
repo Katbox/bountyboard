@@ -97,6 +97,13 @@ initializeFilters = ->
       filter_parameters["own"] = $("#user-bounties :checked").val()
       apply_filters()
 
+    # bounties you may complete
+
+    $("#artist-bounties").buttonset()
+    $("#artist-bounties").change ->
+      filter_parameters["may_accept"] = $("#artist-bounties :checked").val()
+      apply_filters()
+
 
 $(document).ready initializeFilters
 $(document).on "page:load", initializeFilters
