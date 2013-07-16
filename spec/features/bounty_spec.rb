@@ -42,25 +42,27 @@ describe 'Bounty' do
         :name => "Expensive Bounty",
         :price => 25000.00
       )
+      
+      visit root_path
     }
+
+    it 'should display bounties with the correct structure' do
+      page.should have_selector(
+        '.bounty-square .name',
+      )
+      page.should have_selector(
+        '.bounty-square .short-desc',
+        :text => "Bounty Tag Line.",
+      )
+      page.should have_selector(
+        '.bounty-square .price-ribbon',
+      )
+    end
 
     context 'when a guest visits' do
       before {
         visit root_path
       }
-
-      it 'should display bounties with the correct structure' do
-        page.should have_selector(
-          '.bounty-square .name',
-        )
-        page.should have_selector(
-          '.bounty-square .short-desc',
-          :text => "Bounty Tag Line.",
-        )
-        page.should have_selector(
-          '.bounty-square .price-ribbon',
-        )
-      end
 
       it 'should display normal bounties' do
         page.should have_selector(
@@ -101,28 +103,15 @@ describe 'Bounty' do
         visit root_path
       }
 
-      it 'should display bounties with the correct structure' do
-        page.should have_selector(
-          '.bounty-square .name',
-        )
-        page.should have_selector(
-          '.bounty-square .short-desc',
-          :text => "Bounty Tag Line.",
-        )
-        page.should have_selector(
-          '.bounty-square .price-ribbon',
-        )
-      end
-
       it 'should display normal bounties' do
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Normal Bounty",
+          :text => @normal_bounty.name,
           :count => 1
         )
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Expensive Bounty",
+          :text => @expensive_bounty.name,
           :count => 1
         )
       end
@@ -130,14 +119,14 @@ describe 'Bounty' do
       it 'should not display private bounties' do
         page.should_not have_selector(
           '.bounty-square .name',
-          :text => "Private Bounty"
+          :text => @private_bounty.name
         )
       end
 
       it 'should not display bounties with adult content' do
         page.should_not have_selector(
           '.bounty-square .name',
-          :text => "Adult Bounty"
+          :text => @adult_bounty.name
         )
       end
     end
@@ -153,28 +142,15 @@ describe 'Bounty' do
         visit root_path
       }
 
-      it 'should display bounties with the correct structure' do
-        page.should have_selector(
-          '.bounty-square .name',
-        )
-        page.should have_selector(
-          '.bounty-square .short-desc',
-          :text => "Bounty Tag Line.",
-        )
-        page.should have_selector(
-          '.bounty-square .price-ribbon',
-        )
-      end
-
       it 'should display normal bounties' do
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Normal Bounty",
+          :text => @normal_bounty.name,
           :count => 1
         )
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Expensive Bounty",
+          :text => @expensive_bounty.name,
           :count => 1
         )
       end
@@ -182,7 +158,7 @@ describe 'Bounty' do
       it 'should display private bounties owned by that user' do
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Private Bounty",
+          :text => @private_bounty.name,
           :count => 1
         )
       end
@@ -190,7 +166,7 @@ describe 'Bounty' do
       it 'should not display bounties with adult content' do
         page.should_not have_selector(
           '.bounty-square .name',
-          :text => "Adult Bounty"
+          :text => @adult_bounty.name
         )
       end
     end
@@ -206,28 +182,15 @@ describe 'Bounty' do
         visit root_path
       }
 
-      it 'should display bounties with the correct structure' do
-        page.should have_selector(
-          '.bounty-square .name',
-        )
-        page.should have_selector(
-          '.bounty-square .short-desc',
-          :text => "Bounty Tag Line.",
-        )
-        page.should have_selector(
-          '.bounty-square .price-ribbon',
-        )
-      end
-
       it 'should display normal bounties' do
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Normal Bounty",
+          :text => @normal_bounty.name,
           :count => 1
         )
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Expensive Bounty",
+          :text => @expensive_bounty.name,
           :count => 1
         )
       end
@@ -235,7 +198,7 @@ describe 'Bounty' do
       it 'should display private bounties' do
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Private Bounty",
+          :text => @private_bounty.name,
           :count => 1
         )
       end
@@ -243,7 +206,7 @@ describe 'Bounty' do
       it 'should not display bounties with adult content' do
         page.should_not have_selector(
           '.bounty-square .name',
-          :text => "Adult Bounty"
+          :text => @adult_bounty.name
         )
       end
     end
@@ -259,23 +222,10 @@ describe 'Bounty' do
         visit root_path + "?price_min=5.00&price_max=20000.00"
       }
 
-      it 'should display bounties with the correct structure' do
-        page.should have_selector(
-          '.bounty-square .name',
-        )
-        page.should have_selector(
-          '.bounty-square .short-desc',
-          :text => "Bounty Tag Line.",
-        )
-        page.should have_selector(
-          '.bounty-square .price-ribbon',
-        )
-      end
-
       it 'should display normal bounties' do
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Normal Bounty",
+          :text => @normal_bounty.name,
           :count => 1
         )
       end
@@ -283,21 +233,21 @@ describe 'Bounty' do
       it 'shouldn\'t display bounties outside the filter price range' do
         page.should_not have_selector(
           '.bounty-square .name',
-          :text => "Expensive Bounty"
+          :text => @expensive_bounty.name
         )
       end
 
       it 'should not display private bounties' do
         page.should_not have_selector(
           '.bounty-square .name',
-          :text => "Private Bounty"
+          :text => @private_bounty.name
         )
       end
 
       it 'should not display bounties with adult content' do
         page.should_not have_selector(
           '.bounty-square .name',
-          :text => "Adult Bounty"
+          :text => @adult_bounty.name
         )
       end
     end
@@ -313,44 +263,28 @@ describe 'Bounty' do
         visit root_path + "?adult=all"
       }
 
-      it 'should display bounties with the correct structure' do
+      it 'should display all non-private bounties' do
         page.should have_selector(
           '.bounty-square .name',
-        )
-        page.should have_selector(
-          '.bounty-square .short-desc',
-          :text => "Bounty Tag Line.",
-        )
-        page.should have_selector(
-          '.bounty-square .price-ribbon',
-        )
-      end
-
-      it 'should display normal bounties' do
-        page.should have_selector(
-          '.bounty-square .name',
-          :text => "Normal Bounty",
+          :text => @normal_bounty.name,
           :count => 1
         )
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Expensive Bounty",
+          :text => @expensive_bounty.name,
+          :count => 1
+        )
+        page.should have_selector(
+          '.bounty-square .name',
+          :text => @adult_bounty.name,
           :count => 1
         )
       end
 
-      it 'should not display private bounties' do
+      it "shouldn't display private bounties" do
         page.should_not have_selector(
           '.bounty-square .name',
-          :text => "Private Bounty"
-        )
-      end
-
-      it 'should display bounties with adult content' do
-        page.should have_selector(
-          '.bounty-square .name',
-          :text => "Adult Bounty",
-          :count => 1
+          :text => @private_bounty.name
         )
       end
     end
@@ -366,41 +300,28 @@ describe 'Bounty' do
         visit root_path + "?adult=adult"
       }
 
-      it 'should display bounties with the correct structure' do
-        page.should have_selector(
+      it "shouldn't display non-adult bounties" do
+        page.should_not have_selector(
           '.bounty-square .name',
+          :text => @normal_bounty.name
         )
-        page.should have_selector(
-          '.bounty-square .short-desc',
-          :text => "Bounty Tag Line.",
-        )
-        page.should have_selector(
-          '.bounty-square .price-ribbon',
+        page.should_not have_selector(
+          '.bounty-square .name',
+          :text => @expensive_bounty.name
         )
       end
 
-      it 'shouldn\'t display non-adult bounties' do
+      it "should't display private bounties" do
         page.should_not have_selector(
           '.bounty-square .name',
-          :text => "Normal Bounty"
-        )
-        page.should_not have_selector(
-          '.bounty-square .name',
-          :text => "Expensive Bounty"
-        )
-      end
-
-      it 'should\'t display private bounties' do
-        page.should_not have_selector(
-          '.bounty-square .name',
-          :text => "Private Bounty"
+          :text => @private_bounty.name
         )
       end
 
       it 'should display bounties with adult content' do
         page.should have_selector(
           '.bounty-square .name',
-          :text => "Adult Bounty",
+          :text => @adult_bounty.name,
           :count => 1
         )
       end
@@ -416,19 +337,6 @@ describe 'Bounty' do
 
         visit root_path + "?own=1"
       }
-
-      it 'should display bounties with the correct structure' do
-        page.should have_selector(
-          '.bounty-square .name',
-        )
-        page.should have_selector(
-          '.bounty-square .short-desc',
-          :text => "Bounty Tag Line.",
-        )
-        page.should have_selector(
-          '.bounty-square .price-ribbon',
-        )
-      end
 
       it 'should display owned bounties' do
         page.should have_selector(
@@ -461,30 +369,17 @@ describe 'Bounty' do
       before {
         OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
           :provider => 'browserid',
-          :uid => @normal_bounty.artists.first.email
+          :uid => @private_bounty.artists.first.email
         })
         visit '/auth/browser_id'
 
         visit root_path + "?may_accept=1"
       }
 
-      it 'should display bounties with the correct structure' do
-        page.should have_selector(
-          '.bounty-square .name',
-        )
-        page.should have_selector(
-          '.bounty-square .short-desc',
-          :text => "Bounty Tag Line.",
-        )
-        page.should have_selector(
-          '.bounty-square .price-ribbon',
-        )
-      end
-
       it 'should display bounties for which this artist is a candidate' do
         page.should have_selector(
           '.bounty-square .name',
-          :text => @normal_bounty.name,
+          :text => @private_bounty.name,
           :count => 1
         )
       end
@@ -502,7 +397,7 @@ describe 'Bounty' do
         )
         page.should_not have_selector(
           '.bounty-square .name',
-          :text => @private_bounty.name,
+          :text => @normal_bounty.name,
           :count => 1
         )
       end
@@ -511,22 +406,26 @@ describe 'Bounty' do
 
   describe 'show page for a normal unclaimed bounty' do
 
+    before {
+      visit bounty_path(@normal_bounty)
+    }
+
+    it 'should have the correct structure' do
+      page.should have_selector('#bounty-show')
+      page.should have_selector(
+        '#bounty-show .name',
+        :text => 'Normal Bounty'
+      )
+      page.should have_selector(
+        '#bounty-show .desc',
+        :text => 'Bounty description'
+      )
+    end
+
     context 'when visited by a guest' do
       before {
         visit bounty_path(@normal_bounty)
       }
-
-      it 'should have the correct structure' do
-        page.should have_selector('#bounty-show')
-        page.should have_selector(
-          '#bounty-show .name',
-          :text => 'Normal Bounty'
-        )
-        page.should have_selector(
-          '#bounty-show .desc',
-          :text => 'Bounty description'
-        )
-      end
 
       it 'should display the bounty\'s candidacies' do
         @normal_bounty.artists.length.should == 3
@@ -598,18 +497,6 @@ describe 'Bounty' do
         visit bounty_path(@normal_bounty)
       }
 
-      it 'should have the correct structure' do
-        page.should have_selector('#bounty-show')
-        page.should have_selector(
-          '#bounty-show .name',
-          :text => 'Normal Bounty'
-        )
-        page.should have_selector(
-          '#bounty-show .desc',
-          :text => 'Bounty description'
-        )
-      end
-
       it 'should display the bounty\'s candidacies' do
         @normal_bounty.artists.length.should == 3
         @normal_bounty.artists.each { |artist|
@@ -679,18 +566,6 @@ describe 'Bounty' do
 
         visit bounty_path(@normal_bounty)
       }
-
-      it 'should have the correct structure' do
-        page.should have_selector('#bounty-show')
-        page.should have_selector(
-          '#bounty-show .name',
-          :text => 'Normal Bounty'
-        )
-        page.should have_selector(
-          '#bounty-show .desc',
-          :text => 'Bounty description'
-        )
-      end
 
       it 'should display the bounty\'s candidacies' do
         @normal_bounty.artists.length.should == 3
@@ -764,18 +639,6 @@ describe 'Bounty' do
         visit bounty_path(@normal_bounty)
       }
 
-      it 'should have the correct structure' do
-        page.should have_selector('#bounty-show')
-        page.should have_selector(
-          '#bounty-show .name',
-          :text => 'Normal Bounty'
-        )
-        page.should have_selector(
-          '#bounty-show .desc',
-          :text => 'Bounty description'
-        )
-      end
-
       it 'should display the bounty\'s candidacies' do
         @normal_bounty.artists.length.should == 3
         @normal_bounty.artists.each { |artist|
@@ -845,18 +708,6 @@ describe 'Bounty' do
 
         visit bounty_path(@normal_bounty)
       }
-
-      it 'should have the correct structure' do
-        page.should have_selector('#bounty-show')
-        page.should have_selector(
-          '#bounty-show .name',
-          :text => 'Normal Bounty'
-        )
-        page.should have_selector(
-          '#bounty-show .desc',
-          :text => 'Bounty description'
-        )
-      end
 
       it 'should display the bounty\'s candidacies' do
         @normal_bounty.artists.length.should == 3
@@ -940,18 +791,6 @@ describe 'Bounty' do
         visit bounty_path(@normal_bounty)
       }
 
-      it 'should have the correct structure' do
-        page.should have_selector('#bounty-show')
-        page.should have_selector(
-          '#bounty-show .name',
-          :text => 'Normal Bounty'
-        )
-        page.should have_selector(
-          '#bounty-show .desc',
-          :text => 'Bounty description'
-        )
-      end
-
       it 'shouldn\'t display the bounty\'s candidacies' do
         @normal_bounty.artists.length.should == 3
         @normal_bounty.artists.each { |artist|
@@ -1021,18 +860,6 @@ describe 'Bounty' do
 
         visit bounty_path(@normal_bounty)
       }
-
-      it 'should have the correct structure' do
-        page.should have_selector('#bounty-show')
-        page.should have_selector(
-          '#bounty-show .name',
-          :text => 'Normal Bounty'
-        )
-        page.should have_selector(
-          '#bounty-show .desc',
-          :text => 'Bounty description'
-        )
-      end
 
       it 'shouldn\'t display the bounty\'s candidacies' do
         @normal_bounty.artists.length.should == 3
