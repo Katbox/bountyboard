@@ -245,12 +245,15 @@ class Bounty < ActiveRecord::Base
       where( :adult_only => false )
     end
 
-    def only_owned(id)
-      where( 'user_id=?', id )
+    def owned_by(owner)
+      where( :owner => owner )
     end
 
-    def may_accept(id)
-      joins(:candidacies).where( 'candidacies.artist_id=? AND candidacies.accepted_at IS NULL', id )
+    def may_accept(artist)
+      joins(:candidacies).where(
+        'candidacies.artist_id=? AND candidacies.accepted_at IS NULL',
+        artist.id
+      ).uniq
     end
 
     def viewable_by(user)

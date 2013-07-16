@@ -19,7 +19,9 @@ class BountiesController < ApplicationController
     filters =  {
       :price_min => nil,
       :price_max => nil,
-      :adult => "kid-friendly"
+      :adult => "kid-friendly",
+      :own => nil,
+      :may_accept => nil
     }.with_indifferent_access
 
     filters.merge!(params)
@@ -35,11 +37,11 @@ class BountiesController < ApplicationController
     elsif filters[:adult] == "kid-friendly"
       @bounties = @bounties.no_adult_content
     end
-    if filters[:own] == "on"
-      @bounties = @bounties.only_owned currentUser.id
+    if filters[:own] && currentUser
+      @bounties = @bounties.owned_by currentUser
     end
-    if filters[:may_accept] == "on"
-      @bounties = @bounties.may_accept currentUser.id
+    if filters[:may_accept] && currentUser.is_a?(Artist)
+      @bounties = @bounties.may_accept currentUser
     end
 
     respond_with @bounties.all.sort { |bounty| -bounty.score }
