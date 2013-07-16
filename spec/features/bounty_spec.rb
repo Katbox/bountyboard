@@ -390,7 +390,7 @@ describe 'Bounty' do
         )
       end
 
-      it 'should not display private bounties' do
+      it 'should\'t display private bounties' do
         page.should_not have_selector(
           '.bounty-square .name',
           :text => "Private Bounty"
@@ -401,6 +401,108 @@ describe 'Bounty' do
         page.should have_selector(
           '.bounty-square .name',
           :text => "Adult Bounty",
+          :count => 1
+        )
+      end
+    end
+
+    context 'with an ownership filter' do
+      before {
+        OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
+          :provider => 'browserid',
+          :uid => @expensive_bounty.owner.email
+        })
+        visit '/auth/browser_id'
+
+        visit root_path + "?own=1"
+      }
+
+      it 'should display bounties with the correct structure' do
+        page.should have_selector(
+          '.bounty-square .name',
+        )
+        page.should have_selector(
+          '.bounty-square .short-desc',
+          :text => "Bounty Tag Line.",
+        )
+        page.should have_selector(
+          '.bounty-square .price-ribbon',
+        )
+      end
+
+      it 'should display owned bounties' do
+        page.should have_selector(
+          '.bounty-square .name',
+          :text => @expensive_bounty.name,
+          :count => 1
+        )
+      end
+
+      it 'shouldn\'t display bounties owned by other users' do
+        page.should_not have_selector(
+          '.bounty-square .name',
+          :text => @normal_bounty.name,
+          :count => 1
+        )
+        page.should_not have_selector(
+          '.bounty-square .name',
+          :text => @adult_bounty.name,
+          :count => 1
+        )
+        page.should_not have_selector(
+          '.bounty-square .name',
+          :text => @private_bounty.name,
+          :count => 1
+        )
+      end
+    end
+
+    context 'with an artist\'s candidacy filter' do
+      before {
+        OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
+          :provider => 'browserid',
+          :uid => @normal_bounty.artists.first.email
+        })
+        visit '/auth/browser_id'
+
+        visit root_path + "?may_accept=1"
+      }
+
+      it 'should display bounties with the correct structure' do
+        page.should have_selector(
+          '.bounty-square .name',
+        )
+        page.should have_selector(
+          '.bounty-square .short-desc',
+          :text => "Bounty Tag Line.",
+        )
+        page.should have_selector(
+          '.bounty-square .price-ribbon',
+        )
+      end
+
+      it 'should display bounties for which this artist is a candidate' do
+        page.should have_selector(
+          '.bounty-square .name',
+          :text => @normal_bounty.name,
+          :count => 1
+        )
+      end
+
+      it "shouldn't display bounties for which this artist isn't a candidate" do
+        page.should_not have_selector(
+          '.bounty-square .name',
+          :text => @expensive_bounty.name,
+          :count => 1
+        )
+        page.should_not have_selector(
+          '.bounty-square .name',
+          :text => @adult_bounty.name,
+          :count => 1
+        )
+        page.should_not have_selector(
+          '.bounty-square .name',
+          :text => @private_bounty.name,
           :count => 1
         )
       end
