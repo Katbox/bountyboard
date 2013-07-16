@@ -246,7 +246,7 @@ class Bounty < ActiveRecord::Base
     end
 
     def owned_by(owner)
-      where( :owner => owner )
+      where( :user_id => owner.id )
     end
 
     def may_accept(artist)
