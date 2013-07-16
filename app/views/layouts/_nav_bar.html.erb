@@ -13,18 +13,6 @@
       Filter Displayed Bounties
     </a>
   <% end %>
-  <% if signed_in? %>
-    Show Your Bounties :
-    <div id="user-bounties">
-          <label for="show-owner-on">On</label><input id="show-owner-on" type="radio" name="user-bounties" value="on"><label for="show-owner-off">Off</label><input id="show-owner-off" type="radio" name="user-bounties" value="off" checked>
-    </div>
-    <% if currentUser.is_a?(Artist) %>
-    Show Bounties You May Accept :
-      <div id="artist-bounties">
-            <label for="may-accept-on">On</label><input id="may-accept-on" type="radio" name="artist-bounties" value="on"><label for="may-accept-off">Off</label><input id="may-accept-off" type="radio" name="artist-bounties" value="off" checked>
-      </div>
-    <% end %>
-  <% end %>
   <span class="login-notify-area">
     <% if signed_in? %>
           Logged in as
