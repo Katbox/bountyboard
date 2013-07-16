@@ -9,10 +9,14 @@
     <%= link_to 'Your Profile', artist_path(currentUser.id) %>
   <% end %>
   <% if controller_name == 'bounties' && action_name == 'index' %>
-	  <a data-dropdown="#dropdown-filters-controls" href="#">
-		  Filter Displayed Bounties
-	  </a>
+    <a data-dropdown="#dropdown-filters-controls" href="#">
+      Filter Displayed Bounties
+    </a>
   <% end %>
+  Show Only Your Bounties :
+  <div id="user-bounties">
+        <label for="show-owner-on">On</label><input id="show-owner-on" type="radio" name="user-bounties" value="on"><label for="show-owner-off">Off</label><input id="show-owner-off" type="radio" name="user-bounties" value="off" checked>
+  </div>
   <span class="login-notify-area">
     <% if signed_in? %>
           Logged in as

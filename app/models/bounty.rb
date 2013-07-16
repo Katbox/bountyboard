@@ -245,6 +245,10 @@ class Bounty < ActiveRecord::Base
       where( :adult_only => false )
     end
 
+    def only_owned(id)
+      where( 'user_id=?', id )
+    end
+
     def viewable_by(user)
       if user.nil?
         where( :private => false )

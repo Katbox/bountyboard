@@ -22,7 +22,7 @@ initializeFilters = ->
         sanitized_parameters.join("&"),
         window.refresh_bounties
       )
- 
+
 
 
     # initialize filters controls
@@ -88,6 +88,13 @@ initializeFilters = ->
     $("#filter-adult").buttonset()
     $("#filter-adult").change ->
       filter_parameters["adult"] = $("#filter-adult :checked").val()
+      apply_filters()
+
+    # bounties you own
+
+    $("#user-bounties").buttonset()
+    $("#user-bounties").change ->
+      filter_parameters["own"] = $("#user-bounties :checked").val()
       apply_filters()
 
 

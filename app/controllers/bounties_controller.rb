@@ -35,6 +35,9 @@ class BountiesController < ApplicationController
     elsif filters[:adult] == "kid-friendly"
       @bounties = @bounties.no_adult_content
     end
+    if filters[:own] == "on"
+      @bounties = @bounties.only_owned currentUser.id
+    end
 
     respond_with @bounties.all.sort { |bounty| -bounty.score }
   end
