@@ -10,8 +10,7 @@ class BountiesController < ApplicationController
   def index
     @bounties = Bounty
       .viewable_by(currentUser)
-      .page().per(20)
-
+      .page(params[:page]).per(20)
 
     # apply filters from the user
 
