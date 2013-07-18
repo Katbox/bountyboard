@@ -62,7 +62,7 @@ describe Personality do
       :bounty => @bounty
     )
     personality.should_not be_valid
-    personality.should have(1).error_on(:mood_id)
+    personality.should have(1).error_on(:mood)
   end
 
   it 'should not allow null values for its bounty property' do
@@ -72,6 +72,6 @@ describe Personality do
       :bounty => nil
     )
     personality.should_not be_valid
-    personality.should have(1).error_on(:bounty_id)
+    personality.should have(1).error_on(:bounty)
   end
 end

@@ -17,8 +17,8 @@ class Candidacy < ActiveRecord::Base
   belongs_to :bounty, :inverse_of => :candidacies
 
   # Validations ================================================================
-  validates :artist_id, presence: true
-  validates :bounty_id, presence: true
+  validates :artist, presence: true
+  validates :bounty, presence: true
   validates :bounty_id, :uniqueness => { :scope => :artist_id }
   validate :validate_one_acceptor
 
