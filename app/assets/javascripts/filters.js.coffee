@@ -105,9 +105,50 @@ initializeFilters = ->
     # bounties you may complete
 
     $("#artist-bounties").buttonset()
+    last_status_value = null
+    last_ownership_value = null
+    status_filter = $("#filter-status")
+    ownership_filter = $("#user-bounties")
     $("#artist-bounties").change ->
-      filter_parameters["may_accept"] = $("#artist-bounties :checked").val()
-      apply_filters()
+      may_accept_value = $("#artist-bounties :checked").val()
+      if may_accept_value is ""
+        delete filter_parameters["may_accept"]
+
+        # reenable the status filter
+        filter_parameters["status"] = last_status_value
+        status_filter.find("input").button( disabled: false )
+        status_filter.find(
+          "input[value='#{last_status_value}']"
+        ).prop("checked", true)
+        status_filter.buttonset("refresh")
+
+        # reenable the ownership filter
+        filter_parameters["own"] = last_ownership_value
+        ownership_filter.find("input").button( disabled: false )
+        ownership_filter.find(
+          "input[value='#{last_ownership_value}']"
+        ).prop("checked", true)
+        ownership_filter.buttonset("refresh")
+
+        apply_filters()
+      else
+        filter_parameters["may_accept"] = may_accept_value
+
+        # disable the status filter
+        delete filter_parameters["status"]
+        last_status_value = status_filter.find(":checked").val()
+        status_filter.find("input[value='unclaimed']").prop("checked", true)
+        status_filter.find("input").button( disabled: true )
+        status_filter.buttonset("refresh")
+
+        # disable the ownership filter
+        delete filter_parameters["own"]
+        last_ownership_value = ownership_filter.find(":checked").val()
+        ownership_filter.find("input[value='off']").prop("checked", true)
+        ownership_filter.find("input").button( disabled: true )
+        ownership_filter.buttonset("refresh")
+
+        apply_filters()
 
 
     # status filter

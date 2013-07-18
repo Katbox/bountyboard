@@ -303,9 +303,9 @@ class Bounty < ActiveRecord::Base
 
     def may_accept(artist)
       joins(:candidacies).where(
-        'candidacies.artist_id=? AND candidacies.accepted_at IS NULL',
+        'candidacies.artist_id=?',
         artist.id
-      ).uniq
+      ).uniq.only_unclaimed()
     end
 
     def viewable_by(user)
