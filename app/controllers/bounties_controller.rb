@@ -21,7 +21,8 @@ class BountiesController < ApplicationController
       :price_max => nil,
       :adult => "kid-friendly",
       :own => nil,
-      :may_accept => nil
+      :may_accept => nil,
+      :status => nil,
     }.with_indifferent_access
 
     filters.merge!(params)
@@ -42,6 +43,9 @@ class BountiesController < ApplicationController
     end
     if filters[:may_accept] && currentUser.is_a?(Artist)
       @bounties = @bounties.may_accept currentUser
+    end
+    if filters[:status]
+      @bounties = @bounties.only_status(filters[:status])
     end
 
     respond_with @bounties.all.sort { |bounty| -bounty.score }

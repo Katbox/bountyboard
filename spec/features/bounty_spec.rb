@@ -402,6 +402,117 @@ describe 'Bounty' do
         )
       end
     end
+
+    context 'with status filter' do
+      before {
+        @unclaimed_bounty = FactoryGirl.create(:bounty)
+        @accepted_bounty = FactoryGirl.create(:bounty)
+        @accepted_bounty.candidacies[0].accepted_at = 2.hours.ago
+        @accepted_bounty.candidacies[0].save!
+        @completed_bounty = FactoryGirl.create(:bounty,
+          :url => 'http://www.example.com'
+        )
+        @completed_bounty.candidacies[0].accepted_at = 2.hours.ago
+        @completed_bounty.candidacies[0].save!
+      }
+
+      context 'set to "Unclaimed"' do
+
+        before {
+          visit root_path + "?status=Unclaimed"
+        }
+
+        it 'should display unclaimed bounties' do
+          page.should have_selector(
+            '.bounty-square .name',
+            :text => @unclaimed_bounty.name,
+            :count => 1
+          )
+        end
+
+        it "shouldn't display accepted bounties" do
+          page.should_not have_selector(
+            '.bounty-square .name',
+            :text => @accepted_bounty.name,
+            :count => 1
+          )
+        end
+
+        it "shouldn't display completed bounties" do
+          page.should_not have_selector(
+            '.bounty-square .name',
+            :text => @completed_bounty.name,
+            :count => 1
+          )
+        end
+      end
+
+      context 'set to "Accepted"' do
+
+        before {
+          visit root_path + "?status=Accepted"
+        }
+
+        it "shouldn't display unclaimed bounties" do
+          page.should_not have_selector(
+            '.bounty-square .name',
+            :text => @unclaimed_bounty.name,
+            :count => 1
+          )
+        end
+
+        it 'should display accepted bounties' do
+          page.should have_selector(
+            '.bounty-square .name',
+            :text => @accepted_bounty.name,
+            :count => 1
+          )
+        end
+
+        it "shouldn't display completed bounties" do
+          page.should_not have_selector(
+            '.bounty-square .name',
+            :text => @completed_bounty.name,
+            :count => 1
+          )
+        end
+      end
+
+      context 'set to "Completed"' do
+
+        before {
+          visit root_path + "?status=Completed"
+        }
+
+        it "shouldn't display unclaimed bounties" do
+          page.should_not have_selector(
+            '.bounty-square .name',
+            :text => @unclaimed_bounty.name,
+            :count => 1
+          )
+        end
+
+        it "shouldn't display accepted bounties" do
+          page.should_not have_selector(
+            '.bounty-square .name',
+            :text => @accepted_bounty.name,
+            :count => 1
+          )
+        end
+
+        it 'should display completed bounties' do
+          page.should have_selector(
+            '.bounty-square .name',
+            :count => 1
+          )
+          page.should have_selector(
+            '.bounty-square .name',
+            :text => @completed_bounty.name,
+            :count => 1
+          )
+        end
+      end
+    end
   end
 
   describe 'show page for a normal unclaimed bounty' do
