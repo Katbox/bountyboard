@@ -12,7 +12,10 @@ describe 'Bounty' do
       :adult_only => false,
       :private => false,
       :owner => @customer,
-      :complete_by => DateTime.strptime('2018-08-22', '%Y-%m-%d')
+      :complete_by => DateTime.strptime(
+        '2018-08-22 Pacific Time (US & Canada)',
+        '%Y-%m-%d %Z'
+      )
     )
     @adult_bounty = FactoryGirl.create(:bounty,
       :name => "Adult Bounty",
