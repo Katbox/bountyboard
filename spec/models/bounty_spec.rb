@@ -310,7 +310,7 @@ describe Bounty do
     bounty = FactoryGirl.build(:bounty)
     bounty.url = 'http://www.example.com'
     bounty.save!
-    bounty.completed_at.should == DateTime.now
+    bounty.completed_at.to_datetime.to_s.should == DateTime.now.to_s
   end
 
   it "shouldn't allow saving a completed bounty with no artwork" do
