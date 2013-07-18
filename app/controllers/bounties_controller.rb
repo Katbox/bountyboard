@@ -234,7 +234,9 @@ class BountiesController < ApplicationController
       # the acccepting artist can complete a bounty
       if bounty.accepting_candidacy.artist == currentUser
         permitted_keys.concat([
-          :url
+          :url,
+          :preview,
+          :completed_at
         ])
       end
       params.require(:bounty).permit(permitted_keys)
