@@ -14,7 +14,7 @@
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  completed_at         :datetime
-#  complete_by          :date
+#  complete_by          :datetime
 #  tag_line             :string(255)      not null
 #  artwork_file_name    :string(255)
 #  artwork_content_type :string(255)
@@ -160,19 +160,14 @@ describe Bounty do
       @bounty = FactoryGirl.create(:bounty)
     }
 
-    it 'should accept a due date of today' do
-      @bounty.complete_by = Date.today
-      @bounty.should be_valid
-    end
-
     it 'should not accept due dates in the past' do
-      @bounty.complete_by = Date.today - 1.day
+      @bounty.complete_by = 1.second.ago
       @bounty.should_not be_valid
       @bounty.should have(1).error_on(:complete_by)
     end
 
     it 'should accept due dates in the future' do
-      @bounty.complete_by = DateTime.now + 1
+      @bounty.complete_by = 1.second.from_now
       @bounty.should be_valid
     end
   end

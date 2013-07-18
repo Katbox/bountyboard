@@ -56,19 +56,19 @@ CREATE TABLE bounties (
     private boolean DEFAULT false NOT NULL,
     url character varying(255),
     user_id integer NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    completed_at timestamp without time zone,
-    complete_by date,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL,
+    completed_at timestamp with time zone,
+    complete_by timestamp with time zone,
     tag_line character varying(255) NOT NULL,
     artwork_file_name character varying(255),
     artwork_content_type character varying(255),
     artwork_file_size integer,
-    artwork_updated_at timestamp without time zone,
+    artwork_updated_at timestamp with time zone,
     preview_file_name character varying(255),
     preview_content_type character varying(255),
     preview_file_size integer,
-    preview_updated_at timestamp without time zone
+    preview_updated_at timestamp with time zone
 );
 
 
@@ -98,10 +98,10 @@ ALTER SEQUENCE bounties_id_seq OWNED BY bounties.id;
 CREATE TABLE candidacies (
     id integer NOT NULL,
     bounty_id integer NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL,
     artist_id integer NOT NULL,
-    accepted_at timestamp without time zone
+    accepted_at timestamp with time zone
 );
 
 
@@ -132,8 +132,8 @@ CREATE TABLE favorites (
     id integer NOT NULL,
     user_id integer NOT NULL,
     bounty_id integer NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL
 );
 
 
@@ -163,8 +163,8 @@ ALTER SEQUENCE favorites_id_seq OWNED BY favorites.id;
 CREATE TABLE moods (
     id integer NOT NULL,
     name character varying(255) NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL
 );
 
 
@@ -195,8 +195,8 @@ CREATE TABLE personalities (
     id integer NOT NULL,
     mood_id integer NOT NULL,
     bounty_id integer NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL
 );
 
 
@@ -236,8 +236,8 @@ CREATE TABLE users (
     id integer NOT NULL,
     name character varying(255),
     email citext NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL,
     "rememberToken" character varying(255),
     type character varying(255),
     bio text DEFAULT ''::text NOT NULL,
@@ -275,8 +275,8 @@ CREATE TABLE votes (
     id integer NOT NULL,
     user_id integer NOT NULL,
     bounty_id integer NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL,
     vote_type boolean DEFAULT false NOT NULL
 );
 
@@ -624,3 +624,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130711055659');
 INSERT INTO schema_migrations (version) VALUES ('20130711195843');
 
 INSERT INTO schema_migrations (version) VALUES ('20130712065345');
+
+INSERT INTO schema_migrations (version) VALUES ('20130718052313');
