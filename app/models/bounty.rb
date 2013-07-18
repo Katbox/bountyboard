@@ -274,7 +274,7 @@ class Bounty < ActiveRecord::Base
 
     def only_accepted()
       where('url IS NULL')
-        .joins(:candidacies).where('accepted_at IS NOT NULL')
+        .joins(:candidacies).where('candidacies.accepted_at IS NOT NULL')
         .uniq
     end
 
