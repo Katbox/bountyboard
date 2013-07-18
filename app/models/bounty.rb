@@ -14,7 +14,7 @@
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  completed_at         :datetime
-#  complete_by          :date
+#  complete_by          :datetime
 #  tag_line             :string(255)      not null
 #  artwork_file_name    :string(255)
 #  artwork_content_type :string(255)
@@ -131,7 +131,7 @@ class Bounty < ActiveRecord::Base
 
   # If the create_by date is in the past, throw an error.
   def due_date_in_future
-    if complete_by && complete_by < Date.today
+    if complete_by && complete_by < DateTime.now
       errors.add(:complete_by, 'is in the past. Specify a date in the future.')
     end
   end
