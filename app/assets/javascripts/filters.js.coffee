@@ -96,9 +96,9 @@ initializeFilters = ->
 
     # bounties you own
 
-    $("#user-bounties").buttonset()
-    $("#user-bounties").change ->
-      ownership_value = $("#user-bounties :checked").val()
+    $("#filter-ownership").buttonset()
+    $("#filter-ownership").change ->
+      ownership_value = $("#filter-ownership :checked").val()
       if ownership_value is ""
         delete filter_parameters["own"]
       else
@@ -108,13 +108,13 @@ initializeFilters = ->
 
     # bounties you may complete
 
-    $("#artist-bounties").buttonset()
+    $("#filter-candidacy").buttonset()
     last_status_value = null
     last_ownership_value = null
     status_filter = $("#filter-status")
-    ownership_filter = $("#user-bounties")
-    $("#artist-bounties").change ->
-      may_accept_value = $("#artist-bounties :checked").val()
+    ownership_filter = $("#filter-ownership")
+    $("#filter-candidacy").change ->
+      may_accept_value = $("#filter-candidacy :checked").val()
       if may_accept_value is ""
         delete filter_parameters["may_accept"]
 
