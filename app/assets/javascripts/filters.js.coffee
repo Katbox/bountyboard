@@ -109,10 +109,10 @@ initializeFilters = ->
     # bounties you may complete
 
     $("#filter-candidacy").buttonset()
-    last_status_value = null
-    last_ownership_value = null
     status_filter = $("#filter-status")
     ownership_filter = $("#filter-ownership")
+    last_status_value = status_filter.find(":checked").val()
+    last_ownership_value = ownership_filter.find(":checked").val()
     $("#filter-candidacy").change ->
       may_accept_value = $("#filter-candidacy :checked").val()
       if may_accept_value is ""
