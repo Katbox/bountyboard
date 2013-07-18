@@ -9,10 +9,29 @@
       >
       <div id="filter-cost-widget" class="filters-slider"></div>
       <hr>
-      <p>Age-Restricted Bounties:</p>
-      <div id="filter-adult">
+      <p>Age-Restricted Bounties</p>
+      <div id="filter-adult" class="filter-buttonset">
         <label for="filter-adult-all">Show All</label><input id="filter-adult-all" type="radio" name="filter-adult" value="all"><label for="filter-adult-other">G-Rated Only</label><input id="filter-adult-other" type="radio" name="filter-adult" value="kid-friendly" checked><label for="filter-adult-only">Adult Only</label><input id="filter-adult-only" type="radio" name="filter-adult" value="adult">
       </div>
+      <hr>
+      <p>Bounty Status</p>
+      <div id="filter-status" class="filter-buttonset">
+        <label for="filter-status-all">All</label><input id="filter-status-all" type="radio" name="filter-status" value="" checked><label for="filter-status-unclaimed">Unclaimed</label><input id="filter-status-unclaimed" type="radio" name="filter-status" value="unclaimed"><label for="filter-status-accepted">In Progress</label><input id="filter-status-accepted" type="radio" name="filter-status" value="accepted"><label for="filter-status-completed">Complete</label><input id="filter-status-completed" type="radio" name="filter-status" value="completed">
+      </div>
+      <% if signed_in? %>
+        <hr>
+        <p>My Bounties</p>
+        <div id="filter-ownership" class="filter-buttonset">
+              <label for="filter-ownership-off">Show All</label><input id="filter-ownership-off" type="radio" name="filter-ownership" value="" checked><label for="filter-ownership-on">Only Bounties I Own</label><input id="filter-ownership-on" type="radio" name="filter-ownership" value="on">
+        </div>
+        <% if currentUser.is_a?(Artist) %>
+          <hr>
+          <p>Searching for Work?</p>
+          <div id="filter-candidacy" class="filter-buttonset">
+                <label for="filter-candidacy-off">Show All</label><input id="filter-candidacy-off" type="radio" name="filter-candidacy" value="" checked><label for="filter-candidacy-on">Only Bounties I Can Accept</label><input id="filter-candidacy-on" type="radio" name="filter-candidacy" value="on">
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

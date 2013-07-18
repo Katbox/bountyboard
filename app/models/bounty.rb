@@ -2,23 +2,37 @@
 #
 # Table name: bounties
 #
-#  id             :integer          not null, primary key
-#  name           :string(255)      not null
-#  desc           :text             not null
-#  price_cents    :integer          default(0), not null
-#  price_currency :string(255)      default("USD"), not null
-#  adult_only     :boolean          default(FALSE), not null
-#  private        :boolean          default(FALSE), not null
-#  url            :string(255)
-#  user_id        :integer          not null
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  completed_at   :datetime
-#  complete_by    :date
-#  tag_line       :string(255)      not null
+#  id                   :integer          not null, primary key
+#  name                 :string(255)      not null
+#  desc                 :text             not null
+#  price_cents          :integer          default(0), not null
+#  price_currency       :string(255)      default("USD"), not null
+#  adult_only           :boolean          default(FALSE), not null
+#  private              :boolean          default(FALSE), not null
+#  url                  :string(255)
+#  user_id              :integer          not null
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  completed_at         :datetime
+#  complete_by          :datetime
+#  tag_line             :string(255)      not null
+#  artwork_file_name    :string(255)
+#  artwork_content_type :string(255)
+#  artwork_file_size    :integer
+#  artwork_updated_at   :datetime
+#  preview_file_name    :string(255)
+#  preview_content_type :string(255)
+#  preview_file_size    :integer
+#  preview_updated_at   :datetime
 #
 
 class Bounty < ActiveRecord::Base
+
+  # Paperclip gem. This ties the four properties "artwork_file_name",
+  # "artwork_content_type", "artwork_file_size", and "artwork_updated_at" to a
+  # single "artwork" property.
+  has_attached_file :artwork, :styles => { :thumb => "280x200>" }
+  has_attached_file :preview, :styles => { :standard => "280x200>" }
 
   # Money gem. "price_cents" is the price of the bounty in cents.
   # The gem will apply proper formatting if the implicit "price" property is
@@ -105,6 +119,8 @@ class Bounty < ActiveRecord::Base
 
   validate :due_date_in_future
 
+  validate :completed_bounty_must_have_artwork
+
   # If this bounty is not have the correct range of moods, throw an error.
   def validate_num_of_moods
     errors.add(:moods, "for this bounty exceeds #{Personality.MAXIMUM_MOODS}") if moods.length > Personality.MAXIMUM_MOODS
@@ -113,8 +129,22 @@ class Bounty < ActiveRecord::Base
 
   # If the create_by date is in the past, throw an error.
   def due_date_in_future
-    if complete_by && complete_by < Date.today
+    if complete_by && complete_by < DateTime.now
       errors.add(:complete_by, 'is in the past. Specify a date in the future.')
+    end
+  end
+
+  def completed_bounty_must_have_artwork
+    if completed_at && !url
+      errors.add(:url, 'must be assigned for a completed bounty.')
+    end
+  end
+
+  before_save do
+    # automatically assign a completion date when artwork is attached to a
+    # bounty
+    if url && !completed_at
+      self.completed_at = DateTime.now
     end
   end
 
@@ -175,7 +205,7 @@ class Bounty < ActiveRecord::Base
   # Returns the status of the bounty as a string. May either be Completed,
   # Accepted, or Unclaimed.
   def status
-    if self.url
+    if self.url || self.completed_at
       'Completed'
     else
       if self.acceptor_candidacy
@@ -192,6 +222,10 @@ class Bounty < ActiveRecord::Base
     self.candidacies.to_a.select { |candidacy|
       candidacy.accepted_at
     }.first
+  end
+
+  def artwork_from_url(url)
+    self.artwork = URI.parse(url)
   end
 
   # Bounty query filters
@@ -221,6 +255,52 @@ class Bounty < ActiveRecord::Base
 
     def no_adult_content()
       where( :adult_only => false )
+    end
+
+    def owned_by(owner)
+      where( :user_id => owner.id )
+    end
+
+    def only_unclaimed()
+      joins(<<-sql).where('acceptors.id IS NULL').uniq()
+      LEFT JOIN candidacies AS acceptors 
+        ON (acceptors.bounty_id=bounties.id AND acceptors.accepted_at IS NOT NULL)
+      sql
+    end
+
+    def only_accepted()
+      where('url IS NULL')
+        .joins(:candidacies).where('candidacies.accepted_at IS NOT NULL')
+        .uniq
+    end
+
+    def only_completed()
+      where('url IS NOT NULL')
+    end
+
+    # status should be one of the following: "Unclaimed", "Accepted",
+    # "Completed"; if status is not in this list then no filtering will be done
+    def only_status(status)
+
+      # normalize the status string to lower case
+      status = status.downcase
+
+      if status == 'unclaimed'
+        only_unclaimed()
+      elsif status == 'accepted'
+        only_accepted()
+      elsif status == 'completed'
+        only_completed()
+      else
+        all
+      end
+    end
+
+    def may_accept(artist)
+      joins(:candidacies).where(
+        'candidacies.artist_id=?',
+        artist.id
+      ).uniq.only_unclaimed()
     end
 
     def viewable_by(user)

@@ -9,9 +9,9 @@
     <%= link_to 'Your Profile', artist_path(currentUser.id) %>
   <% end %>
   <% if controller_name == 'bounties' && action_name == 'index' %>
-	  <a data-dropdown="#dropdown-filters-controls" href="#">
-		  Filter Displayed Bounties
-	  </a>
+    <a data-dropdown="#dropdown-filters-controls" href="#">
+      Filter Displayed Bounties
+    </a>
   <% end %>
   <span class="login-notify-area">
     <% if signed_in? %>

@@ -52,6 +52,8 @@ gem 'sass-rails',   '~> 4.0'
 gem 'jquery-ui-sass-rails'
 gem 'coffee-rails', '~> 4.0'
 gem 'uglifier', '>= 1.0.3'
+gem 'paperclip'
+gem 'kaminari'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

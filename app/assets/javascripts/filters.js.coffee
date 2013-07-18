@@ -9,9 +9,12 @@ initializeFilters = ->
 
     # parameters passed to the back end for filtering are stored
     # here, indexed by the property being filtered (i.e.
-    # filters["price"] = "price_min=30&price_max=60")
+    # filter_parameters["price_min"] = 30)
     filter_parameters = []
     apply_filters = ->
+      console.log "Applying bounty filters:"
+      console.log filter_parameters
+
       sanitized_parameters = []
       for param of filter_parameters
         key = encodeURIComponent(param)
@@ -22,7 +25,7 @@ initializeFilters = ->
         sanitized_parameters.join("&"),
         window.refresh_bounties
       )
- 
+
 
 
     # initialize filters controls
@@ -88,6 +91,81 @@ initializeFilters = ->
     $("#filter-adult").buttonset()
     $("#filter-adult").change ->
       filter_parameters["adult"] = $("#filter-adult :checked").val()
+      apply_filters()
+
+
+    # bounties you own
+
+    $("#filter-ownership").buttonset()
+    $("#filter-ownership").change ->
+      ownership_value = $("#filter-ownership :checked").val()
+      if ownership_value is ""
+        delete filter_parameters["own"]
+      else
+        filter_parameters["own"] = ownership_value
+      apply_filters()
+
+
+    # bounties you may complete
+
+    $("#filter-candidacy").buttonset()
+    status_filter = $("#filter-status")
+    ownership_filter = $("#filter-ownership")
+    last_status_value = status_filter.find(":checked").val()
+    last_ownership_value = ownership_filter.find(":checked").val()
+    $("#filter-candidacy").change ->
+      may_accept_value = $("#filter-candidacy :checked").val()
+      if may_accept_value is ""
+        delete filter_parameters["may_accept"]
+
+        # reenable the status filter
+        if last_status_value isnt ""
+          filter_parameters["status"] = last_status_value
+        status_filter.find("input").button( disabled: false )
+        status_filter.find(
+          "input[value='#{last_status_value}']"
+        ).prop("checked", true)
+        status_filter.buttonset("refresh")
+
+        # reenable the ownership filter
+        if last_ownership_value isnt ""
+          filter_parameters["own"] = last_ownership_value
+        ownership_filter.find("input").button( disabled: false )
+        ownership_filter.find(
+          "input[value='#{last_ownership_value}']"
+        ).prop("checked", true)
+        ownership_filter.buttonset("refresh")
+
+        apply_filters()
+      else
+        filter_parameters["may_accept"] = may_accept_value
+
+        # disable the status filter
+        delete filter_parameters["status"]
+        last_status_value = status_filter.find(":checked").val()
+        status_filter.find("input[value='unclaimed']").prop("checked", true)
+        status_filter.find("input").button( disabled: true )
+        status_filter.buttonset("refresh")
+
+        # disable the ownership filter
+        delete filter_parameters["own"]
+        last_ownership_value = ownership_filter.find(":checked").val()
+        ownership_filter.find("input[value='']").prop("checked", true)
+        ownership_filter.find("input").button( disabled: true )
+        ownership_filter.buttonset("refresh")
+
+        apply_filters()
+
+
+    # status filter
+
+    $("#filter-status").buttonset()
+    $("#filter-status").change ->
+      allowed_status = $("#filter-status :checked").val()
+      if allowed_status is ""
+        delete filter_parameters["status"]
+      else
+        filter_parameters["status"] = allowed_status
       apply_filters()
 
 

@@ -2,21 +2,30 @@
 #
 # Table name: bounties
 #
-#  id             :integer          not null, primary key
-#  name           :string(255)      not null
-#  desc           :text             not null
-#  price_cents    :integer          default(0), not null
-#  price_currency :string(255)      default("USD"), not null
-#  adult_only     :boolean          default(FALSE), not null
-#  private        :boolean          default(FALSE), not null
-#  url            :string(255)
-#  user_id        :integer          not null
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  completed_at   :datetime
-#  complete_by    :date
-#  tag_line       :string(255)      not null
+#  id                   :integer          not null, primary key
+#  name                 :string(255)      not null
+#  desc                 :text             not null
+#  price_cents          :integer          default(0), not null
+#  price_currency       :string(255)      default("USD"), not null
+#  adult_only           :boolean          default(FALSE), not null
+#  private              :boolean          default(FALSE), not null
+#  url                  :string(255)
+#  user_id              :integer          not null
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  completed_at         :datetime
+#  complete_by          :datetime
+#  tag_line             :string(255)      not null
+#  artwork_file_name    :string(255)
+#  artwork_content_type :string(255)
+#  artwork_file_size    :integer
+#  artwork_updated_at   :datetime
+#  preview_file_name    :string(255)
+#  preview_content_type :string(255)
+#  preview_file_size    :integer
+#  preview_updated_at   :datetime
 #
+
 
 require 'spec_helper'
 
@@ -25,6 +34,8 @@ describe Bounty do
   it { should respond_to(:name) }
   it { should respond_to(:tag_line) }
   it { should respond_to(:desc) }
+  it { should respond_to(:artwork) }
+  it { should respond_to(:preview) }
   it { should respond_to(:price_cents) }
   it { should respond_to(:price) }
   it { should respond_to(:adult_only) }
@@ -149,19 +160,14 @@ describe Bounty do
       @bounty = FactoryGirl.create(:bounty)
     }
 
-    it 'should accept a due date of today' do
-      @bounty.complete_by = Date.today
-      @bounty.should be_valid
-    end
-
     it 'should not accept due dates in the past' do
-      @bounty.complete_by = Date.today - 1.day
+      @bounty.complete_by = 1.second.ago
       @bounty.should_not be_valid
       @bounty.should have(1).error_on(:complete_by)
     end
 
     it 'should accept due dates in the future' do
-      @bounty.complete_by = DateTime.now + 1
+      @bounty.complete_by = 1.second.from_now
       @bounty.should be_valid
     end
   end
@@ -298,6 +304,20 @@ describe Bounty do
       voter = the_vote.user
       @bounty.vote_by(voter).should == the_vote
     end
+  end
+
+  it 'should automatically set a completion date when artwork is attached' do
+    bounty = FactoryGirl.build(:bounty)
+    bounty.url = 'http://www.example.com'
+    bounty.save!
+    bounty.completed_at.to_datetime.to_s.should == DateTime.now.to_s
+  end
+
+  it "shouldn't allow saving a completed bounty with no artwork" do
+    bounty = FactoryGirl.build(:bounty)
+    bounty.completed_at = DateTime.now
+    bounty.should_not be_valid
+    bounty.should have(1).error_on(:url)
   end
 
 end

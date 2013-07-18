@@ -5,13 +5,16 @@ class BountiesController < ApplicationController
 
   respond_to :json, :html
 
+  def self.BOUNTIES_PER_PAGE
+    20
+  end
+
   # Display a list of all bounties in the system, with links to see their
   # individual bounties.
   def index
     @bounties = Bounty
       .viewable_by(currentUser)
-      .limit(50)
-
+      .page(params[:page]).per(BountiesController.BOUNTIES_PER_PAGE)
 
     # apply filters from the user
 
@@ -19,7 +22,10 @@ class BountiesController < ApplicationController
     filters =  {
       :price_min => nil,
       :price_max => nil,
-      :adult => "kid-friendly"
+      :adult => "kid-friendly",
+      :own => nil,
+      :may_accept => nil,
+      :status => nil,
     }.with_indifferent_access
 
     filters.merge!(params)
@@ -34,6 +40,15 @@ class BountiesController < ApplicationController
       @bounties = @bounties.only_adult_content
     elsif filters[:adult] == "kid-friendly"
       @bounties = @bounties.no_adult_content
+    end
+    if filters[:own] && currentUser
+      @bounties = @bounties.owned_by currentUser
+    end
+    if filters[:may_accept] && currentUser.is_a?(Artist)
+      @bounties = @bounties.may_accept currentUser
+    end
+    if filters[:status]
+      @bounties = @bounties.only_status(filters[:status])
     end
 
     respond_with @bounties.to_a.sort { |bounty| -bounty.score }
