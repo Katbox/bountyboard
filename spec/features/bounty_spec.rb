@@ -45,7 +45,7 @@ describe 'Bounty' do
         :name => "Expensive Bounty",
         :price => 25000.00
       )
-      
+
       visit root_path
     }
 
