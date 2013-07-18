@@ -80,10 +80,10 @@ describe 'Bounty' do
         visit root_path
       }
 
-      it 'should display 20 bounties' do
+      it 'should display the correct number of bounties' do
         page.should have_selector(
           '.bounty-square .name',
-          :count => 20
+          :count => BountiesController.BOUNTIES_PER_PAGE
         )
         page.should_not have_selector(
           '.previous',
@@ -100,7 +100,7 @@ describe 'Bounty' do
 
         page.should have_selector(
           '.bounty-square .name',
-          :count => 20
+          :count => BountiesController.BOUNTIES_PER_PAGE
         )
         page.should have_selector(
           '.previous',
