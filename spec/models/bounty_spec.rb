@@ -311,5 +311,19 @@ describe Bounty do
     end
   end
 
+  it 'should automatically set a completion date when artwork is attached' do
+    bounty = FactoryGirl.build(:bounty)
+    bounty.url = 'http://www.example.com'
+    bounty.save!
+    bounty.completed_at.should == DateTime.now
+  end
+
+  it "shouldn't allow saving a completed bounty with no artwork" do
+    bounty = FactoryGirl.build(:bounty)
+    bounty.completed_at = DateTime.now
+    bounty.should_not be_valid
+    bounty.should have(1).error_on(:url)
+  end
+
 end
 

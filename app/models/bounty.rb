@@ -123,6 +123,8 @@ class Bounty < ActiveRecord::Base
 
   validate :due_date_in_future
 
+  validate :completed_bounty_must_have_artwork
+
   # If this bounty is not have the correct range of moods, throw an error.
   def validate_num_of_moods
     errors.add(:moods, "for this bounty exceeds #{Personality.MAXIMUM_MOODS}") if moods.length > Personality.MAXIMUM_MOODS
@@ -133,6 +135,20 @@ class Bounty < ActiveRecord::Base
   def due_date_in_future
     if complete_by && complete_by < Date.today
       errors.add(:complete_by, 'is in the past. Specify a date in the future.')
+    end
+  end
+
+  def completed_bounty_must_have_artwork
+    if completed_at && !url
+      errors.add(:url, 'must be assigned for a completed bounty.')
+    end
+  end
+
+  before_save do
+    # automatically assign a completion date when artwork is attached to a
+    # bounty
+    if url && !completed_at
+      self.completed_at = DateTime.now
     end
   end
 
@@ -193,7 +209,7 @@ class Bounty < ActiveRecord::Base
   # Returns the status of the bounty as a string. May either be Completed,
   # Accepted, or Unclaimed.
   def status
-    if self.url
+    if self.url || self.completed_at
       'Completed'
     else
       if self.acceptor_candidacy
@@ -247,6 +263,40 @@ class Bounty < ActiveRecord::Base
 
     def owned_by(owner)
       where( :user_id => owner.id )
+    end
+
+    def only_unclaimed()
+      joins(<<-sql).where('acceptors.id IS NULL').uniq()
+      LEFT JOIN candidacies AS acceptors 
+        ON (acceptors.bounty_id=bounties.id AND acceptors.accepted_at IS NOT NULL)
+      sql
+    end
+
+    def only_accepted()
+      joins(:candidacies).where('accepted_at IS NOT NULL').uniq
+    end
+
+    def only_completed()
+      where('url IS NOT NULL')
+    end
+
+    # status should be one of the following: "Unclaimed", "Accepted",
+    # "Completed"; if status is not in this list then no filtering will be done
+    def only_status(status)
+
+      # normalize the status string to lower case
+      status = status.downcase
+
+      if status == 'unclaimed'
+        only_unclaimed()
+      elsif status == 'accepted'
+        only_accepted()
+      elsif status == 'completed'
+        only_completed()
+      else
+        # this can be replaced with the simpler "all" in Rails 4
+        where('1=1')
+      end
     end
 
     def may_accept(artist)
