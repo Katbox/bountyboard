@@ -17,8 +17,8 @@ class Personality < ActiveRecord::Base
   belongs_to :bounty, :inverse_of => :personalities
 
   # Validations ================================================================
-  validates :mood_id, presence: true
-  validates :bounty_id, presence: true
+  validates :mood, presence: true
+  validates :bounty, presence: true
   validates_uniqueness_of :mood_id, :scope => :bounty_id
 
   # Attributes =================================================================

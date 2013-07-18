@@ -48,7 +48,7 @@ describe Candidacy do
       :artist => @artist
     )
     candidacy.should_not be_valid
-    candidacy.should have(1).error_on(:bounty_id)
+    candidacy.should have(1).error_on(:bounty)
   end
 
   it 'should not allow null values for its artist property' do
@@ -57,6 +57,6 @@ describe Candidacy do
       :artist => nil
     )
     candidacy.should_not be_valid
-    candidacy.should have(1).error_on(:artist_id)
+    candidacy.should have(1).error_on(:artist)
   end
 end

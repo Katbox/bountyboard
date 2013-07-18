@@ -78,7 +78,7 @@ class Bounty < ActiveRecord::Base
   end
 
   # Validations ================================================================
-  validates :name, :desc, :price, :user_id, :presence => true
+  validates :name, :desc, :price, :owner, :presence => true
 
   validates :name, :length => {
     :minimum => 1,

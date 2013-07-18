@@ -17,8 +17,8 @@ class Favorite < ActiveRecord::Base
   belongs_to :bounty, :inverse_of => :favorites
 
   # Validations ================================================================
-  validates :user_id, presence: true
-  validates :bounty_id, presence: true
+  validates :user, presence: true
+  validates :bounty, presence: true
   validates_uniqueness_of :user_id, :scope => :bounty_id
 
 end
