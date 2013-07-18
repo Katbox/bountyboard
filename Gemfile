@@ -63,7 +63,8 @@ gem 'formtastic'
 gem 'sanitize'
 gem 'turbolinks'
 gem 'ckeditor'
-gem "paperclip"
+gem 'paperclip'
+gem 'kaminari'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

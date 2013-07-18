@@ -45,7 +45,7 @@ describe 'Bounty' do
         :name => "Expensive Bounty",
         :price => 25000.00
       )
-      
+
       visit root_path
     }
 
@@ -60,6 +60,76 @@ describe 'Bounty' do
       page.should have_selector(
         '.bounty-square .price-ribbon',
       )
+    end
+
+    context 'when there are a lot of bounties' do
+      before {
+        OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
+          :provider => 'browserid',
+          :uid => @generic_user.email
+        })
+        visit '/auth/browser_id'
+
+        48.times do
+          @temp = FactoryGirl.create(:bounty,
+            :owner => @customer
+          )
+          FactoryGirl.create(:candidacy, :bounty => @temp)
+        end
+
+        visit root_path
+      }
+
+      it 'should display the correct number of bounties' do
+        page.should have_selector(
+          '.bounty-square .name',
+          :count => BountiesController.BOUNTIES_PER_PAGE
+        )
+        page.should_not have_selector(
+          '.previous',
+          :text => 'Previous',
+          :count => 1
+        )
+        page.should have_selector(
+          '.next',
+          :text => 'Next',
+          :count => 1
+        )
+
+        page.click_link('Next')
+
+        page.should have_selector(
+          '.bounty-square .name',
+          :count => BountiesController.BOUNTIES_PER_PAGE
+        )
+        page.should have_selector(
+          '.previous',
+          :text => 'Previous',
+          :count => 1
+        )
+        page.should have_selector(
+          '.next',
+          :text => 'Next',
+          :count => 1
+        )
+
+        page.click_link('Next')
+
+        page.should have_selector(
+          '.bounty-square .name',
+          :count => 10
+        )
+        page.should have_selector(
+          '.previous',
+          :text => 'Previous',
+          :count => 1
+        )
+        page.should_not have_selector(
+          '.next',
+          :text => 'Next',
+          :count => 1
+        )
+      end
     end
 
     context 'when a guest visits' do

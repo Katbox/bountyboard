@@ -5,13 +5,16 @@ class BountiesController < ApplicationController
 
   respond_to :json, :html
 
+  def self.BOUNTIES_PER_PAGE
+    20
+  end
+
   # Display a list of all bounties in the system, with links to see their
   # individual bounties.
   def index
     @bounties = Bounty
       .viewable_by(currentUser)
-      .limit(50)
-
+      .page(params[:page]).per(BountiesController.BOUNTIES_PER_PAGE)
 
     # apply filters from the user
 
