@@ -98,7 +98,11 @@ initializeFilters = ->
 
     $("#user-bounties").buttonset()
     $("#user-bounties").change ->
-      filter_parameters["own"] = $("#user-bounties :checked").val()
+      ownership_value = $("#user-bounties :checked").val()
+      if ownership_value is ""
+        delete filter_parameters["own"]
+      else
+        filter_parameters["own"] = ownership_value
       apply_filters()
 
 
@@ -115,7 +119,8 @@ initializeFilters = ->
         delete filter_parameters["may_accept"]
 
         # reenable the status filter
-        filter_parameters["status"] = last_status_value
+        if last_status_value isnt ""
+          filter_parameters["status"] = last_status_value
         status_filter.find("input").button( disabled: false )
         status_filter.find(
           "input[value='#{last_status_value}']"
@@ -123,7 +128,8 @@ initializeFilters = ->
         status_filter.buttonset("refresh")
 
         # reenable the ownership filter
-        filter_parameters["own"] = last_ownership_value
+        if last_ownership_value isnt ""
+          filter_parameters["own"] = last_ownership_value
         ownership_filter.find("input").button( disabled: false )
         ownership_filter.find(
           "input[value='#{last_ownership_value}']"
@@ -144,7 +150,7 @@ initializeFilters = ->
         # disable the ownership filter
         delete filter_parameters["own"]
         last_ownership_value = ownership_filter.find(":checked").val()
-        ownership_filter.find("input[value='off']").prop("checked", true)
+        ownership_filter.find("input[value='']").prop("checked", true)
         ownership_filter.find("input").button( disabled: true )
         ownership_filter.buttonset("refresh")
 
