@@ -13,6 +13,11 @@
       <div id="filter-adult" class="filter-buttonset">
         <label for="filter-adult-all">Show All</label><input id="filter-adult-all" type="radio" name="filter-adult" value="all"><label for="filter-adult-other">G-Rated Only</label><input id="filter-adult-other" type="radio" name="filter-adult" value="kid-friendly" checked><label for="filter-adult-only">Adult Only</label><input id="filter-adult-only" type="radio" name="filter-adult" value="adult">
       </div>
+      <hr>
+      <p>Bounty Status</p>
+      <div id="filter-status" class="filter-buttonset">
+        <label for="filter-status-all">All</label><input id="filter-status-all" type="radio" name="filter-status" value="" checked><label for="filter-status-unclaimed">Unclaimed</label><input id="filter-status-unclaimed" type="radio" name="filter-status" value="unclaimed"><label for="filter-status-accepted">In Progress</label><input id="filter-status-accepted" type="radio" name="filter-status" value="accepted"><label for="filter-status-completed">Complete</label><input id="filter-status-completed" type="radio" name="filter-status" value="completed">
+      </div>
       <% if signed_in? %>
         <hr>
         <p>My Bounties</p>

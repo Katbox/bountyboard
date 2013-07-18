@@ -12,6 +12,9 @@ initializeFilters = ->
     # filter_parameters["price_min"] = 30)
     filter_parameters = []
     apply_filters = ->
+      console.log "Applying bounty filters:"
+      console.log filter_parameters
+
       sanitized_parameters = []
       for param of filter_parameters
         key = encodeURIComponent(param)
@@ -90,6 +93,7 @@ initializeFilters = ->
       filter_parameters["adult"] = $("#filter-adult :checked").val()
       apply_filters()
 
+
     # bounties you own
 
     $("#user-bounties").buttonset()
@@ -97,11 +101,24 @@ initializeFilters = ->
       filter_parameters["own"] = $("#user-bounties :checked").val()
       apply_filters()
 
+
     # bounties you may complete
 
     $("#artist-bounties").buttonset()
     $("#artist-bounties").change ->
       filter_parameters["may_accept"] = $("#artist-bounties :checked").val()
+      apply_filters()
+
+
+    # status filter
+
+    $("#filter-status").buttonset()
+    $("#filter-status").change ->
+      allowed_status = $("#filter-status :checked").val()
+      if allowed_status is ""
+        delete filter_parameters["status"]
+      else
+        filter_parameters["status"] = allowed_status
       apply_filters()
 
 
