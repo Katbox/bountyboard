@@ -1,4 +1,4 @@
-<%= link_to_previous_page @bounties, 'Previous Page' %><%= link_to_next_page @bounties, 'Next Page' %>
+<%= link_to_previous_page @bounties, 'Previous', class: 'pagination p_left' %><%= link_to_next_page @bounties, 'Next', class: 'pagination p_right' %>
 <div id="bounty-wrapper">
   <div id="bounty-list">
     <% @bounties.each do |b| %>
