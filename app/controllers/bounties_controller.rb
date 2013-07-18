@@ -10,7 +10,7 @@ class BountiesController < ApplicationController
   def index
     @bounties = Bounty
       .viewable_by(currentUser)
-      .limit(50)
+      .page().per(20)
 
 
     # apply filters from the user
@@ -44,7 +44,7 @@ class BountiesController < ApplicationController
       @bounties = @bounties.may_accept currentUser
     end
 
-    respond_with @bounties.all.sort { |bounty| -bounty.score }.page()
+    respond_with @bounties.all.sort { |bounty| -bounty.score }
   end
 
   # Display an individual bounty.
