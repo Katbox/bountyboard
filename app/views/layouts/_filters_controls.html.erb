@@ -13,18 +13,18 @@
       <div id="filter-adult" class="filter-buttonset">
         <label for="filter-adult-all">Show All</label><input id="filter-adult-all" type="radio" name="filter-adult" value="all"><label for="filter-adult-other">G-Rated Only</label><input id="filter-adult-other" type="radio" name="filter-adult" value="kid-friendly" checked><label for="filter-adult-only">Adult Only</label><input id="filter-adult-only" type="radio" name="filter-adult" value="adult">
       </div>
-        <% if signed_in? %>
-          <p>Show Your Bounties:</p>
-          <div id="user-bounties" class="filter-buttonset">
-                <label for="show-owner-on">On</label><input id="show-owner-on" type="radio" name="user-bounties" value="on"><label for="show-owner-off">Off</label><input id="show-owner-off" type="radio" name="user-bounties" value="off" checked>
+      <% if signed_in? %>
+        <p>Show Your Bounties:</p>
+        <div id="user-bounties" class="filter-buttonset">
+              <label for="show-owner-on">On</label><input id="show-owner-on" type="radio" name="user-bounties" value="on"><label for="show-owner-off">Off</label><input id="show-owner-off" type="radio" name="user-bounties" value="off" checked>
+        </div>
+        <% if currentUser.is_a?(Artist) %>
+        <p>Show Bounties You May Accept:</p>
+          <div id="artist-bounties" class="filter-buttonset">
+                <label for="may-accept-on">On</label><input id="may-accept-on" type="radio" name="artist-bounties" value="on"><label for="may-accept-off">Off</label><input id="may-accept-off" type="radio" name="artist-bounties" value="off" checked>
           </div>
-          <% if currentUser.is_a?(Artist) %>
-          <p>Show Bounties You May Accept:</p>
-            <div id="artist-bounties" class="filter-buttonset">
-                  <label for="may-accept-on">On</label><input id="may-accept-on" type="radio" name="artist-bounties" value="on"><label for="may-accept-off">Off</label><input id="may-accept-off" type="radio" name="artist-bounties" value="off" checked>
-            </div>
-          <% end %>
         <% end %>
+      <% end %>
     </div>
   </div>
 </div>
