@@ -44,7 +44,7 @@ class BountiesController < ApplicationController
       @bounties = @bounties.may_accept currentUser
     end
 
-    respond_with @bounties.all.sort { |bounty| -bounty.score }
+    respond_with @bounties.all.sort { |bounty| -bounty.score }.page()
   end
 
   # Display an individual bounty.
