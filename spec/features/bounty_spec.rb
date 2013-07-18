@@ -443,8 +443,7 @@ describe 'Bounty' do
 
         it "shouldn't display completed bounties" do
           page.should_not have_selector(
-            '.bounty-square .name',
-            :text => @completed_bounty.name,
+            ".bounty-square a[href='/bounties/#{@completed_bounty.id}']",
             :count => 1
           )
         end
@@ -474,8 +473,7 @@ describe 'Bounty' do
 
         it "shouldn't display completed bounties" do
           page.should_not have_selector(
-            '.bounty-square .name',
-            :text => @completed_bounty.name,
+            ".bounty-square a[href='/bounties/#{@completed_bounty.id}']",
             :count => 1
           )
         end
@@ -505,12 +503,7 @@ describe 'Bounty' do
 
         it 'should display completed bounties' do
           page.should have_selector(
-            '.bounty-square .name',
-            :count => 1
-          )
-          page.should have_selector(
-            '.bounty-square .name',
-            :text => @completed_bounty.name,
+            ".bounty-square a[href='/bounties/#{@completed_bounty.id}']",
             :count => 1
           )
         end
