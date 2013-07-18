@@ -9,7 +9,7 @@ initializeFilters = ->
 
     # parameters passed to the back end for filtering are stored
     # here, indexed by the property being filtered (i.e.
-    # filters["price"] = "price_min=30&price_max=60")
+    # filter_parameters["price_min"] = 30)
     filter_parameters = []
     apply_filters = ->
       sanitized_parameters = []
