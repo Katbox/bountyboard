@@ -62,6 +62,76 @@ describe 'Bounty' do
       )
     end
 
+    context 'when there are a lot of bounties' do
+      before {
+        OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
+          :provider => 'browserid',
+          :uid => @generic_user.email
+        })
+        visit '/auth/browser_id'
+
+        48.times do
+          @temp = FactoryGirl.create(:bounty,
+            :owner => @customer
+          )
+          FactoryGirl.create(:candidacy, :bounty => @temp)
+        end
+
+        visit root_path
+      }
+
+      it 'should display 20 bounties' do
+        page.should have_selector(
+          '.bounty-square .name',
+          :count => 20
+        )
+        page.should_not have_selector(
+          '.previous',
+          :text => 'Previous',
+          :count => 1
+        )
+        page.should have_selector(
+          '.next',
+          :text => 'Next',
+          :count => 1
+        )
+
+        page.click_link('Next')
+
+        page.should have_selector(
+          '.bounty-square .name',
+          :count => 20
+        )
+        page.should have_selector(
+          '.previous',
+          :text => 'Previous',
+          :count => 1
+        )
+        page.should have_selector(
+          '.next',
+          :text => 'Next',
+          :count => 1
+        )
+
+        page.click_link('Next')
+
+        page.should have_selector(
+          '.bounty-square .name',
+          :count => 10
+        )
+        page.should have_selector(
+          '.previous',
+          :text => 'Previous',
+          :count => 1
+        )
+        page.should_not have_selector(
+          '.next',
+          :text => 'Next',
+          :count => 1
+        )
+      end
+    end
+
     context 'when a guest visits' do
       before {
         visit root_path
