@@ -6,7 +6,7 @@ class BountiesController < ApplicationController
   respond_to :json, :html
 
   def self.BOUNTIES_PER_PAGE
-    20
+    40
   end
 
   # Display a list of all bounties in the system, with links to see their

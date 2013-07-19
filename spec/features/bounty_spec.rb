@@ -70,7 +70,7 @@ describe 'Bounty' do
         })
         visit '/auth/browser_id'
 
-        48.times do
+        (2 * BountiesController.BOUNTIES_PER_PAGE + 8).times do
           @temp = FactoryGirl.create(:bounty,
             :owner => @customer
           )
@@ -80,7 +80,7 @@ describe 'Bounty' do
         visit root_path
       }
 
-      it 'should display the correct number of bounties' do
+      it 'should paginate correctly' do
         page.should have_selector(
           '.bounty-square .name',
           :count => BountiesController.BOUNTIES_PER_PAGE
