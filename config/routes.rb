@@ -21,7 +21,7 @@ Bountyboard::Application.routes.draw do
 
   # authentication routes
   match '/auth/:provider/callback', to: 'sessions#create', via: :get
-  match '/sign_out', to: 'sessions#destroy', via: :delete, via: :get
+  match '/sign_out', to: 'sessions#destroy', via: :delete, via: :post
   match '/auth/failure', to: 'sessions#auth_failure', via: :get
 end
 
