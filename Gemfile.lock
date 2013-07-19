@@ -268,7 +268,7 @@ DEPENDENCIES
   omniauth-deviantart
   paperclip
   pg
-  rails (~> 4.0.0)
+  rails (~> 4.0)
   rspec-rails
   ruby-growl
   sanitize
