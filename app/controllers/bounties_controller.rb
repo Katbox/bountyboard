@@ -104,7 +104,7 @@ class BountiesController < ApplicationController
     params[:bounty][:name] = Sanitize.clean(params[:bounty][:tag_line])
     params[:bounty][:desc] = Sanitize.clean(params[:bounty][:desc], Sanitize::Config::RELAXED)
 
-    @bounty = Bounty.new(params[:bounty])
+    @bounty = Bounty.new(bounty_create_params)
     @bounty.owner = currentUser
 
     if @bounty.save
@@ -152,7 +152,7 @@ class BountiesController < ApplicationController
     if params[:bounty][:url]
       params[:bounty][:completed_at] = Time.now
       @bounty.artwork_from_url(params[:bounty][:url])
-      if @bounty.update_attributes(params[:bounty])
+      if @bounty.update_attributes(bounty_update_params)
         flash[:notice] = "Bounty Completed!"
         redirect_to root_path
       else
@@ -171,7 +171,7 @@ class BountiesController < ApplicationController
       params[:bounty][:name] = Sanitize.clean(params[:bounty][:tag_line])
       params[:bounty][:desc] = Sanitize.clean(params[:bounty][:desc], Sanitize::Config::RELAXED)
 
-      if @bounty.update_attributes(params[:bounty])
+      if @bounty.update_attributes(bounty_update_params)
         flash[:notice] = "Bounty Updated!"
         redirect_to root_path
       else
@@ -212,5 +212,43 @@ class BountiesController < ApplicationController
       end
     end
   end
+
+  private
+
+    def bounty_create_params
+      params.require(:bounty).permit(
+        :name,
+        :desc,
+        :price_cents,
+        :price_currency,
+        :adult_only,
+        :private,
+        :complete_by,
+        :tag_line
+      )
+    end
+
+    def bounty_update_params(bounty)
+      permitted_keys = [
+        :name,
+        :desc,
+        :price_cents,
+        :price_currency,
+        :adult_only,
+        :private,
+        :complete_by,
+        :tag_line
+      ]
+      # the acccepting artist can complete a bounty
+      if bounty.accepting_candidacy && bounty.accepting_candidacy.artist == currentUser
+        permitted_keys.concat([
+          :url,
+          :preview,
+          :completed_at
+        ])
+      end
+      params.require(:bounty).permit(permitted_keys)
+    end
+
 end
 

@@ -4,9 +4,8 @@ class VotesController < ApplicationController
 
   def create
     if signed_in?
-      @vote = Vote.new(params[:vote])
+      @vote = Vote.new(vote_create_params)
       @vote.user = currentUser
-      @vote.bounty = Bounty.find(params[:bounty])
       if @vote.save
         if @vote.vote_type
           flash[:notice] = "You have upvoted #{@vote.bounty.name}!"
@@ -37,4 +36,14 @@ class VotesController < ApplicationController
       redirect_to root_path
     end
   end
+
+  private
+
+    def vote_create_params
+      params.require(:artist).permit(
+        :bounty_id,
+        :vote_type
+      )
+    end
+
 end

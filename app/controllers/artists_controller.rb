@@ -65,7 +65,7 @@ class ArtistsController < ApplicationController
       params[:artist][:bio] = Sanitize.clean(params[:artist][:bio], Sanitize::Config::RELAXED)
       params[:artist][:bounty_rules] = Sanitize.clean(params[:artist][:bounty_rules], Sanitize::Config::RELAXED)
 
-      @artist = Artist.new(params[:artist])
+      @artist = Artist.new(artist_create_params)
       if @artist.save
         flash[:notice] = "Artist created successfully!"
         redirect_to root_path
@@ -116,7 +116,7 @@ class ArtistsController < ApplicationController
     params[:artist][:name] = Sanitize.clean(params[:artist][:name])
     params[:artist][:bio] = Sanitize.clean(params[:artist][:bio], Sanitize::Config::RELAXED)
     params[:artist][:bounty_rules] = Sanitize.clean(params[:artist][:bounty_rules], Sanitize::Config::RELAXED)
-    if @artist.update_attributes(params[:artist])
+    if @artist.update_attributes(artist_update_params)
       flash[:notice] = "Artist updated!"
       redirect_to root_path
     else
@@ -148,4 +148,33 @@ class ArtistsController < ApplicationController
       redirect_to root_path
     end
   end
+
+  private
+
+    def artist_create_params
+      params.require(:artist).permit(
+        :name,
+        :email,
+        :bio,
+        :bounty_rules
+      )
+    end
+
+    def artist_update_params
+      permitted_keys = [
+        :name,
+        :email,
+        :bio,
+        :bounty_rules,
+        :active
+      ]
+      # admins can approve or un-approve an artist
+      if currentUser.admin?
+        permitted_keys.concat([
+          :approved
+        ])
+      end
+      params.require(:artist).permit(permitted_keys)
+    end
+
 end
