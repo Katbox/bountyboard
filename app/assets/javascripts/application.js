@@ -12,7 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.all
+//= require jquery.ui.button
+//= require jquery.ui.datepicker
+//= require jquery.ui.slider
 //= require turbolinks
 //= require masonry/jquery.masonry
 //= require ckeditor/init
