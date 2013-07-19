@@ -26,6 +26,7 @@
 #  preview_updated_at   :datetime
 #
 
+include VotesHelper
 
 class Bounty < ActiveRecord::Base
   attr_accessible :name, :tag_line, :desc, :artwork, :preview, :price_cents, :adult_only, :url, :private, :mood_ids, :price, :artist_ids, :completed_at, :complete_by
@@ -164,7 +165,9 @@ class Bounty < ActiveRecord::Base
 
       all_votes = self.votes.all
       total_votes = all_votes.length
-      positive_votes = all_votes.count { |vote| vote.vote_type }
+      positive_votes = all_votes.count { |vote|
+        vote.vote_type == VoteType::UPVOTE
+      }
 
       if total_votes == 0
         return 0.0

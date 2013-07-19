@@ -1,6 +1,7 @@
 class BountiesController < ApplicationController
 
   include SessionsHelper
+  include VotesHelper
   require 'sanitize'
 
   respond_to :json, :html

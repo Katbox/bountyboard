@@ -1,6 +1,7 @@
 module ApplicationHelper
 
   include SessionsHelper
+  include VotesHelper
 
   # generates the appropriate class name for flash messages when generating
   # their HTML for the main application layout
