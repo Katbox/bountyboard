@@ -143,7 +143,6 @@ class BountiesController < ApplicationController
       redirect_to root_path
     end
     if params[:bounty][:url]
-      params[:bounty][:completed_at] = Time.now
       if @bounty.update_attributes(bounty_update_params)
         flash[:notice] = "Bounty Completed!"
         redirect_to root_path
