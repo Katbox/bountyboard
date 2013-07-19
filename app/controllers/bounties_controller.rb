@@ -143,6 +143,7 @@ class BountiesController < ApplicationController
       redirect_to root_path
     end
     if params[:bounty][:url]
+      @bounty.artwork_from_url(params[:bounty][:url])
       if @bounty.update_attributes(bounty_update_params)
         flash[:notice] = "Bounty Completed!"
         redirect_to root_path
