@@ -41,7 +41,7 @@ RSpec.configure do |config|
 
   # make the test log readable by printing a heading naming the test the
   # following messages belong to.
-  Rspec.configure do |config|
+  RSpec.configure do |config|
     config.before(:each) do
       full_example_description = "Starting #{self.class.description} #{@method_name}"
       Rails::logger.info("\n\n#{full_example_description}\n#{'-' * (full_example_description.length)}")

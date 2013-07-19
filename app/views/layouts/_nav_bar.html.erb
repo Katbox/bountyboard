@@ -1,6 +1,5 @@
 <nav>
   <%= link_to 'The Bounty Board', root_path %>
-  <%= link_to 'About', '#' %>
   <%= link_to 'Show All Artists', artists_path %>
   <% if signed_in? && currentUser.admin? %>
     <%= link_to 'New Artist', new_artist_path %>
