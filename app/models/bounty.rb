@@ -194,6 +194,14 @@ class Bounty < ActiveRecord::Base
     self.candidacies.empty?
   end
 
+  # Returns true if the specified user can vote on this bounty, false
+  # otherwise.
+  def can_vote?(user)
+    user && self.owner != user && self.votes.find_index { |vote|
+      vote.user == user
+    }
+  end
+
   # Returns the vote cast for this bounty by the specified user, or
   # nil if the user hasn't voted on this bounty.
   def vote_by(user)
