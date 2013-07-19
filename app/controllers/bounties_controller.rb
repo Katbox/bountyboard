@@ -232,7 +232,7 @@ class BountiesController < ApplicationController
         :tag_line
       ]
       # the acccepting artist can complete a bounty
-      if bounty.accepting_candidacy.artist == currentUser
+      if bounty.accepting_candidacy && bounty.accepting_candidacy.artist == currentUser
         permitted_keys.concat([
           :url,
           :preview,
