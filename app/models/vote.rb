@@ -20,4 +20,12 @@ class Vote < ActiveRecord::Base
   validates :user, presence: true
   validates :bounty, presence: true
   validates_uniqueness_of :user_id, :scope => :bounty_id
+
+  validate :user_cant_vote_on_own_bounty
+
+  def user_cant_vote_on_own_bounty
+    if user == bounty.owner
+      errors.add(:user, 'cannot vote on their own bounty.')
+    end
+  end
 end

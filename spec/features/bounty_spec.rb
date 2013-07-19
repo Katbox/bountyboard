@@ -163,6 +163,11 @@ describe 'Bounty' do
           :text => "Adult Bounty"
         )
       end
+
+      it 'should not display voting controls' do
+        page.should_not have_selector('.bounty-square .upvote')
+        page.should_not have_selector('.bounty-square .downvote')
+      end
     end
 
     context 'when a generic user visits' do
@@ -240,6 +245,27 @@ describe 'Bounty' do
         page.should_not have_selector(
           '.bounty-square .name',
           :text => @adult_bounty.name
+        )
+      end
+
+      it 'should not display voting controls on owned bounties' do
+        page.should_not have_selector(
+          ".bounty-square[data-id='#{@normal_bounty.id}'] .upvote"
+        )
+        page.should_not have_selector(
+          ".bounty-square[data-id='#{@normal_bounty.id}'] .downvote"
+        )
+        page.should_not have_selector(
+          ".bounty-square[data-id='#{@adult_bounty.id}'] .upvote"
+        )
+        page.should_not have_selector(
+          ".bounty-square[data-id='#{@adult_bounty.id}'] .downvote"
+        )
+        page.should_not have_selector(
+          ".bounty-square[data-id='#{@private_bounty.id}'] .upvote"
+        )
+        page.should_not have_selector(
+          ".bounty-square[data-id='#{@private_bounty.id}'] .downvote"
         )
       end
     end

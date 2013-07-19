@@ -7,7 +7,7 @@ class VotesController < ApplicationController
       @vote = Vote.new(vote_create_params)
       @vote.user = currentUser
       if @vote.save
-        if @vote.vote_type
+        if @vote.vote_type == VoteType::Upvote
           flash[:notice] = "You have upvoted #{@vote.bounty.name}!"
         else
           flash[:notice] = "You have downvoted #{@vote.bounty.name}!"

@@ -26,6 +26,8 @@
 #  preview_updated_at   :datetime
 #
 
+include VotesHelper
+
 class Bounty < ActiveRecord::Base
 
   # Paperclip gem. This ties the four properties "artwork_file_name",
@@ -160,7 +162,9 @@ class Bounty < ActiveRecord::Base
 
       all_votes = self.votes.to_a
       total_votes = all_votes.length
-      positive_votes = all_votes.count { |vote| vote.vote_type }
+      positive_votes = all_votes.count { |vote|
+        vote.vote_type == VoteType::UPVOTE
+      }
 
       if total_votes == 0
         return 0.0
@@ -185,6 +189,14 @@ class Bounty < ActiveRecord::Base
   # Returns true if the bounty has no candidacies.
   def abandoned?
     self.candidacies.empty?
+  end
+
+  # Returns true if the specified user can vote on this bounty, false
+  # otherwise.
+  def can_vote?(user)
+    user && self.owner != user && self.votes.find_index { |vote|
+      vote.user == user
+    }
   end
 
   # Returns the vote cast for this bounty by the specified user, or

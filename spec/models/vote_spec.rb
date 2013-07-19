@@ -59,4 +59,11 @@ describe Vote do
       @bounty.score.should < old_score
     end
   end
+
+  it "shouldn't let a user vote on their own bounty" do
+    bounty = FactoryGirl.create(:bounty)
+    vote = FactoryGirl.build(:vote, :bounty => bounty, :user => bounty.owner)
+    vote.should_not be_valid
+    vote.should have(1).error_on(:user)
+  end
 end
