@@ -5,9 +5,8 @@ require 'omniauth-deviantart'
 # send log messages from our authentication system to the Rails log
 OmniAuth.config.logger = Rails.logger
 
-OmniAuth.config.test_mode = true
-
 # uncomment this line to test logging in as an artist, or another user
+# OmniAuth.config.test_mode = true
 # OmniAuth.config.mock_auth[:browser_id] = OmniAuth::AuthHash.new({
 #   :provider => 'browserid',
 #   :uid => 'lionheartstudio@gmail.com'
